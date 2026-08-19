@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROUGHTALE8 — Official Website</title>
+    <style>
+        /* --- RESET & GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #050505;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-logo {
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a:hover {
+            color: #cc0000;
+            transition: color 0.3s ease;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(180deg, rgba(5,5,5,0.3) 0%, rgba(5,5,5,1) 100%), url('city.jpg') center/cover no-repeat;
+        }
+
+        .hero-subtitle {
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            font-size: 15px;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid #fff;
+            font-size: 12px;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-subtitle {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #cc0000;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        /* --- GRID SYSTEM --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #0a0a0a;
+            padding: 30px;
+            border: 1px solid #1a1a1a;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: #333;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* --- 09 TRAILER SECTION --- */
+        .trailer-section {
+            text-align: center;
+            background-color: #050505;
+            padding: 120px 20px;
+            border-top: 1px solid #111;
+        }
+
+        .play-button-container {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .play-btn {
+            position: relative;
+            z-index: 2;
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            font-size: 32px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+            transform: scale(1.1);
+        }
+
+        .pulse-ring {
+            position: absolute;
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.25);
+            z-index: 1;
+            animation: pulse 2s infinite ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+
+        .trailer-text {
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #777;
+            margin-top: 20px;
+        }
+
+        /* --- MODAL SLIDESHOW TEASER --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            color: #ffffff;
+            font-size: 35px;
+            font-weight: 300;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #cc0000;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 0 40px rgba(0,0,0,0.9);
+            border: 1px solid #222;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .location-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            text-align: left;
+            z-index: 5;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .location-caption h3 {
+            font-size: 28px;
+            letter-spacing: 4px;
+            margin: 0 0 5px 0;
+            color: #ffffff;
+            font-weight: 300;
+        }
+
+        .location-caption p {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #888888;
+            margin: 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid #111;
+            font-size: 12px;
+            color: #555;
+            letter-spacing: 2px;
+        }
+
+        footer strong {
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-logo">ROUGHTALE8</div>
+        <ul class="nav-links">
+            <li><a href="#synopsis">SINOPSIS</a></li>
+            <li><a href="#world">DUNIA</a></li>
+            <li><a href="#gameplay">GAMEPLAY</a></li>
+            <li><a href="#trailer">TEASER</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="hero-subtitle">THE EIGHTH WORLD</div>
+        <h1 class="hero-title">WHAT WILL YOU ACCEPT?</h1>
+        <p class="hero-desc">EVERY CHOICE. EVERY LIFE. EVERY ENDING.<br>Tujuh dunia telah hancur. Ini adalah dunia kedelapan. Dunia terakhir.</p>
+        <a href="#synopsis" class="btn-primary">ENTER THE WORLD</a>
+    </div>
+
+    <!-- 01 SINOPSIS -->
+    <section id="synopsis">
+        <div class="section-subtitle">01 — SINOPSIS</div>
+        <h2 class="section-title">Dunia sudah hancur tujuh kali.</h2>
+        <p style="color: #aaa; max-width: 800px;">ROUGHTALE8 berlangsung pada dunia kedelapan—sebuah dunia yang berada di ujung kehancuran. Tidak ada dunia kesembilan yang menunggu. Lima orang asing bertemu tanpa hubungan masa lalu yang diketahui. Pemain tidak diberi satu protagonis. Kelimanya playable, dan jalan cerita berubah berdasarkan tindakan, keraguan, keberanian, kesalahan, serta kematian.</p>
+    </section>
+
+    <!-- 04 GAMEPLAY -->
+    <section id="gameplay">
+        <div class="section-subtitle">04 — GAMEPLAY</div>
+        <h2 class="section-title">The world does not wait.</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>SYSTEM 01 — NO SAFE CHOICE</h3>
+                <p>Tidak ada pilihan yang sepenuhnya aman. Menyelamatkan seseorang dapat berarti kehilangan sesuatu yang lain.</p>
+            </div>
+            <div class="card">
+                <h3>SYSTEM 02 — TIME</h3>
+                <p>Ketika pemain terlalu lama memilih, sistem dapat mengambil keputusan sendiri. Dunia tetap berjalan.</p>
+            </div>
+            <div class="card">
+                <h3>SYSTEM 03 — CONSEQUENCE</h3>
+                <p>Pilihan kecil dapat kembali jauh di kemudian hari dalam bentuk yang tidak pernah diperkirakan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 09 — TRAILER SECTION -->
+    <section id="trailer" class="trailer-section">
+        <div class="section-subtitle">09 — TEASER REEL</div>
+        <h1 class="section-title">You have seen<br>nothing yet.</h1>
+        
+        <div class="play-button-container">
+            <button id="playTrailerBtn" class="play-btn">▶</button>
+            <div class="pulse-ring"></div>
+        </div>
+        
+        <p class="trailer-text">ENVIRONMENT TEASER — WORLD EIGHT</p>
+    </section>
+
+    <!-- MODAL SLIDESHOW TEASER -->
+    <div id="trailerModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModalBtn" class="close-btn">&times;</span>
+            
+            <div class="slideshow-container">
+                <!-- Slide 1: The City -->
+                <div class="slide active">
+                    <img src="city.jpg" alt="The City">
+                    <div class="location-caption">
+                        <h3>THE CITY</h3>
+                        <p>FRAGMENTS OF WORLD EIGHT</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2: The Ruins -->
+                <div class="slide">
+                    <img src="ruins.jpg" alt="The Ruins">
+                    <div class="location-caption">
+                        <h3>THE RUINS</h3>
+                        <p>FRAGMENTS OF WORLD EIGHT</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3: The Last Refuge -->
+                <div class="slide">
+                    <img src="refuge.jpg" alt="The Last Refuge">
+                    <div class="location-caption">
+                        <h3>THE LAST REFUGE</h3>
+                        <p>FRAGMENTS OF WORLD EIGHT</p>
+                    </div>
+                </div>
+
+                <!-- Slide 4: The Hospital -->
+                <div class="slide">
+                    <img src="hospital.jpg" alt="The Hospital">
+                    <div class="location-caption">
+                        <h3>THE HOSPITAL</h3>
+                        <p>FRAGMENTS OF WORLD EIGHT</p>
+                    </div>
+                </div>
+
+                <!-- Slide 5: The Laboratory -->
+                <div class="slide">
+                    <img src="lab.jpg" alt="The Laboratory">
+                    <div class="location-caption">
+                        <h3>THE LABORATORY</h3>
+                        <p>FRAGMENTS OF WORLD EIGHT</p>
+                    </div>
+                </div>
+
+                <!-- Slide 6: The Unknown -->
+                <div class="slide">
+                    <img src="unknown.jpg" alt="The Unknown">
+                    <div class="location-caption">
+                        <h3>THE UNKNOWN</h3>
+                        <p>FRAGMENTS OF WORLD EIGHT</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>ROUGHTALE STUDIOS © 2026</p>
+        <p style="margin-top: 5px;">CREATED BY <strong>MUHAMMAD FAARI AKBAR</strong></p>
+    </footer>
+
+    <!-- SCRIPT AUTOMATIS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.getElementById("trailerModal");
+            const playBtn = document.getElementById("playTrailerBtn");
+            const closeBtn = document.getElementById("closeModalBtn");
+            const slides = document.querySelectorAll(".slide");
+            
+            let currentSlide = 0;
+            let slideInterval = null;
+
+            function showNextSlide() {
+                slides[currentSlide].classList.remove("active");
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add("active");
+            }
+
+            function startSlideshow() {
+                currentSlide = 0;
+                slides.forEach((slide, idx) => {
+                    slide.classList.toggle("active", idx === 0);
+                });
+                // Gambar berganti otomatis setiap 3,5 detik
+                slideInterval = setInterval(showNextSlide, 3500);
+            }
+
+            function stopSlideshow() {
+                clearInterval(slideInterval);
+            }
+
+            playBtn.addEventListener("click", function() {
+                modal.classList.add("show");
+                startSlideshow();
+            });
+
+            function closeModal() {
+                modal.classList.remove("show");
+                stopSlideshow();
+            }
+
+            closeBtn.addEventListener("click", closeModal);
+            window.addEventListener("click", function(e) { 
+                if (e.target === modal) closeModal(); 
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ROUGHTALE8 — LIFE IS SIMPLE</title>
+<meta name="description" content="ROUGHTALE8 — Created by Muhammad Faari Akbar. Every choice. Every life. Every ending.">
+
+<!-- LOGO TAB BROWSER (SVG AUTOMATIC FAVICON - R8) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23050708'/><rect x='3' y='3' width='94' height='94' rx='15' fill='none' stroke='%23b51e1e' stroke-width='6'/><text x='50%' y='68%' font-family='Georgia,Arial,sans-serif' font-weight='bold' font-size='50' fill='%23ffffff' text-anchor='middle'>R<tspan fill='%23b51e1e'>8</tspan></text></svg>">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#030506;color:#eee;font-family:Georgia,"Times New Roman",serif;overflow-x:hidden}
+:root{--red:#b51e1e;--muted:#929699;--line:rgba(255,255,255,.13)}
+
+#preloader {
+    position: fixed; inset: 0; background: #020304; z-index: 99999;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#preloader.fade-out { opacity: 0; visibility: hidden; }
+.loader-title { font-size: 22px; letter-spacing: 6px; font-family: Arial, sans-serif; color: #fff; margin-bottom: 15px; }
+.loader-title b { color: var(--red); }
+.loader-bar-wrap { width: 220px; height: 3px; background: rgba(255,255,255,0.1); position: relative; overflow: hidden; border-radius: 2px; }
+.loader-bar { position: absolute; left: -100%; width: 100%; height: 100%; background: var(--red); animation: loadingProgress 1.6s ease-in-out forwards; }
+.loader-sub { font: 9px Arial, sans-serif; letter-spacing: 3px; color: #666; margin-top: 15px; }
+@keyframes loadingProgress { 0% { left: -100%; } 50% { left: -30%; } 100% { left: 0%; } }
+
+body:before{
+content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.035;
+background-image:repeating-radial-gradient(circle at 0 0,#fff 0,#fff 1px,transparent 1px,transparent 3px)
+}
+
+nav{
+position:fixed;top:0;left:0;width:100%;z-index:100;
+padding:18px 5%;display:flex;justify-content:space-between;align-items:center;
+background:linear-gradient(#020304,rgba(2,3,4,.85),transparent);
+backdrop-filter:blur(5px)
+}
+.logo{font-size:20px;letter-spacing:4px;font-weight:bold}
+.logo b{color:var(--red)}
+.links{display:flex;gap:20px;align-items:center}
+.links a{color:#aaa;text-decoration:none;font:11px Arial,sans-serif;letter-spacing:2px;transition:.3s}
+.links a:hover{color:#fff}
+
+.audio-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
+    padding: 6px 12px; font: 9px Arial, sans-serif; letter-spacing: 2px; cursor: pointer; border-radius: 3px; transition: all 0.3s ease;
+}
+.audio-btn:hover { border-color: var(--red); color: #fff; }
+.audio-btn.active { border-color: var(--red); color: var(--red); background: rgba(181,30,30,0.1); }
+
+.hero{
+min-height:100vh;position:relative;display:grid;grid-template-columns:52% 48%;
+align-items:center;padding:95px 5% 55px;overflow:hidden;background:#050708
+}
+.hero-bg{
+position:absolute;inset:0;background:
+linear-gradient(90deg,rgba(2,4,5,.58),rgba(2,4,5,.72)),
+url("cover-background.png") center/cover no-repeat;
+filter:brightness(.52) saturate(.72);opacity:.58;transform:scale(1.03);z-index:0
+}
+.hero:after{
+content:"";position:absolute;inset:0;background:
+radial-gradient(circle at 55% 50%,transparent 10%,rgba(0,0,0,.62) 80%),
+linear-gradient(to bottom,rgba(0,0,0,.1),#030506 96%);z-index:1
+}
+.hero>*:not(.hero-bg){position:relative;z-index:2}
+.cover-wrap{display:flex;justify-content:center;align-items:center}
+.cover{
+width:min(560px,100%);box-shadow:0 25px 70px rgba(0,0,0,.75);
+border:1px solid rgba(255,255,255,.12);transition:.6s
+}
+.cover:hover{transform:scale(1.015);box-shadow:0 30px 90px rgba(0,0,0,.9)}
+.hero-copy{padding:40px 4% 40px 7%;max-width:680px}
+.kicker{font:11px Arial,sans-serif;letter-spacing:7px;color:#aaa;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.status-tag { display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%; box-shadow:0 0 8px #22c55e; }
+
+.hero h1{font-size:clamp(38px,6vw,82px);font-weight:400;letter-spacing:6px;line-height:1}
+.hero h1 span{color:var(--red)}
+.tag{margin-top:18px;font:12px Arial,sans-serif;letter-spacing:6px}
+.hero-copy p{margin-top:25px;color:#aeb2b3;font:14px/1.8 Arial,sans-serif;max-width:530px}
+
+.hero-btn-group { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+.btn{
+display:inline-block;padding:14px 28px;border:1px solid #777;
+color:#fff;text-decoration:none;font:10px Arial,sans-serif;letter-spacing:3px;transition:.35s;
+text-align:center; cursor: pointer;
+}
+.btn:hover{background:#fff;color:#000;border-color:#fff}
+.btn-primary { background: var(--red); border-color: var(--red); font-weight: bold; }
+.btn-primary:hover { background: #d32f2f; color: #fff; border-color: #d32f2f; box-shadow: 0 0 20px rgba(181, 30, 30, 0.6); }
+
+section{padding:100px 7%;position:relative}
+.label{font:10px Arial,sans-serif;letter-spacing:5px;color:#777;margin-bottom:18px}
+.title{font-size:clamp(32px,5vw,67px);font-weight:400;line-height:1.1;margin-bottom:28px}
+.text{max-width:850px;color:#9da2a3;font:15px/1.9 Arial,sans-serif}
+.quote{margin-top:40px;border-left:2px solid var(--red);padding:8px 0 8px 20px;max-width:750px;font-size:20px;line-height:1.6;color:#ddd}
+
+.synopsis{background:linear-gradient(rgba(3,5,6,.87),rgba(3,5,6,.95)),url("cover-background.png") center/cover fixed}
+
+.world{background:#050708}
+.world-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:40px}
+.world-card{
+height:170px;border:1px solid var(--line);display:flex;align-items:end;padding:15px;
+background:linear-gradient(transparent,rgba(0,0,0,.95)),url("cover-background.png") center/cover;
+transition:.4s; cursor: pointer;
+}
+.world-card:hover{transform:translateY(-5px);border-color:#777; box-shadow: 0 5px 20px rgba(181,30,30,0.3);}
+.world-card:last-child{border-color:rgba(181,30,30,.7)}
+.num{font-size:32px;color:rgba(255,255,255,.18)}
+.wname{font:9px Arial,sans-serif;letter-spacing:2px;margin-top:5px}
+
+.characters{background:#080a0b}
+.character-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:40px}
+
+.char-card-wrap { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+.character-card-box {
+    width: 100%; aspect-ratio: 9 / 13; border: 3px solid #6b7782; outline: 1px solid #1a2128; border-radius: 2px;
+    overflow: hidden; position: relative; background-image: url("characters.png"); background-size: 500% 250%;
+    transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+}
+.char-card-wrap:hover .character-card-box {
+    border-color: #e62323; outline: 2px solid #ff4d4d; transform: translateY(-6px);
+    box-shadow: 0 0 30px rgba(230, 35, 35, 0.7), 0 10px 30px rgba(0,0,0,0.9);
+}
+.character-card-box.eidon { background-position: 0% 12%; }
+.character-card-box.lira  { background-position: 25% 12%; }
+.character-card-box.kael  { background-position: 50% 12%; }
+.character-card-box.nara  { background-position: 75% 12%; }
+.character-card-box.reza  { background-position: 100% 12%; }
+
+.char-label-name { margin-top: 15px; font-size: 14px; letter-spacing: 4px; color: #d1d5db; font-family: Georgia, serif; font-weight: bold; text-align: center; }
+
+.profile-modal {
+    display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(2, 3, 4, 0.94); backdrop-filter: blur(10px); justify-content: center; align-items: center;
+    opacity: 0; padding: 20px; transition: opacity 0.3s ease;
+}
+.profile-modal.show { display: flex; opacity: 1; }
+.profile-card-content {
+    background: rgba(10, 14, 18, 0.98); border: 2px solid var(--red); border-radius: 4px;
+    width: 100%; max-width: 580px; padding: 28px; position: relative;
+    box-shadow: 0 20px 60px rgba(181, 30, 30, 0.25); display: flex; flex-direction: column; gap: 10px;
+}
+.profile-speaker { font-size: 10px; letter-spacing: 3px; color: var(--red); font-family: Arial, sans-serif; font-weight: bold; }
+.profile-title { font-size: 20px; letter-spacing: 2px; color: #fff; }
+.profile-desc { font-size: 13px; line-height: 1.7; color: #ccc; font-family: Georgia, serif; white-space: pre-line; margin-top: 8px; }
+.close-profile-btn {
+    align-self: flex-start; margin-top: 15px; background: rgba(255, 255, 255, 0.04);
+    border: 1px solid #444; color: #ccc; padding: 10px 18px; font-size: 10px; font-family: Arial, sans-serif;
+    letter-spacing: 2px; cursor: pointer; border-radius: 3px; transition: 0.3s;
+}
+.close-profile-btn:hover { background: rgba(181, 30, 30, 0.3); color: #fff; border-color: var(--red); }
+
+.gameplay{background:radial-gradient(circle at 50% 0,rgba(181,30,30,.07),transparent 35%),#030506}
+.system-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:45px}
+.system{padding:28px;border:1px solid var(--line);background:rgba(255,255,255,.018);transition:.3s}
+.system:hover{border-color:rgba(181,30,30,.55);transform:translateY(-5px)}
+.system-no{font:10px Arial,sans-serif;color:#777;letter-spacing:3px}
+.system h3{font-size:18px;font-weight:400;margin:15px 0}
+.system p{font:13px/1.8 Arial,sans-serif;color:#858b8d}
+
+.psychology{
+min-height:600px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-background.png") center/cover fixed;
+}
+.big{font-size:clamp(32px,5vw,82px);line-height:1.05;font-weight:400}
+.big span{color:var(--red)}
+
+.simulator-box { margin-top: 35px; background: rgba(8, 11, 14, 0.9); border: 1px solid var(--red); padding: 25px; max-width: 750px; width: 100%; border-radius: 4px; }
+.sim-header { font: 9px Arial, sans-serif; letter-spacing: 3px; color: var(--red); font-weight: bold; margin-bottom: 10px; }
+.sim-question { font-size: 14px; color: #ddd; line-height: 1.6; margin-bottom: 18px; }
+.sim-choices { display: flex; flex-direction: column; gap: 10px; }
+.sim-btn { background: rgba(255,255,255,0.03); border: 1px solid #333; color: #ccc; padding: 12px 15px; font-size: 11px; font-family: Arial, sans-serif; text-align: left; cursor: pointer; border-radius: 3px; }
+.sim-btn:hover { background: rgba(181,30,30,0.25); color: #fff; border-color: var(--red); }
+#simResult { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #aaa; line-height: 1.6; }
+
+.endings{background:#070809}
+.ending-list{margin-top:40px;border-top:1px solid var(--line)}
+.ending { display: flex; flex-direction: column; padding: 20px 10px; border-bottom: 1px solid var(--line); transition: all 0.3s ease; cursor: pointer; }
+.ending:hover { padding-left: 20px; background: rgba(255,255,255,0.02); border-left: 2px solid var(--muted); }
+.ending.secret:hover { border-left: 2px solid var(--red); background: rgba(181, 30, 30, 0.05); }
+.ending-header { display: flex; justify-content: space-between; align-items: center; }
+.ending-name{font-size:16px;letter-spacing:1px}
+.ending-type{font:9px Arial,sans-serif;letter-spacing:2px;color:#777}
+.secret-type{color: var(--red); font-weight: bold;}
+.lock-tag { font-size: 9px; font-family: Arial, sans-serif; color: #555; margin-left: 8px; letter-spacing: 1px; }
+.lock-tag.red { color: var(--red); font-weight: bold; }
+.ending-detail { display: none; margin-top: 10px; font-size: 12px; font-family: Georgia, serif; color: #9da2a3; line-height: 1.6; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.08); }
+.ending-detail.red-text { color: #e57373; }
+.ending.active .ending-detail { display: block; }
+
+.kami{min-height:550px;text-align:center;display:flex;justify-content:center;align-items:center;background:radial-gradient(circle,#151819 0,#020303 65%)}
+.kami-symbol{font:48px Arial,sans-serif;letter-spacing:14px;color:rgba(255,255,255,.07);margin-bottom:25px}
+.kami p{max-width:650px;color:#777;font:13px/2 Arial,sans-serif}
+
+.gallery{background:#040506}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:40px}
+.gallery-item{height:240px;border:1px solid var(--line);background-size: 135% 135%;background-position: center 45%;display:flex;align-items:end;padding:20px;filter:saturate(.7) brightness(.85);transition:all .4s ease;cursor:pointer;border-radius:2px;}
+.gallery-item:hover{filter:saturate(1.1) brightness(1);transform:translateY(-5px);border-color:var(--red);box-shadow: 0 10px 30px rgba(181, 30, 30, 0.3);background-size: 140% 140%;}
+.gallery-item.city { background-image: url("city.jpg"); }
+.gallery-item.ruins { background-image: url("ruins.jpg"); }
+.gallery-item.refuge { background-image: url("refuge.jpg"); }
+.gallery-item.hospital { background-image: url("hospital.jpg"); background-position: center 60%; }
+.gallery-item.lab { background-image: url("lab.jpg"); }
+.gallery-item.unknown { background-image: url("unknown.jpg"); }
+
+.sys-req-section { background: #050708; }
+.sys-req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+.sys-req-card { background: rgba(255,255,255,0.018); border: 1px solid var(--line); padding: 25px; border-radius: 3px; }
+.sys-req-card h3 { font: 12px Arial, sans-serif; letter-spacing: 3px; color: var(--red); margin-bottom: 20px; }
+.sys-req-list { list-style: none; font: 12px/2 Arial, sans-serif; color: #aaa; }
+.sys-req-list strong { color: #eee; font-weight: normal; }
+
+.trailer{text-align:center;padding:120px 7%;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.93)),url("cover-background.png") center/cover}
+.play-container { position: relative; display: inline-flex; justify-content: center; align-items: center; margin: 35px auto; }
+.play { position: relative; z-index: 2; width: 76px; height: 76px; border: 1px solid #888; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 20px Arial,sans-serif; background: transparent; color: #fff; cursor: pointer; padding-left: 4px; transition: .3s; }
+.play:hover { background: #fff; color: #000; transform: scale(1.08); }
+.pulse-ring { position: absolute; width: 76px; height: 76px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.25); z-index: 1; animation: pulse 2s infinite ease-out; }
+@keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }
+
+.modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(8px); justify-content: center; align-items: center; opacity: 0; padding: 15px; transition: opacity 0.4s ease; }
+.modal.show { display: flex; opacity: 1; }
+.modal-content { position: relative; width: 100%; max-width: 1000px; }
+.close-btn { position: absolute; top: -40px; right: 0; color: #ffffff; font-size: 30px; font-family: Arial, sans-serif; cursor: pointer; z-index: 10; }
+.slideshow-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border: 1px solid var(--line); }
+.slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.5s ease-in-out; }
+.slide.active { opacity: 1; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+.location-caption { position: absolute; bottom: 20px; left: 25px; text-align: left; z-index: 5; font-family: Arial, sans-serif; }
+.location-caption h3 { font-size: 20px; letter-spacing: 3px; margin: 0 0 4px 0; color: #ffffff; }
+.location-caption p { font-size: 10px; letter-spacing: 2px; color: #888888; margin: 0; }
+
+.final{min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(to bottom,#090b0b,#030506)}
+.final h2{font-size:clamp(40px,8vw,105px);font-weight:400;letter-spacing:8px}
+.final p{margin-top:20px;font:11px Arial,sans-serif;letter-spacing:6px}
+.final p span{color:var(--red)}
+
+.newsletter-section { background: #030506; padding: 60px 7%; text-align: center; border-top: 1px solid var(--line); }
+.newsletter-box { max-width: 500px; margin: 20px auto 0; display: flex; gap: 10px; }
+.newsletter-input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid #444; padding: 12px 16px; color: #fff; font: 12px Arial, sans-serif; border-radius: 3px; outline: none; }
+.newsletter-input:focus { border-color: var(--red); }
+
+.bottom-countdown-section { background: #030506; padding: 40px 5% 70px; display: flex; justify-content: center; border-top: 1px solid rgba(255,255,255,0.05); }
+.bottom-cd-box { padding: 25px 20px; background: rgba(8, 11, 14, 0.95); border: 1px solid rgba(181, 30, 30, 0.4); border-radius: 4px; max-width: 600px; width: 100%; text-align: center; }
+.bottom-cd-box .cd-title { font: 9px Arial, sans-serif; letter-spacing: 3px; color: var(--red); font-weight: bold; margin-bottom: 15px; }
+.bottom-cd-box .cd-timer { display: flex; justify-content: center; gap: 25px; }
+.bottom-cd-box .cd-item { display: flex; flex-direction: column; align-items: center; }
+.bottom-cd-box .cd-number { font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #fff; opacity: 0.8; }
+.bottom-cd-box .cd-label { font: 8px Arial, sans-serif; letter-spacing: 2px; color: #666; margin-top: 4px; }
+.bottom-cd-sub { font: 10px Arial, sans-serif; letter-spacing: 2px; color: #555; margin-top: 18px; line-height: 1.5; }
+
+footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
+
+@media(max-width:1050px){
+.hero{grid-template-columns:1fr;padding-top:110px;text-align:center}
+.cover-wrap{order:2;margin-top:25px}
+.hero-copy{order:1;padding:20px 10px;margin:auto}
+.hero-copy p{margin-left:auto;margin-right:auto}
+.kicker{justify-content:center}
+.hero-btn-group{justify-content:center}
+.world-grid{grid-template-columns:repeat(4,1fr)}
+.character-grid{grid-template-columns:repeat(3,1fr);gap:15px}
+.system-grid,.sys-req-grid{grid-template-columns:repeat(2,1fr)}
+.gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:680px){
+nav{padding:15px 20px}
+.links a{display:none}
+section{padding:75px 5%}
+.hero{padding:90px 4% 40px}
+.hero h1{letter-spacing:3px}.tag{letter-spacing:3px;font-size:11px}
+.hero-btn-group{flex-direction:column;width:100%}
+.btn{width:100%}
+.world-grid{grid-template-columns:repeat(2,1fr)}
+.character-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+.system-grid,.gallery-grid,.sys-req-grid{grid-template-columns:1fr}
+.newsletter-box { flex-direction: column; }
+.ending-header{flex-direction:column;align-items:flex-start;gap:4px}
+.bottom-cd-box .cd-timer { gap: 15px; }
+.bottom-cd-box .cd-number { font-size: 22px; }
+footer{flex-direction:column;gap:12px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+    <div class="loader-title">ROUGHTALE<b>8</b></div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+    <div class="loader-sub">INITIALIZING WORLD VIII...</div>
+</div>
+
+<!-- AUDIOS LOKAL (SOUND 3 DAN SOUND 2) -->
+<audio id="bgmAudio" loop preload="auto">
+    <source src="bgm-dark.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="trailerAudio" loop preload="auto">
+    <source src="trailer-epic.mp3" type="audio/mpeg">
+</audio>
+
+<nav>
+  <div class="logo">ROUGHTALE<b>8</b></div>
+  <div class="links">
+    <a href="#synopsis" class="sfx-hover">SYNOPSIS</a>
+    <a href="#world" class="sfx-hover">WORLD</a>
+    <a href="#characters" class="sfx-hover">CHARACTERS</a>
+    <a href="#gameplay" class="sfx-hover">GAMEPLAY</a>
+    <a href="#endings" class="sfx-hover">ENDINGS</a>
+    <a href="#gallery" class="sfx-hover">GALLERY</a>
+    <button class="audio-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()">[ SOUND: OFF ]</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="cover-wrap">
+    <img class="cover" src="cover-headline.png" alt="ROUGHTALE8 official cover">
+  </div>
+
+  <div class="hero-copy">
+    <div class="kicker">
+        <span class="status-tag"></span>
+        DECISION ENGINE v0.8 ONLINE
+    </div>
+    <h1>WHAT WILL YOU <span>ACCEPT?</span></h1>
+    <div class="tag">EVERY CHOICE. EVERY LIFE. EVERY ENDING.</div>
+    <p>
+      Seven worlds have already fallen. This is the eighth world.
+      The last world. Five strangers are brought together as everything
+      begins to collapse — and every decision leaves a permanent mark.
+    </p>
+    
+    <div class="hero-btn-group">
+        <a class="btn btn-primary sfx-click" href="game.html" target="_blank">PLAY DEMO ➔</a>
+        <a class="btn sfx-click" href="#synopsis">ENTER THE WORLD</a>
+    </div>
+  </div>
+</header>
+
+<section id="synopsis" class="synopsis">
+  <div class="label">01 — SYNOPSIS</div>
+  <h2 class="title">The world has<br>fallen seven times.</h2>
+  <p class="text">
+    ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction.
+    There is no ninth world waiting. Five strangers meet with no known connection to one another.
+    Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.
+    <br><br>
+    The player is never given a single protagonist. All five characters are playable, and the story
+    changes through actions, hesitation, courage, mistakes, death, and even choices that were never made.
+  </p>
+  <div class="quote">“Every choice. Every life. Every ending.”</div>
+</section>
+
+<section id="world" class="world">
+  <div class="label">02 — WORLD</div>
+  <h2 class="title">Eight worlds.<br>One last chance.</h2>
+  <p class="text">
+    Click on any World card below to decrypt historical records and fragments left behind.
+  </p>
+  <div class="world-grid">
+    <div class="world-card sfx-hover sfx-click" onclick="openWorldArchive('World1')"><div><div class="num">01</div><div class="wname">THE FIRST</div></div></div>
+    <div class="world-card sfx-hover sfx-click" onclick="openWorldArchive('World2')"><div><div class="num">02</div><div class="wname">THE SECOND</div></div></div>
+    <div class="world-card sfx-hover sfx-click" onclick="openWorldArchive('World3')"><div><div class="num">03</div><div class="wname">THE THIRD</div></div></div>
+    <div class="world-card sfx-hover sfx-click" onclick="openWorldArchive('World4')"><div><div class="num">04</div><div class="wname">THE FOURTH</div></div></div>
+    <div class="world-card sfx-hover sfx-click" onclick="openWorldArchive('World5')"><div><div class="num">05</div><div class="wname">THE FIFTH</div></div></div>
+    <div class="world-card sfx-hover sfx-click" onclick="openWorldArchive('World6')"><div><div class="num">06</div><div class="wname">THE SIXTH</div></div></div>
+    <div class="world-card sfx-hover sfx-click" onclick="openWorldArchive('World7')"><div><div class="num">07</div><div class="wname">THE SEVENTH</div></div></div>
+    <div class="world-card sfx-hover sfx-click" onclick="openWorldArchive('World8')"><div><div class="num">08</div><div class="wname">THE LAST</div></div></div>
+  </div>
+</section>
+
+<section id="characters" class="characters">
+  <div class="label">03 — CHARACTERS</div>
+  <h2 class="title">Five people.<br>One final world.</h2>
+  <p class="text">
+    Click on any character portrait below to inspect their full profile and inner story.
+  </p>
+  
+  <div class="character-grid">
+    <div class="char-card-wrap sfx-click" onclick="openProfile('Eidon')">
+      <div class="character-card-box eidon"></div>
+      <div class="char-label-name">EIDON</div>
+    </div>
+    
+    <div class="char-card-wrap sfx-click" onclick="openProfile('Lira')">
+      <div class="character-card-box lira"></div>
+      <div class="char-label-name">LIRA</div>
+    </div>
+    
+    <div class="char-card-wrap sfx-click" onclick="openProfile('Kael')">
+      <div class="character-card-box kael"></div>
+      <div class="char-label-name">KAEL</div>
+    </div>
+    
+    <div class="char-card-wrap sfx-click" onclick="openProfile('Nara')">
+      <div class="character-card-box nara"></div>
+      <div class="char-label-name">NARA</div>
+    </div>
+    
+    <div class="char-card-wrap sfx-click" onclick="openProfile('Reza')">
+      <div class="character-card-box reza"></div>
+      <div class="char-label-name">REZA</div>
+    </div>
+  </div>
+</section>
+
+<div id="characterProfileModal" class="profile-modal">
+    <div class="profile-card-content">
+        <div class="profile-speaker" id="pCategory">ARCHIVE RECORD</div>
+        <div class="profile-title" id="pTitle">EIDON</div>
+        <div class="profile-desc" id="pDesc">Loading...</div>
+        <button class="close-profile-btn sfx-click" id="closeProfileBtn">[ CLOSE ARCHIVE ]</button>
+    </div>
+</div>
+
+<section id="gameplay" class="gameplay">
+  <div class="label">04 — GAMEPLAY</div>
+  <h2 class="title">The world<br>does not wait.</h2>
+  <div class="system-grid">
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 01</div><h3>NO SAFE CHOICE</h3><p>There is no completely safe decision. Saving one person may mean losing something else.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 02</div><h3>TIME</h3><p>When the player takes too long, the system may decide for them. The world keeps moving.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 03</div><h3>CONSEQUENCE</h3><p>A small decision can return much later in a form the player never expected.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 04</div><h3>MEMORY</h3><p>A replay is not simply the same world again. Characters, NPCs, locations, and events may change.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 05</div><h3>DEATH</h3><p>The death of a playable character is not just a loss. Relationships, events, and the world itself can change.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 06</div><h3>ACCEPTANCE</h3><p>There is something the player cannot control. The game will never tell you exactly what it is.</p></div>
+  </div>
+</section>
+
+<section class="psychology">
+  <div>
+    <div class="label">05 — PSYCHOLOGY</div>
+    <div class="big">The game watches<br><span>what you do.</span><br>Not what you say.</div>
+  </div>
+
+  <div class="simulator-box">
+    <div class="sim-header">DECISION ENGINE — TEST SIMULATION</div>
+    <div class="sim-question">
+        A stranger is trapped under falling concrete debris in Sector 8. The structure is collapsing in 5 seconds. You carry the key to the shelter. What do you do?
+    </div>
+    <div class="sim-choices">
+        <button class="sim-btn sfx-click" onclick="runSimulation('help')">1. [HELP] Risk your time to pull the stranger out.</button>
+        <button class="sim-btn sfx-click" onclick="runSimulation('leave')">2. [LEAVE] Abandon the stranger and reach shelter safely.</button>
+        <button class="sim-btn sfx-click" onclick="runSimulation('wait')">3. [WAIT] Freeze and observe what happens.</button>
+    </div>
+    <div id="simResult"></div>
+  </div>
+</section>
+
+<section id="endings" class="endings">
+  <div class="label">06 — ENDINGS</div>
+  <h2 class="title">There is no<br>happy ending.</h2>
+  <p class="text">
+    Several major endings await the player. ROUGHTALE8 was never designed to reward the player with a perfect conclusion. Click any record below to inspect memory logs.
+  </p>
+
+  <div class="ending-list">
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+      <div class="ending-header">
+        <div class="ending-name">THE ENDING <span class="lock-tag">[ LOCKED ]</span></div>
+        <div class="ending-type">BAD ENDING</div>
+      </div>
+      <div class="ending-detail">
+        A cycle completed without understanding. The collapse claims everyone equally.
+      </div>
+    </div>
+
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+      <div class="ending-header">
+        <div class="ending-name">THE END OF THE DAY <span class="lock-tag">[ LOCKED ]</span></div>
+        <div class="ending-type">BAD ENDING</div>
+      </div>
+      <div class="ending-detail">
+        Surviving until nightfall wasn't enough. Darkness hides what was left behind.
+      </div>
+    </div>
+
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+      <div class="ending-header">
+        <div class="ending-name">THE FINAL CURSE <span class="lock-tag">[ LOCKED ]</span></div>
+        <div class="ending-type">BAD ENDING</div>
+      </div>
+      <div class="ending-detail">
+        Trust was given to the wrong person. The betrayal leaves no room for regret.
+      </div>
+    </div>
+
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+      <div class="ending-header">
+        <div class="ending-name">THE TRUE END <span class="lock-tag">[ UNLOCKED ]</span></div>
+        <div class="ending-type">NORMAL BAD ENDING</div>
+      </div>
+      <div class="ending-detail">
+        The truth of World VIII is accepted. Nothing is saved, but nothing is forgotten.
+      </div>
+    </div>
+
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+      <div class="ending-header">
+        <div class="ending-name">THE LAST <span class="lock-tag">[ LOCKED ]</span></div>
+        <div class="ending-type">VERY BAD ENDING</div>
+      </div>
+      <div class="ending-detail">
+        Every character falls before reaching the threshold. World IX will never exist.
+      </div>
+    </div>
+
+    <div class="ending secret sfx-click" onclick="toggleEndingDetail(this)">
+      <div class="ending-header">
+        <div class="ending-name">THE FINAL SECRET <span class="lock-tag red">[ CANON ARCHIVE ]</span></div>
+        <div class="ending-type secret-type">CANON</div>
+      </div>
+      <div class="ending-detail red-text">
+        Someone stayed behind in World VIII. A choice that was never supposed to be made.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kami">
+  <div>
+    <div class="kami-symbol">K A M I</div>
+    <div class="label">07 — UNKNOWN</div>
+    <p>
+      Someone is watching.<br><br>
+      Someone has been watching since the beginning.<br><br>
+      But this game will never tell you who.
+    </p>
+  </div>
+</section>
+
+<section id="gallery" class="gallery">
+  <div class="label">08 — GALLERY</div>
+  <h2 class="title">Fragments of<br>World Eight.</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item city sfx-hover"></div>
+    <div class="gallery-item ruins sfx-hover"></div>
+    <div class="gallery-item refuge sfx-hover"></div>
+    <div class="gallery-item hospital sfx-hover"></div>
+    <div class="gallery-item lab sfx-hover"></div>
+    <div class="gallery-item unknown sfx-hover"></div>
+  </div>
+</section>
+
+<section class="sys-req-section">
+  <div class="label">09 — SPECIFICATIONS</div>
+  <h2 class="title">System Requirements.</h2>
+  <div class="sys-req-grid">
+    <div class="sys-req-card">
+        <h3>MINIMUM REQUIREMENTS</h3>
+        <ul class="sys-req-list">
+            <li><strong>OS:</strong> Windows 10 / Android 9.0+</li>
+            <li><strong>Processor:</strong> Intel Core i3-6100 / Snapdragon 680</li>
+            <li><strong>Memory:</strong> 4 GB RAM</li>
+            <li><strong>Graphics:</strong> GTX 750 Ti / Adreno 610</li>
+            <li><strong>Storage:</strong> 2 GB Available Space</li>
+        </ul>
+    </div>
+    <div class="sys-req-card">
+        <h3>RECOMMENDED SPECS</h3>
+        <ul class="sys-req-list">
+            <li><strong>OS:</strong> Windows 11 / Android 12+</li>
+            <li><strong>Processor:</strong> Intel Core i5-10400 / Snapdragon 870</li>
+            <li><strong>Memory:</strong> 8 GB RAM</li>
+            <li><strong>Graphics:</strong> GTX 1060 6GB / Adreno 650</li>
+            <li><strong>Storage:</strong> 2 GB High Speed SSD</li>
+        </ul>
+    </div>
+  </div>
+</section>
+
+<section class="trailer">
+  <div class="label">10 — TEASER</div>
+  <h2 class="title">You have seen<br>nothing yet.</h2>
+  
+  <div class="play-container">
+    <button id="playTrailerBtn" class="play sfx-click">▶</button>
+    <div class="pulse-ring"></div>
+  </div>
+  
+  <div class="text" style="margin:auto">ENVIRONMENT TEASER — WORLD EIGHT</div>
+</section>
+
+<div id="trailerModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
+        
+        <div class="slideshow-container">
+            <div class="slide active">
+                <img src="city.jpg" alt="The City">
+                <div class="location-caption">
+                    <h3>THE CITY</h3>
+                    <p>FRAGMENTS OF WORLD EIGHT</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="ruins.jpg" alt="The Ruins">
+                <div class="location-caption">
+                    <h3>THE RUINS</h3>
+                    <p>FRAGMENTS OF WORLD EIGHT</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="refuge.jpg" alt="The Last Refuge">
+                <div class="location-caption">
+                    <h3>THE LAST REFUGE</h3>
+                    <p>FRAGMENTS OF WORLD EIGHT</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="hospital.jpg" alt="The Hospital">
+                <div class="location-caption">
+                    <h3>THE HOSPITAL</h3>
+                    <p>FRAGMENTS OF WORLD EIGHT</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="lab.jpg" alt="The Laboratory">
+                <div class="location-caption">
+                    <h3>THE LABORATORY</h3>
+                    <p>FRAGMENTS OF WORLD EIGHT</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="unknown.jpg" alt="The Unknown">
+                <div class="location-caption">
+                    <h3>THE UNKNOWN</h3>
+                    <p>FRAGMENTS OF WORLD EIGHT</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="newsletter-section">
+    <div class="label">11 — COMMUNITY</div>
+    <h2 class="title">Join The Resistance</h2>
+    <p class="text" style="margin:auto">Get notified on release dates, secret lore archives, and closed beta access.</p>
+    <form class="newsletter-box" onsubmit="handleSubscribe(event)">
+        <input type="email" class="newsletter-input" placeholder="ENTER YOUR EMAIL..." required>
+        <button type="submit" class="btn btn-primary sfx-click">SUBSCRIBE</button>
+    </form>
+</section>
+
+<section class="final">
+  <div>
+    <h2>ROUGHTALE8</h2>
+    <p>LIFE IS <span>SIMPLE</span></p>
+  </div>
+</section>
+
+<div class="bottom-countdown-section">
+    <div class="bottom-cd-box">
+        <div class="cd-title">WORLD VIII SYSTEM COLLAPSE</div>
+        <div class="cd-timer">
+            <div class="cd-item"><span class="cd-number">--</span><span class="cd-label">DAYS</span></div>
+            <div class="cd-item"><span class="cd-number">--</span><span class="cd-label">HOURS</span></div>
+            <div class="cd-item"><span class="cd-number">--</span><span class="cd-label">MINS</span></div>
+            <div class="cd-item"><span class="cd-number">--</span><span class="cd-label">SECS</span></div>
+        </div>
+        <div class="bottom-cd-sub">DEVELOPMENT IN PROGRESS — ANNOUNCEMENT COMING SOON</div>
+    </div>
+</div>
+
+<footer>
+  <div>
+    CRACK GAMES © 2026<br>
+    <span style="display:inline-block;margin-top:10px;color:#888;letter-spacing:3px">
+      CREATED BY <strong style="color:#ddd;font-weight:400">MUHAMMAD FAARI AKBAR</strong>
+    </span>
+  </div>
+  <div>EVERY CHOICE. EVERY LIFE. EVERY ENDING.</div>
+</footer>
+
+<script>
+// WEB AUDIO SYNTHESIZER SFX UNTUK EFEK KLIK TAMPILAN UI
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function playSynthBeep(freq, type, duration) {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+}
+
+document.querySelectorAll('.sfx-hover').forEach(el => {
+    el.addEventListener('mouseenter', () => playSynthBeep(600, 'sine', 0.04));
+});
+document.querySelectorAll('.sfx-click').forEach(el => {
+    el.addEventListener('click', () => playSynthBeep(250, 'square', 0.06));
+});
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const loader = document.getElementById('preloader');
+        loader.classList.add('fade-out');
+    }, 1200);
+});
+
+// KONTROL SISTEM AUDIO MP3 LOKAL
+let isAudioPlaying = false;
+let wasBgmPlaying = false;
+
+const bgm = document.getElementById('bgmAudio');
+const trailerAudio = document.getElementById('trailerAudio');
+const btn = document.getElementById('audioToggleBtn');
+
+bgm.volume = 0.5;
+trailerAudio.volume = 0.7;
+
+function toggleAudio() {
+    if (!isAudioPlaying) {
+        bgm.play().then(() => {
+            btn.innerText = "[ SOUND: ON ]";
+            btn.classList.add("active");
+            isAudioPlaying = true;
+        }).catch(e => {
+            console.log("Play blocked by browser:", e);
+        });
+    } else {
+        bgm.pause();
+        btn.innerText = "[ SOUND: OFF ]";
+        btn.classList.remove("active");
+        isAudioPlaying = false;
+    }
+}
+
+function runSimulation(action) {
+    const resBox = document.getElementById('simResult');
+    resBox.style.display = 'block';
+
+    if(action === 'help') {
+        resBox.innerHTML = "<strong style='color:#b51e1e'>ANALYSIS: HIGH ATTACHMENT (+2)</strong><br>You prioritize human life over self-preservation. In World VIII, this empathy will make you vulnerable, but unlocks hidden character trust.";
+    } else if(action === 'leave') {
+        resBox.innerHTML = "<strong style='color:#b51e1e'>ANALYSIS: HIGH CONTROL (+2)</strong><br>You act on pure cold logic. Survival is your priority. The world remembers your refusal to risk time for others.";
+    } else {
+        resBox.innerHTML = "<strong style='color:#b51e1e'>ANALYSIS: HIGH HESITATION (+3)</strong><br>Indecision in World VIII is fatal. The concrete collapsed before you made a choice. Time made the decision for you.";
+    }
+}
+
+function toggleEndingDetail(element) {
+    const isActive = element.classList.contains("active");
+    document.querySelectorAll('.ending').forEach(el => el.classList.remove('active'));
+    if (!isActive) {
+        element.classList.add("active");
+    }
+}
+
+function handleSubscribe(e) {
+    e.preventDefault();
+    alert("ARCHIVE SYSTEM: Your signal has been registered. Welcome to World VIII.");
+}
+
+const worldData = {
+    'World1': { category: "HISTORICAL RECORD 01", title: "THE FIRST WORLD — THE BEGINNING", desc: "STATUS: ERASED / COLLAPSED\n\nThe era of forgotten ash. The initial cycle where humanity first attempted to alter destiny. No living survivors remain, only distorted memories." },
+    'World2': { category: "HISTORICAL RECORD 02", title: "THE SECOND WORLD — SILENCE", desc: "STATUS: ERASED / COLLAPSED\n\nA quiet extinction. The atmosphere destabilized within days, swallowing civilization in absolute silence before anyone could react." },
+    'World3': { category: "HISTORICAL RECORD 03", title: "THE THIRD WORLD — SHADOWS", desc: "STATUS: ERASED / COLLAPSED\n\nTrust crumbled before the world did. Internal conflicts and betrayal destroyed the last remaining shelters from within." },
+    'World4': { category: "HISTORICAL RECORD 04", title: "THE FOURTH WORLD — CORRUPTION", desc: "STATUS: ERASED / COLLAPSED\n\nBiological and environmental collapse. The soil itself rejected all life, leaving behind twisted ruins and toxic deserts." },
+    'World5': { category: "HISTORICAL RECORD 05", title: "THE FIFTH WORLD — FROZEN MEMORY", desc: "STATUS: ERASED / COLLAPSED\n\nA perpetual nuclear winter that lasted fifty years. Survival was extended, but destiny could not be bypassed." },
+    'World6': { category: "HISTORICAL RECORD 06", title: "THE SIXTH WORLD — ILLUSION", desc: "STATUS: ERASED / COLLAPSED\n\nA world where humanity lived in simulated reality to escape doom. The system failed when power ran out." },
+    'World7': { category: "HISTORICAL RECORD 07", title: "THE SEVENTH WORLD — THE PREVIOUS CYCLE", desc: "STATUS: CRITICAL COLLAPSE\n\nThe world immediately before ours. The final warning was written here. Five people almost made it out, but hesitation destroyed everything." },
+    'World8': { category: "ACTIVE TIMELINE", title: "THE EIGHTH WORLD — THE LAST STAND", desc: "STATUS: CURRENT / COLLAPSE IMMINENT\n\nThere is no World IX waiting. This is the final cycle. Five strangers have gathered, and every decision you make now leaves a permanent mark on humanity's last stand." }
+};
+
+const characterData = {
+    'Eidon': { title: "01 — EIDON (17 YEARS OLD)", desc: "THE BOY WHO REMEMBERS NOTHING\n\nNaïve, innocent, and slowly entering adulthood. He carries a secret that even he does not understand. His journey is about discovering who he truly is." },
+    'Lira': { title: "02 — LIRA (25 YEARS OLD)", desc: "THE DOCTOR\n\nA brilliant doctor with a warm and cheerful heart. She believes that saving lives is her purpose in this world. Behind her smile, she hides deep guilt." },
+    'Kael': { title: "03 — KAEL (35 YEARS OLD)", desc: "THE SOLDIER\n\nA former elite soldier with extraordinary strength and intelligence. He follows logic, not emotion, but the past still hunts him every night." },
+    'Nara': { title: "04 — NARA (33 YEARS OLD)", desc: "THE SCIENTIST\n\nA brilliant scientist and a highly skilled cook. She is calm, observant, and always thinking three steps ahead. Her experiments may hold the key to the truth." },
+    'Reza': { title: "05 — REZA (45 YEARS OLD)", desc: "THE STRANGER\n\nCalm, wise, and strangely familiar with the world. He appears to know more than he says. His presence brings both comfort and suspicion." }
+};
+
+function openWorldArchive(worldKey) {
+    const modal = document.getElementById("characterProfileModal");
+    const pCategory = document.getElementById("pCategory");
+    const pTitle = document.getElementById("pTitle");
+    const pDesc = document.getElementById("pDesc");
+
+    if(worldData[worldKey]) {
+        pCategory.innerText = worldData[worldKey].category;
+        pTitle.innerText = worldData[worldKey].title;
+        pDesc.innerText = worldData[worldKey].desc;
+        modal.classList.add("show");
+    }
+}
+
+function openProfile(name) {
+    const modal = document.getElementById("characterProfileModal");
+    const pCategory = document.getElementById("pCategory");
+    const pTitle = document.getElementById("pTitle");
+    const pDesc = document.getElementById("pDesc");
+
+    if(characterData[name]) {
+        pCategory.innerText = "CHARACTER PROFILE";
+        pTitle.innerText = characterData[name].title;
+        pDesc.innerText = characterData[name].desc;
+        modal.classList.add("show");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const profileModal = document.getElementById("characterProfileModal");
+    const closeProfileBtn = document.getElementById("closeProfileBtn");
+
+    closeProfileBtn.addEventListener("click", function() { profileModal.classList.remove("show"); });
+    profileModal.addEventListener("click", function(e) { if (e.target === profileModal) profileModal.classList.remove("show"); });
+
+    const modal = document.getElementById("trailerModal");
+    const playBtn = document.getElementById("playTrailerBtn");
+    const closeBtn = document.getElementById("closeModalBtn");
+    const slides = document.querySelectorAll(".slide");
+    
+    let currentSlide = 0;
+    let slideInterval = null;
+
+    function showNextSlide() {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+    }
+
+    function startSlideshow() {
+        currentSlide = 0;
+        slides.forEach((slide, idx) => { slide.classList.toggle("active", idx === 0); });
+        slideInterval = setInterval(showNextSlide, 3500);
+    }
+
+    function stopSlideshow() { clearInterval(slideInterval); }
+
+    playBtn.addEventListener("click", function() { 
+        modal.classList.add("show"); 
+        startSlideshow(); 
+        
+        wasBgmPlaying = isAudioPlaying; 
+        if (isAudioPlaying) {
+            bgm.pause();
+        }
+        trailerAudio.currentTime = 0;
+        trailerAudio.play().catch(e => console.log("Trailer play error:", e));
+    });
+
+    function closeModal() { 
+        modal.classList.remove("show"); 
+        stopSlideshow(); 
+
+        trailerAudio.pause();
+        if (wasBgmPlaying) {
+            bgm.play().catch(e => console.log("BGM play error:", e));
+        }
+    }
+
+    closeBtn.addEventListener("click", closeModal);
+    window.addEventListener("click", function(e) { if (e.target === modal) closeModal(); });
+    window.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") { profileModal.classList.remove("show"); closeModal(); }
+    });
+});
+</script>
+
+</body>
+</html>
