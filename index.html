@@ -226,13 +226,10 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .modal.show { display: flex; opacity: 1; }
 .modal-content { position: relative; width: 100%; max-width: 1000px; }
 .close-btn { position: absolute; top: -40px; right: 0; color: #ffffff; font-size: 30px; font-family: Arial, sans-serif; cursor: pointer; z-index: 10; }
-.slideshow-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border: 1px solid var(--line); }
-.slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.5s ease-in-out; }
-.slide.active { opacity: 1; }
-.slide img { width: 100%; height: 100%; object-fit: cover; }
-.location-caption { position: absolute; bottom: 20px; left: 25px; text-align: left; z-index: 5; font-family: Arial, sans-serif; }
-.location-caption h3 { font-size: 20px; letter-spacing: 3px; margin: 0 0 4px 0; color: #ffffff; }
-.location-caption p { font-size: 10px; letter-spacing: 2px; color: #888888; margin: 0; }
+
+/* VIDEO CONTAINER WRAPPER */
+.video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border: 1px solid var(--red); box-shadow: 0 0 30px rgba(181, 30, 30, 0.4); border-radius: 4px; }
+.video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
 .final{min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(to bottom,#090b0b,#030506)}
 .final h2{font-size:clamp(40px,8vw,105px);font-weight:400;letter-spacing:8px}
@@ -295,7 +292,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="loader-sub">INITIALIZING WORLD VIII...</div>
 </div>
 
-<!-- AUDIOS LOKAL (SOUND 3 DAN SOUND 2) -->
+<!-- AUDIOS LOKAL -->
 <audio id="bgmAudio" loop preload="auto">
     <source src="bgm-dark.mp3" type="audio/mpeg">
 </audio>
@@ -575,6 +572,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
+<!-- SECTION TEASER DENGAN MP4 VIDEO PLAYER MODAL -->
 <section class="trailer">
   <div class="label">10 — TEASER</div>
   <h2 class="title">You have seen<br>nothing yet.</h2>
@@ -584,56 +582,19 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="pulse-ring"></div>
   </div>
   
-  <div class="text" style="margin:auto">ENVIRONMENT TEASER — WORLD EIGHT</div>
+  <div class="text" style="margin:auto">OFFICIAL TEASER TRAILER — ROUGHTALE8</div>
 </section>
 
+<!-- MODAL POPUP UNTUK MEMUTAR VIDEO TRAILER -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
         
-        <div class="slideshow-container">
-            <div class="slide active">
-                <img src="city.jpg" alt="The City">
-                <div class="location-caption">
-                    <h3>THE CITY</h3>
-                    <p>FRAGMENTS OF WORLD EIGHT</p>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="ruins.jpg" alt="The Ruins">
-                <div class="location-caption">
-                    <h3>THE RUINS</h3>
-                    <p>FRAGMENTS OF WORLD EIGHT</p>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="refuge.jpg" alt="The Last Refuge">
-                <div class="location-caption">
-                    <h3>THE LAST REFUGE</h3>
-                    <p>FRAGMENTS OF WORLD EIGHT</p>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="hospital.jpg" alt="The Hospital">
-                <div class="location-caption">
-                    <h3>THE HOSPITAL</h3>
-                    <p>FRAGMENTS OF WORLD EIGHT</p>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="lab.jpg" alt="The Laboratory">
-                <div class="location-caption">
-                    <h3>THE LABORATORY</h3>
-                    <p>FRAGMENTS OF WORLD EIGHT</p>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="unknown.jpg" alt="The Unknown">
-                <div class="location-caption">
-                    <h3>THE UNKNOWN</h3>
-                    <p>FRAGMENTS OF WORLD EIGHT</p>
-                </div>
-            </div>
+        <div class="video-container">
+            <video id="mainTrailerVideo" controls controlsList="nodownload">
+                <source src="trailer.mp4" type="video/mp4">
+                Browser kamu tidak mendukung pemutaran video.
+            </video>
         </div>
     </div>
 </div>
@@ -821,42 +782,35 @@ document.addEventListener("DOMContentLoaded", function() {
     const modal = document.getElementById("trailerModal");
     const playBtn = document.getElementById("playTrailerBtn");
     const closeBtn = document.getElementById("closeModalBtn");
-    const slides = document.querySelectorAll(".slide");
-    
-    let currentSlide = 0;
-    let slideInterval = null;
+    const videoPlayer = document.getElementById("mainTrailerVideo");
 
-    function showNextSlide() {
-        slides[currentSlide].classList.remove("active");
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add("active");
-    }
-
-    function startSlideshow() {
-        currentSlide = 0;
-        slides.forEach((slide, idx) => { slide.classList.toggle("active", idx === 0); });
-        slideInterval = setInterval(showNextSlide, 3500);
-    }
-
-    function stopSlideshow() { clearInterval(slideInterval); }
-
+    // Buka Modal & Putar Video + Lagu Trailer
     playBtn.addEventListener("click", function() { 
         modal.classList.add("show"); 
-        startSlideshow(); 
         
+        // Hentikan BGM Utama jika sedang menyala
         wasBgmPlaying = isAudioPlaying; 
         if (isAudioPlaying) {
             bgm.pause();
         }
+
+        // Putar audio trailer dan video MP4
         trailerAudio.currentTime = 0;
-        trailerAudio.play().catch(e => console.log("Trailer play error:", e));
+        trailerAudio.play().catch(e => console.log("Trailer audio play error:", e));
+
+        videoPlayer.currentTime = 0;
+        videoPlayer.play().catch(e => console.log("Trailer video play error:", e));
     });
 
+    // Tutup Modal & Kembalikan Suara BGM
     function closeModal() { 
         modal.classList.remove("show"); 
-        stopSlideshow(); 
 
+        // Pause video & trailer audio
+        videoPlayer.pause();
         trailerAudio.pause();
+
+        // Lanjutkan BGM jika tadi menyala
         if (wasBgmPlaying) {
             bgm.play().catch(e => console.log("BGM play error:", e));
         }
