@@ -41,16 +41,16 @@ backdrop-filter:blur(5px)
 }
 .logo{font-size:20px;letter-spacing:4px;font-weight:bold}
 .logo b{color:var(--red)}
-.links{display:flex;gap:20px;align-items:center}
+.links{display:flex;gap:15px;align-items:center}
 .links a{color:#aaa;text-decoration:none;font:11px Arial,sans-serif;letter-spacing:2px;transition:.3s}
 .links a:hover{color:#fff}
 
-.audio-btn {
+.ctrl-btn {
     background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
     padding: 6px 12px; font: 9px Arial, sans-serif; letter-spacing: 2px; cursor: pointer; border-radius: 3px; transition: all 0.3s ease;
 }
-.audio-btn:hover { border-color: var(--red); color: #fff; }
-.audio-btn.active { border-color: var(--red); color: var(--red); background: rgba(181,30,30,0.1); }
+.ctrl-btn:hover { border-color: var(--red); color: #fff; }
+.ctrl-btn.active { border-color: var(--red); color: var(--red); background: rgba(181,30,30,0.1); }
 
 .hero{
 min-height:100vh;position:relative;display:grid;grid-template-columns:52% 48%;
@@ -193,9 +193,16 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .ending-detail.red-text { color: #e57373; }
 .ending.active .ending-detail { display: block; }
 
-.kami{min-height:550px;text-align:center;display:flex;justify-content:center;align-items:center;background:radial-gradient(circle,#151819 0,#020303 65%)}
+.kami{min-height:550px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;background:radial-gradient(circle,#151819 0,#020303 65%)}
 .kami-symbol{font:48px Arial,sans-serif;letter-spacing:14px;color:rgba(255,255,255,.07);margin-bottom:25px}
 .kami p{max-width:650px;color:#777;font:13px/2 Arial,sans-serif}
+
+/* TERMINAL CONSOLE GLITCH STYLES */
+.terminal-box { margin-top: 30px; width: 100%; max-width: 600px; background: #000; border: 1px solid #333; padding: 15px; border-radius: 4px; text-align: left; font-family: monospace; }
+.terminal-header { font-size: 10px; color: var(--red); margin-bottom: 10px; letter-spacing: 2px; }
+.terminal-input-wrap { display: flex; gap: 8px; align-items: center; }
+.terminal-input { flex: 1; background: transparent; border: none; color: #22c55e; font-family: monospace; outline: none; font-size: 13px; }
+.terminal-output { margin-top: 12px; font-size: 11px; color: #aaa; line-height: 1.6; white-space: pre-wrap; }
 
 .gallery{background:#040506}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:40px}
@@ -227,7 +234,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .modal-content { position: relative; width: 100%; max-width: 1000px; }
 .close-btn { position: absolute; top: -40px; right: 0; color: #ffffff; font-size: 30px; font-family: Arial, sans-serif; cursor: pointer; z-index: 10; }
 
-/* VIDEO CONTAINER WRAPPER */
 .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border: 1px solid var(--red); box-shadow: 0 0 30px rgba(181, 30, 30, 0.4); border-radius: 4px; }
 .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
@@ -244,11 +250,7 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .bottom-countdown-section { background: #030506; padding: 40px 5% 70px; display: flex; justify-content: center; border-top: 1px solid rgba(255,255,255,0.05); }
 .bottom-cd-box { padding: 25px 20px; background: rgba(8, 11, 14, 0.95); border: 1px solid rgba(181, 30, 30, 0.4); border-radius: 4px; max-width: 600px; width: 100%; text-align: center; }
 .bottom-cd-box .cd-title { font: 9px Arial, sans-serif; letter-spacing: 3px; color: var(--red); font-weight: bold; margin-bottom: 15px; }
-.bottom-cd-box .cd-timer { display: flex; justify-content: center; gap: 25px; }
-.bottom-cd-box .cd-item { display: flex; flex-direction: column; align-items: center; }
-.bottom-cd-box .cd-number { font-size: 30px; font-family: Arial, sans-serif; font-weight: bold; color: #fff; opacity: 0.8; }
-.bottom-cd-box .cd-label { font: 8px Arial, sans-serif; letter-spacing: 2px; color: #666; margin-top: 4px; }
-.bottom-cd-sub { font: 10px Arial, sans-serif; letter-spacing: 2px; color: #555; margin-top: 18px; line-height: 1.5; }
+.bottom-cd-sub { font: 10px Arial, sans-serif; letter-spacing: 2px; color: #888; margin-top: 10px; line-height: 1.5; }
 
 footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
 
@@ -278,8 +280,6 @@ section{padding:75px 5%}
 .system-grid,.gallery-grid,.sys-req-grid{grid-template-columns:1fr}
 .newsletter-box { flex-direction: column; }
 .ending-header{flex-direction:column;align-items:flex-start;gap:4px}
-.bottom-cd-box .cd-timer { gap: 15px; }
-.bottom-cd-box .cd-number { font-size: 22px; }
 footer{flex-direction:column;gap:12px;text-align:center}
 }
 </style>
@@ -292,7 +292,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="loader-sub">INITIALIZING WORLD VIII...</div>
 </div>
 
-<!-- AUDIOS LOKAL -->
 <audio id="bgmAudio" loop preload="auto">
     <source src="bgm-dark.mp3" type="audio/mpeg">
 </audio>
@@ -304,13 +303,14 @@ footer{flex-direction:column;gap:12px;text-align:center}
 <nav>
   <div class="logo">ROUGHTALE<b>8</b></div>
   <div class="links">
-    <a href="#synopsis" class="sfx-hover">SYNOPSIS</a>
-    <a href="#world" class="sfx-hover">WORLD</a>
-    <a href="#characters" class="sfx-hover">CHARACTERS</a>
-    <a href="#gameplay" class="sfx-hover">GAMEPLAY</a>
-    <a href="#endings" class="sfx-hover">ENDINGS</a>
-    <a href="#gallery" class="sfx-hover">GALLERY</a>
-    <button class="audio-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()">[ SOUND: OFF ]</button>
+    <a href="#synopsis" class="sfx-hover" data-i18n="nav_synopsis">SYNOPSIS</a>
+    <a href="#world" class="sfx-hover" data-i18n="nav_world">WORLD</a>
+    <a href="#characters" class="sfx-hover" data-i18n="nav_characters">CHARACTERS</a>
+    <a href="#gameplay" class="sfx-hover" data-i18n="nav_gameplay">GAMEPLAY</a>
+    <a href="#endings" class="sfx-hover" data-i18n="nav_endings">ENDINGS</a>
+    <a href="#gallery" class="sfx-hover" data-i18n="nav_gallery">GALLERY</a>
+    <button class="ctrl-btn sfx-hover" id="langToggleBtn" onclick="toggleLanguage()">[ ID | EN ]</button>
+    <button class="ctrl-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()">[ SOUND: OFF ]</button>
   </div>
 </nav>
 
@@ -326,25 +326,25 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <span class="status-tag"></span>
         DECISION ENGINE v0.8 ONLINE
     </div>
-    <h1>WHAT WILL YOU <span>ACCEPT?</span></h1>
-    <div class="tag">EVERY CHOICE. EVERY LIFE. EVERY ENDING.</div>
-    <p>
+    <h1 data-i18n="hero_h1">WHAT WILL YOU <span>ACCEPT?</span></h1>
+    <div class="tag" data-i18n="hero_tag">EVERY CHOICE. EVERY LIFE. EVERY ENDING.</div>
+    <p data-i18n="hero_desc">
       Seven worlds have already fallen. This is the eighth world.
       The last world. Five strangers are brought together as everything
       begins to collapse — and every decision leaves a permanent mark.
     </p>
     
     <div class="hero-btn-group">
-        <a class="btn btn-primary sfx-click" href="game.html" target="_blank">PLAY DEMO ➔</a>
-        <a class="btn sfx-click" href="#synopsis">ENTER THE WORLD</a>
+        <a class="btn btn-primary sfx-click" href="game.html" target="_blank" data-i18n="btn_demo">PLAY DEMO ➔</a>
+        <a class="btn sfx-click" href="#synopsis" data-i18n="btn_enter">ENTER THE WORLD</a>
     </div>
   </div>
 </header>
 
 <section id="synopsis" class="synopsis">
-  <div class="label">01 — SYNOPSIS</div>
-  <h2 class="title">The world has<br>fallen seven times.</h2>
-  <p class="text">
+  <div class="label" data-i18n="label_01">01 — SYNOPSIS</div>
+  <h2 class="title" data-i18n="synopsis_title">The world has<br>fallen seven times.</h2>
+  <p class="text" data-i18n="synopsis_text">
     ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction.
     There is no ninth world waiting. Five strangers meet with no known connection to one another.
     Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.
@@ -352,13 +352,13 @@ footer{flex-direction:column;gap:12px;text-align:center}
     The player is never given a single protagonist. All five characters are playable, and the story
     changes through actions, hesitation, courage, mistakes, death, and even choices that were never made.
   </p>
-  <div class="quote">“Every choice. Every life. Every ending.”</div>
+  <div class="quote" data-i18n="synopsis_quote">“Every choice. Every life. Every ending.”</div>
 </section>
 
 <section id="world" class="world">
-  <div class="label">02 — WORLD</div>
-  <h2 class="title">Eight worlds.<br>One last chance.</h2>
-  <p class="text">
+  <div class="label" data-i18n="label_02">02 — WORLD</div>
+  <h2 class="title" data-i18n="world_title">Eight worlds.<br>One last chance.</h2>
+  <p class="text" data-i18n="world_text">
     Click on any World card below to decrypt historical records and fragments left behind.
   </p>
   <div class="world-grid">
@@ -374,9 +374,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </section>
 
 <section id="characters" class="characters">
-  <div class="label">03 — CHARACTERS</div>
-  <h2 class="title">Five people.<br>One final world.</h2>
-  <p class="text">
+  <div class="label" data-i18n="label_03">03 — CHARACTERS</div>
+  <h2 class="title" data-i18n="char_title">Five people.<br>One final world.</h2>
+  <p class="text" data-i18n="char_text">
     Click on any character portrait below to inspect their full profile and inner story.
   </p>
   
@@ -418,42 +418,43 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </div>
 
 <section id="gameplay" class="gameplay">
-  <div class="label">04 — GAMEPLAY</div>
-  <h2 class="title">The world<br>does not wait.</h2>
+  <div class="label" data-i18n="label_04">04 — GAMEPLAY</div>
+  <h2 class="title" data-i18n="gameplay_title">The world<br>does not wait.</h2>
   <div class="system-grid">
-    <div class="system sfx-hover"><div class="system-no">SYSTEM 01</div><h3>NO SAFE CHOICE</h3><p>There is no completely safe decision. Saving one person may mean losing something else.</p></div>
-    <div class="system sfx-hover"><div class="system-no">SYSTEM 02</div><h3>TIME</h3><p>When the player takes too long, the system may decide for them. The world keeps moving.</p></div>
-    <div class="system sfx-hover"><div class="system-no">SYSTEM 03</div><h3>CONSEQUENCE</h3><p>A small decision can return much later in a form the player never expected.</p></div>
-    <div class="system sfx-hover"><div class="system-no">SYSTEM 04</div><h3>MEMORY</h3><p>A replay is not simply the same world again. Characters, NPCs, locations, and events may change.</p></div>
-    <div class="system sfx-hover"><div class="system-no">SYSTEM 05</div><h3>DEATH</h3><p>The death of a playable character is not just a loss. Relationships, events, and the world itself can change.</p></div>
-    <div class="system sfx-hover"><div class="system-no">SYSTEM 06</div><h3>ACCEPTANCE</h3><p>There is something the player cannot control. The game will never tell you exactly what it is.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 01</div><h3 data-i18n="sys1_h">NO SAFE CHOICE</h3><p data-i18n="sys1_p">There is no completely safe decision. Saving one person may mean losing something else.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 02</div><h3 data-i18n="sys2_h">TIME</h3><p data-i18n="sys2_p">When the player takes too long, the system may decide for them. The world keeps moving.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 03</div><h3 data-i18n="sys3_h">CONSEQUENCE</h3><p data-i18n="sys3_p">A small decision can return much later in a form the player never expected.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 04</div><h3 data-i18n="sys4_h">MEMORY</h3><p data-i18n="sys4_p">A replay is not simply the same world again. Characters, NPCs, locations, and events may change.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 05</div><h3 data-i18n="sys5_h">DEATH</h3><p data-i18n="sys5_p">The death of a playable character is not just a loss. Relationships, events, and the world itself can change.</p></div>
+    <div class="system sfx-hover"><div class="system-no">SYSTEM 06</div><h3 data-i18n="sys6_h">ACCEPTANCE</h3><p data-i18n="sys6_p">There is something the player cannot control. The game will never tell you exactly what it is.</p></div>
   </div>
 </section>
 
+<!-- EXPANDED MULTI-STAGE DECISION ENGINE SIMULATOR -->
 <section class="psychology">
   <div>
-    <div class="label">05 — PSYCHOLOGY</div>
-    <div class="big">The game watches<br><span>what you do.</span><br>Not what you say.</div>
+    <div class="label" data-i18n="label_05">05 — PSYCHOLOGY</div>
+    <div class="big" data-i18n="psy_big">The game watches<br><span>what you do.</span><br>Not what you say.</div>
   </div>
 
   <div class="simulator-box">
-    <div class="sim-header">DECISION ENGINE — TEST SIMULATION</div>
-    <div class="sim-question">
-        A stranger is trapped under falling concrete debris in Sector 8. The structure is collapsing in 5 seconds. You carry the key to the shelter. What do you do?
+    <div class="sim-header" id="simStepHeader">DECISION ENGINE — STAGE 1 / 3</div>
+    <div class="sim-question" id="simQuestionText">
+      A stranger is trapped under falling concrete debris in Sector 8. The structure is collapsing in 5 seconds. You carry the key to the shelter. What do you do?
     </div>
-    <div class="sim-choices">
-        <button class="sim-btn sfx-click" onclick="runSimulation('help')">1. [HELP] Risk your time to pull the stranger out.</button>
-        <button class="sim-btn sfx-click" onclick="runSimulation('leave')">2. [LEAVE] Abandon the stranger and reach shelter safely.</button>
-        <button class="sim-btn sfx-click" onclick="runSimulation('wait')">3. [WAIT] Freeze and observe what happens.</button>
+    <div class="sim-choices" id="simChoicesBox">
+        <button class="sim-btn sfx-click" onclick="answerQuiz('help')">1. [HELP] Risk your time to pull the stranger out.</button>
+        <button class="sim-btn sfx-click" onclick="answerQuiz('leave')">2. [LEAVE] Abandon the stranger and reach shelter safely.</button>
+        <button class="sim-btn sfx-click" onclick="answerQuiz('wait')">3. [WAIT] Freeze and observe what happens.</button>
     </div>
     <div id="simResult"></div>
   </div>
 </section>
 
 <section id="endings" class="endings">
-  <div class="label">06 — ENDINGS</div>
-  <h2 class="title">There is no<br>happy ending.</h2>
-  <p class="text">
+  <div class="label" data-i18n="label_06">06 — ENDINGS</div>
+  <h2 class="title" data-i18n="ending_title">There is no<br>happy ending.</h2>
+  <p class="text" data-i18n="ending_text">
     Several major endings await the player. ROUGHTALE8 was never designed to reward the player with a perfect conclusion. Click any record below to inspect memory logs.
   </p>
 
@@ -463,7 +464,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="ending-name">THE ENDING <span class="lock-tag">[ LOCKED ]</span></div>
         <div class="ending-type">BAD ENDING</div>
       </div>
-      <div class="ending-detail">
+      <div class="ending-detail" data-i18n="end_detail_1">
         A cycle completed without understanding. The collapse claims everyone equally.
       </div>
     </div>
@@ -473,7 +474,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="ending-name">THE END OF THE DAY <span class="lock-tag">[ LOCKED ]</span></div>
         <div class="ending-type">BAD ENDING</div>
       </div>
-      <div class="ending-detail">
+      <div class="ending-detail" data-i18n="end_detail_2">
         Surviving until nightfall wasn't enough. Darkness hides what was left behind.
       </div>
     </div>
@@ -483,7 +484,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="ending-name">THE FINAL CURSE <span class="lock-tag">[ LOCKED ]</span></div>
         <div class="ending-type">BAD ENDING</div>
       </div>
-      <div class="ending-detail">
+      <div class="ending-detail" data-i18n="end_detail_3">
         Trust was given to the wrong person. The betrayal leaves no room for regret.
       </div>
     </div>
@@ -493,7 +494,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="ending-name">THE TRUE END <span class="lock-tag">[ UNLOCKED ]</span></div>
         <div class="ending-type">NORMAL BAD ENDING</div>
       </div>
-      <div class="ending-detail">
+      <div class="ending-detail" data-i18n="end_detail_4">
         The truth of World VIII is accepted. Nothing is saved, but nothing is forgotten.
       </div>
     </div>
@@ -503,7 +504,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="ending-name">THE LAST <span class="lock-tag">[ LOCKED ]</span></div>
         <div class="ending-type">VERY BAD ENDING</div>
       </div>
-      <div class="ending-detail">
+      <div class="ending-detail" data-i18n="end_detail_5">
         Every character falls before reaching the threshold. World IX will never exist.
       </div>
     </div>
@@ -513,28 +514,39 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="ending-name">THE FINAL SECRET <span class="lock-tag red">[ CANON ARCHIVE ]</span></div>
         <div class="ending-type secret-type">CANON</div>
       </div>
-      <div class="ending-detail red-text">
+      <div class="ending-detail red-text" data-i18n="end_detail_6">
         Someone stayed behind in World VIII. A choice that was never supposed to be made.
       </div>
     </div>
   </div>
 </section>
 
+<!-- SECTION KAMI DENGAN GLITCH TERMINAL CONSOLE -->
 <section class="kami">
   <div>
     <div class="kami-symbol">K A M I</div>
-    <div class="label">07 — UNKNOWN</div>
-    <p>
+    <div class="label" data-i18n="label_07">07 — UNKNOWN</div>
+    <p data-i18n="kami_p">
       Someone is watching.<br><br>
       Someone has been watching since the beginning.<br><br>
       But this game will never tell you who.
     </p>
+
+    <!-- TERMINAL RAHASIA -->
+    <div class="terminal-box">
+      <div class="terminal-header">WORLD VIII — SECRET TERMINAL CONSOLE [v.8.0]</div>
+      <div class="terminal-input-wrap">
+        <span style="color:#22c55e">$</span>
+        <input type="text" id="termInput" class="terminal-input" placeholder="Type command (e.g. EIDON, KAMI, WORLD8, HELP)..." onkeydown="handleTerminalCommand(event)">
+      </div>
+      <div class="terminal-output" id="termOutput">Ready for input. Type 'HELP' to list keywords.</div>
+    </div>
   </div>
 </section>
 
 <section id="gallery" class="gallery">
-  <div class="label">08 — GALLERY</div>
-  <h2 class="title">Fragments of<br>World Eight.</h2>
+  <div class="label" data-i18n="label_08">08 — GALLERY</div>
+  <h2 class="title" data-i18n="gallery_title">Fragments of<br>World Eight.</h2>
   <div class="gallery-grid">
     <div class="gallery-item city sfx-hover"></div>
     <div class="gallery-item ruins sfx-hover"></div>
@@ -546,8 +558,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </section>
 
 <section class="sys-req-section">
-  <div class="label">09 — SPECIFICATIONS</div>
-  <h2 class="title">System Requirements.</h2>
+  <div class="label" data-i18n="label_09">09 — SPECIFICATIONS</div>
+  <h2 class="title" data-i18n="sys_title">System Requirements.</h2>
   <div class="sys-req-grid">
     <div class="sys-req-card">
         <h3>MINIMUM REQUIREMENTS</h3>
@@ -572,10 +584,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- SECTION TEASER DENGAN MP4 VIDEO PLAYER MODAL -->
 <section class="trailer">
-  <div class="label">10 — TEASER</div>
-  <h2 class="title">You have seen<br>nothing yet.</h2>
+  <div class="label" data-i18n="label_10">10 — TEASER</div>
+  <h2 class="title" data-i18n="teaser_title">You have seen<br>nothing yet.</h2>
   
   <div class="play-container">
     <button id="playTrailerBtn" class="play sfx-click">▶</button>
@@ -585,11 +596,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <div class="text" style="margin:auto">OFFICIAL TEASER TRAILER — ROUGHTALE8</div>
 </section>
 
-<!-- MODAL POPUP UNTUK MEMUTAR VIDEO TRAILER -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
-        
         <div class="video-container">
             <video id="mainTrailerVideo" controls controlsList="nodownload">
                 <source src="trailer.mp4" type="video/mp4">
@@ -600,12 +609,12 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </div>
 
 <section class="newsletter-section">
-    <div class="label">11 — COMMUNITY</div>
-    <h2 class="title">Join The Resistance</h2>
-    <p class="text" style="margin:auto">Get notified on release dates, secret lore archives, and closed beta access.</p>
+    <div class="label" data-i18n="label_11">11 — COMMUNITY</div>
+    <h2 class="title" data-i18n="community_title">Join The Resistance</h2>
+    <p class="text" style="margin:auto" data-i18n="community_desc">Get notified on release dates, secret lore archives, and closed beta access.</p>
     <form class="newsletter-box" onsubmit="handleSubscribe(event)">
         <input type="email" class="newsletter-input" placeholder="ENTER YOUR EMAIL..." required>
-        <button type="submit" class="btn btn-primary sfx-click">SUBSCRIBE</button>
+        <button type="submit" class="btn btn-primary sfx-click" data-i18n="btn_sub">SUBSCRIBE</button>
     </form>
 </section>
 
@@ -618,14 +627,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
 
 <div class="bottom-countdown-section">
     <div class="bottom-cd-box">
-        <div class="cd-title">WORLD VIII SYSTEM COLLAPSE</div>
-        <div class="cd-timer">
-            <div class="cd-item"><span class="cd-number">--</span><span class="cd-label">DAYS</span></div>
-            <div class="cd-item"><span class="cd-number">--</span><span class="cd-label">HOURS</span></div>
-            <div class="cd-item"><span class="cd-number">--</span><span class="cd-label">MINS</span></div>
-            <div class="cd-item"><span class="cd-number">--</span><span class="cd-label">SECS</span></div>
-        </div>
-        <div class="bottom-cd-sub">DEVELOPMENT IN PROGRESS — ANNOUNCEMENT COMING SOON</div>
+        <div class="cd-title">WORLD VIII STATUS — IN PRODUCTION</div>
+        <div class="bottom-cd-sub" data-i18n="dev_status">GAME DEVELOPMENT IN PROGRESS — OFFICIAL ANNOUNCEMENT COMING SOON</div>
     </div>
 </div>
 
@@ -640,7 +643,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </footer>
 
 <script>
-// WEB AUDIO SYNTHESIZER SFX UNTUK EFEK KLIK TAMPILAN UI
+// WEB AUDIO SYNTHESIZER SFX
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playSynthBeep(freq, type, duration) {
@@ -671,7 +674,177 @@ window.addEventListener('load', () => {
     }, 1200);
 });
 
-// KONTROL SISTEM AUDIO MP3 LOKAL
+// SISTEM MULTI-BAHASA (INDONESIA / ENGLISH)
+let currentLang = 'EN';
+
+const translations = {
+    EN: {
+        nav_synopsis: "SYNOPSIS", nav_world: "WORLD", nav_characters: "CHARACTERS", nav_gameplay: "GAMEPLAY", nav_endings: "ENDINGS", nav_gallery: "GALLERY",
+        hero_h1: "WHAT WILL YOU <span>ACCEPT?</span>", hero_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING.",
+        hero_desc: "Seven worlds have already fallen. This is the eighth world. The last world. Five strangers are brought together as everything begins to collapse — and every decision leaves a permanent mark.",
+        btn_demo: "PLAY DEMO ➔", btn_enter: "ENTER THE WORLD",
+        label_01: "01 — SYNOPSIS", synopsis_title: "The world has<br>fallen seven times.",
+        synopsis_text: "ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction. There is no ninth world waiting. Five strangers meet with no known connection to one another. Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.<br><br>The player is never given a single protagonist. All five characters are playable, and the story changes through actions, hesitation, courage, mistakes, death, and even choices that were never made.",
+        synopsis_quote: "“Every choice. Every life. Every ending.”",
+        label_02: "02 — WORLD", world_title: "Eight worlds.<br>One last chance.", world_text: "Click on any World card below to decrypt historical records and fragments left behind.",
+        label_03: "03 — CHARACTERS", char_title: "Five people.<br>One final world.", char_text: "Click on any character portrait below to inspect their full profile and inner story.",
+        label_04: "04 — GAMEPLAY", gameplay_title: "The world<br>does not wait.",
+        sys1_h: "NO SAFE CHOICE", sys1_p: "There is no completely safe decision. Saving one person may mean losing something else.",
+        sys2_h: "TIME", sys2_p: "When the player takes too long, the system may decide for them. The world keeps moving.",
+        sys3_h: "CONSEQUENCE", sys3_p: "A small decision can return much later in a form the player never expected.",
+        sys4_h: "MEMORY", sys4_p: "A replay is not simply the same world again. Characters, NPCs, locations, and events may change.",
+        sys5_h: "DEATH", sys5_p: "The death of a playable character is not just a loss. Relationships, events, and the world itself can change.",
+        sys6_h: "ACCEPTANCE", sys6_p: "There is something the player cannot control. The game will never tell you exactly what it is.",
+        label_05: "05 — PSYCHOLOGY", psy_big: "The game watches<br><span>what you do.</span><br>Not what you say.",
+        label_06: "06 — ENDINGS", ending_title: "There is no<br>happy ending.", ending_text: "Several major endings await the player. ROUGHTALE8 was never designed to reward the player with a perfect conclusion. Click any record below to inspect memory logs.",
+        end_detail_1: "A cycle completed without understanding. The collapse claims everyone equally.",
+        end_detail_2: "Surviving until nightfall wasn't enough. Darkness hides what was left behind.",
+        end_detail_3: "Trust was given to the wrong person. The betrayal leaves no room for regret.",
+        end_detail_4: "The truth of World VIII is accepted. Nothing is saved, but nothing is forgotten.",
+        end_detail_5: "Every character falls before reaching the threshold. World IX will never exist.",
+        end_detail_6: "Someone stayed behind in World VIII. A choice that was never supposed to be made.",
+        label_07: "07 — UNKNOWN", kami_p: "Someone is watching.<br><br>Someone has been watching since the beginning.<br><br>But this game will never tell you who.",
+        label_08: "08 — GALLERY", gallery_title: "Fragments of<br>World Eight.",
+        label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.",
+        label_10: "10 — TEASER", teaser_title: "You have seen<br>nothing yet.",
+        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on release dates, secret lore archives, and closed beta access.", btn_sub: "SUBSCRIBE",
+        dev_status: "GAME DEVELOPMENT IN PROGRESS — OFFICIAL ANNOUNCEMENT COMING SOON"
+    },
+    ID: {
+        nav_synopsis: "SINOPSIS", nav_world: "DUNIA", nav_characters: "KARAKTER", nav_gameplay: "GAMEPLAY", nav_endings: "ENDING", nav_gallery: "GALERI",
+        hero_h1: "APA YANG AKAN ANDA <span>TERIMA?</span>", hero_tag: "SETIAP PILIHAN. SETIAP NYAWA. SETIAP ENDING.",
+        hero_desc: "Tujuh dunia telah hancur. Ini adalah dunia kedelapan. Dunia terakhir. Lima orang asing dipertemukan saat segalanya mulai runtuh — dan setiap keputusan meninggalkan bekas permanen.",
+        btn_demo: "MAIN DEMO ➔", btn_enter: "MASUKI DUNIA",
+        label_01: "01 — SINOPSIS", synopsis_title: "Dunia telah runtuh<br>sebanyak tujuh kali.",
+        synopsis_text: "ROUGHTALE8 berlatar di dunia kedelapan — sebuah dunia yang berdiri di ambang kehancuran total. Tidak ada dunia kesembilan yang menunggu. Lima orang asing bertemu tanpa hubungan yang pasti. Dalam perjalanan mereka, kepercayaan, persahabatan, konflik, pengorbanan, dan ikatan emosional mulai terbentuk.<br><br>Pemain tidak pernah diberikan satu protagonis tunggal. Kelima karakter dapat dimainkan, dan jalan cerita berubah melalui tindakan, keraguan, keberanian, kesalahan, kematian, hingga pilihan yang tidak pernah dibuat.",
+        synopsis_quote: "“Setiap pilihan. Setiap nyawa. Setiap ending.”",
+        label_02: "02 — DUNIA", world_title: "Delapan dunia.<br>Satu kesempatan terakhir.", world_text: "Klik kartu Dunia di bawah untuk mendekripsi catatan sejarah dan fragmen yang tersisa.",
+        label_03: "03 — KARAKTER", char_title: "Lima manusia.<br>Satu dunia terakhir.", char_text: "Klik potret karakter di bawah untuk melihat profil lengkap dan rahasia mereka.",
+        label_04: "04 — GAMEPLAY", gameplay_title: "Dunia ini<br>tidak menunggu.",
+        sys1_h: "TIDAK ADA PILIHAN AMAN", sys1_p: "Tidak ada keputusan yang sepenuhnya aman. Menyelamatkan satu orang mungkin berarti kehilangan hal lain.",
+        sys2_h: "WAKTU", sys2_p: "Ketika pemain ragu terlalu lama, sistem akan memutuskan untuk mereka. Dunia terus berjalan.",
+        sys3_h: "KONSEKUENSI", sys3_p: "Keputusan kecil bisa kembali jauh di kemudian hari dalam bentuk yang tidak pernah diduga pemain.",
+        sys4_h: "INGATAN", sys4_p: "Permainan ulang bukan sekadar mengulang dunia yang sama. Karakter, NPC, lokasi, dan peristiwa dapat berubah.",
+        sys5_h: "KEMATIAN", sys5_p: "Kematian karakter bukan sekadar kekalahan. Hubungan, peristiwa, dan dunia itu sendiri akan ikut berubah.",
+        sys6_h: "PENERIMAAN", sys6_p: "Ada sesuatu yang tidak bisa dikontrol pemain. Game ini tidak akan pernah memberi tahu apa itu.",
+        label_05: "05 — PSIKOLOGI", psy_big: "Game ini mengawasi<br><span>apa yang kamu lakukan.</span><br>Bukan apa yang kamu katakan.",
+        label_06: "06 — ENDING", ending_title: "Tidak ada<br>akhir yang bahagia.", ending_text: "Beberapa ending besar menanti pemain. ROUGHTALE8 tidak pernah dirancang untuk memberi hadiah berupa akhir yang sempurna. Klik catatan di bawah untuk memeriksa ingatan.",
+        end_detail_1: "Sebuah siklus selesai tanpa pemahaman. Kehancuran menelan semua orang tanpa terkecuali.",
+        end_detail_2: "Bertahan hidup hingga malam tiba tidaklah cukup. Kegelapan menyembunyikan apa yang tersisa.",
+        end_detail_3: "Kepercayaan diberikan pada orang yang salah. Pengkhianatan tidak menyisakan ruang untuk penyesalan.",
+        end_detail_4: "Kebenaran Dunia VIII diterima. Tidak ada yang terselamatkan, tetapi tidak ada yang dilupakan.",
+        end_detail_5: "Setiap karakter gugur sebelum mencapai ambang batas. Dunia IX tidak akan pernah ada.",
+        end_detail_6: "Seseorang tinggal di Dunia VIII. Sebuah pilihan yang tidak pernah seharusnya dibuat.",
+        label_07: "07 — TAK DIKETAHUI", kami_p: "Seseorang sedang mengawasi.<br><br>Seseorang telah mengawasi sejak awal.<br><br>Namun game ini tidak akan pernah memberi tahu siapa mereka.",
+        label_08: "08 — GALERI", gallery_title: "Fragmen dari<br>Dunia Kedelapan.",
+        label_09: "09 — SPESIFIKASI", sys_title: "Persyaratan Sistem.",
+        label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.",
+        label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan tanggal rilis, arsip rahasia, dan akses beta tertutup.", btn_sub: "LANGGANAN",
+        dev_status: "PENGEMBANGAN GAME SEDANG BERJALAN — PENGUMUMAN RESMI SEGERA HADIR"
+    }
+};
+
+function toggleLanguage() {
+    currentLang = currentLang === 'EN' ? 'ID' : 'EN';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+            el.innerHTML = translations[currentLang][key];
+        }
+    });
+}
+
+// EXPANDED DECISION ENGINE QUIZ
+let quizStep = 1;
+let quizScores = { help: 0, leave: 0, wait: 0 };
+
+const quizQuestions = {
+    1: {
+        header: "DECISION ENGINE — STAGE 1 / 3",
+        question: "A stranger is trapped under falling concrete debris in Sector 8. The structure is collapsing in 5 seconds. You carry the key to the shelter. What do you do?",
+        c1: "1. [HELP] Risk your time to pull the stranger out.",
+        c2: "2. [LEAVE] Abandon the stranger and reach shelter safely.",
+        c3: "3. [WAIT] Freeze and observe what happens."
+    },
+    2: {
+        header: "DECISION ENGINE — STAGE 2 / 3",
+        question: "Inside the bunker, food rations are only sufficient for 4 people, but there are 5 survivors in your group. One person is severely injured. What is your call?",
+        c1: "1. [SHARE] Divide rations equally, even if everyone starves slowly.",
+        c2: "2. [EXCLUDE] Cut off the injured survivor's ration for group efficiency.",
+        c3: "3. [SACRIFICE] Give up your own ration to feed the injured."
+    },
+    3: {
+        header: "DECISION ENGINE — STAGE 3 / 3",
+        question: "The security system detects an infection breach in Sector 8. To save World VIII, you must purge the entire sector, killing infected and innocent people alike. Do you push the button?",
+        c1: "1. [REFUSE] Refuse to push the button and seek an impossible miracle.",
+        c2: "2. [PURGE] Push the button immediately to save the remaining world.",
+        c3: "3. [HESITATE] Hesitate until the timer runs out."
+    }
+};
+
+function answerQuiz(choice) {
+    quizScores[choice]++;
+    quizStep++;
+
+    if (quizStep <= 3) {
+        const q = quizQuestions[quizStep];
+        document.getElementById('simStepHeader').innerText = q.header;
+        document.getElementById('simQuestionText').innerText = q.question;
+        const box = document.getElementById('simChoicesBox');
+        box.innerHTML = `
+            <button class="sim-btn sfx-click" onclick="answerQuiz('help')">${q.c1}</button>
+            <button class="sim-btn sfx-click" onclick="answerQuiz('leave')">${q.c2}</button>
+            <button class="sim-btn sfx-click" onclick="answerQuiz('wait')">${q.c3}</button>
+        `;
+    } else {
+        showQuizFinalResult();
+    }
+}
+
+function showQuizFinalResult() {
+    document.getElementById('simChoicesBox').style.display = 'none';
+    document.getElementById('simStepHeader').innerText = "DECISION ENGINE — ANALYSIS COMPLETE";
+    document.getElementById('simQuestionText').innerText = "SYSTEM EVALUATION FOR WORLD VIII:";
+    const resBox = document.getElementById('simResult');
+    resBox.style.display = 'block';
+
+    if (quizScores.help >= 2) {
+        resBox.innerHTML = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: SELFLESS PROTECTOR</strong><br>You lead with empathy, valuing human lives over cold efficiency. In World VIII, your compassion will form unbreakable bonds, but leave you vulnerable to devastating sacrifices.";
+    } else if (quizScores.leave >= 2) {
+        resBox.innerHTML = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: COLD PRAGMATIST</strong><br>You act on pure logic and self-preservation. Survival is your priority. You will make it far in World VIII, but trust will be a rare luxury.";
+    } else {
+        resBox.innerHTML = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: TACTICAL OBSERVER / HESITANT</strong><br>You analyze and hesitate before committing. In a collapsing world, indecision is a choice itself. Time will often make decisions for you.";
+    }
+}
+
+// GLITCH TERMINAL CONSOLE EASTER EGG
+function handleTerminalCommand(e) {
+    if (e.key === "Enter") {
+        const input = document.getElementById('termInput').value.trim().toUpperCase();
+        const output = document.getElementById('termOutput');
+        document.getElementById('termInput').value = '';
+
+        if (input === 'HELP') {
+            output.innerText = "AVAILABLE ARCHIVE CODES:\n> EIDON, LIRA, KAEL, NARA, REZA\n> WORLD1, WORLD8, KAMI, CLEAR";
+        } else if (input === 'EIDON') {
+            output.innerText = "RECORD #01 — EIDON\nMemory loss confirmed. Subject holds key frequencies of World VIII.";
+        } else if (input === 'LIRA') {
+            output.innerText = "RECORD #02 — LIRA\nFormer sector medic. Guilt coefficient: 88%. Unresolved trauma.";
+        } else if (input === 'KAEL') {
+            output.innerText = "RECORD #03 — KAEL\nEx-soldier. Combat readiness: 99%. Tactical instinct dominant.";
+        } else if (input === 'KAMI') {
+            output.innerText = "CLASSIFIED — KAMI\n[ACCESS DENIED] Someone is watching your terminal inputs right now.";
+        } else if (input === 'WORLD8') {
+            output.innerText = "TIMELINE — WORLD VIII\nStatus: Collapsing. Current Sector: 8. No World IX available.";
+        } else if (input === 'CLEAR') {
+            output.innerText = "Ready for input. Type 'HELP' to list keywords.";
+        } else {
+            output.innerText = `COMMAND NOT RECOGNIZED: '${input}'. Type 'HELP' for available codes.`;
+        }
+    }
+}
+
+// SISTEM AUDIO BGM & TRAILER
 let isAudioPlaying = false;
 let wasBgmPlaying = false;
 
@@ -688,27 +861,12 @@ function toggleAudio() {
             btn.innerText = "[ SOUND: ON ]";
             btn.classList.add("active");
             isAudioPlaying = true;
-        }).catch(e => {
-            console.log("Play blocked by browser:", e);
-        });
+        }).catch(e => console.log("Play blocked:", e));
     } else {
         bgm.pause();
         btn.innerText = "[ SOUND: OFF ]";
         btn.classList.remove("active");
         isAudioPlaying = false;
-    }
-}
-
-function runSimulation(action) {
-    const resBox = document.getElementById('simResult');
-    resBox.style.display = 'block';
-
-    if(action === 'help') {
-        resBox.innerHTML = "<strong style='color:#b51e1e'>ANALYSIS: HIGH ATTACHMENT (+2)</strong><br>You prioritize human life over self-preservation. In World VIII, this empathy will make you vulnerable, but unlocks hidden character trust.";
-    } else if(action === 'leave') {
-        resBox.innerHTML = "<strong style='color:#b51e1e'>ANALYSIS: HIGH CONTROL (+2)</strong><br>You act on pure cold logic. Survival is your priority. The world remembers your refusal to risk time for others.";
-    } else {
-        resBox.innerHTML = "<strong style='color:#b51e1e'>ANALYSIS: HIGH HESITATION (+3)</strong><br>Indecision in World VIII is fatal. The concrete collapsed before you made a choice. Time made the decision for you.";
     }
 }
 
@@ -722,52 +880,38 @@ function toggleEndingDetail(element) {
 
 function handleSubscribe(e) {
     e.preventDefault();
-    alert("ARCHIVE SYSTEM: Your signal has been registered. Welcome to World VIII.");
+    alert("ARCHIVE SYSTEM: Signal registered. Welcome to World VIII.");
 }
 
 const worldData = {
-    'World1': { category: "HISTORICAL RECORD 01", title: "THE FIRST WORLD — THE BEGINNING", desc: "STATUS: ERASED / COLLAPSED\n\nThe era of forgotten ash. The initial cycle where humanity first attempted to alter destiny. No living survivors remain, only distorted memories." },
-    'World2': { category: "HISTORICAL RECORD 02", title: "THE SECOND WORLD — SILENCE", desc: "STATUS: ERASED / COLLAPSED\n\nA quiet extinction. The atmosphere destabilized within days, swallowing civilization in absolute silence before anyone could react." },
-    'World3': { category: "HISTORICAL RECORD 03", title: "THE THIRD WORLD — SHADOWS", desc: "STATUS: ERASED / COLLAPSED\n\nTrust crumbled before the world did. Internal conflicts and betrayal destroyed the last remaining shelters from within." },
-    'World4': { category: "HISTORICAL RECORD 04", title: "THE FOURTH WORLD — CORRUPTION", desc: "STATUS: ERASED / COLLAPSED\n\nBiological and environmental collapse. The soil itself rejected all life, leaving behind twisted ruins and toxic deserts." },
-    'World5': { category: "HISTORICAL RECORD 05", title: "THE FIFTH WORLD — FROZEN MEMORY", desc: "STATUS: ERASED / COLLAPSED\n\nA perpetual nuclear winter that lasted fifty years. Survival was extended, but destiny could not be bypassed." },
-    'World6': { category: "HISTORICAL RECORD 06", title: "THE SIXTH WORLD — ILLUSION", desc: "STATUS: ERASED / COLLAPSED\n\nA world where humanity lived in simulated reality to escape doom. The system failed when power ran out." },
-    'World7': { category: "HISTORICAL RECORD 07", title: "THE SEVENTH WORLD — THE PREVIOUS CYCLE", desc: "STATUS: CRITICAL COLLAPSE\n\nThe world immediately before ours. The final warning was written here. Five people almost made it out, but hesitation destroyed everything." },
-    'World8': { category: "ACTIVE TIMELINE", title: "THE EIGHTH WORLD — THE LAST STAND", desc: "STATUS: CURRENT / COLLAPSE IMMINENT\n\nThere is no World IX waiting. This is the final cycle. Five strangers have gathered, and every decision you make now leaves a permanent mark on humanity's last stand." }
+    'World1': { category: "HISTORICAL RECORD 01", title: "THE FIRST WORLD — THE BEGINNING", desc: "STATUS: ERASED / COLLAPSED\n\nThe era of forgotten ash. The initial cycle where humanity first attempted to alter destiny." },
+    'World8': { category: "ACTIVE TIMELINE", title: "THE EIGHTH WORLD — THE LAST STAND", desc: "STATUS: CURRENT / COLLAPSE IMMINENT\n\nThere is no World IX waiting. This is the final cycle." }
 };
 
 const characterData = {
-    'Eidon': { title: "01 — EIDON (17 YEARS OLD)", desc: "THE BOY WHO REMEMBERS NOTHING\n\nNaïve, innocent, and slowly entering adulthood. He carries a secret that even he does not understand. His journey is about discovering who he truly is." },
-    'Lira': { title: "02 — LIRA (25 YEARS OLD)", desc: "THE DOCTOR\n\nA brilliant doctor with a warm and cheerful heart. She believes that saving lives is her purpose in this world. Behind her smile, she hides deep guilt." },
-    'Kael': { title: "03 — KAEL (35 YEARS OLD)", desc: "THE SOLDIER\n\nA former elite soldier with extraordinary strength and intelligence. He follows logic, not emotion, but the past still hunts him every night." },
-    'Nara': { title: "04 — NARA (33 YEARS OLD)", desc: "THE SCIENTIST\n\nA brilliant scientist and a highly skilled cook. She is calm, observant, and always thinking three steps ahead. Her experiments may hold the key to the truth." },
-    'Reza': { title: "05 — REZA (45 YEARS OLD)", desc: "THE STRANGER\n\nCalm, wise, and strangely familiar with the world. He appears to know more than he says. His presence brings both comfort and suspicion." }
+    'Eidon': { title: "01 — EIDON (17 YEARS OLD)", desc: "THE BOY WHO REMEMBERS NOTHING\n\nNaïve, innocent, and slowly entering adulthood." },
+    'Lira': { title: "02 — LIRA (25 YEARS OLD)", desc: "THE DOCTOR\n\nA brilliant doctor with a warm and cheerful heart." },
+    'Kael': { title: "03 — KAEL (35 YEARS OLD)", desc: "THE SOLDIER\n\nA former elite soldier with extraordinary strength." },
+    'Nara': { title: "04 — NARA (33 YEARS OLD)", desc: "THE SCIENTIST\n\nA brilliant scientist and a highly skilled cook." },
+    'Reza': { title: "05 — REZA (45 YEARS OLD)", desc: "THE STRANGER\n\nCalm, wise, and strangely familiar with the world." }
 };
 
 function openWorldArchive(worldKey) {
     const modal = document.getElementById("characterProfileModal");
-    const pCategory = document.getElementById("pCategory");
-    const pTitle = document.getElementById("pTitle");
-    const pDesc = document.getElementById("pDesc");
-
     if(worldData[worldKey]) {
-        pCategory.innerText = worldData[worldKey].category;
-        pTitle.innerText = worldData[worldKey].title;
-        pDesc.innerText = worldData[worldKey].desc;
+        document.getElementById("pCategory").innerText = worldData[worldKey].category;
+        document.getElementById("pTitle").innerText = worldData[worldKey].title;
+        document.getElementById("pDesc").innerText = worldData[worldKey].desc;
         modal.classList.add("show");
     }
 }
 
 function openProfile(name) {
     const modal = document.getElementById("characterProfileModal");
-    const pCategory = document.getElementById("pCategory");
-    const pTitle = document.getElementById("pTitle");
-    const pDesc = document.getElementById("pDesc");
-
     if(characterData[name]) {
-        pCategory.innerText = "CHARACTER PROFILE";
-        pTitle.innerText = characterData[name].title;
-        pDesc.innerText = characterData[name].desc;
+        document.getElementById("pCategory").innerText = "CHARACTER PROFILE";
+        document.getElementById("pTitle").innerText = characterData[name].title;
+        document.getElementById("pDesc").innerText = characterData[name].desc;
         modal.classList.add("show");
     }
 }
@@ -777,50 +921,33 @@ document.addEventListener("DOMContentLoaded", function() {
     const closeProfileBtn = document.getElementById("closeProfileBtn");
 
     closeProfileBtn.addEventListener("click", function() { profileModal.classList.remove("show"); });
-    profileModal.addEventListener("click", function(e) { if (e.target === profileModal) profileModal.classList.remove("show"); });
 
     const modal = document.getElementById("trailerModal");
     const playBtn = document.getElementById("playTrailerBtn");
     const closeBtn = document.getElementById("closeModalBtn");
     const videoPlayer = document.getElementById("mainTrailerVideo");
 
-    // Buka Modal & Putar Video + Lagu Trailer
     playBtn.addEventListener("click", function() { 
         modal.classList.add("show"); 
-        
-        // Hentikan BGM Utama jika sedang menyala
         wasBgmPlaying = isAudioPlaying; 
-        if (isAudioPlaying) {
-            bgm.pause();
-        }
+        if (isAudioPlaying) bgm.pause();
 
-        // Putar audio trailer dan video MP4
         trailerAudio.currentTime = 0;
-        trailerAudio.play().catch(e => console.log("Trailer audio play error:", e));
+        trailerAudio.play().catch(e => console.log(e));
 
         videoPlayer.currentTime = 0;
-        videoPlayer.play().catch(e => console.log("Trailer video play error:", e));
+        videoPlayer.play().catch(e => console.log(e));
     });
 
-    // Tutup Modal & Kembalikan Suara BGM
     function closeModal() { 
         modal.classList.remove("show"); 
-
-        // Pause video & trailer audio
         videoPlayer.pause();
         trailerAudio.pause();
-
-        // Lanjutkan BGM jika tadi menyala
-        if (wasBgmPlaying) {
-            bgm.play().catch(e => console.log("BGM play error:", e));
-        }
+        if (wasBgmPlaying) bgm.play().catch(e => console.log(e));
     }
 
     closeBtn.addEventListener("click", closeModal);
     window.addEventListener("click", function(e) { if (e.target === modal) closeModal(); });
-    window.addEventListener("keydown", function(e) {
-        if (e.key === "Escape") { profileModal.classList.remove("show"); closeModal(); }
-    });
 });
 </script>
 
