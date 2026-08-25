@@ -6,14 +6,12 @@
 <title>ROUGHTALE8 — LIFE IS SIMPLE</title>
 <meta name="description" content="ROUGHTALE8 — Created by Muhammad Faari Akbar. Every choice. Every life. Every ending.">
 
-<!-- OPEN GRAPH (OG) META TAGS -->
 <meta property="og:title" content="ROUGHTALE8 — LIFE IS SIMPLE">
 <meta property="og:description" content="Seven worlds have already fallen. This is the eighth world. Every choice. Every life. Every ending. Created by Muhammad Faari Akbar.">
 <meta property="og:image" content="cover-headline.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- LOGO TAB BROWSER (SVG FAVICON - R8) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23050708'/><rect x='3' y='3' width='94' height='94' rx='15' fill='none' stroke='%23b51e1e' stroke-width='6'/><text x='50%' y='68%' font-family='Georgia,Arial,sans-serif' font-weight='bold' font-size='50' fill='%23ffffff' text-anchor='middle'>R<tspan fill='%23b51e1e'>8</tspan></text></svg>">
 
 <style>
@@ -284,13 +282,20 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .pulse-ring { position: absolute; width: 76px; height: 76px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.25); z-index: 1; animation: pulse 2s infinite ease-out; }
 @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }
 
+/* PERBAIKAN POPUP VIDEO TRAILER STYLES */
 .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(8px); justify-content: center; align-items: center; opacity: 0; padding: 15px; transition: opacity 0.4s ease; }
 .modal.show { display: flex; opacity: 1; }
 .modal-content { position: relative; width: 100%; max-width: 1000px; }
 .close-btn { position: absolute; top: -40px; right: 0; color: #ffffff; font-size: 30px; font-family: Arial, sans-serif; cursor: pointer; z-index: 10; }
 
-.video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border: 1px solid var(--red); box-shadow: 0 0 30px rgba(181, 30, 30, 0.4); border-radius: 4px; }
-.video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.video-container {
+    position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+    background: #000; border: 1px solid var(--red); box-shadow: 0 0 30px rgba(181, 30, 30, 0.4); border-radius: 4px; overflow: hidden;
+}
+.video-container video {
+    position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important;
+    object-fit: contain !important; background: #000; display: block !important;
+}
 
 .final{min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(to bottom,#090b0b,#030506)}
 .final h2{font-size:clamp(40px,8vw,105px);font-weight:400;letter-spacing:8px}
@@ -354,10 +359,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <source src="bgm-dark.mp3" type="audio/mpeg">
 </audio>
 
-<audio id="trailerAudio" loop preload="auto">
-    <source src="trailer-epic.mp3" type="audio/mpeg">
-</audio>
-
 <nav>
   <div class="logo">ROUGHTALE<b>8</b></div>
   <div class="links">
@@ -375,7 +376,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </nav>
 
 <header class="hero">
-  <!-- BACKGROUND TRAILER VIDEO LOOP -->
   <video class="hero-video-bg" autoplay loop muted playsinline>
     <source src="trailer.mp4" type="video/mp4">
   </video>
@@ -436,7 +436,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- INTERACTIVE MAP SECTOR 8 SECTION -->
 <section id="map" class="map-section">
   <div class="label">02.5 — WORLD VIII MAP ARCHIVE</div>
   <h2 class="title">World VIII Tactical Map<br>& Region Diagnostics.</h2>
@@ -523,7 +522,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- MULTI-STAGE DECISION ENGINE SIMULATOR + GLOBAL COMMUNITY POLL -->
 <section class="psychology">
   <div>
     <div class="label" data-i18n="label_05">05 — PSYCHOLOGY</div>
@@ -631,7 +629,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- SECTION KAMI DENGAN GLITCH TERMINAL CONSOLE -->
 <section class="kami">
   <div>
     <div class="kami-symbol">K A M I</div>
@@ -711,7 +708,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
         <div class="video-container">
-            <video id="mainTrailerVideo" controls controlsList="nodownload">
+            <video id="mainTrailerVideo" controls playsinline preload="auto">
                 <source src="trailer.mp4" type="video/mp4">
                 Browser kamu tidak mendukung pemutaran video.
             </video>
@@ -736,7 +733,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- KOTAK PEMBERITAHUAN ORIGINAL STATUS PRODUCTION -->
 <div class="bottom-countdown-section">
     <div class="bottom-cd-box">
         <div class="cd-title">WORLD VIII STATUS — IN PRODUCTION</div>
@@ -1065,19 +1061,16 @@ function handleTerminalCommand(e) {
     }
 }
 
-// AUDIO CONTROLS WITH SMOOTH FADE TRANSITIONS
+// AUDIO CONTROLS WITH PLAYBACK HANDLER
 let isAudioPlaying = false;
 let wasBgmPlaying = false;
 const bgm = document.getElementById('bgmAudio');
-const trailerAudio = document.getElementById('trailerAudio');
 const btn = document.getElementById('audioToggleBtn');
 
 bgm.volume = 0.5;
-trailerAudio.volume = 0.7;
 
 function adjustVolume(val) {
     bgm.volume = val;
-    trailerAudio.volume = val;
 }
 
 function toggleAudio() {
@@ -1145,6 +1138,7 @@ function openProfile(name) {
     }
 }
 
+// MODAL TRAILER LOGIC PERBAIKAN SEPENUHNYA
 document.addEventListener("DOMContentLoaded", function() {
     const profileModal = document.getElementById("characterProfileModal");
     const closeProfileBtn = document.getElementById("closeProfileBtn");
@@ -1159,25 +1153,28 @@ document.addEventListener("DOMContentLoaded", function() {
     playBtn.addEventListener("click", function() { 
         playGlitchSfx();
         modal.classList.add("show"); 
-        wasBgmPlaying = isAudioPlaying; 
-        if (isAudioPlaying) bgm.pause();
-
-        trailerAudio.currentTime = 0;
-        trailerAudio.play().catch(e => console.log(e));
+        
+        wasBgmPlaying = isAudioPlaying;
+        if (isAudioPlaying) {
+            bgm.pause();
+        }
 
         videoPlayer.currentTime = 0;
-        videoPlayer.play().catch(e => console.log(e));
+        videoPlayer.play().catch(e => console.log("Autoplay blocked:", e));
     });
 
     function closeModal() { 
         modal.classList.remove("show"); 
         videoPlayer.pause();
-        trailerAudio.pause();
-        if (wasBgmPlaying) bgm.play().catch(e => console.log(e));
+        if (wasBgmPlaying) {
+            bgm.play().catch(e => console.log(e));
+        }
     }
 
     closeBtn.addEventListener("click", closeModal);
-    window.addEventListener("click", function(e) { if (e.target === modal) closeModal(); });
+    window.addEventListener("click", function(e) { 
+        if (e.target === modal) closeModal(); 
+    });
 });
 </script>
 
