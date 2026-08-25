@@ -6,14 +6,14 @@
 <title>ROUGHTALE8 — LIFE IS SIMPLE</title>
 <meta name="description" content="ROUGHTALE8 — Created by Muhammad Faari Akbar. Every choice. Every life. Every ending.">
 
-<!-- OPEN GRAPH (OG) META TAGS UNTUK DISCORD, WHATSAPP & SOSMED -->
+<!-- OPEN GRAPH (OG) META TAGS -->
 <meta property="og:title" content="ROUGHTALE8 — LIFE IS SIMPLE">
 <meta property="og:description" content="Seven worlds have already fallen. This is the eighth world. Every choice. Every life. Every ending. Created by Muhammad Faari Akbar.">
 <meta property="og:image" content="cover-headline.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- LOGO TAB BROWSER (SVG AUTOMATIC FAVICON - R8) -->
+<!-- LOGO TAB BROWSER (SVG FAVICON - R8) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23050708'/><rect x='3' y='3' width='94' height='94' rx='15' fill='none' stroke='%23b51e1e' stroke-width='6'/><text x='50%' y='68%' font-family='Georgia,Arial,sans-serif' font-weight='bold' font-size='50' fill='%23ffffff' text-anchor='middle'>R<tspan fill='%23b51e1e'>8</tspan></text></svg>">
 
 <style>
@@ -59,12 +59,13 @@ backdrop-filter:blur(5px)
 .ctrl-btn:hover { border-color: var(--red); color: #fff; }
 .ctrl-btn.active { border-color: var(--red); color: var(--red); background: rgba(181,30,30,0.1); }
 
+.vol-slider { width: 70px; accent-color: var(--red); cursor: pointer; vertical-align: middle; }
+
 .hero{
 min-height:100vh;position:relative;display:grid;grid-template-columns:52% 48%;
 align-items:center;padding:95px 5% 55px;overflow:hidden;background:#050708
 }
 
-/* VIDEO BACKGROUND HERO LOOP */
 .hero-video-bg {
 position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
 filter:brightness(.4) saturate(.7);opacity:.6;transform:scale(1.03);z-index:0
@@ -120,6 +121,14 @@ transition:.4s; cursor: pointer;
 .world-card:last-child{border-color:rgba(181,30,30,.7)}
 .num{font-size:32px;color:rgba(255,255,255,.18)}
 .wname{font:9px Arial,sans-serif;letter-spacing:2px;margin-top:5px}
+
+/* INTERACTIVE LORE MAP STYLES */
+.map-section { background: #030405; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.map-container { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 520px; background: rgba(10, 14, 18, 0.9); border: 1px solid rgba(181, 30, 30, 0.4); border-radius: 4px; overflow: hidden; margin-top: 30px; box-shadow: 0 0 40px rgba(0,0,0,0.8); }
+.map-bg-grid { position: absolute; inset: 0; background-image: radial-gradient(var(--line) 1px, transparent 1px); background-size: 24px 24px; opacity: 0.4; }
+.map-poi { position: absolute; width: 18px; height: 18px; background: var(--red); border-radius: 50%; border: 3px solid #fff; cursor: pointer; transform: translate(-50%, -50%); transition: 0.3s; box-shadow: 0 0 15px var(--red); }
+.map-poi:hover { transform: translate(-50%, -50%) scale(1.4); background: #fff; border-color: var(--red); }
+.map-poi-label { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font: 9px Arial, sans-serif; letter-spacing: 2px; color: #fff; background: rgba(0,0,0,0.85); padding: 3px 6px; border-radius: 2px; white-space: nowrap; pointer-events: none; border: 1px solid rgba(255,255,255,0.1); }
 
 .characters{background:#080a0b}
 .character-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:40px}
@@ -186,6 +195,12 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .sim-btn:hover { background: rgba(181,30,30,0.25); color: #fff; border-color: var(--red); }
 #simResult { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #aaa; line-height: 1.6; }
 
+/* GLOBAL POLL BREAKDOWN BAR */
+.poll-box { margin-top: 20px; display: none; flex-direction: column; gap: 12px; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 15px; }
+.poll-item { font: 10px Arial, sans-serif; letter-spacing: 1px; color: #bbb; }
+.poll-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; margin-top: 5px; overflow: hidden; }
+.poll-bar-fill { height: 100%; background: var(--red); width: 0%; transition: width 1s ease; }
+
 .endings{background:#070809}
 .ending-list{margin-top:40px;border-top:1px solid var(--line)}
 .ending { display: flex; flex-direction: column; padding: 20px 10px; border-bottom: 1px solid var(--line); transition: all 0.3s ease; cursor: pointer; }
@@ -211,7 +226,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .terminal-input { flex: 1; background: transparent; border: none; color: #22c55e; font-family: monospace; outline: none; font-size: 13px; }
 .terminal-output { margin-top: 12px; font-size: 11px; color: #aaa; line-height: 1.6; white-space: pre-wrap; }
 
-/* GALERI FRAGMEN DUNIA WITH HOVER RED GLOW & LAZY LOADING */
 .gallery{background:#040506}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:40px}
 .gallery-item{height:240px;border:1px solid var(--line);background-size: 135% 135%;background-position: center 45%;display:flex;align-items:end;padding:20px;filter:saturate(.7) brightness(.85);transition:all .4s ease;cursor:pointer;border-radius:2px;}
@@ -255,9 +269,14 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .newsletter-input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid #444; padding: 12px 16px; color: #fff; font: 12px Arial, sans-serif; border-radius: 3px; outline: none; }
 .newsletter-input:focus { border-color: var(--red); }
 
+/* LIVE COUNTDOWN & RECRUIT COUNTER */
 .bottom-countdown-section { background: #030506; padding: 40px 5% 70px; display: flex; justify-content: center; border-top: 1px solid rgba(255,255,255,0.05); }
 .bottom-cd-box { padding: 25px 20px; background: rgba(8, 11, 14, 0.95); border: 1px solid rgba(181, 30, 30, 0.4); border-radius: 4px; max-width: 600px; width: 100%; text-align: center; }
 .bottom-cd-box .cd-title { font: 9px Arial, sans-serif; letter-spacing: 3px; color: var(--red); font-weight: bold; margin-bottom: 15px; }
+.cd-timer-grid { display: flex; justify-content: center; gap: 15px; margin: 15px 0; font-family: monospace; }
+.cd-unit { display: flex; flex-direction: column; align-items: center; }
+.cd-num { font-size: 24px; color: #fff; font-weight: bold; }
+.cd-lbl { font-size: 8px; color: #777; letter-spacing: 2px; }
 .bottom-cd-sub { font: 10px Arial, sans-serif; letter-spacing: 2px; color: #888; margin-top: 10px; line-height: 1.5; }
 
 footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
@@ -313,10 +332,12 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <div class="links">
     <a href="#synopsis" class="sfx-hover" data-i18n="nav_synopsis">SYNOPSIS</a>
     <a href="#world" class="sfx-hover" data-i18n="nav_world">WORLD</a>
+    <a href="#map" class="sfx-hover">MAP</a>
     <a href="#characters" class="sfx-hover" data-i18n="nav_characters">CHARACTERS</a>
     <a href="#gameplay" class="sfx-hover" data-i18n="nav_gameplay">GAMEPLAY</a>
     <a href="#endings" class="sfx-hover" data-i18n="nav_endings">ENDINGS</a>
     <a href="#gallery" class="sfx-hover" data-i18n="nav_gallery">GALLERY</a>
+    <input type="range" class="vol-slider" id="volControl" min="0" max="1" step="0.05" value="0.5" onchange="adjustVolume(this.value)">
     <button class="ctrl-btn sfx-hover" id="langToggleBtn" onclick="toggleLanguage()">[ ID | EN ]</button>
     <button class="ctrl-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()">[ SOUND: OFF ]</button>
   </div>
@@ -384,6 +405,29 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
+<!-- INTERACTIVE MAP SECTOR 8 SECTION -->
+<section id="map" class="map-section">
+  <div class="label">02.5 — SECTOR 8 MAP</div>
+  <h2 class="title">Tactical Overview<br>of Sector VIII.</h2>
+  <p class="text">Click on any glowing point of interest to inspect location diagnostics.</p>
+
+  <div class="map-container">
+    <div class="map-bg-grid"></div>
+    <div class="map-poi" style="top: 35%; left: 25%;" onclick="openMapPOI('Medical Bunker')">
+        <div class="map-poi-label">MEDICAL BUNKER</div>
+    </div>
+    <div class="map-poi" style="top: 65%; left: 45%;" onclick="openMapPOI('The Wall')">
+        <div class="map-poi-label">DEFENSE WALL</div>
+    </div>
+    <div class="map-poi" style="top: 30%; left: 75%;" onclick="openMapPOI('Central Engine')">
+        <div class="map-poi-label">CENTRAL ENGINE</div>
+    </div>
+    <div class="map-poi" style="top: 75%; left: 80%;" onclick="openMapPOI('Sector Gate')">
+        <div class="map-poi-label">SECTOR GATE</div>
+    </div>
+  </div>
+</section>
+
 <section id="characters" class="characters">
   <div class="label" data-i18n="label_03">03 — CHARACTERS</div>
   <h2 class="title" data-i18n="char_title">Five people.<br>One final world.</h2>
@@ -441,7 +485,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- MULTI-STAGE DECISION ENGINE SIMULATOR -->
+<!-- MULTI-STAGE DECISION ENGINE SIMULATOR + GLOBAL COMMUNITY POLL -->
 <section class="psychology">
   <div>
     <div class="label" data-i18n="label_05">05 — PSYCHOLOGY</div>
@@ -458,7 +502,25 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <button class="sim-btn sfx-click" onclick="answerQuiz('leave')">2. [LEAVE] Abandon the stranger and reach shelter safely.</button>
         <button class="sim-btn sfx-click" onclick="answerQuiz('wait')">3. [WAIT] Freeze and observe what happens.</button>
     </div>
+
     <div id="simResult"></div>
+
+    <!-- LIVE GLOBAL POLL BREAKDOWN -->
+    <div id="pollBreakdown" class="poll-box">
+        <div style="font-size:10px; color:var(--red); font-weight:bold; letter-spacing:2px;">GLOBAL PLAYER CHOICE STATISTICS:</div>
+        <div class="poll-item">
+            <span>Option 1: Help Stranger (34%)</span>
+            <div class="poll-bar-bg"><div class="poll-bar-fill" style="width:34%"></div></div>
+        </div>
+        <div class="poll-item">
+            <span>Option 2: Abandon & Survive (52%)</span>
+            <div class="poll-bar-bg"><div class="poll-bar-fill" style="width:52%"></div></div>
+        </div>
+        <div class="poll-item">
+            <span>Option 3: Hesitate / Freeze (14%)</span>
+            <div class="poll-bar-bg"><div class="poll-bar-fill" style="width:14%"></div></div>
+        </div>
+    </div>
   </div>
 </section>
 
@@ -637,10 +699,19 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
+<!-- LIVE COUNTDOWN & RESISTANCE RECRUITS COUNTER -->
 <div class="bottom-countdown-section">
     <div class="bottom-cd-box">
-        <div class="cd-title">WORLD VIII STATUS — IN PRODUCTION</div>
-        <div class="bottom-cd-sub" data-i18n="dev_status">GAME DEVELOPMENT IN PROGRESS — OFFICIAL ANNOUNCEMENT COMING SOON</div>
+        <div class="cd-title">WORLD VIII STATUS — NEXT MAJOR ANNOUNCEMENT IN</div>
+        <div class="cd-timer-grid">
+            <div class="cd-unit"><span class="cd-num" id="cdDays">00</span><span class="cd-lbl">DAYS</span></div>
+            <div class="cd-unit"><span class="cd-num" id="cdHours">00</span><span class="cd-lbl">HOURS</span></div>
+            <div class="cd-unit"><span class="cd-num" id="cdMins">00</span><span class="cd-lbl">MINS</span></div>
+            <div class="cd-unit"><span class="cd-num" id="cdSecs">00</span><span class="cd-lbl">SECS</span></div>
+        </div>
+        <div class="bottom-cd-sub">
+            REGISTERED RESISTANCE RECRUITS: <strong style="color:var(--red)" id="recruitCounter">14,892</strong>
+        </div>
     </div>
 </div>
 
@@ -655,7 +726,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </footer>
 
 <script>
-// ADVANCED WEB AUDIO SYNTHESIZER SFX ENGINE
+// ADVANCED WEB AUDIO SYNTHESIZER ENGINE
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playSynthBeep(freq, type, duration) {
@@ -672,7 +743,6 @@ function playSynthBeep(freq, type, duration) {
     osc.stop(audioCtx.currentTime + duration);
 }
 
-// EFEK SUARA GLITCH / HEARTBEAT SPESIAL
 function playGlitchSfx() {
     if (audioCtx.state === 'suspended') { audioCtx.resume(); }
     playSynthBeep(120, 'sawtooth', 0.15);
@@ -698,7 +768,7 @@ window.addEventListener('load', () => {
     }, 1200);
 });
 
-// INTERAKTIF 3D TILT EFFECT PADA COVER HEADLINE
+// INTERAKTIF 3D TILT EFFECT
 const coverBox = document.querySelector('.cover');
 const coverWrap = document.getElementById('coverTiltWrap');
 
@@ -714,9 +784,27 @@ if (coverWrap && coverBox) {
     });
 }
 
-// SISTEM MULTI-BAHASA (INDONESIA / ENGLISH)
-let currentLang = 'EN';
+// MAP POI MODAL LOGIC
+const poiData = {
+    'Medical Bunker': { title: "SECTOR 8 — MEDICAL BUNKER", desc: "STATUS: ACTIVE\nPrimary triage center managed by Dr. Lira. Supplies are depleting rapidly." },
+    'The Wall': { title: "SECTOR 8 — DEFENSE WALL", desc: "STATUS: FORTIFIED\nHeavy barrier standing against the collapse. Guarded by Kael." },
+    'Central Engine': { title: "SECTOR 8 — CENTRAL ENGINE", desc: "STATUS: CRITICAL\nCore energy grid designed by Nara. Voltage fluctuations detected." },
+    'Sector Gate': { title: "SECTOR 8 — SECTOR GATE", desc: "STATUS: SEALED\nThe final threshold leading into the void of previous fallen worlds." }
+};
 
+function openMapPOI(poiKey) {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    if(poiData[poiKey]) {
+        document.getElementById("pCategory").innerText = "LOCATION DIAGNOSTICS";
+        document.getElementById("pTitle").innerText = poiData[poiKey].title;
+        document.getElementById("pDesc").innerText = poiData[poiKey].desc;
+        modal.classList.add("show");
+    }
+}
+
+// MULTI-BAHASA SYSTEM
+let currentLang = 'EN';
 const translations = {
     EN: {
         nav_synopsis: "SYNOPSIS", nav_world: "WORLD", nav_characters: "CHARACTERS", nav_gameplay: "GAMEPLAY", nav_endings: "ENDINGS", nav_gallery: "GALLERY",
@@ -794,7 +882,7 @@ function toggleLanguage() {
     });
 }
 
-// DECISION ENGINE QUIZ WITH HEARTBEAT SOUND EFEKT
+// DECISION QUIZ + POLL DISPLAY
 let quizStep = 1;
 let quizScores = { help: 0, leave: 0, wait: 0 };
 
@@ -857,9 +945,11 @@ function showQuizFinalResult() {
     } else {
         resBox.innerHTML = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: TACTICAL OBSERVER / HESITANT</strong><br>You analyze and hesitate before committing. In a collapsing world, indecision is a choice itself. Time will often make decisions for you.";
     }
+
+    document.getElementById('pollBreakdown').style.display = 'flex';
 }
 
-// EXTENDED GLITCH TERMINAL CONSOLE EASTER EGG
+// TERMINAL CONSOLE
 function handleTerminalCommand(e) {
     if (e.key === "Enter") {
         playGlitchSfx();
@@ -895,16 +985,20 @@ function handleTerminalCommand(e) {
     }
 }
 
-// SISTEM AUDIO BGM & TRAILER WITH GLITCH TRANSITION
+// AUDIO CONTROLS
 let isAudioPlaying = false;
 let wasBgmPlaying = false;
-
 const bgm = document.getElementById('bgmAudio');
 const trailerAudio = document.getElementById('trailerAudio');
 const btn = document.getElementById('audioToggleBtn');
 
 bgm.volume = 0.5;
 trailerAudio.volume = 0.7;
+
+function adjustVolume(val) {
+    bgm.volume = val;
+    trailerAudio.volume = val;
+}
 
 function toggleAudio() {
     if (!isAudioPlaying) {
@@ -971,7 +1065,24 @@ function openProfile(name) {
     }
 }
 
+// COUNTDOWN TIMER LOGIC
+function updateCountdown() {
+    const targetDate = new Date("2026-10-01T00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if(diff > 0) {
+        document.getElementById("cdDays").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+        document.getElementById("cdHours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+        document.getElementById("cdMins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+        document.getElementById("cdSecs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+    }
+}
+setInterval(updateCountdown, 1000);
+
 document.addEventListener("DOMContentLoaded", function() {
+    updateCountdown();
+
     const profileModal = document.getElementById("characterProfileModal");
     const closeProfileBtn = document.getElementById("closeProfileBtn");
 
