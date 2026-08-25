@@ -6,7 +6,6 @@
 <title>ROUGHTALE8 — LIFE IS SIMPLE</title>
 <meta name="description" content="ROUGHTALE8 — Created by Muhammad Faari Akbar. Every choice. Every life. Every ending.">
 
-<!-- LOGO TAB BROWSER (SVG AUTOMATIC FAVICON - R8) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23050708'/><rect x='3' y='3' width='94' height='94' rx='15' fill='none' stroke='%23b51e1e' stroke-width='6'/><text x='50%' y='68%' font-family='Georgia,Arial,sans-serif' font-weight='bold' font-size='50' fill='%23ffffff' text-anchor='middle'>R<tspan fill='%23b51e1e'>8</tspan></text></svg>">
 
 <style>
@@ -73,13 +72,14 @@ linear-gradient(to bottom,rgba(0,0,0,.1),#030506 96%);z-index:1
 width:min(560px,100%);box-shadow:0 25px 70px rgba(0,0,0,.75);
 border:1px solid rgba(255,255,255,.12);transition:.6s
 }
-.cover:hover{transform:scale(1.015);box-shadow:0 30px 90px rgba(0,0,0,.9)}
+.cover:hover{transform:scale(1.015);box-shadow:0 30px 90px rgba(0,0,0,.9); border-color: var(--red);}
 .hero-copy{padding:40px 4% 40px 7%;max-width:680px}
 .kicker{font:11px Arial,sans-serif;letter-spacing:7px;color:#aaa;margin-bottom:24px;display:flex;align-items:center;gap:10px}
-.status-tag { display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%; box-shadow:0 0 8px #22c55e; }
+.status-tag { display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%; box-shadow:0 0 8px #22c55e; animation: pulseGlow 2s infinite; }
+@keyframes pulseGlow { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
 .hero h1{font-size:clamp(38px,6vw,82px);font-weight:400;letter-spacing:6px;line-height:1}
-.hero h1 span{color:var(--red)}
+.hero h1 span{color:var(--red); text-shadow: 0 0 12px rgba(181, 30, 30, 0.6);}
 .tag{margin-top:18px;font:12px Arial,sans-serif;letter-spacing:6px}
 .hero-copy p{margin-top:25px;color:#aeb2b3;font:14px/1.8 Arial,sans-serif;max-width:530px}
 
@@ -174,7 +174,7 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .sim-header { font: 9px Arial, sans-serif; letter-spacing: 3px; color: var(--red); font-weight: bold; margin-bottom: 10px; }
 .sim-question { font-size: 14px; color: #ddd; line-height: 1.6; margin-bottom: 18px; }
 .sim-choices { display: flex; flex-direction: column; gap: 10px; }
-.sim-btn { background: rgba(255,255,255,0.03); border: 1px solid #333; color: #ccc; padding: 12px 15px; font-size: 11px; font-family: Arial, sans-serif; text-align: left; cursor: pointer; border-radius: 3px; }
+.sim-btn { background: rgba(255,255,255,0.03); border: 1px solid #333; color: #ccc; padding: 12px 15px; font-size: 11px; font-family: Arial, sans-serif; text-align: left; cursor: pointer; border-radius: 3px; transition: 0.3s; }
 .sim-btn:hover { background: rgba(181,30,30,0.25); color: #fff; border-color: var(--red); }
 #simResult { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #aaa; line-height: 1.6; }
 
@@ -197,7 +197,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .kami-symbol{font:48px Arial,sans-serif;letter-spacing:14px;color:rgba(255,255,255,.07);margin-bottom:25px}
 .kami p{max-width:650px;color:#777;font:13px/2 Arial,sans-serif}
 
-/* TERMINAL CONSOLE GLITCH STYLES */
 .terminal-box { margin-top: 30px; width: 100%; max-width: 600px; background: #000; border: 1px solid #333; padding: 15px; border-radius: 4px; text-align: left; font-family: monospace; }
 .terminal-header { font-size: 10px; color: var(--red); margin-bottom: 10px; letter-spacing: 2px; }
 .terminal-input-wrap { display: flex; gap: 8px; align-items: center; }
@@ -221,21 +220,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .sys-req-card h3 { font: 12px Arial, sans-serif; letter-spacing: 3px; color: var(--red); margin-bottom: 20px; }
 .sys-req-list { list-style: none; font: 12px/2 Arial, sans-serif; color: #aaa; }
 .sys-req-list strong { color: #eee; font-weight: normal; }
-
-.trailer{text-align:center;padding:120px 7%;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.93)),url("cover-background.png") center/cover}
-.play-container { position: relative; display: inline-flex; justify-content: center; align-items: center; margin: 35px auto; }
-.play { position: relative; z-index: 2; width: 76px; height: 76px; border: 1px solid #888; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 20px Arial,sans-serif; background: transparent; color: #fff; cursor: pointer; padding-left: 4px; transition: .3s; }
-.play:hover { background: #fff; color: #000; transform: scale(1.08); }
-.pulse-ring { position: absolute; width: 76px; height: 76px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.25); z-index: 1; animation: pulse 2s infinite ease-out; }
-@keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }
-
-.modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(8px); justify-content: center; align-items: center; opacity: 0; padding: 15px; transition: opacity 0.4s ease; }
-.modal.show { display: flex; opacity: 1; }
-.modal-content { position: relative; width: 100%; max-width: 1000px; }
-.close-btn { position: absolute; top: -40px; right: 0; color: #ffffff; font-size: 30px; font-family: Arial, sans-serif; cursor: pointer; z-index: 10; }
-
-.video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border: 1px solid var(--red); box-shadow: 0 0 30px rgba(181, 30, 30, 0.4); border-radius: 4px; }
-.video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
 .final{min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(to bottom,#090b0b,#030506)}
 .final h2{font-size:clamp(40px,8vw,105px);font-weight:400;letter-spacing:8px}
@@ -294,10 +278,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
 
 <audio id="bgmAudio" loop preload="auto">
     <source src="bgm-dark.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="trailerAudio" loop preload="auto">
-    <source src="trailer-epic.mp3" type="audio/mpeg">
 </audio>
 
 <nav>
@@ -430,7 +410,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- EXPANDED MULTI-STAGE DECISION ENGINE SIMULATOR -->
 <section class="psychology">
   <div>
     <div class="label" data-i18n="label_05">05 — PSYCHOLOGY</div>
@@ -521,7 +500,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- SECTION KAMI DENGAN GLITCH TERMINAL CONSOLE -->
 <section class="kami">
   <div>
     <div class="kami-symbol">K A M I</div>
@@ -532,7 +510,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
       But this game will never tell you who.
     </p>
 
-    <!-- TERMINAL RAHASIA -->
     <div class="terminal-box">
       <div class="terminal-header">WORLD VIII — SECRET TERMINAL CONSOLE [v.8.0]</div>
       <div class="terminal-input-wrap">
@@ -583,30 +560,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
     </div>
   </div>
 </section>
-
-<section class="trailer">
-  <div class="label" data-i18n="label_10">10 — TEASER</div>
-  <h2 class="title" data-i18n="teaser_title">You have seen<br>nothing yet.</h2>
-  
-  <div class="play-container">
-    <button id="playTrailerBtn" class="play sfx-click">▶</button>
-    <div class="pulse-ring"></div>
-  </div>
-  
-  <div class="text" style="margin:auto">OFFICIAL TEASER TRAILER — ROUGHTALE8</div>
-</section>
-
-<div id="trailerModal" class="modal">
-    <div class="modal-content">
-        <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
-        <div class="video-container">
-            <video id="mainTrailerVideo" controls controlsList="nodownload">
-                <source src="trailer.mp4" type="video/mp4">
-                Browser kamu tidak mendukung pemutaran video.
-            </video>
-        </div>
-    </div>
-</div>
 
 <section class="newsletter-section">
     <div class="label" data-i18n="label_11">11 — COMMUNITY</div>
@@ -706,7 +659,6 @@ const translations = {
         label_07: "07 — UNKNOWN", kami_p: "Someone is watching.<br><br>Someone has been watching since the beginning.<br><br>But this game will never tell you who.",
         label_08: "08 — GALLERY", gallery_title: "Fragments of<br>World Eight.",
         label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.",
-        label_10: "10 — TEASER", teaser_title: "You have seen<br>nothing yet.",
         label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on release dates, secret lore archives, and closed beta access.", btn_sub: "SUBSCRIBE",
         dev_status: "GAME DEVELOPMENT IN PROGRESS — OFFICIAL ANNOUNCEMENT COMING SOON"
     },
@@ -738,7 +690,6 @@ const translations = {
         label_07: "07 — TAK DIKETAHUI", kami_p: "Seseorang sedang mengawasi.<br><br>Seseorang telah mengawasi sejak awal.<br><br>Namun game ini tidak akan pernah memberi tahu siapa mereka.",
         label_08: "08 — GALERI", gallery_title: "Fragmen dari<br>Dunia Kedelapan.",
         label_09: "09 — SPESIFIKASI", sys_title: "Persyaratan Sistem.",
-        label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.",
         label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan tanggal rilis, arsip rahasia, dan akses beta tertutup.", btn_sub: "LANGGANAN",
         dev_status: "PENGEMBANGAN GAME SEDANG BERJALAN — PENGUMUMAN RESMI SEGERA HADIR"
     }
@@ -754,7 +705,7 @@ function toggleLanguage() {
     });
 }
 
-// EXPANDED DECISION ENGINE QUIZ
+// DECISION ENGINE QUIZ
 let quizStep = 1;
 let quizScores = { help: 0, leave: 0, wait: 0 };
 
@@ -832,6 +783,10 @@ function handleTerminalCommand(e) {
             output.innerText = "RECORD #02 — LIRA\nFormer sector medic. Guilt coefficient: 88%. Unresolved trauma.";
         } else if (input === 'KAEL') {
             output.innerText = "RECORD #03 — KAEL\nEx-soldier. Combat readiness: 99%. Tactical instinct dominant.";
+        } else if (input === 'NARA') {
+            output.innerText = "RECORD #04 — NARA\nChief scientist. Unlocked secrets regarding World VIII collapse mechanics.";
+        } else if (input === 'REZA') {
+            output.innerText = "RECORD #05 — REZA\nUnknown observer. High familiarity with previous 7 erased timelines.";
         } else if (input === 'KAMI') {
             output.innerText = "CLASSIFIED — KAMI\n[ACCESS DENIED] Someone is watching your terminal inputs right now.";
         } else if (input === 'WORLD8') {
@@ -844,16 +799,11 @@ function handleTerminalCommand(e) {
     }
 }
 
-// SISTEM AUDIO BGM & TRAILER
+// SISTEM AUDIO BGM
 let isAudioPlaying = false;
-let wasBgmPlaying = false;
-
 const bgm = document.getElementById('bgmAudio');
-const trailerAudio = document.getElementById('trailerAudio');
 const btn = document.getElementById('audioToggleBtn');
-
 bgm.volume = 0.5;
-trailerAudio.volume = 0.7;
 
 function toggleAudio() {
     if (!isAudioPlaying) {
@@ -921,33 +871,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const closeProfileBtn = document.getElementById("closeProfileBtn");
 
     closeProfileBtn.addEventListener("click", function() { profileModal.classList.remove("show"); });
-
-    const modal = document.getElementById("trailerModal");
-    const playBtn = document.getElementById("playTrailerBtn");
-    const closeBtn = document.getElementById("closeModalBtn");
-    const videoPlayer = document.getElementById("mainTrailerVideo");
-
-    playBtn.addEventListener("click", function() { 
-        modal.classList.add("show"); 
-        wasBgmPlaying = isAudioPlaying; 
-        if (isAudioPlaying) bgm.pause();
-
-        trailerAudio.currentTime = 0;
-        trailerAudio.play().catch(e => console.log(e));
-
-        videoPlayer.currentTime = 0;
-        videoPlayer.play().catch(e => console.log(e));
-    });
-
-    function closeModal() { 
-        modal.classList.remove("show"); 
-        videoPlayer.pause();
-        trailerAudio.pause();
-        if (wasBgmPlaying) bgm.play().catch(e => console.log(e));
-    }
-
-    closeBtn.addEventListener("click", closeModal);
-    window.addEventListener("click", function(e) { if (e.target === modal) closeModal(); });
 });
 </script>
 
