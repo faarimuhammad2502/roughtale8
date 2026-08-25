@@ -290,7 +290,13 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .newsletter-input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid #444; padding: 12px 16px; color: #fff; font: 12px Arial, sans-serif; border-radius: 3px; outline: none; }
 .newsletter-input:focus { border-color: var(--red); }
 
-footer{padding:40px 7%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
+/* KOTAK PEMBERITAHUAN ORIGINAL STATUS PRODUCTION */
+.bottom-countdown-section { background: #030506; padding: 40px 5% 70px; display: flex; justify-content: center; border-top: 1px solid rgba(255,255,255,0.05); }
+.bottom-cd-box { padding: 25px 20px; background: rgba(8, 11, 14, 0.95); border: 1px solid rgba(181, 30, 30, 0.4); border-radius: 4px; max-width: 600px; width: 100%; text-align: center; }
+.bottom-cd-box .cd-title { font: 9px Arial, sans-serif; letter-spacing: 3px; color: var(--red); font-weight: bold; margin-bottom: 15px; }
+.bottom-cd-sub { font: 10px Arial, sans-serif; letter-spacing: 2px; color: #888; margin-top: 10px; line-height: 1.5; }
+
+footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
 
 @media(max-width:1050px){
 .hero{grid-template-columns:1fr;padding-top:110px;text-align:center}
@@ -714,6 +720,14 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
+<!-- KOTAK PEMBERITAHUAN AWAL STATUS IN PRODUCTION -->
+<div class="bottom-countdown-section">
+    <div class="bottom-cd-box">
+        <div class="cd-title">WORLD VIII STATUS — IN PRODUCTION</div>
+        <div class="bottom-cd-sub" data-i18n="dev_status">GAME DEVELOPMENT IN PROGRESS — OFFICIAL ANNOUNCEMENT COMING SOON</div>
+    </div>
+</div>
+
 <footer>
   <div>
     CRACK GAMES © 2026<br>
@@ -854,7 +868,8 @@ const translations = {
         label_08: "08 — GALLERY", gallery_title: "Fragments of<br>World Eight.",
         label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.",
         label_10: "10 — TEASER", teaser_title: "You have seen<br>nothing yet.",
-        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on release dates, secret lore archives, and closed beta access.", btn_sub: "SUBSCRIBE"
+        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on release dates, secret lore archives, and closed beta access.", btn_sub: "SUBSCRIBE",
+        dev_status: "GAME DEVELOPMENT IN PROGRESS — OFFICIAL ANNOUNCEMENT COMING SOON"
     },
     ID: {
         nav_synopsis: "SINOPSIS", nav_world: "DUNIA", nav_characters: "KARAKTER", nav_gameplay: "GAMEPLAY", nav_endings: "ENDING", nav_gallery: "GALERI",
@@ -885,7 +900,8 @@ const translations = {
         label_08: "08 — GALERI", gallery_title: "Fragmen dari<br>Dunia Kedelapan.",
         label_09: "09 — SPESIFIKASI", sys_title: "Persyaratan Sistem.",
         label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.",
-        label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan tanggal rilis, arsip rahasia, dan akses beta tertutup.", btn_sub: "LANGGANAN"
+        label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan tanggal rilis, arsip rahasia, dan akses beta tertutup.", btn_sub: "LANGGANAN",
+        dev_status: "PENGEMBANGAN GAME SEDANG BERJALAN — PENGUMUMAN RESMI SEGERA HADIR"
     }
 };
 
