@@ -122,64 +122,36 @@ transition:.4s; cursor: pointer;
 .num{font-size:32px;color:rgba(255,255,255,.18)}
 .wname{font:9px Arial,sans-serif;letter-spacing:2px;margin-top:5px}
 
-/* INTERACTIVE WORLD MAP — COMMAND CENTER EDITION */
+/* INTERACTIVE WORLD MAP STYLES */
 .map-section { background: #030405; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-
 .map-container-wrap {
     position: relative; width: 100%; max-width: 1200px; margin: 30px auto 0;
     border: 1px solid rgba(181, 30, 30, 0.4); border-radius: 4px; overflow: hidden;
     box-shadow: 0 0 50px rgba(0,0,0,0.9), 0 0 20px rgba(181, 30, 30, 0.2);
 }
+.map-image-display { width: 100%; height: auto; display: block; filter: brightness(0.95) contrast(1.05); }
 
-.map-image-display {
-    width: 100%; height: auto; display: block; filter: brightness(0.95) contrast(1.05);
-}
-
-/* Hotspot Pin Overlay */
 .map-hotspot {
     position: absolute; width: 28px; height: 28px; background: rgba(181, 30, 30, 0.4);
     border: 2px solid var(--red); border-radius: 50%; transform: translate(-50%, -50%);
     cursor: pointer; transition: all 0.3s ease; z-index: 10;
 }
-
 .map-hotspot::after {
     content: ""; position: absolute; inset: -6px; border: 1px dashed rgba(255, 255, 255, 0.6);
     border-radius: 50%; animation: poiPulse 2.5s infinite linear;
 }
-
 .map-hotspot:hover {
     background: rgba(255, 255, 255, 0.9); border-color: var(--red);
     transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 25px var(--red);
 }
-
 .map-hotspot-label {
     position: absolute; top: -28px; left: 50%; transform: translateX(-50%);
     font: 9px/1 Arial, sans-serif; letter-spacing: 2px; color: #fff; background: rgba(5, 7, 8, 0.92);
     padding: 4px 8px; border-radius: 2px; white-space: nowrap; pointer-events: none;
     border: 1px solid var(--red); box-shadow: 0 4px 10px rgba(0,0,0,0.8);
 }
-
 @keyframes poiPulse { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(360deg) scale(1.15); } }
 
-/* Point of Interest Marker */
-.map-poi {
-    position: absolute; width: 22px; height: 22px; background: rgba(181, 30, 30, 0.85);
-    border-radius: 50%; border: 2px solid #fff; cursor: pointer; transform: translate(-50%, -50%);
-    transition: all 0.3s ease; z-index: 10; display: flex; align-items: center; justify-content: center;
-}
-.map-poi::before {
-    content: ""; position: absolute; inset: -6px; border: 1px dashed rgba(255, 77, 77, 0.6);
-    border-radius: 50%; animation: poiPulse 2s infinite linear;
-}
-@keyframes poiPulse { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(360deg) scale(1.1); } }
-
-.map-poi:hover { transform: translate(-50%, -50%) scale(1.35); background: #fff; border-color: var(--red); box-shadow: 0 0 25px var(--red); }
-.map-poi-label {
-    position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
-    font: 9px/1 monospace; letter-spacing: 2px; color: #fff; background: rgba(5, 7, 8, 0.9);
-    padding: 5px 9px; border-radius: 2px; white-space: nowrap; pointer-events: none;
-    border: 1px solid rgba(181, 30, 30, 0.6); box-shadow: 0 4px 12px rgba(0,0,0,0.8);
-}
 .characters{background:#080a0b}
 .character-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:40px}
 
@@ -245,7 +217,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .sim-btn:hover { background: rgba(181,30,30,0.25); color: #fff; border-color: var(--red); }
 #simResult { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #aaa; line-height: 1.6; }
 
-/* GLOBAL POLL BREAKDOWN BAR */
 .poll-box { margin-top: 20px; display: none; flex-direction: column; gap: 12px; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 15px; }
 .poll-item { font: 10px Arial, sans-serif; letter-spacing: 1px; color: #bbb; }
 .poll-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; margin-top: 5px; overflow: hidden; }
@@ -319,17 +290,7 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .newsletter-input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid #444; padding: 12px 16px; color: #fff; font: 12px Arial, sans-serif; border-radius: 3px; outline: none; }
 .newsletter-input:focus { border-color: var(--red); }
 
-/* LIVE COUNTDOWN & RECRUIT COUNTER */
-.bottom-countdown-section { background: #030506; padding: 40px 5% 70px; display: flex; justify-content: center; border-top: 1px solid rgba(255,255,255,0.05); }
-.bottom-cd-box { padding: 25px 20px; background: rgba(8, 11, 14, 0.95); border: 1px solid rgba(181, 30, 30, 0.4); border-radius: 4px; max-width: 600px; width: 100%; text-align: center; }
-.bottom-cd-box .cd-title { font: 9px Arial, sans-serif; letter-spacing: 3px; color: var(--red); font-weight: bold; margin-bottom: 15px; }
-.cd-timer-grid { display: flex; justify-content: center; gap: 15px; margin: 15px 0; font-family: monospace; }
-.cd-unit { display: flex; flex-direction: column; align-items: center; }
-.cd-num { font-size: 24px; color: #fff; font-weight: bold; }
-.cd-lbl { font-size: 8px; color: #777; letter-spacing: 2px; }
-.bottom-cd-sub { font: 10px Arial, sans-serif; letter-spacing: 2px; color: #888; margin-top: 10px; line-height: 1.5; }
-
-footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
+footer{padding:40px 7%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
 
 @media(max-width:1050px){
 .hero{grid-template-columns:1fr;padding-top:110px;text-align:center}
@@ -462,36 +423,23 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <p class="text">Click on any region marker below to decrypt local logs, danger levels, and hidden archives.</p>
 
   <div class="map-container-wrap">
-    <!-- Gambar Map Utama dari Referensi -->
     <img src="world-map.png" alt="ROUGHTALE8 World Map" class="map-image-display" loading="lazy">
 
-    <!-- HOTSPOT OVERLAY UNTUK 6 WILAYAH UTAMA -->
-    <!-- 1. The City (Kiri Atas) -->
     <div class="map-hotspot" style="top: 24%; left: 20%;" onclick="openMapPOI('The City')">
         <div class="map-hotspot-label">1. THE CITY</div>
     </div>
-
-    <!-- 2. The Ruins (Atas Tengah) -->
     <div class="map-hotspot" style="top: 15%; left: 49%;" onclick="openMapPOI('The Ruins')">
         <div class="map-hotspot-label">2. THE RUINS</div>
     </div>
-
-    <!-- 3. The Last Refuge (Kanan Atas) -->
     <div class="map-hotspot" style="top: 28%; left: 57%;" onclick="openMapPOI('The Last Refuge')">
         <div class="map-hotspot-label">3. THE LAST REFUGE</div>
     </div>
-
-    <!-- 4. The Hospital (Kiri Bawah) -->
     <div class="map-hotspot" style="top: 52%; left: 21%;" onclick="openMapPOI('The Hospital')">
         <div class="map-hotspot-label">4. THE HOSPITAL</div>
     </div>
-
-    <!-- 5. The Laboratory (Tengah Bawah) -->
     <div class="map-hotspot" style="top: 58%; left: 40%;" onclick="openMapPOI('The Laboratory')">
         <div class="map-hotspot-label">5. THE LABORATORY</div>
     </div>
-
-    <!-- 6. Unknown (Kanan Bawah) -->
     <div class="map-hotspot" style="top: 61%; left: 59%;" onclick="openMapPOI('Unknown')">
         <div class="map-hotspot-label">6. UNKNOWN</div>
     </div>
@@ -575,7 +523,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
 
     <div id="simResult"></div>
 
-    <!-- LIVE GLOBAL POLL BREAKDOWN -->
     <div id="pollBreakdown" class="poll-box">
         <div style="font-size:10px; color:var(--red); font-weight:bold; letter-spacing:2px;">GLOBAL PLAYER CHOICE STATISTICS:</div>
         <div class="poll-item">
@@ -675,7 +622,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
       But this game will never tell you who.
     </p>
 
-    <!-- TERMINAL RAHASIA -->
     <div class="terminal-box">
       <div class="terminal-header">WORLD VIII — SECRET TERMINAL CONSOLE [v.8.0]</div>
       <div class="terminal-input-wrap">
@@ -687,7 +633,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- SECTION 08 — GALERI FRAGMEN DUNIA ORIGINAL -->
 <section id="gallery" class="gallery">
   <div class="label" data-i18n="label_08">08 — GALLERY</div>
   <h2 class="title" data-i18n="gallery_title">Fragments of<br>World Eight.</h2>
@@ -769,22 +714,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- LIVE COUNTDOWN & RESISTANCE RECRUITS COUNTER -->
-<div class="bottom-countdown-section">
-    <div class="bottom-cd-box">
-        <div class="cd-title">WORLD VIII STATUS — NEXT MAJOR ANNOUNCEMENT IN</div>
-        <div class="cd-timer-grid">
-            <div class="cd-unit"><span class="cd-num" id="cdDays">00</span><span class="cd-lbl">DAYS</span></div>
-            <div class="cd-unit"><span class="cd-num" id="cdHours">00</span><span class="cd-lbl">HOURS</span></div>
-            <div class="cd-unit"><span class="cd-num" id="cdMins">00</span><span class="cd-lbl">MINS</span></div>
-            <div class="cd-unit"><span class="cd-num" id="cdSecs">00</span><span class="cd-lbl">SECS</span></div>
-        </div>
-        <div class="bottom-cd-sub">
-            REGISTERED RESISTANCE RECRUITS: <strong style="color:var(--red)" id="recruitCounter">14,892</strong>
-        </div>
-    </div>
-</div>
-
 <footer>
   <div>
     CRACK GAMES © 2026<br>
@@ -796,7 +725,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </footer>
 
 <script>
-// ADVANCED WEB AUDIO SYNTHESIZER ENGINE
+// WEB AUDIO SYNTHESIZER ENGINE
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playSynthBeep(freq, type, duration) {
@@ -838,7 +767,7 @@ window.addEventListener('load', () => {
     }, 1200);
 });
 
-// INTERAKTIF 3D TILT EFFECT
+// 3D TILT EFFECT
 const coverBox = document.querySelector('.cover');
 const coverWrap = document.getElementById('coverTiltWrap');
 
@@ -886,7 +815,7 @@ function openMapPOI(poiKey) {
     playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
     if(poiData[poiKey]) {
-        document.getElementById("pCategory").innerText = "LOCATION DIAGNOSTICS";
+        document.getElementById("pCategory").innerText = "REGION DIAGNOSTICS";
         document.getElementById("pTitle").innerText = poiData[poiKey].title;
         document.getElementById("pDesc").innerText = poiData[poiKey].desc;
         modal.classList.add("show");
@@ -925,8 +854,7 @@ const translations = {
         label_08: "08 — GALLERY", gallery_title: "Fragments of<br>World Eight.",
         label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.",
         label_10: "10 — TEASER", teaser_title: "You have seen<br>nothing yet.",
-        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on release dates, secret lore archives, and closed beta access.", btn_sub: "SUBSCRIBE",
-        dev_status: "GAME DEVELOPMENT IN PROGRESS — OFFICIAL ANNOUNCEMENT COMING SOON"
+        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on release dates, secret lore archives, and closed beta access.", btn_sub: "SUBSCRIBE"
     },
     ID: {
         nav_synopsis: "SINOPSIS", nav_world: "DUNIA", nav_characters: "KARAKTER", nav_gameplay: "GAMEPLAY", nav_endings: "ENDING", nav_gallery: "GALERI",
@@ -957,8 +885,7 @@ const translations = {
         label_08: "08 — GALERI", gallery_title: "Fragmen dari<br>Dunia Kedelapan.",
         label_09: "09 — SPESIFIKASI", sys_title: "Persyaratan Sistem.",
         label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.",
-        label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan tanggal rilis, arsip rahasia, dan akses beta tertutup.", btn_sub: "LANGGANAN",
-        dev_status: "PENGEMBANGAN GAME SEDANG BERJALAN — PENGUMUMAN RESMI SEGERA HADIR"
+        label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan tanggal rilis, arsip rahasia, dan akses beta tertutup.", btn_sub: "LANGGANAN"
     }
 };
 
@@ -1155,24 +1082,7 @@ function openProfile(name) {
     }
 }
 
-// COUNTDOWN TIMER LOGIC
-function updateCountdown() {
-    const targetDate = new Date("2026-10-01T00:00:00").getTime();
-    const now = new Date().getTime();
-    const diff = targetDate - now;
-
-    if(diff > 0) {
-        document.getElementById("cdDays").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-        document.getElementById("cdHours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-        document.getElementById("cdMins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-        document.getElementById("cdSecs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
-    }
-}
-setInterval(updateCountdown, 1000);
-
 document.addEventListener("DOMContentLoaded", function() {
-    updateCountdown();
-
     const profileModal = document.getElementById("characterProfileModal");
     const closeProfileBtn = document.getElementById("closeProfileBtn");
 
