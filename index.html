@@ -6,6 +6,13 @@
 <title>ROUGHTALE8 — LIFE IS SIMPLE</title>
 <meta name="description" content="ROUGHTALE8 — Created by Muhammad Faari Akbar. Every choice. Every life. Every ending.">
 
+<!-- OPEN GRAPH (OG) META TAGS UNTUK DISCORD, WHATSAPP & SOSMED -->
+<meta property="og:title" content="ROUGHTALE8 — LIFE IS SIMPLE">
+<meta property="og:description" content="Seven worlds have already fallen. This is the eighth world. Every choice. Every life. Every ending. Created by Muhammad Faari Akbar.">
+<meta property="og:image" content="cover-headline.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
 <!-- LOGO TAB BROWSER (SVG AUTOMATIC FAVICON - R8) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23050708'/><rect x='3' y='3' width='94' height='94' rx='15' fill='none' stroke='%23b51e1e' stroke-width='6'/><text x='50%' y='68%' font-family='Georgia,Arial,sans-serif' font-weight='bold' font-size='50' fill='%23ffffff' text-anchor='middle'>R<tspan fill='%23b51e1e'>8</tspan></text></svg>">
 
@@ -68,12 +75,12 @@ radial-gradient(circle at 55% 50%,transparent 10%,rgba(0,0,0,.62) 80%),
 linear-gradient(to bottom,rgba(0,0,0,.1),#030506 96%);z-index:1
 }
 .hero>*:not(.hero-video-bg){position:relative;z-index:2}
-.cover-wrap{display:flex;justify-content:center;align-items:center}
+.cover-wrap{display:flex;justify-content:center;align-items:center; perspective: 1000px;}
 .cover{
 width:min(560px,100%);box-shadow:0 25px 70px rgba(0,0,0,.75);
-border:1px solid rgba(255,255,255,.12);transition:.6s
+border:1px solid rgba(255,255,255,.12);transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
-.cover:hover{transform:scale(1.015);box-shadow:0 30px 90px rgba(0,0,0,.9); border-color: var(--red);}
+.cover:hover{box-shadow:0 30px 90px rgba(181, 30, 30, 0.4); border-color: var(--red);}
 .hero-copy{padding:40px 4% 40px 7%;max-width:680px}
 .kicker{font:11px Arial,sans-serif;letter-spacing:7px;color:#aaa;margin-bottom:24px;display:flex;align-items:center;gap:10px}
 .status-tag { display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%; box-shadow:0 0 8px #22c55e; animation: pulseGlow 2s infinite; }
@@ -204,11 +211,11 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .terminal-input { flex: 1; background: transparent; border: none; color: #22c55e; font-family: monospace; outline: none; font-size: 13px; }
 .terminal-output { margin-top: 12px; font-size: 11px; color: #aaa; line-height: 1.6; white-space: pre-wrap; }
 
-/* GALERI FRAGMEN DUNIA ORIGINAL */
+/* GALERI FRAGMEN DUNIA WITH HOVER RED GLOW & LAZY LOADING */
 .gallery{background:#040506}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:40px}
 .gallery-item{height:240px;border:1px solid var(--line);background-size: 135% 135%;background-position: center 45%;display:flex;align-items:end;padding:20px;filter:saturate(.7) brightness(.85);transition:all .4s ease;cursor:pointer;border-radius:2px;}
-.gallery-item:hover{filter:saturate(1.1) brightness(1);transform:translateY(-5px);border-color:var(--red);box-shadow: 0 10px 30px rgba(181, 30, 30, 0.3);background-size: 140% 140%;}
+.gallery-item:hover{filter:saturate(1.2) brightness(1);transform:translateY(-5px);border-color:var(--red);box-shadow: 0 10px 30px rgba(181, 30, 30, 0.4);background-size: 140% 140%;}
 .gallery-item.city { background-image: url("city.jpg"); }
 .gallery-item.ruins { background-image: url("ruins.jpg"); }
 .gallery-item.refuge { background-image: url("refuge.jpg"); }
@@ -321,8 +328,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <source src="trailer.mp4" type="video/mp4">
   </video>
 
-  <div class="cover-wrap">
-    <img class="cover" src="cover-headline.png" alt="ROUGHTALE8 official cover">
+  <div class="cover-wrap" id="coverTiltWrap">
+    <img class="cover" src="cover-headline.png" alt="ROUGHTALE8 official cover" loading="lazy">
   </div>
 
   <div class="hero-copy">
@@ -548,7 +555,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- SECTION 08 — GALERI FRAGMEN DUNIA (KEMBALI KE LOKASI DUNIA & KOTA) -->
+<!-- SECTION 08 — GALERI FRAGMEN DUNIA ORIGINAL -->
 <section id="gallery" class="gallery">
   <div class="label" data-i18n="label_08">08 — GALLERY</div>
   <h2 class="title" data-i18n="gallery_title">Fragments of<br>World Eight.</h2>
@@ -648,7 +655,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </footer>
 
 <script>
-// WEB AUDIO SYNTHESIZER SFX
+// ADVANCED WEB AUDIO SYNTHESIZER SFX ENGINE
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playSynthBeep(freq, type, duration) {
@@ -665,6 +672,18 @@ function playSynthBeep(freq, type, duration) {
     osc.stop(audioCtx.currentTime + duration);
 }
 
+// EFEK SUARA GLITCH / HEARTBEAT SPESIAL
+function playGlitchSfx() {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    playSynthBeep(120, 'sawtooth', 0.15);
+}
+
+function playHeartbeatSfx() {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    playSynthBeep(80, 'sine', 0.2);
+    setTimeout(() => playSynthBeep(65, 'sine', 0.25), 180);
+}
+
 document.querySelectorAll('.sfx-hover').forEach(el => {
     el.addEventListener('mouseenter', () => playSynthBeep(600, 'sine', 0.04));
 });
@@ -678,6 +697,22 @@ window.addEventListener('load', () => {
         loader.classList.add('fade-out');
     }, 1200);
 });
+
+// INTERAKTIF 3D TILT EFFECT PADA COVER HEADLINE
+const coverBox = document.querySelector('.cover');
+const coverWrap = document.getElementById('coverTiltWrap');
+
+if (coverWrap && coverBox) {
+    coverWrap.addEventListener('mousemove', (e) => {
+        const rect = coverWrap.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        coverBox.style.transform = `rotateY(${x * 0.03}deg) rotateX(${-y * 0.03}deg) scale(1.02)`;
+    });
+    coverWrap.addEventListener('mouseleave', () => {
+        coverBox.style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
+    });
+}
 
 // SISTEM MULTI-BAHASA (INDONESIA / ENGLISH)
 let currentLang = 'EN';
@@ -759,7 +794,7 @@ function toggleLanguage() {
     });
 }
 
-// DECISION ENGINE QUIZ
+// DECISION ENGINE QUIZ WITH HEARTBEAT SOUND EFEKT
 let quizStep = 1;
 let quizScores = { help: 0, leave: 0, wait: 0 };
 
@@ -788,6 +823,7 @@ const quizQuestions = {
 };
 
 function answerQuiz(choice) {
+    playHeartbeatSfx();
     quizScores[choice]++;
     quizStep++;
 
@@ -807,6 +843,7 @@ function answerQuiz(choice) {
 }
 
 function showQuizFinalResult() {
+    playGlitchSfx();
     document.getElementById('simChoicesBox').style.display = 'none';
     document.getElementById('simStepHeader').innerText = "DECISION ENGINE — ANALYSIS COMPLETE";
     document.getElementById('simQuestionText').innerText = "SYSTEM EVALUATION FOR WORLD VIII:";
@@ -822,15 +859,16 @@ function showQuizFinalResult() {
     }
 }
 
-// GLITCH TERMINAL CONSOLE EASTER EGG
+// EXTENDED GLITCH TERMINAL CONSOLE EASTER EGG
 function handleTerminalCommand(e) {
     if (e.key === "Enter") {
+        playGlitchSfx();
         const input = document.getElementById('termInput').value.trim().toUpperCase();
         const output = document.getElementById('termOutput');
         document.getElementById('termInput').value = '';
 
         if (input === 'HELP') {
-            output.innerText = "AVAILABLE ARCHIVE CODES:\n> EIDON, LIRA, KAEL, NARA, REZA\n> WORLD1, WORLD8, KAMI, CLEAR";
+            output.innerText = "AVAILABLE ARCHIVE CODES:\n> EIDON, LIRA, KAEL, NARA, REZA\n> WORLD1, WORLD8, SECTOR8, KAMI, FAARI, CLEAR";
         } else if (input === 'EIDON') {
             output.innerText = "RECORD #01 — EIDON\nMemory loss confirmed. Subject holds key frequencies of World VIII.";
         } else if (input === 'LIRA') {
@@ -841,9 +879,13 @@ function handleTerminalCommand(e) {
             output.innerText = "RECORD #04 — NARA\nChief scientist. Unlocked secrets regarding World VIII collapse mechanics.";
         } else if (input === 'REZA') {
             output.innerText = "RECORD #05 — REZA\nUnknown observer. High familiarity with previous 7 erased timelines.";
+        } else if (input === 'FAARI' || input === 'CREATOR') {
+            output.innerText = "AUTHOR ARCHIVE — MUHAMMAD FAARI AKBAR\nArchitect of World VIII. Decision System Designer & Developer.";
+        } else if (input === 'SECTOR8') {
+            output.innerText = "LOCATION LOG — SECTOR 8\nPrimary sanctuary zone. Containment shield status: CRITICAL (12% remaining).";
         } else if (input === 'KAMI') {
             output.innerText = "CLASSIFIED — KAMI\n[ACCESS DENIED] Someone is watching your terminal inputs right now.";
-        } else if (input === 'WORLD8') {
+        } else if (input === 'WORLD8' || input === 'ROUGHTALE8') {
             output.innerText = "TIMELINE — WORLD VIII\nStatus: Collapsing. Current Sector: 8. No World IX available.";
         } else if (input === 'CLEAR') {
             output.innerText = "Ready for input. Type 'HELP' to list keywords.";
@@ -853,7 +895,7 @@ function handleTerminalCommand(e) {
     }
 }
 
-// SISTEM AUDIO BGM & TRAILER
+// SISTEM AUDIO BGM & TRAILER WITH GLITCH TRANSITION
 let isAudioPlaying = false;
 let wasBgmPlaying = false;
 
@@ -880,6 +922,7 @@ function toggleAudio() {
 }
 
 function toggleEndingDetail(element) {
+    playSynthBeep(350, 'triangle', 0.08);
     const isActive = element.classList.contains("active");
     document.querySelectorAll('.ending').forEach(el => el.classList.remove('active'));
     if (!isActive) {
@@ -889,6 +932,7 @@ function toggleEndingDetail(element) {
 
 function handleSubscribe(e) {
     e.preventDefault();
+    playGlitchSfx();
     alert("ARCHIVE SYSTEM: Signal registered. Welcome to World VIII.");
 }
 
@@ -906,6 +950,7 @@ const characterData = {
 };
 
 function openWorldArchive(worldKey) {
+    playSynthBeep(400, 'sine', 0.05);
     const modal = document.getElementById("characterProfileModal");
     if(worldData[worldKey]) {
         document.getElementById("pCategory").innerText = worldData[worldKey].category;
@@ -916,6 +961,7 @@ function openWorldArchive(worldKey) {
 }
 
 function openProfile(name) {
+    playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
     if(characterData[name]) {
         document.getElementById("pCategory").innerText = "CHARACTER PROFILE";
@@ -937,6 +983,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const videoPlayer = document.getElementById("mainTrailerVideo");
 
     playBtn.addEventListener("click", function() { 
+        playGlitchSfx();
         modal.classList.add("show"); 
         wasBgmPlaying = isAudioPlaying; 
         if (isAudioPlaying) bgm.pause();
