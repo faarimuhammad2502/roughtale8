@@ -440,23 +440,50 @@ footer{flex-direction:column;gap:12px;text-align:center}
 
 <!-- INTERACTIVE MAP SECTOR 8 SECTION -->
 <section id="map" class="map-section">
-  <div class="label">02.5 — SECTOR 8 MAP</div>
-  <h2 class="title">Tactical Overview<br>of Sector VIII.</h2>
-  <p class="text">Click on any glowing point of interest to inspect location diagnostics.</p>
+  <div class="label">02.5 — SECTOR 8 TACTICAL MAP</div>
+  <h2 class="title">Tactical Radar Overview<br>of Sector VIII.</h2>
+  <p class="text">Click on any glowing point of interest to inspect sector diagnostics and structural logs.</p>
 
   <div class="map-container">
-    <div class="map-bg-grid"></div>
+    <!-- EFEK RADAR VECTOR INTERAKTIF -->
+    <svg class="radar-svg" viewBox="0 0 1000 562" preserveAspectRatio="none">
+      <!-- Grid Lines -->
+      <defs>
+        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+          <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+      
+      <!-- Tactical Radar Circles -->
+      <circle cx="500" cy="281" r="120" stroke="rgba(181, 30, 30, 0.35)" stroke-width="1.5" stroke-dasharray="6,6" fill="none"/>
+      <circle cx="500" cy="281" r="230" stroke="rgba(181, 30, 30, 0.25)" stroke-width="1" fill="none"/>
+      <circle cx="500" cy="281" r="320" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" stroke-dasharray="4,8" fill="none"/>
+      
+      <!-- Axis Crosshairs -->
+      <line x1="0" y1="281" x2="1000" y2="281" stroke="rgba(181, 30, 30, 0.25)" stroke-width="1"/>
+      <line x1="500" y1="0" x2="500" y2="562" stroke="rgba(181, 30, 30, 0.25)" stroke-width="1"/>
+      
+      <!-- Connecting Sector Lines -->
+      <polyline points="250,196 450,365 750,168 800,421" stroke="rgba(181, 30, 30, 0.45)" stroke-width="1.5" stroke-dasharray="5,5" fill="none"/>
+
+      <!-- Tactical Text Coordinates -->
+      <text x="20" y="30" fill="rgba(181, 30, 30, 0.7)" font-family="monospace" font-size="12">SYS.LOC // SECTOR 08_LAT.884</text>
+      <text x="20" y="540" fill="rgba(255, 255, 255, 0.3)" font-family="monospace" font-size="11">STATUS: DEFENSE CONTAINMENT ACTIVE</text>
+    </svg>
+
+    <!-- POI MARKERS -->
     <div class="map-poi" style="top: 35%; left: 25%;" onclick="openMapPOI('Medical Bunker')">
-        <div class="map-poi-label">MEDICAL BUNKER</div>
+        <div class="map-poi-label">MEDICAL BUNKER [SEC-01]</div>
     </div>
     <div class="map-poi" style="top: 65%; left: 45%;" onclick="openMapPOI('The Wall')">
-        <div class="map-poi-label">DEFENSE WALL</div>
+        <div class="map-poi-label">DEFENSE WALL [SEC-02]</div>
     </div>
     <div class="map-poi" style="top: 30%; left: 75%;" onclick="openMapPOI('Central Engine')">
-        <div class="map-poi-label">CENTRAL ENGINE</div>
+        <div class="map-poi-label">CENTRAL ENGINE [SEC-03]</div>
     </div>
     <div class="map-poi" style="top: 75%; left: 80%;" onclick="openMapPOI('Sector Gate')">
-        <div class="map-poi-label">SECTOR GATE</div>
+        <div class="map-poi-label">SECTOR GATE [SEC-04]</div>
     </div>
   </div>
 </section>
