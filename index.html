@@ -204,24 +204,17 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .terminal-input { flex: 1; background: transparent; border: none; color: #22c55e; font-family: monospace; outline: none; font-size: 13px; }
 .terminal-output { margin-top: 12px; font-size: 11px; color: #aaa; line-height: 1.6; white-space: pre-wrap; }
 
-/* GALERI STORYBOARD LIGHTBOX (3x3 GRID) */
+/* GALERI FRAGMEN DUNIA ORIGINAL */
 .gallery{background:#040506}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-.gallery-item{
-height:200px;border:1px solid var(--line);background-size: cover;background-position: center;
-display:flex;align-items:end;padding:15px;filter:saturate(.7) brightness(.85);transition:all .4s ease;cursor:pointer;border-radius:3px;
-position:relative; overflow:hidden;
-}
-.gallery-item:hover{filter:saturate(1.2) brightness(1);transform:translateY(-6px);border-color:var(--red);box-shadow: 0 10px 30px rgba(181, 30, 30, 0.4);}
-.gallery-tag { font: 9px Arial, sans-serif; letter-spacing: 2px; background: rgba(0,0,0,0.8); color: #ccc; padding: 4px 8px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.1); }
-
-.lightbox-modal {
-display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%;
-background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(12px); justify-content: center; align-items: center;
-opacity: 0; padding: 20px; transition: opacity 0.4s ease;
-}
-.lightbox-modal.show { display: flex; opacity: 1; }
-.lightbox-content { max-width: 90%; max-height: 85vh; border: 2px solid var(--red); border-radius: 4px; box-shadow: 0 0 50px rgba(181,30,30,0.5); }
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:40px}
+.gallery-item{height:240px;border:1px solid var(--line);background-size: 135% 135%;background-position: center 45%;display:flex;align-items:end;padding:20px;filter:saturate(.7) brightness(.85);transition:all .4s ease;cursor:pointer;border-radius:2px;}
+.gallery-item:hover{filter:saturate(1.1) brightness(1);transform:translateY(-5px);border-color:var(--red);box-shadow: 0 10px 30px rgba(181, 30, 30, 0.3);background-size: 140% 140%;}
+.gallery-item.city { background-image: url("city.jpg"); }
+.gallery-item.ruins { background-image: url("ruins.jpg"); }
+.gallery-item.refuge { background-image: url("refuge.jpg"); }
+.gallery-item.hospital { background-image: url("hospital.jpg"); background-position: center 60%; }
+.gallery-item.lab { background-image: url("lab.jpg"); }
+.gallery-item.unknown { background-image: url("unknown.jpg"); }
 
 .sys-req-section { background: #050708; }
 .sys-req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
@@ -555,27 +548,19 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- SECTION 08 — GALERI STORYBOARD LIGHTBOX -->
+<!-- SECTION 08 — GALERI FRAGMEN DUNIA (KEMBALI KE LOKASI DUNIA & KOTA) -->
 <section id="gallery" class="gallery">
   <div class="label" data-i18n="label_08">08 — GALLERY</div>
-  <h2 class="title" data-i18n="gallery_title">Storyboard &<br>World Fragments.</h2>
+  <h2 class="title" data-i18n="gallery_title">Fragments of<br>World Eight.</h2>
   <div class="gallery-grid">
-    <div class="gallery-item sfx-hover" style="background-image:url('storyboard.jpeg'); background-position: 0% 0%;" onclick="openLightbox('storyboard.jpeg')"><div class="gallery-tag">FRAME 01 — THE RUINS</div></div>
-    <div class="gallery-item sfx-hover" style="background-image:url('storyboard.jpeg'); background-position: 50% 0%;" onclick="openLightbox('storyboard.jpeg')"><div class="gallery-tag">FRAME 02 — EIDON</div></div>
-    <div class="gallery-item sfx-hover" style="background-image:url('storyboard.jpeg'); background-position: 100% 0%;" onclick="openLightbox('storyboard.jpeg')"><div class="gallery-tag">FRAME 03 — LIRA</div></div>
-    <div class="gallery-item sfx-hover" style="background-image:url('storyboard.jpeg'); background-position: 0% 50%;" onclick="openLightbox('storyboard.jpeg')"><div class="gallery-tag">FRAME 04 — KAEL</div></div>
-    <div class="gallery-item sfx-hover" style="background-image:url('storyboard.jpeg'); background-position: 50% 50%;" onclick="openLightbox('storyboard.jpeg')"><div class="gallery-tag">FRAME 05 — NARA</div></div>
-    <div class="gallery-item sfx-hover" style="background-image:url('storyboard.jpeg'); background-position: 100% 50%;" onclick="openLightbox('storyboard.jpeg')"><div class="gallery-tag">FRAME 06 — REZA</div></div>
-    <div class="gallery-item sfx-hover" style="background-image:url('storyboard.jpeg'); background-position: 0% 100%;" onclick="openLightbox('storyboard.jpeg')"><div class="gallery-tag">FRAME 07 — LABORATORY</div></div>
-    <div class="gallery-item sfx-hover" style="background-image:url('storyboard.jpeg'); background-position: 50% 100%;" onclick="openLightbox('storyboard.jpeg')"><div class="gallery-tag">FRAME 08 — THE STORM</div></div>
-    <div class="gallery-item sfx-hover" style="background-image:url('storyboard.jpeg'); background-position: 100% 100%;" onclick="openLightbox('storyboard.jpeg')"><div class="gallery-tag">FRAME 09 — TITLE CARD</div></div>
+    <div class="gallery-item city sfx-hover"></div>
+    <div class="gallery-item ruins sfx-hover"></div>
+    <div class="gallery-item refuge sfx-hover"></div>
+    <div class="gallery-item hospital sfx-hover"></div>
+    <div class="gallery-item lab sfx-hover"></div>
+    <div class="gallery-item unknown sfx-hover"></div>
   </div>
 </section>
-
-<!-- LIGHTBOX MODAL IMAGE -->
-<div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
-    <img id="lightboxImg" class="lightbox-content" src="" alt="Storyboard Preview">
-</div>
 
 <section class="sys-req-section">
   <div class="label" data-i18n="label_09">09 — SPECIFICATIONS</div>
@@ -694,17 +679,6 @@ window.addEventListener('load', () => {
     }, 1200);
 });
 
-// SISTEM LIGHTBOX STORYBOARD
-function openLightbox(imgUrl) {
-    const modal = document.getElementById("lightboxModal");
-    const img = document.getElementById("lightboxImg");
-    img.src = imgUrl;
-    modal.classList.add("show");
-}
-function closeLightbox() {
-    document.getElementById("lightboxModal").classList.remove("show");
-}
-
 // SISTEM MULTI-BAHASA (INDONESIA / ENGLISH)
 let currentLang = 'EN';
 
@@ -735,7 +709,7 @@ const translations = {
         end_detail_5: "Every character falls before reaching the threshold. World IX will never exist.",
         end_detail_6: "Someone stayed behind in World VIII. A choice that was never supposed to be made.",
         label_07: "07 — UNKNOWN", kami_p: "Someone is watching.<br><br>Someone has been watching since the beginning.<br><br>But this game will never tell you who.",
-        label_08: "08 — GALLERY", gallery_title: "Storyboard &<br>World Fragments.",
+        label_08: "08 — GALLERY", gallery_title: "Fragments of<br>World Eight.",
         label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.",
         label_10: "10 — TEASER", teaser_title: "You have seen<br>nothing yet.",
         label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on release dates, secret lore archives, and closed beta access.", btn_sub: "SUBSCRIBE",
@@ -767,7 +741,7 @@ const translations = {
         end_detail_5: "Setiap karakter gugur sebelum mencapai ambang batas. Dunia IX tidak akan pernah ada.",
         end_detail_6: "Seseorang tinggal di Dunia VIII. Sebuah pilihan yang tidak pernah seharusnya dibuat.",
         label_07: "07 — TAK DIKETAHUI", kami_p: "Seseorang sedang mengawasi.<br><br>Seseorang telah mengawasi sejak awal.<br><br>Namun game ini tidak akan pernah memberi tahu siapa mereka.",
-        label_08: "08 — GALERI", gallery_title: "Storyboard &<br>Fragmen Dunia.",
+        label_08: "08 — GALERI", gallery_title: "Fragmen dari<br>Dunia Kedelapan.",
         label_09: "09 — SPESIFIKASI", sys_title: "Persyaratan Sistem.",
         label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.",
         label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan tanggal rilis, arsip rahasia, dan akses beta tertutup.", btn_sub: "LANGGANAN",
