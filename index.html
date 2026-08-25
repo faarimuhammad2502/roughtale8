@@ -61,6 +61,17 @@ backdrop-filter:blur(5px)
 
 .vol-slider { width: 70px; accent-color: var(--red); cursor: pointer; vertical-align: middle; }
 
+/* FLOATING BACK TO TOP BUTTON */
+.back-to-top {
+    position: fixed; bottom: 30px; right: 30px; z-index: 900;
+    background: rgba(8, 11, 14, 0.9); border: 1px solid var(--red); color: #fff;
+    padding: 10px 14px; font: 9px Arial, sans-serif; letter-spacing: 2px; cursor: pointer;
+    border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+}
+.back-to-top.visible { opacity: 1; pointer-events: auto; }
+.back-to-top:hover { background: var(--red); transform: translateY(-3px); }
+
 .hero{
 min-height:100vh;position:relative;display:grid;grid-template-columns:52% 48%;
 align-items:center;padding:95px 5% 55px;overflow:hidden;background:#050708
@@ -260,10 +271,11 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 
 .sys-req-section { background: #050708; }
 .sys-req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
-.sys-req-card { background: rgba(255,255,255,0.018); border: 1px solid var(--line); padding: 25px; border-radius: 3px; }
+.sys-req-card { background: rgba(255,255,255,0.018); border: 1px solid var(--line); padding: 25px; border-radius: 3px; position: relative; }
 .sys-req-card h3 { font: 12px Arial, sans-serif; letter-spacing: 3px; color: var(--red); margin-bottom: 20px; }
 .sys-req-list { list-style: none; font: 12px/2 Arial, sans-serif; color: #aaa; }
 .sys-req-list strong { color: #eee; font-weight: normal; }
+.sys-status-badge { position: absolute; top: 20px; right: 20px; font: 8px Arial, sans-serif; letter-spacing: 2px; color: #22c55e; border: 1px solid #22c55e; padding: 2px 6px; border-radius: 2px; }
 
 .trailer{text-align:center;padding:120px 7%;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.93)),url("cover-background.png") center/cover}
 .play-container { position: relative; display: inline-flex; justify-content: center; align-items: center; margin: 35px auto; }
@@ -335,6 +347,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
     <div class="loader-sub">INITIALIZING WORLD VIII...</div>
 </div>
+
+<button id="backToTopBtn" class="back-to-top sfx-click" onclick="scrollToTop()">[ TOP ↑ ]</button>
 
 <audio id="bgmAudio" loop preload="auto">
     <source src="bgm-dark.mp3" type="audio/mpeg">
@@ -657,6 +671,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <h2 class="title" data-i18n="sys_title">System Requirements.</h2>
   <div class="sys-req-grid">
     <div class="sys-req-card">
+        <div class="sys-status-badge">PASSED</div>
         <h3>MINIMUM REQUIREMENTS</h3>
         <ul class="sys-req-list">
             <li><strong>OS:</strong> Windows 10 / Android 9.0+</li>
@@ -667,6 +682,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
         </ul>
     </div>
     <div class="sys-req-card">
+        <div class="sys-status-badge">RECOMMENDED</div>
         <h3>RECOMMENDED SPECS</h3>
         <ul class="sys-req-list">
             <li><strong>OS:</strong> Windows 11 / Android 12+</li>
@@ -720,7 +736,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- KOTAK PEMBERITAHUAN AWAL STATUS IN PRODUCTION -->
+<!-- KOTAK PEMBERITAHUAN ORIGINAL STATUS PRODUCTION -->
 <div class="bottom-countdown-section">
     <div class="bottom-cd-box">
         <div class="cd-title">WORLD VIII STATUS — IN PRODUCTION</div>
@@ -739,7 +755,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </footer>
 
 <script>
-// WEB AUDIO SYNTHESIZER ENGINE
+// WEB AUDIO SYNTHESIZER ENGINE WITH FADE SMOOTHING
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playSynthBeep(freq, type, duration) {
@@ -779,7 +795,22 @@ window.addEventListener('load', () => {
         const loader = document.getElementById('preloader');
         loader.classList.add('fade-out');
     }, 1200);
+    checkSavedQuizResult();
 });
+
+// BACK TO TOP SCROLL MONITOR
+window.addEventListener('scroll', () => {
+    const btn = document.getElementById('backToTopBtn');
+    if (window.scrollY > 400) {
+        btn.classList.add('visible');
+    } else {
+        btn.classList.remove('visible');
+    }
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 // 3D TILT EFFECT
 const coverBox = document.querySelector('.cover');
@@ -915,7 +946,7 @@ function toggleLanguage() {
     });
 }
 
-// DECISION QUIZ + POLL DISPLAY
+// DECISION QUIZ + LOCALSTORAGE SAVE SYSTEM
 let quizStep = 1;
 let quizScores = { help: 0, leave: 0, wait: 0 };
 
@@ -971,15 +1002,31 @@ function showQuizFinalResult() {
     const resBox = document.getElementById('simResult');
     resBox.style.display = 'block';
 
+    let resultHtml = "";
     if (quizScores.help >= 2) {
-        resBox.innerHTML = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: SELFLESS PROTECTOR</strong><br>You lead with empathy, valuing human lives over cold efficiency. In World VIII, your compassion will form unbreakable bonds, but leave you vulnerable to devastating sacrifices.";
+        resultHtml = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: SELFLESS PROTECTOR</strong><br>You lead with empathy, valuing human lives over cold efficiency. In World VIII, your compassion will form unbreakable bonds, but leave you vulnerable to devastating sacrifices.";
     } else if (quizScores.leave >= 2) {
-        resBox.innerHTML = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: COLD PRAGMATIST</strong><br>You act on pure logic and self-preservation. Survival is your priority. You will make it far in World VIII, but trust will be a rare luxury.";
+        resultHtml = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: COLD PRAGMATIST</strong><br>You act on pure logic and self-preservation. Survival is your priority. You will make it far in World VIII, but trust will be a rare luxury.";
     } else {
-        resBox.innerHTML = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: TACTICAL OBSERVER / HESITANT</strong><br>You analyze and hesitate before committing. In a collapsing world, indecision is a choice itself. Time will often make decisions for you.";
+        resultHtml = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: TACTICAL OBSERVER / HESITANT</strong><br>You analyze and hesitate before committing. In a collapsing world, indecision is a choice itself. Time will often make decisions for you.";
     }
 
+    resBox.innerHTML = resultHtml;
+    localStorage.setItem("r8_sim_result", resultHtml);
     document.getElementById('pollBreakdown').style.display = 'flex';
+}
+
+function checkSavedQuizResult() {
+    const saved = localStorage.getItem("r8_sim_result");
+    if (saved) {
+        document.getElementById('simChoicesBox').style.display = 'none';
+        document.getElementById('simStepHeader').innerText = "DECISION ENGINE — PREVIOUS EVALUATION LOADED";
+        document.getElementById('simQuestionText').innerText = "SAVED SYSTEM EVALUATION FOR WORLD VIII:";
+        const resBox = document.getElementById('simResult');
+        resBox.style.display = 'block';
+        resBox.innerHTML = saved;
+        document.getElementById('pollBreakdown').style.display = 'flex';
+    }
 }
 
 // TERMINAL CONSOLE
@@ -1018,7 +1065,7 @@ function handleTerminalCommand(e) {
     }
 }
 
-// AUDIO CONTROLS
+// AUDIO CONTROLS WITH SMOOTH FADE TRANSITIONS
 let isAudioPlaying = false;
 let wasBgmPlaying = false;
 const bgm = document.getElementById('bgmAudio');
