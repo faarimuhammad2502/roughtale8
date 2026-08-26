@@ -17,10 +17,42 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23050708'/><rect x='3' y='3' width='94' height='94' rx='15' fill='none' stroke='%23b51e1e' stroke-width='6'/><text x='50%' y='68%' font-family='Georgia,Arial,sans-serif' font-weight='bold' font-size='50' fill='%23ffffff' text-anchor='middle'>R<tspan fill='%23b51e1e'>8</tspan></text></svg>">
 
 <style>
+/* ========================================================= */
+/* KURSOR KUSTOM DARK SCI-FI RPG (INLINE SVG)                 */
+/* ========================================================= */
+:root {
+  --red: #b51e1e;
+  --muted: #929699;
+  --line: rgba(255, 255, 255, .13);
+  
+  /* Kursor Utama: Reticle Merah-Putih Sci-Fi */
+  --cursor-default: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='4' fill='%23b51e1e'/><circle cx='12' cy='12' r='9' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-dasharray='3 2'/><line x1='12' y1='0' x2='12' y2='6' stroke='%23b51e1e' stroke-width='2'/><line x1='12' y1='18' x2='12' y2='24' stroke='%23b51e1e' stroke-width='2'/><line x1='0' y1='12' x2='6' y2='12' stroke='%23b51e1e' stroke-width='2'/><line x1='18' y1='12' x2='24' y2='12' stroke='%23b51e1e' stroke-width='2'/></svg>") 12 12, auto;
+
+  /* Kursor Hover/Click: Target Lock Red Alert */
+  --cursor-pointer: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><circle cx='14' cy='14' r='6' fill='%23ff1e1e'/><circle cx='14' cy='14' r='11' fill='none' stroke='%23ff1e1e' stroke-width='2'/><line x1='14' y1='0' x2='14' y2='28' stroke='%23ffffff' stroke-width='1.5'/><line x1='0' y1='14' x2='28' y2='14' stroke='%23ffffff' stroke-width='1.5'/></svg>") 14 14, pointer;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#030506;color:#eee;font-family:Georgia,"Times New Roman",serif;overflow-x:hidden}
-:root{--red:#b51e1e;--muted:#929699;--line:rgba(255,255,255,.13)}
+body{
+  background:#030506;color:#eee;font-family:Georgia,"Times New Roman",serif;overflow-x:hidden;
+  cursor: var(--cursor-default) !important;
+  transition: filter 0.5s ease, background 0.5s ease;
+}
+
+a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .gallery-item, input, select {
+  cursor: var(--cursor-pointer) !important;
+}
+
+/* RED ALERT MODE OVERLAY STYLES */
+body.red-alert-mode {
+  filter: sepia(0.6) hue-rotate(-50deg) saturate(3) contrast(1.2);
+  animation: redAlertPulse 3s infinite ease-in-out;
+}
+@keyframes redAlertPulse {
+  0%, 100% { background: #080101; }
+  50% { background: #1a0303; }
+}
 
 #preloader {
     position: fixed; inset: 0; background: #020304; z-index: 99999;
@@ -46,9 +78,7 @@ content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.035;
 background-image:repeating-radial-gradient(circle at 0 0,#fff 0,#fff 1px,transparent 1px,transparent 3px)
 }
 
-/* ========================================================= */
-/* SYSTEM NAVBAR CLEAN & RAPAT LAYOUT                        */
-/* ========================================================= */
+/* NAVBAR SYSTEM */
 nav {
     position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
     padding: 12px 3%; display: flex; justify-content: space-between; align-items: center;
@@ -56,11 +86,8 @@ nav {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.nav-left {
-    display: flex; align-items: center; gap: 10px; flex-shrink: 0;
-}
-
-.logo { font-size: 16px; letter-spacing: 2px; font-weight: bold; white-space: nowrap; }
+.nav-left { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.logo { font-size: 16px; letter-spacing: 2px; font-weight: bold; white-space: nowrap; user-select: none; }
 .logo b { color: var(--red); }
 
 .in-dev-pill {
@@ -69,43 +96,38 @@ nav {
     padding: 2px 5px; border-radius: 2px; text-transform: uppercase; white-space: nowrap;
 }
 
-.links { 
-    display: flex; gap: 10px; align-items: center; flex-wrap: nowrap; margin: 0 10px;
-}
+.links { display: flex; gap: 10px; align-items: center; flex-wrap: nowrap; margin: 0 10px; }
 .links a { 
     color: #a0a5a8; text-decoration: none; font: 9px Arial, sans-serif; 
     letter-spacing: 1.2px; transition: .3s; white-space: nowrap; padding: 4px 2px;
 }
 .links a:hover { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
 
-.nav-controls {
-    display: flex; align-items: center; gap: 8px; flex-shrink: 0;
-}
+.nav-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
 .vol-control-wrap {
     display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.03);
     padding: 3px 6px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
 }
 .vol-icon { font-size: 9px; color: var(--muted); }
-.vol-slider { width: 50px; accent-color: var(--red); cursor: pointer; vertical-align: middle; }
+.vol-slider { width: 50px; accent-color: var(--red); vertical-align: middle; }
 
 .ctrl-btn {
     background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
-    padding: 4px 8px; font: 8px Arial, sans-serif; letter-spacing: 1.5px; cursor: pointer; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap;
+    padding: 4px 8px; font: 8px Arial, sans-serif; letter-spacing: 1.5px; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap;
 }
 .ctrl-btn:hover { border-color: var(--red); color: #fff; }
 .ctrl-btn.active { border-color: var(--red); color: var(--red); background: rgba(181,30,30,0.1); }
 
 .mobile-toggle {
     display: none; background: transparent; border: 1px solid var(--line); color: #fff;
-    padding: 4px 8px; font-size: 14px; cursor: pointer; border-radius: 3px;
+    padding: 4px 8px; font-size: 14px; border-radius: 3px;
 }
 
-/* FLOATING BACK TO TOP BUTTON */
 .back-to-top {
     position: fixed; bottom: 30px; right: 30px; z-index: 900;
     background: rgba(8, 11, 14, 0.9); border: 1px solid var(--red); color: #fff;
-    padding: 10px 14px; font: 9px Arial, sans-serif; letter-spacing: 2px; cursor: pointer;
+    padding: 10px 14px; font: 9px Arial, sans-serif; letter-spacing: 2px;
     border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease, transform 0.3s ease;
     box-shadow: 0 4px 15px rgba(0,0,0,0.8);
 }
@@ -138,6 +160,17 @@ border:1px solid rgba(255,255,255,.12);transition: transform 0.2s ease, box-shad
 .status-tag { display:inline-block; width:8px; height:8px; background:#eab308; border-radius:50%; box-shadow:0 0 8px #eab308; animation: pulseGlow 2s infinite; }
 @keyframes pulseGlow { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
+/* STABILITY RATE WIDGET */
+.stability-meter-box {
+    margin: 18px 0 10px; background: rgba(255,255,255,0.02); border: 1px solid var(--line);
+    padding: 10px 14px; border-radius: 3px; max-width: 420px;
+}
+.stability-info { display: flex; justify-content: space-between; font: 9px Arial, sans-serif; letter-spacing: 2px; color: #aaa; margin-bottom: 6px; }
+.stability-info span { color: var(--red); font-weight: bold; }
+.stability-bar-bg { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+.stability-bar-fill { height: 100%; width: 12.4%; background: var(--red); box-shadow: 0 0 8px var(--red); animation: stabilityGlitch 4s infinite ease-in-out; }
+@keyframes stabilityGlitch { 0%, 100% { width: 12.4%; } 50% { width: 11.8%; } 70% { width: 13.1%; } }
+
 .hero h1{font-size:clamp(38px,6vw,82px);font-weight:400;letter-spacing:6px;line-height:1}
 .hero h1 span{color:var(--red); text-shadow: 0 0 12px rgba(181, 30, 30, 0.6);}
 .tag{margin-top:18px;font:12px Arial,sans-serif;letter-spacing:6px}
@@ -147,7 +180,7 @@ border:1px solid rgba(255,255,255,.12);transition: transform 0.2s ease, box-shad
 .btn{
 display:inline-block;padding:14px 28px;border:1px solid #777;
 color:#fff;text-decoration:none;font:10px Arial,sans-serif;letter-spacing:3px;transition:.35s;
-text-align:center; cursor: pointer;
+text-align:center;
 }
 .btn:hover{background:#fff;color:#000;border-color:#fff}
 .btn-primary { background: var(--red); border-color: var(--red); font-weight: bold; }
@@ -166,19 +199,18 @@ section{padding:100px 7%;position:relative}
 .world-card{
 height:170px;border:1px solid var(--line);display:flex;align-items:end;padding:15px;
 background:linear-gradient(transparent,rgba(0,0,0,.95)),url("cover-background.png") center/cover;
-transition:.4s; cursor: pointer;
+transition:.4s;
 }
 .world-card:hover{transform:translateY(-5px);border-color:#777; box-shadow: 0 5px 20px rgba(181,30,30,0.3);}
 .world-card:last-child{border-color:rgba(181,30,30,.7)}
 .num{font-size:32px;color:rgba(255,255,255,.18)}
 .wname{font:9px Arial,sans-serif;letter-spacing:2px;margin-top:5px}
 
-/* INTERACTIVE RELIC CODEX SECTION */
 .relics-section { background: #040506; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .relic-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 40px; }
 .relic-card {
     background: rgba(255,255,255,0.015); border: 1px solid var(--line); padding: 22px;
-    border-radius: 3px; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between;
+    border-radius: 3px; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between;
 }
 .relic-card:hover { border-color: var(--red); background: rgba(181, 30, 30, 0.05); transform: translateY(-4px); }
 .relic-icon { font-size: 24px; margin-bottom: 12px; }
@@ -186,7 +218,6 @@ transition:.4s; cursor: pointer;
 .relic-card h4 { font-size: 15px; color: #fff; margin: 6px 0 10px; font-weight: normal; }
 .relic-card p { font: 11px/1.6 Arial, sans-serif; color: #888; }
 
-/* INTERACTIVE WORLD MAP STYLES */
 .map-section { background: #030405; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .map-container-wrap {
     position: relative; width: 100%; max-width: 1200px; margin: 30px auto 0;
@@ -198,7 +229,7 @@ transition:.4s; cursor: pointer;
 .map-hotspot {
     position: absolute; width: 28px; height: 28px; background: rgba(181, 30, 30, 0.4);
     border: 2px solid var(--red); border-radius: 50%; transform: translate(-50%, -50%);
-    cursor: pointer; transition: all 0.3s ease; z-index: 10;
+    transition: all 0.3s ease; z-index: 10;
 }
 .map-hotspot::after {
     content: ""; position: absolute; inset: -6px; border: 1px dashed rgba(255, 255, 255, 0.6);
@@ -219,7 +250,7 @@ transition:.4s; cursor: pointer;
 .characters{background:#080a0b}
 .character-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:40px}
 
-.char-card-wrap { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+.char-card-wrap { display: flex; flex-direction: column; align-items: center; }
 .character-card-box {
     width: 100%; aspect-ratio: 9 / 13; border: 3px solid #6b7782; outline: 1px solid #1a2128; border-radius: 2px;
     overflow: hidden; position: relative; background-image: url("characters.png"); background-size: 500% 250%;
@@ -237,7 +268,6 @@ transition:.4s; cursor: pointer;
 
 .char-label-name { margin-top: 15px; font-size: 14px; letter-spacing: 4px; color: #d1d5db; font-family: Georgia, serif; font-weight: bold; text-align: center; }
 
-/* RELATIONSHIP WEB SECTION */
 .rel-web-section { background: #050708; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .rel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 35px; }
 .rel-card { background: rgba(255,255,255,0.018); border: 1px solid var(--line); padding: 20px; border-radius: 3px; }
@@ -262,16 +292,15 @@ transition:.4s; cursor: pointer;
 .close-profile-btn {
     align-self: flex-start; margin-top: 15px; background: rgba(255, 255, 255, 0.04);
     border: 1px solid #444; color: #ccc; padding: 10px 18px; font-size: 10px; font-family: Arial, sans-serif;
-    letter-spacing: 2px; cursor: pointer; border-radius: 3px; transition: 0.3s;
+    letter-spacing: 2px; border-radius: 3px; transition: 0.3s;
 }
 .close-profile-btn:hover { background: rgba(181, 30, 30, 0.3); color: #fff; border-color: var(--red); }
 
-/* VOICE LINE SAMPLE BUTTON */
 .voice-sample-btn {
     display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;
     background: rgba(181, 30, 30, 0.15); border: 1px solid var(--red); color: #fff;
     padding: 8px 14px; font: 10px Arial, sans-serif; letter-spacing: 2px;
-    border-radius: 3px; cursor: pointer; transition: 0.3s; width: fit-content;
+    border-radius: 3px; transition: 0.3s; width: fit-content;
 }
 .voice-sample-btn:hover { background: var(--red); }
 
@@ -294,15 +323,14 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .sim-header { font: 9px Arial, sans-serif; letter-spacing: 3px; color: var(--red); font-weight: bold; margin-bottom: 10px; }
 .sim-question { font-size: 14px; color: #ddd; line-height: 1.6; margin-bottom: 18px; }
 .sim-choices { display: flex; flex-direction: column; gap: 10px; }
-.sim-btn { background: rgba(255,255,255,0.03); border: 1px solid #333; color: #ccc; padding: 12px 15px; font-size: 11px; font-family: Arial, sans-serif; text-align: left; cursor: pointer; border-radius: 3px; transition: 0.3s; }
+.sim-btn { background: rgba(255,255,255,0.03); border: 1px solid #333; color: #ccc; padding: 12px 15px; font-size: 11px; font-family: Arial, sans-serif; text-align: left; border-radius: 3px; transition: 0.3s; }
 .sim-btn:hover { background: rgba(181,30,30,0.25); color: #fff; border-color: var(--red); }
 #simResult { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #aaa; line-height: 1.6; }
 
-/* SOCIAL SHARE BUTTONS */
 .share-result-wrap { margin-top: 15px; display: none; gap: 10px; flex-wrap: wrap; }
 .share-btn {
     background: rgba(255,255,255,0.05); border: 1px solid #555; color: #eee;
-    padding: 6px 12px; font: 9px Arial, sans-serif; letter-spacing: 1.5px; cursor: pointer;
+    padding: 6px 12px; font: 9px Arial, sans-serif; letter-spacing: 1.5px;
     border-radius: 2px; transition: 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
 }
 .share-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
@@ -312,7 +340,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .poll-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; margin-top: 5px; overflow: hidden; }
 .poll-bar-fill { height: 100%; background: var(--red); width: 0%; transition: width 1s ease; }
 
-/* ROADMAP DEVELOPMENT SECTION */
 .roadmap-section { background: #040607; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .roadmap-timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; }
 .roadmap-step { background: rgba(255,255,255,0.02); border: 1px solid var(--line); padding: 20px; border-radius: 3px; position: relative; }
@@ -327,7 +354,7 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 
 .endings{background:#070809}
 .ending-list{margin-top:40px;border-top:1px solid var(--line)}
-.ending { display: flex; flex-direction: column; padding: 20px 10px; border-bottom: 1px solid var(--line); transition: all 0.3s ease; cursor: pointer; }
+.ending { display: flex; flex-direction: column; padding: 20px 10px; border-bottom: 1px solid var(--line); transition: all 0.3s ease; }
 .ending:hover { padding-left: 20px; background: rgba(255,255,255,0.02); border-left: 2px solid var(--muted); }
 .ending.secret:hover { border-left: 2px solid var(--red); background: rgba(181, 30, 30, 0.05); }
 .ending-header { display: flex; justify-content: space-between; align-items: center; }
@@ -352,7 +379,7 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 
 .gallery{background:#040506}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:40px}
-.gallery-item{height:240px;border:1px solid var(--line);background-size: 135% 135%;background-position: center 45%;display:flex;align-items:end;padding:20px;filter:saturate(.7) brightness(.85);transition:all .4s ease;cursor:pointer;border-radius:2px;}
+.gallery-item{height:240px;border:1px solid var(--line);background-size: 135% 135%;background-position: center 45%;display:flex;align-items:end;padding:20px;filter:saturate(.7) brightness(.85);transition:all .4s ease;border-radius:2px;}
 .gallery-item:hover{filter:saturate(1.2) brightness(1);transform:translateY(-5px);border-color:var(--red);box-shadow: 0 10px 30px rgba(181, 30, 30, 0.4);background-size: 140% 140%;}
 .gallery-item.city { background-image: url("city.jpg"); }
 .gallery-item.ruins { background-image: url("ruins.jpg"); }
@@ -371,16 +398,15 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 
 .trailer{text-align:center;padding:120px 7%;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.93)),url("cover-background.png") center/cover}
 .play-container { position: relative; display: inline-flex; justify-content: center; align-items: center; margin: 35px auto; }
-.play { position: relative; z-index: 2; width: 76px; height: 76px; border: 1px solid #888; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 20px Arial,sans-serif; background: transparent; color: #fff; cursor: pointer; padding-left: 4px; transition: .3s; }
+.play { position: relative; z-index: 2; width: 76px; height: 76px; border: 1px solid #888; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 20px Arial,sans-serif; background: transparent; color: #fff; padding-left: 4px; transition: .3s; }
 .play:hover { background: #fff; color: #000; transform: scale(1.08); }
 .pulse-ring { position: absolute; width: 76px; height: 76px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.25); z-index: 1; animation: pulse 2s infinite ease-out; }
 @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }
 
-/* POPUP VIDEO TRAILER STYLES */
 .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(8px); justify-content: center; align-items: center; opacity: 0; padding: 15px; transition: opacity 0.4s ease; }
 .modal.show { display: flex; opacity: 1; }
 .modal-content { position: relative; width: 100%; max-width: 1000px; }
-.close-btn { position: absolute; top: -40px; right: 0; color: #ffffff; font-size: 30px; font-family: Arial, sans-serif; cursor: pointer; z-index: 10; }
+.close-btn { position: absolute; top: -40px; right: 0; color: #ffffff; font-size: 30px; font-family: Arial, sans-serif; z-index: 10; }
 
 .video-container {
     position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
@@ -401,7 +427,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .newsletter-input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid #444; padding: 12px 16px; color: #fff; font: 12px Arial, sans-serif; border-radius: 3px; outline: none; }
 .newsletter-input:focus { border-color: var(--red); }
 
-/* KOTAK PEMBERITAHUAN IN-DEVELOPMENT STATUS */
 .bottom-countdown-section { background: #030506; padding: 40px 5% 70px; display: flex; justify-content: center; border-top: 1px solid rgba(255,255,255,0.05); }
 .bottom-cd-box { padding: 25px 20px; background: rgba(8, 11, 14, 0.95); border: 1px solid rgba(234, 179, 8, 0.4); border-radius: 4px; max-width: 600px; width: 100%; text-align: center; }
 .bottom-cd-box .cd-title { font: 9px Arial, sans-serif; letter-spacing: 3px; color: #eab308; font-weight: bold; margin-bottom: 12px; }
@@ -409,7 +434,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 
 footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
 
-/* MEDIA QUERIES NAVIGATION ADVANCED */
 @media(max-width:1300px){
     .links a { font-size: 8px; letter-spacing: 0.8px; }
     .links { gap: 6px; margin: 0 4px; }
@@ -438,6 +462,7 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
 .character-grid{grid-template-columns:repeat(3,1fr);gap:15px}
 .system-grid,.sys-req-grid,.roadmap-timeline,.relic-grid,.rel-grid{grid-template-columns:repeat(2,1fr)}
 .gallery-grid{grid-template-columns:repeat(2,1fr)}
+.stability-meter-box { margin-left: auto; margin-right: auto; }
 }
 
 @media(max-width:768px){
@@ -471,11 +496,10 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <source src="bgm-dark.mp3" type="audio/mpeg">
 </audio>
 
-<!-- STRUKTUR NAVIGASI TERTATA DAN SANGAT RESPONSIIF -->
 <nav>
   <div class="nav-left">
     <button class="mobile-toggle sfx-click" onclick="toggleMobileMenu()">☰</button>
-    <div class="logo">ROUGHTALE<b>8</b></div>
+    <div class="logo sfx-click" id="mainLogoBtn" onclick="registerLogoClick()">ROUGHTALE<b>8</b></div>
     <span class="in-dev-pill" data-i18n="pill_in_dev">IN DEVELOPMENT</span>
   </div>
 
@@ -502,10 +526,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </nav>
 
 <header class="hero">
-  <!-- CANVAS UNTUK EFEK ASH PARTICLES -->
   <canvas id="ashCanvas"></canvas>
 
-  <!-- BACKGROUND TRAILER VIDEO LOOP -->
   <video class="hero-video-bg" autoplay loop muted playsinline>
     <source src="trailer.mp4" type="video/mp4">
   </video>
@@ -519,6 +541,16 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <span class="status-tag"></span>
         GAME IN ACTIVE DEVELOPMENT — DECISION ENGINE v0.8
     </div>
+
+    <!-- WIDGET INTEGRASI STABILITY RATE SEKTOR 8 -->
+    <div class="stability-meter-box">
+        <div class="stability-info">
+            <span>SECTOR 8 STABILITY RATE</span>
+            <span id="stabilityVal">12.4%</span>
+        </div>
+        <div class="stability-bar-bg"><div class="stability-bar-fill"></div></div>
+    </div>
+
     <h1 data-i18n="hero_h1">WHAT WILL YOU <span>ACCEPT?</span></h1>
     <div class="tag" data-i18n="hero_tag">EVERY CHOICE. EVERY LIFE. EVERY ENDING.</div>
     <p data-i18n="hero_desc">
@@ -566,7 +598,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- RELICS OF FALLEN WORLDS SECTION -->
 <section id="relics" class="relics-section">
   <div class="label" data-i18n="label_relics">02.2 — RELIC CODEX</div>
   <h2 class="title" data-i18n="relics_title">Relics of Fallen Worlds.</h2>
@@ -600,7 +631,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- INTERACTIVE MAP SECTOR 8 SECTION -->
 <section id="map" class="map-section">
   <div class="label" data-i18n="label_02_5">02.5 — WORLD VIII MAP ARCHIVE</div>
   <h2 class="title" data-i18n="map_title">World VIII Tactical Map<br>& Region Diagnostics.</h2>
@@ -665,7 +695,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- CHARACTER RELATIONSHIPS WEB SECTION -->
 <section id="relationships" class="rel-web-section">
   <div class="label" data-i18n="label_rel">03.5 — DYNAMICS</div>
   <h2 class="title" data-i18n="rel_title">Interpersonal Bonds &amp; Tension.</h2>
@@ -715,7 +744,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- MULTI-STAGE DECISION ENGINE SIMULATOR + GLOBAL COMMUNITY POLL -->
 <section class="psychology">
   <div>
     <div class="label" data-i18n="label_05">05 — PSYCHOLOGY</div>
@@ -758,7 +786,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- ROADMAP DEVELOPMENT SECTION -->
 <section id="roadmap" class="roadmap-section">
   <div class="label" data-i18n="label_05_5">05.5 — ROADMAP</div>
   <h2 class="title" data-i18n="roadmap_title">Development Pipeline &amp;<br>Release Milestones.</h2>
@@ -862,7 +889,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- SECTION KAMI DENGAN GLITCH TERMINAL CONSOLE -->
 <section class="kami">
   <div>
     <div class="kami-symbol">K A M I</div>
@@ -877,7 +903,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
       <div class="terminal-header" data-i18n="term_header">WORLD VIII — SECRET TERMINAL CONSOLE [v.8.0]</div>
       <div class="terminal-input-wrap">
         <span style="color:#22c55e">$</span>
-        <input type="text" id="termInput" class="terminal-input" placeholder="Type command (e.g. EIDON, KAMI, WORLD8, HELP)..." onkeydown="handleTerminalCommand(event)">
+        <input type="text" id="termInput" class="terminal-input" placeholder="Type command (e.g. EIDON, ALERT, WORLD8, HELP)..." onkeydown="handleTerminalCommand(event)">
       </div>
       <div class="terminal-output" id="termOutput" data-i18n="term_default">Ready for input. Type 'HELP' to list keywords.</div>
     </div>
@@ -938,7 +964,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <div class="text" style="margin:auto" data-i18n="teaser_sub">OFFICIAL TEASER TRAILER — ROUGHTALE8</div>
 </section>
 
-<!-- MODAL POPUP TRAILER VIDEO UTUH -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
@@ -968,7 +993,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- KOTAK PEMBERITAHUAN IN-DEVELOPMENT STATUS -->
 <div class="bottom-countdown-section">
     <div class="bottom-cd-box">
         <div class="cd-title" data-i18n="dev_title">WORLD VIII STATUS — IN ACTIVE DEVELOPMENT</div>
@@ -996,6 +1020,25 @@ function toggleMobileMenu() {
 function closeMobileMenu() {
     const navLinks = document.getElementById('navLinks');
     navLinks.classList.remove('open');
+}
+
+// RED ALERT MODE TRIGGER SYSTEM
+let logoClickCount = 0;
+function registerLogoClick() {
+    logoClickCount++;
+    playGlitchSfx();
+    if (logoClickCount >= 3) {
+        toggleRedAlertMode();
+        logoClickCount = 0;
+    }
+}
+
+function toggleRedAlertMode() {
+    document.body.classList.toggle('red-alert-mode');
+    playHeartbeatSfx();
+    if (document.body.classList.contains('red-alert-mode')) {
+        alert("CRITICAL WARNING: World VIII Red Alert Mode Activated! Containment breach detected.");
+    }
 }
 
 // WEB AUDIO SYNTHESIZER ENGINE WITH FADE SMOOTHING
@@ -1026,7 +1069,6 @@ function playHeartbeatSfx() {
     setTimeout(() => playSynthBeep(65, 'sine', 0.25), 180);
 }
 
-// SAMPLE VOICE FREQUENCY GENERATOR
 function playVoiceLineSample() {
     if (audioCtx.state === 'suspended') { audioCtx.resume(); }
     const freqs = [300, 450, 200, 350, 500, 250];
@@ -1289,8 +1331,8 @@ const translations = {
         label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.", badge_passed: "PASSED", badge_rec: "RECOMMENDED",
         sys_min_h: "MINIMUM REQUIREMENTS", sys_rec_h: "RECOMMENDED SPECS", sys_storage: "Storage:", sys_min_storage: "2 GB Available Space", sys_rec_storage: "2 GB High Speed SSD",
         label_10: "10 — TEASER", teaser_title: "You have seen<br>nothing yet.", teaser_sub: "OFFICIAL TEASER TRAILER — ROUGHTALE8",
-        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on development updates, secret lore archives, and closed beta access.", ph_email: "ENTER YOUR EMAIL...", btn_sub: "LANGGANAN",
-        final_tag: "HIDUP ITU <span>SEDERHANA</span>", dev_title: "WORLD VIII STATUS — IN ACTIVE DEVELOPMENT", dev_status: "GAME IS CURRENTLY BEING CRAFTED & DEVELOPED BY MUHAMMAD FAARI AKBAR. OFFICIAL RELEASE ANNOUNCEMENT COMING SOON.",
+        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on development updates, secret lore archives, and closed beta access.", ph_email: "ENTER YOUR EMAIL...", btn_sub: "SUBSCRIBE",
+        final_tag: "LIFE IS <span>SIMPLE</span>", dev_title: "WORLD VIII STATUS — IN ACTIVE DEVELOPMENT", dev_status: "GAME IS CURRENTLY BEING CRAFTED & DEVELOPED BY MUHAMMAD FAARI AKBAR. OFFICIAL RELEASE ANNOUNCEMENT COMING SOON.",
         created_by: "CREATED BY", footer_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING."
     },
     ID: {
@@ -1355,7 +1397,6 @@ const translations = {
 function toggleLanguage() {
     currentLang = currentLang === 'EN' ? 'ID' : 'EN';
     
-    // Switch innerText / innerHTML
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[currentLang][key]) {
@@ -1363,7 +1404,6 @@ function toggleLanguage() {
         }
     });
 
-    // Switch input placeholders
     document.querySelectorAll('[data-i18n-ph]').forEach(el => {
         const key = el.getAttribute('data-i18n-ph');
         if (translations[currentLang][key]) {
@@ -1478,7 +1518,6 @@ function showQuizFinalResult() {
     localStorage.setItem("r8_sim_result", resultHtml);
     document.getElementById('pollBreakdown').style.display = 'flex';
 
-    // SETUP SOCIAL SHARE LINKS
     const shareText = encodeURIComponent(`I got evaluated as '${profileName}' in World VIII of ROUGHTALE8! Check out the game in development: ${window.location.href}`);
     document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${shareText}`;
     document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${shareText}`;
@@ -1512,7 +1551,10 @@ function handleTerminalCommand(e) {
         document.getElementById('termInput').value = '';
 
         if (input === 'HELP') {
-            output.innerText = "AVAILABLE ARCHIVE CODES:\n> EIDON, LIRA, KAEL, NARA, REZA\n> WORLD1, WORLD8, SECTOR8, KAMI, FAARI, CIPHER, CLEAR";
+            output.innerText = "AVAILABLE ARCHIVE CODES:\n> EIDON, LIRA, KAEL, NARA, REZA\n> WORLD1, WORLD8, ALERT, SECTOR8, KAMI, FAARI, CIPHER, CLEAR";
+        } else if (input === 'ALERT') {
+            toggleRedAlertMode();
+            output.innerText = "RED ALERT MODE TRIGGERED FROM TERMINAL.";
         } else if (input === 'EIDON') {
             output.innerText = "RECORD #01 — EIDON\nMemory loss confirmed. Subject holds key frequencies of World VIII.";
         } else if (input === 'LIRA') {
