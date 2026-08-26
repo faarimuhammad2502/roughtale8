@@ -35,6 +35,12 @@ body{background:#030506;color:#eee;font-family:Georgia,"Times New Roman",serif;o
 .loader-sub { font: 9px Arial, sans-serif; letter-spacing: 3px; color: #666; margin-top: 15px; }
 @keyframes loadingProgress { 0% { left: -100%; } 50% { left: -30%; } 100% { left: 0%; } }
 
+/* CANVAS ASH PARTICLES */
+#ashCanvas {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 1; opacity: 0.6;
+}
+
 body:before{
 content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.035;
 background-image:repeating-radial-gradient(circle at 0 0,#fff 0,#fff 1px,transparent 1px,transparent 3px)
@@ -205,6 +211,15 @@ transition:.4s; cursor: pointer;
 }
 .close-profile-btn:hover { background: rgba(181, 30, 30, 0.3); color: #fff; border-color: var(--red); }
 
+/* VOICE LINE SAMPLE BUTTON */
+.voice-sample-btn {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;
+    background: rgba(181, 30, 30, 0.15); border: 1px solid var(--red); color: #fff;
+    padding: 8px 14px; font: 10px Arial, sans-serif; letter-spacing: 2px;
+    border-radius: 3px; cursor: pointer; transition: 0.3s; width: fit-content;
+}
+.voice-sample-btn:hover { background: var(--red); }
+
 .gameplay{background:radial-gradient(circle at 50% 0,rgba(181,30,30,.07),transparent 35%),#030506}
 .system-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:45px}
 .system{padding:28px;border:1px solid var(--line);background:rgba(255,255,255,.018);transition:.3s}
@@ -232,6 +247,19 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .poll-item { font: 10px Arial, sans-serif; letter-spacing: 1px; color: #bbb; }
 .poll-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; margin-top: 5px; overflow: hidden; }
 .poll-bar-fill { height: 100%; background: var(--red); width: 0%; transition: width 1s ease; }
+
+/* ROADMAP DEVELOPMENT SECTION */
+.roadmap-section { background: #040607; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.roadmap-timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; }
+.roadmap-step { background: rgba(255,255,255,0.02); border: 1px solid var(--line); padding: 20px; border-radius: 3px; position: relative; }
+.roadmap-step.active { border-color: var(--red); background: rgba(181,30,30,0.06); }
+.roadmap-step .phase-tag { font: 9px Arial, sans-serif; letter-spacing: 2px; color: var(--red); margin-bottom: 10px; font-weight: bold; }
+.roadmap-step h4 { font-size: 15px; color: #fff; margin-bottom: 8px; font-weight: normal; }
+.roadmap-step p { font: 11px/1.6 Arial, sans-serif; color: #888; }
+.roadmap-status { display: inline-block; margin-top: 12px; font: 8px Arial, sans-serif; letter-spacing: 1px; padding: 3px 6px; border-radius: 2px; }
+.roadmap-status.done { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid #22c55e; }
+.roadmap-status.in-progress { background: rgba(234, 179, 8, 0.2); color: #eab308; border: 1px solid #eab308; }
+.roadmap-status.planned { background: rgba(255,255,255,0.05); color: #666; border: 1px solid #444; }
 
 .endings{background:#070809}
 .ending-list{margin-top:40px;border-top:1px solid var(--line)}
@@ -326,7 +354,7 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
 .hero-btn-group{justify-content:center}
 .world-grid{grid-template-columns:repeat(4,1fr)}
 .character-grid{grid-template-columns:repeat(3,1fr);gap:15px}
-.system-grid,.sys-req-grid{grid-template-columns:repeat(2,1fr)}
+.system-grid,.sys-req-grid,.roadmap-timeline{grid-template-columns:repeat(2,1fr)}
 .gallery-grid{grid-template-columns:repeat(2,1fr)}
 }
 
@@ -340,7 +368,7 @@ section{padding:75px 5%}
 .btn{width:100%}
 .world-grid{grid-template-columns:repeat(2,1fr)}
 .character-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-.system-grid,.gallery-grid,.sys-req-grid{grid-template-columns:1fr}
+.system-grid,.gallery-grid,.sys-req-grid,.roadmap-timeline{grid-template-columns:1fr}
 .newsletter-box { flex-direction: column; }
 .ending-header{flex-direction:column;align-items:flex-start;gap:4px}
 footer{flex-direction:column;gap:12px;text-align:center}
@@ -369,6 +397,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <a href="#map" class="sfx-hover" data-i18n="nav_map">MAP</a>
     <a href="#characters" class="sfx-hover" data-i18n="nav_characters">CHARACTERS</a>
     <a href="#gameplay" class="sfx-hover" data-i18n="nav_gameplay">GAMEPLAY</a>
+    <a href="#roadmap" class="sfx-hover" data-i18n="nav_roadmap">ROADMAP</a>
     <a href="#endings" class="sfx-hover" data-i18n="nav_endings">ENDINGS</a>
     <a href="#gallery" class="sfx-hover" data-i18n="nav_gallery">GALLERY</a>
     <input type="range" class="vol-slider" id="volControl" min="0" max="1" step="0.05" value="0.5" onchange="adjustVolume(this.value)">
@@ -378,6 +407,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </nav>
 
 <header class="hero">
+  <!-- CANVAS UNTUK EFEK ASH PARTICLES -->
+  <canvas id="ashCanvas"></canvas>
+
   <!-- BACKGROUND TRAILER VIDEO LOOP -->
   <video class="hero-video-bg" autoplay loop muted playsinline>
     <source src="trailer.mp4" type="video/mp4">
@@ -509,6 +541,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="profile-speaker" id="pCategory">ARCHIVE RECORD</div>
         <div class="profile-title" id="pTitle">EIDON</div>
         <div class="profile-desc" id="pDesc">Loading...</div>
+        <button id="pVoiceBtn" class="voice-sample-btn sfx-click" style="display:none;" onclick="playVoiceLineSample()">
+            🔊 <span data-i18n="btn_voice_sample">PLAY VOICE FREQUENCY</span>
+        </button>
         <button class="close-profile-btn sfx-click" id="closeProfileBtn" data-i18n="btn_close_archive">[ CLOSE ARCHIVE ]</button>
     </div>
 </div>
@@ -560,6 +595,40 @@ footer{flex-direction:column;gap:12px;text-align:center}
             <span data-i18n="poll_opt3">Option 3: Hesitate / Freeze (14%)</span>
             <div class="poll-bar-bg"><div class="poll-bar-fill" style="width:14%"></div></div>
         </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP DEVELOPMENT SECTION -->
+<section id="roadmap" class="roadmap-section">
+  <div class="label" data-i18n="label_05_5">05.5 — ROADMAP</div>
+  <h2 class="title" data-i18n="roadmap_title">Development Pipeline &amp;<br>Release Milestones.</h2>
+  <p class="text" data-i18n="roadmap_text">Track the progress of World VIII from initial concept to full release.</p>
+
+  <div class="roadmap-timeline">
+    <div class="roadmap-step">
+      <div class="phase-tag">PHASE 01</div>
+      <h4 data-i18n="rm_p1_title">CONCEPT &amp; LORE</h4>
+      <p data-i18n="rm_p1_desc">Worldbuilding, character profile mechanics, narrative choice system.</p>
+      <div class="roadmap-status done" data-i18n="rm_status_done">COMPLETED</div>
+    </div>
+    <div class="roadmap-step active">
+      <div class="phase-tag">PHASE 02</div>
+      <h4 data-i18n="rm_p2_title">DEMO &amp; WEB DEPLOYMENT</h4>
+      <p data-i18n="rm_p2_desc">Interactive web teaser, decision simulator, playable web demo v0.8.</p>
+      <div class="roadmap-status in-progress" data-i18n="rm_status_active">IN PROGRESS</div>
+    </div>
+    <div class="roadmap-step">
+      <div class="phase-tag">PHASE 03</div>
+      <h4 data-i18n="rm_p3_title">CLOSED BETA TESTING</h4>
+      <p data-i18n="rm_p3_desc">Community testing for branching choices, bug fixes, audio balance.</p>
+      <div class="roadmap-status planned" data-i18n="rm_status_planned">PLANNED</div>
+    </div>
+    <div class="roadmap-step">
+      <div class="phase-tag">PHASE 04</div>
+      <h4 data-i18n="rm_p4_title">FULL RELEASE</h4>
+      <p data-i18n="rm_p4_desc">Official full game launch for World VIII on PC and Web platforms.</p>
+      <div class="roadmap-status planned" data-i18n="rm_status_planned">PLANNED</div>
     </div>
   </div>
 </section>
@@ -787,6 +856,18 @@ function playHeartbeatSfx() {
     setTimeout(() => playSynthBeep(65, 'sine', 0.25), 180);
 }
 
+// SAMPLE VOICE FREQUENCY GENERATOR
+function playVoiceLineSample() {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    const now = audioCtx.currentTime;
+    const freqs = [300, 450, 200, 350, 500, 250];
+    freqs.forEach((f, index) => {
+        setTimeout(() => {
+            playSynthBeep(f, 'sine', 0.12);
+        }, index * 140);
+    });
+}
+
 document.querySelectorAll('.sfx-hover').forEach(el => {
     el.addEventListener('mouseenter', () => playSynthBeep(600, 'sine', 0.04));
 });
@@ -800,7 +881,48 @@ window.addEventListener('load', () => {
         loader.classList.add('fade-out');
     }, 1200);
     checkSavedQuizResult();
+    initAshParticles();
 });
+
+// CANVAS FLOATING ASH PARTICLES
+function initAshParticles() {
+    const canvas = document.getElementById('ashCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = canvas.parentElement.offsetWidth;
+    let height = canvas.height = canvas.parentElement.offsetHeight;
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+    });
+
+    const particles = Array.from({ length: 45 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.4,
+        speedY: -Math.random() * 0.6 - 0.2,
+        opacity: Math.random() * 0.6 + 0.2
+    }));
+
+    function render() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+            p.x += p.speedX;
+            p.y += p.speedY;
+            if (p.y < 0) { p.y = height; p.x = Math.random() * width; }
+            if (p.x < 0 || p.x > width) { p.x = Math.random() * width; }
+
+            ctx.fillStyle = `rgba(181, 30, 30, ${p.opacity})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        requestAnimationFrame(render);
+    }
+    render();
+}
 
 // BACK TO TOP SCROLL MONITOR
 window.addEventListener('scroll', () => {
@@ -867,6 +989,7 @@ function openMapPOI(poiKey) {
         document.getElementById("pCategory").innerText = "REGION DIAGNOSTICS";
         document.getElementById("pTitle").innerText = poiData[poiKey].title;
         document.getElementById("pDesc").innerText = poiData[poiKey].desc;
+        document.getElementById("pVoiceBtn").style.display = "none";
         modal.classList.add("show");
     }
 }
@@ -916,7 +1039,7 @@ const characterDataDict = {
 let currentLang = 'EN';
 const translations = {
     EN: {
-        nav_synopsis: "SYNOPSIS", nav_world: "WORLD", nav_map: "MAP", nav_characters: "CHARACTERS", nav_gameplay: "GAMEPLAY", nav_endings: "ENDINGS", nav_gallery: "GALLERY",
+        nav_synopsis: "SYNOPSIS", nav_world: "WORLD", nav_map: "MAP", nav_characters: "CHARACTERS", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDINGS", nav_gallery: "GALLERY",
         hero_h1: "WHAT WILL YOU <span>ACCEPT?</span>", hero_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING.",
         hero_desc: "Seven worlds have already fallen. This is the eighth world. The last world. Five strangers are brought together as everything begins to collapse — and every decision leaves a permanent mark.",
         btn_demo: "PLAY DEMO ➔", btn_enter: "ENTER THE WORLD",
@@ -927,7 +1050,7 @@ const translations = {
         w1_name: "THE FIRST", w2_name: "THE SECOND", w3_name: "THE THIRD", w4_name: "THE FOURTH", w5_name: "THE FIFTH", w6_name: "THE SIXTH", w7_name: "THE SEVENTH", w8_name: "THE LAST",
         label_02_5: "02.5 — WORLD VIII MAP ARCHIVE", map_title: "World VIII Tactical Map<br>& Region Diagnostics.", map_text: "Click on any region marker below to decrypt local logs, danger levels, and hidden archives.",
         poi_1: "1. THE CITY", poi_2: "2. THE RUINS", poi_3: "3. THE LAST REFUGE", poi_4: "4. THE HOSPITAL", poi_5: "5. THE LABORATORY", poi_6: "6. UNKNOWN",
-        label_03: "03 — CHARACTERS", char_title: "Five people.<br>One final world.", char_text: "Click on any character portrait below to inspect their full profile and inner story.", btn_close_archive: "[ CLOSE ARCHIVE ]",
+        label_03: "03 — CHARACTERS", char_title: "Five people.<br>One final world.", char_text: "Click on any character portrait below to inspect their full profile and inner story.", btn_close_archive: "[ CLOSE ARCHIVE ]", btn_voice_sample: "PLAY VOICE FREQUENCY",
         label_04: "04 — GAMEPLAY", gameplay_title: "The world<br>does not wait.",
         sys1_no: "SYSTEM 01", sys1_h: "NO SAFE CHOICE", sys1_p: "There is no completely safe decision. Saving one person may mean losing something else.",
         sys2_no: "SYSTEM 02", sys2_h: "TIME", sys2_p: "When the player takes too long, the system may decide for them. The world keeps moving.",
@@ -940,6 +1063,12 @@ const translations = {
         sim_q1: "A stranger is trapped under falling concrete debris in Sector 8. The structure is collapsing in 5 seconds. You carry the key to the shelter. What do you do?",
         sim_opt1: "1. [HELP] Risk your time to pull the stranger out.", sim_opt2: "2. [LEAVE] Abandon the stranger and reach shelter safely.", sim_opt3: "3. [WAIT] Freeze and observe what happens.",
         poll_title: "GLOBAL PLAYER CHOICE STATISTICS:", poll_opt1: "Option 1: Help Stranger (34%)", poll_opt2: "Option 2: Abandon & Survive (52%)", poll_opt3: "Option 3: Hesitate / Freeze (14%)",
+        label_05_5: "05.5 — ROADMAP", roadmap_title: "Development Pipeline &<br>Release Milestones.", roadmap_text: "Track the progress of World VIII from initial concept to full release.",
+        rm_p1_title: "CONCEPT & LORE", rm_p1_desc: "Worldbuilding, character profile mechanics, narrative choice system.",
+        rm_p2_title: "DEMO & WEB DEPLOYMENT", rm_p2_desc: "Interactive web teaser, decision simulator, playable web demo v0.8.",
+        rm_p3_title: "CLOSED BETA TESTING", rm_p3_desc: "Community testing for branching choices, bug fixes, audio balance.",
+        rm_p4_title: "FULL RELEASE", rm_p4_desc: "Official full game launch for World VIII on PC and Web platforms.",
+        rm_status_done: "COMPLETED", rm_status_active: "IN PROGRESS", rm_status_planned: "PLANNED",
         label_06: "06 — ENDINGS", ending_title: "There is no<br>happy ending.", ending_text: "Several major endings await the player. ROUGHTALE8 was never designed to reward the player with a perfect conclusion. Click any record below to inspect memory logs.",
         end_name_1: "THE ENDING", end_name_2: "THE END OF THE DAY", end_name_3: "THE FINAL CURSE", end_name_4: "THE TRUE END", end_name_5: "THE LAST", end_name_6: "THE FINAL SECRET",
         type_bad: "BAD ENDING", type_norm_bad: "NORMAL BAD ENDING", type_vbad: "VERY BAD ENDING", type_canon: "CANON",
@@ -961,7 +1090,7 @@ const translations = {
         created_by: "CREATED BY", footer_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING."
     },
     ID: {
-        nav_synopsis: "SINOPSIS", nav_world: "DUNIA", nav_map: "PETA", nav_characters: "KARAKTER", nav_gameplay: "GAMEPLAY", nav_endings: "ENDING", nav_gallery: "GALERI",
+        nav_synopsis: "SINOPSIS", nav_world: "DUNIA", nav_map: "PETA", nav_characters: "KARAKTER", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDING", nav_gallery: "GALERI",
         hero_h1: "APA YANG AKAN ANDA <span>TERIMA?</span>", hero_tag: "SETIAP PILIHAN. SETIAP NYAWA. SETIAP ENDING.",
         hero_desc: "Tujuh dunia telah hancur. Ini adalah dunia kedelapan. Dunia terakhir. Lima orang asing dipertemukan saat segalanya mulai runtuh — dan setiap keputusan meninggalkan bekas permanen.",
         btn_demo: "MAIN DEMO ➔", btn_enter: "MASUKI DUNIA",
@@ -972,7 +1101,7 @@ const translations = {
         w1_name: "PERTAMA", w2_name: "KEDUA", w3_name: "KETIGA", w4_name: "KEEMPAT", w5_name: "KELIMA", w6_name: "KEENAM", w7_name: "KETUJUH", w8_name: "TERAKHIR",
         label_02_5: "02.5 — ARSIP PETA DUNIA VIII", map_title: "Peta Taktis Dunia VIII<br>& Diagnostik Wilayah.", map_text: "Klik penanda wilayah di bawah untuk mendekripsi log lokal, tingkat bahaya, dan arsip tersembunyi.",
         poi_1: "1. KOTA", poi_2: "2. RERUNTUHAN", poi_3: "3. TEMPAT PERLINDUNGAN", poi_4: "4. RUMAH SAKIT", poi_5: "5. LABORATORIUM", poi_6: "6. TAK DIKETAHUI",
-        label_03: "03 — KARAKTER", char_title: "Lima manusia.<br>Satu dunia terakhir.", char_text: "Klik potret karakter di bawah untuk melihat profil lengkap dan rahasia mereka.", btn_close_archive: "[ TUTUP ARSIP ]",
+        label_03: "03 — KARAKTER", char_title: "Lima manusia.<br>Satu dunia terakhir.", char_text: "Klik potret karakter di bawah untuk melihat profil lengkap dan rahasia mereka.", btn_close_archive: "[ TUTUP ARSIP ]", btn_voice_sample: "PUTAR FREKUENSI SUARA",
         label_04: "04 — GAMEPLAY", gameplay_title: "Dunia ini<br>tidak menunggu.",
         sys1_no: "SISTEM 01", sys1_h: "TIDAK ADA PILIHAN AMAN", sys1_p: "Tidak ada keputusan yang sepenuhnya aman. Menyelamatkan satu orang mungkin berarti kehilangan hal lain.",
         sys2_no: "SISTEM 02", sys2_h: "WAKTU", sys2_p: "Ketika pemain ragu terlalu lama, sistem akan memutuskan untuk mereka. Dunia terus berjalan.",
@@ -985,6 +1114,12 @@ const translations = {
         sim_q1: "Seseorang yang tak dikenal terjebak di bawah reruntuhan beton di Sektor 8. Struktur akan runtuh dalam 5 detik. Kamu memegang kunci bunker shelter. Apa yang kamu lakukan?",
         sim_opt1: "1. [BANTU] Ambil risiko waktu untuk menarik orang tersebut keluar.", sim_opt2: "2. [TINGGALKAN] Tinggalkan dia dan lari ke shelter dengan selamat.", sim_opt3: "3. [DIAM] Terpaku dan amati apa yang akan terjadi.",
         poll_title: "STATISTIK KEPUTUSAN PEMAIN GLOBAL:", poll_opt1: "Opsi 1: Membantu Orang Asing (34%)", poll_opt2: "Opsi 2: Meninggalkan & Bertahan (52%)", poll_opt3: "Opsi 3: Ragu / Terpaku (14%)",
+        label_05_5: "05.5 — ROADMAP", roadmap_title: "Alur Pengembangan &<br>Tahapan Rilis.", roadmap_text: "Pantau perkembangan Dunia VIII dari konsep awal hingga rilis resmi secara penuh.",
+        rm_p1_title: "KONSEP & LORE", rm_p1_desc: "Perancangan dunia, mekanik profil karakter, dan sistem pilihan cerita.",
+        rm_p2_title: "DEMO & PELUNCURAN WEB", rm_p2_desc: "Teaser web interaktif, simulator keputusan, dan demo web versi 0.8.",
+        rm_p3_title: "UJI BETA TERTUTUP", rm_p3_desc: "Uji coba komunitas untuk cabang keputusan, perbaikan bug, dan keseimbangan audio.",
+        rm_p4_title: "RILIS PENUH", rm_p4_desc: "Peluncuran resmi game utuh Dunia VIII untuk platform PC dan Web.",
+        rm_status_done: "SELESAI", rm_status_active: "BERJALAN", rm_status_planned: "DIRENCAKAN",
         label_06: "06 — ENDING", ending_title: "Tidak ada<br>akhir yang bahagia.", ending_text: "Beberapa ending besar menanti pemain. ROUGHTALE8 tidak pernah dirancang untuk memberi hadiah berupa akhir yang sempurna. Klik catatan di bawah untuk memeriksa ingatan.",
         end_name_1: "AKHIR CERITA", end_name_2: "AKHIR DARI HARI", end_name_3: "KUTUKAN TERAKHIR", end_name_4: "AKHIR SEBENARNYA", end_name_5: "YANG TERAKHIR", end_name_6: "RAHASIA TERAKHIR",
         type_bad: "BAD ENDING", type_norm_bad: "NORMAL BAD ENDING", type_vbad: "VERY BAD ENDING", type_canon: "KANON",
@@ -1142,7 +1277,7 @@ function checkSavedQuizResult() {
     }
 }
 
-// TERMINAL CONSOLE
+// TERMINAL CONSOLE & CIPHER EASTER EGG
 function handleTerminalCommand(e) {
     if (e.key === "Enter") {
         playGlitchSfx();
@@ -1151,7 +1286,7 @@ function handleTerminalCommand(e) {
         document.getElementById('termInput').value = '';
 
         if (input === 'HELP') {
-            output.innerText = "AVAILABLE ARCHIVE CODES:\n> EIDON, LIRA, KAEL, NARA, REZA\n> WORLD1, WORLD8, SECTOR8, KAMI, FAARI, CLEAR";
+            output.innerText = "AVAILABLE ARCHIVE CODES:\n> EIDON, LIRA, KAEL, NARA, REZA\n> WORLD1, WORLD8, SECTOR8, KAMI, FAARI, CIPHER, CLEAR";
         } else if (input === 'EIDON') {
             output.innerText = "RECORD #01 — EIDON\nMemory loss confirmed. Subject holds key frequencies of World VIII.";
         } else if (input === 'LIRA') {
@@ -1170,6 +1305,8 @@ function handleTerminalCommand(e) {
             output.innerText = "CLASSIFIED — KAMI\n[ACCESS DENIED] Someone is watching your terminal inputs right now.";
         } else if (input === 'WORLD8' || input === 'ROUGHTALE8') {
             output.innerText = "TIMELINE — WORLD VIII\nStatus: Collapsing. Current Sector: 8. No World IX available.";
+        } else if (input === 'CIPHER' || input === 'SECRET') {
+            output.innerText = "ENCRYPTED FREQUENCY DECRYPTED:\n'ORXJKWDOHI LV VLPSOH' -> Caesar Cipher (Shift -3) = 'ROUGHTALE8 IS SIMPLE'.\n\nSTATUS: SECRET ARCHIVE ACCESS GRANTED.";
         } else if (input === 'CLEAR') {
             output.innerText = "Ready for input. Type 'HELP' to list keywords.";
         } else {
@@ -1229,6 +1366,7 @@ function openWorldArchive(worldKey) {
         document.getElementById("pCategory").innerText = langData[worldKey].category;
         document.getElementById("pTitle").innerText = langData[worldKey].title;
         document.getElementById("pDesc").innerText = langData[worldKey].desc;
+        document.getElementById("pVoiceBtn").style.display = "none";
         modal.classList.add("show");
     }
 }
@@ -1242,6 +1380,7 @@ function openProfile(name) {
         document.getElementById("pCategory").innerText = langData[name].category;
         document.getElementById("pTitle").innerText = langData[name].title;
         document.getElementById("pDesc").innerText = langData[name].desc;
+        document.getElementById("pVoiceBtn").style.display = "inline-flex";
         modal.classList.add("show");
     }
 }
