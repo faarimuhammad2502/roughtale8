@@ -46,7 +46,22 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
   position: fixed; inset: 0; pointer-events: none; z-index: 998; opacity: 0.15;
   background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
   background-size: 100% 3px, 6px 100%;
+  transition: opacity 0.3s ease;
 }
+.crt-overlay.disabled { opacity: 0 !important; }
+
+/* ACHIEVEMENT TOAST NOTIFICATION */
+#achievementToast {
+  position: fixed; bottom: 30px; left: 30px; z-index: 9999;
+  background: rgba(8, 12, 16, 0.95); border: 1px solid var(--red);
+  padding: 12px 20px; border-radius: 4px; display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 0 20px rgba(181, 30, 30, 0.5); transform: translateY(120px); opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease; pointer-events: none;
+}
+#achievementToast.show { transform: translateY(0); opacity: 1; }
+.achieve-icon { font-size: 24px; }
+.achieve-title { font: 9px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold; }
+.achieve-desc { font-size: 13px; color: #fff; font-family: Georgia, serif; }
 
 /* LIVE TICKER BAR */
 .live-ticker-bar {
@@ -183,6 +198,16 @@ border:1px solid rgba(255,255,255,.12);transition: transform 0.2s ease, box-shad
 .stability-bar-bg { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
 .stability-bar-fill { height: 100%; width: 12.4%; background: var(--red); box-shadow: 0 0 8px var(--red); animation: stabilityGlitch 4s infinite ease-in-out; }
 @keyframes stabilityGlitch { 0%, 100% { width: 12.4%; } 50% { width: 11.8%; } 70% { width: 13.1%; } }
+
+/* GLITCH TEXT ANIMATION */
+.glitch-text { position: relative; }
+.glitch-text:hover::before, .glitch-text:hover::after {
+  content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+.glitch-text:hover::before { left: 2px; text-shadow: -2px 0 #ff00c1; clip: rect(24px, 550px, 90px, 0); animation: glitchAnim 2s infinite linear alternate-reverse; }
+.glitch-text:hover::after { left: -2px; text-shadow: -2px 0 #00fff9; clip: rect(85px, 550px, 140px, 0); animation: glitchAnim2 2s infinite linear alternate-reverse; }
+@keyframes glitchAnim { 0% { clip: rect(10px, 9999px, 30px, 0); } 100% { clip: rect(60px, 9999px, 80px, 0); } }
+@keyframes glitchAnim2 { 0% { clip: rect(40px, 9999px, 70px, 0); } 100% { clip: rect(10px, 9999px, 50px, 0); } }
 
 .hero h1{font-size:clamp(38px,6vw,82px);font-weight:400;letter-spacing:6px;line-height:1}
 .hero h1 span{color:var(--red); text-shadow: 0 0 12px rgba(181, 30, 30, 0.6);}
@@ -563,7 +588,15 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </head>
 <body>
 
-<div class="crt-overlay"></div>
+<div class="crt-overlay" id="crtOverlay"></div>
+
+<div id="achievementToast">
+  <div class="achieve-icon">🏆</div>
+  <div>
+    <div class="achieve-title">ACHIEVEMENT UNLOCKED</div>
+    <div class="achieve-desc" id="achieveText">Found hidden terminal access.</div>
+  </div>
+</div>
 
 <div class="live-ticker-bar">
   <div class="ticker-text">
@@ -604,6 +637,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 
   <div class="nav-controls">
+    <button class="ctrl-btn sfx-hover" id="crtToggleBtn" onclick="toggleCrtEffect()">[ CRT: ON ]</button>
     <div class="vol-control-wrap">
         <span class="vol-icon">🔊</span>
         <input type="range" class="vol-slider" id="volControl" min="0" max="1" step="0.05" value="0.5" onchange="adjustVolume(this.value)">
@@ -638,7 +672,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="stability-bar-bg"><div class="stability-bar-fill"></div></div>
     </div>
 
-    <h1 data-i18n="hero_h1">WHAT WILL YOU <span>ACCEPT?</span></h1>
+    <h1 class="glitch-text" data-text="WHAT WILL YOU ACCEPT?" data-i18n="hero_h1">WHAT WILL YOU <span>ACCEPT?</span></h1>
     <div class="tag" data-i18n="hero_tag">EVERY CHOICE. EVERY LIFE. EVERY ENDING.</div>
     <p data-i18n="hero_desc">
       Seven worlds have already fallen. This is the eighth world.
@@ -1123,12 +1157,12 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <div class="label" data-i18n="label_08">08 — GALLERY</div>
   <h2 class="title" data-i18n="gallery_title">Fragments of<br>World Eight.</h2>
   <div class="gallery-grid">
-    <div class="gallery-item city sfx-hover"></div>
-    <div class="gallery-item ruins sfx-hover"></div>
-    <div class="gallery-item refuge sfx-hover"></div>
-    <div class="gallery-item hospital sfx-hover"></div>
-    <div class="gallery-item lab sfx-hover"></div>
-    <div class="gallery-item unknown sfx-hover"></div>
+    <div class="gallery-item city sfx-hover sfx-click" onclick="openGalleryLightbox('Sector 8 Metropolitan Ruins', 'city.jpg', 'The fallen capital of World VIII before the total containment breach.')"></div>
+    <div class="gallery-item ruins sfx-hover sfx-click" onclick="openGalleryLightbox('Wasteland Sector', 'ruins.jpg', 'Reclaimed by toxic ash deposits from the 7th cycle collapse.')"></div>
+    <div class="gallery-item refuge sfx-hover sfx-click" onclick="openGalleryLightbox('Bunker Refuge 08', 'refuge.jpg', 'The final operational shelter where survivors gathered.')"></div>
+    <div class="gallery-item hospital sfx-hover sfx-click" onclick="openGalleryLightbox('Old Sector Infirmary', 'hospital.jpg', 'Where Dr. Lira attempted to preserve human consciousness.')"></div>
+    <div class="gallery-item lab sfx-hover sfx-click" onclick="openGalleryLightbox('Observer Core Lab', 'lab.jpg', 'The secret research facility housing Dr. Nara\'s mainframe.')"></div>
+    <div class="gallery-item unknown sfx-hover sfx-click" onclick="openGalleryLightbox('Anomaly Nexus', 'unknown.jpg', 'The unmapped spatial distortion at the heart of Sector 8.')"></div>
   </div>
 </section>
 
@@ -1220,6 +1254,39 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </footer>
 
 <script>
+// ACHIEVEMENT SYSTEM TOAST TRIGGER
+function triggerAchievement(title) {
+    const toast = document.getElementById('achievementToast');
+    document.getElementById('achieveText').innerText = title;
+    toast.classList.add('show');
+    playSynthBeep(880, 'sine', 0.2);
+    setTimeout(() => playSynthBeep(1200, 'sine', 0.3), 150);
+    setTimeout(() => { toast.classList.remove('show'); }, 4000);
+}
+
+// CRT SCANLINE TOGGLE SYSTEM
+function toggleCrtEffect() {
+    const crt = document.getElementById('crtOverlay');
+    const btn = document.getElementById('crtToggleBtn');
+    crt.classList.toggle('disabled');
+    if (crt.classList.contains('disabled')) {
+        btn.innerText = "[ CRT: OFF ]";
+    } else {
+        btn.innerText = "[ CRT: ON ]";
+    }
+}
+
+// GALLERY LIGHTBOX SYSTEM
+function openGalleryLightbox(title, imgUrl, desc) {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    document.getElementById("pCategory").innerText = "GALLERY ARCHIVE";
+    document.getElementById("pTitle").innerText = title;
+    document.getElementById("pDesc").innerText = `${desc}\n\n[FRAGMENT RECORDED FROM SECTOR 8]`;
+    document.getElementById("pVoiceBtn").style.display = "none";
+    modal.classList.add("show");
+}
+
 // MOBILE MENU TOGGLE HANDLER
 function toggleMobileMenu() {
     const navLinks = document.getElementById('navLinks');
@@ -1263,8 +1330,18 @@ function toggleRedAlertMode() {
     document.body.classList.toggle('red-alert-mode');
     playHeartbeatSfx();
     if (document.body.classList.contains('red-alert-mode')) {
-        alert("CRITICAL WARNING: World VIII Red Alert Mode Activated! Containment breach detected.");
+        playSirenSfx();
+        triggerAchievement("RED ALERT TRIGGERED: CONTAINMENT BREACH");
+        localStorage.setItem("r8_red_alert", "true");
+    } else {
+        localStorage.removeItem("r8_red_alert");
     }
+}
+
+function playSirenSfx() {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    playSynthBeep(600, 'sawtooth', 0.4);
+    setTimeout(() => playSynthBeep(400, 'sawtooth', 0.4), 450);
 }
 
 // WEB AUDIO SYNTHESIZER ENGINE WITH FADE SMOOTHING
@@ -1305,7 +1382,10 @@ function playAudioLog(cardId, freqSeq) {
         setTimeout(() => { playSynthBeep(f, 'sine', 0.25); }, idx * 250);
     });
 
-    setTimeout(() => { card.classList.remove('playing'); }, freqSeq.length * 250 + 300);
+    setTimeout(() => { 
+        card.classList.remove('playing'); 
+        triggerAchievement("INTERCEPTED TRANSMISSION LOG");
+    }, freqSeq.length * 250 + 300);
 }
 
 // MINI GAME HACK SEQUENCER
@@ -1330,8 +1410,10 @@ function clickHackNode(index) {
         playSynthBeep(880, 'sine', 0.4);
         document.getElementById('hackStatusText').innerText = "STATUS: DECRYPTED";
         document.getElementById('hackStatusText').style.color = "#22c55e";
-        document.getElementById('hackOutput').innerHTML = "<span style='color:#22c55e'>[DECRYPTION SUCCESSFUL] LORE UNLOCKED: 'Dr. Nara discovered that World VIII is not a natural continuation, but a artificial loop constructed by the Observers.'</span>";
+        document.getElementById('hackOutput').innerHTML = "<span style='color:#22c55e'>[DECRYPTION SUCCESSFUL] LORE UNLOCKED: 'Dr. Nara discovered that World VIII is not a natural continuation, but an artificial loop constructed by the Observers.'</span>";
         targetSequence.forEach(idx => btns[idx].classList.add('matched'));
+        localStorage.setItem("r8_hack_done", "true");
+        triggerAchievement("TERMINAL SECURITY BYPASSED");
     }
 }
 
@@ -1359,6 +1441,15 @@ window.addEventListener('load', () => {
     }, 1200);
     checkSavedQuizResult();
     initAshParticles();
+
+    if (localStorage.getItem("r8_red_alert")) {
+        document.body.classList.add('red-alert-mode');
+    }
+    if (localStorage.getItem("r8_hack_done")) {
+        document.getElementById('hackStatusText').innerText = "STATUS: DECRYPTED";
+        document.getElementById('hackStatusText').style.color = "#22c55e";
+        document.getElementById('hackOutput').innerHTML = "<span style='color:#22c55e'>[DECRYPTION SUCCESSFUL] LORE UNLOCKED: 'Dr. Nara discovered that World VIII is an artificial loop constructed by the Observers.'</span>";
+    }
 });
 
 // CANVAS FLOATING ASH PARTICLES
@@ -1799,6 +1890,8 @@ function showQuizFinalResult() {
     document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${shareText}`;
     document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${shareText}`;
     document.getElementById('shareWrap').style.display = 'flex';
+
+    triggerAchievement(`EVALUATION COMPLETED: ${profileName}`);
 }
 
 function checkSavedQuizResult() {
@@ -1897,6 +1990,7 @@ function handleTerminalCommand(e) {
             output.innerText = "TIMELINE — WORLD VIII\nStatus: Collapsing. Current Sector: 8. No World IX available.";
         } else if (input === 'CIPHER' || input === 'SECRET') {
             output.innerText = "ENCRYPTED FREQUENCY DECRYPTED:\n'ORXJKWDOHI LV VLPSOH' -> Caesar Cipher (Shift -3) = 'ROUGHTALE8 IS SIMPLE'.\n\nSTATUS: SECRET ARCHIVE ACCESS GRANTED.";
+            triggerAchievement("SECRET CIPHER UNLOCKED");
         } else if (input === 'CLEAR') {
             output.innerText = "Ready for input. Type 'HELP' to list keywords.";
         } else {
@@ -1944,6 +2038,7 @@ function toggleEndingDetail(element) {
 function handleSubscribe(e) {
     e.preventDefault();
     playGlitchSfx();
+    triggerAchievement("JOINED THE RESISTANCE COMMUNITY");
     alert("ARCHIVE SYSTEM: Signal registered. Welcome to World VIII development community.");
 }
 
