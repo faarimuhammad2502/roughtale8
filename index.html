@@ -112,7 +112,6 @@ nav {
 .vol-icon { font-size: 9px; color: var(--muted); }
 .vol-slider { width: 50px; accent-color: var(--red); vertical-align: middle; }
 
-/* AUDIO SPECTRUM CANVAS */
 #spectrumCanvas { width: 45px; height: 16px; background: transparent; vertical-align: middle; }
 
 .ctrl-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted); padding: 4px 8px; font: 8px Arial, sans-serif; letter-spacing: 1.5px; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap; }
@@ -244,7 +243,6 @@ section{padding:100px 7%;position:relative}
 
 .char-label-name { margin-top: 15px; font-size: 14px; letter-spacing: 4px; color: #d1d5db; font-family: Georgia, serif; font-weight: bold; text-align: center; }
 
-/* SVG RELATIONSHIP WEB STYLING */
 .rel-web-section { background: #050708; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; }
 .rel-svg-container { width: 100%; max-width: 800px; height: 380px; margin: 30px auto 0; position: relative; background: rgba(255,255,255,0.01); border: 1px solid var(--line); border-radius: 4px; }
 .rel-svg { width: 100%; height: 100%; }
@@ -286,7 +284,6 @@ section{padding:100px 7%;position:relative}
 .sim-btn:hover { background: rgba(181,30,30,0.25); color: #fff; border-color: var(--red); }
 #simResult { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #aaa; line-height: 1.6; }
 
-/* CANVAS DIGITAL ID CARD STYLING */
 #idCardCanvas { display: none; margin-top: 15px; width: 100%; max-width: 480px; border: 1px solid var(--red); border-radius: 4px; }
 
 .sentiment-meter-wrap { display: none; gap: 10px; margin-top: 15px; background: rgba(0,0,0,0.5); padding: 10px; border: 1px solid rgba(255,255,255,0.08); border-radius: 3px; }
@@ -681,12 +678,14 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
   </div>
 </section>
 
+<!-- MAP SECTION -->
 <section id="map" class="map-section">
   <div class="label" data-i18n="label_02_5">02.5 — WORLD VIII MAP ARCHIVE</div>
   <h2 class="title" data-i18n="map_title">World VIII Tactical Map<br>& Region Diagnostics.</h2>
   <p class="text" data-i18n="map_text">Click on any region marker below to decrypt local logs, danger levels, and hidden archives.</p>
 
   <div class="map-container-wrap">
+    <!-- Gambar Peta Game ROUGHTALE8 -->
     <img src="world-map.png" alt="ROUGHTALE8 World Map" class="map-image-display" loading="lazy">
 
     <div class="map-hotspot" style="top: 24%; left: 20%;" onclick="openMapPOI('The City')">
@@ -745,7 +744,6 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
   </div>
 </section>
 
-<!-- INTERACTIVE SVG RELATIONSHIP WEB SECTION -->
 <section id="relationships" class="rel-web-section">
   <div class="label" data-i18n="label_rel">03.5 — DYNAMICS</div>
   <h2 class="title" data-i18n="rel_title">Interpersonal Web &amp; Tension.</h2>
@@ -753,14 +751,12 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
 
   <div class="rel-svg-container">
     <svg class="rel-svg" viewBox="0 0 800 380">
-      <!-- Connection Lines -->
       <line class="rel-line sfx-click" x1="160" y1="120" x2="400" y2="80" onclick="showRelationInfo('Eidon ↔ Kael', 'Mentorship & Distrust', 'Kael protects Eidon out of soldier duty, but Eidon suspects Kael knows the true cause of his memory loss.')"/>
       <line class="rel-line sfx-click" x1="400" y1="80" x2="640" y2="120" onclick="showRelationInfo('Kael ↔ Lira', 'Guardian & Medic', 'Kael relies on Lira to treat his combat wounds, though Lira fears Kael\'s willingness to sacrifice others.')"/>
       <line class="rel-line sfx-click" x1="260" y1="280" x2="540" y2="280" onclick="showRelationInfo('Lira ↔ Nara', 'Science vs Ethics', 'Former lab associates. Nara prioritizes solving World VIII collapse, while Lira prioritizes saving lives.')"/>
       <line class="rel-line sfx-click" x1="160" y1="120" x2="260" y2="280" onclick="showRelationInfo('Eidon ↔ Lira', 'Emotional Anchor', 'Lira acts as a protective older sister figure to Eidon in the midst of World VIII chaos.')"/>
       <line class="rel-line sfx-click" x1="400" y1="80" x2="540" y2="280" onclick="showRelationInfo('Reza ↔ All', 'The Silent Observer', 'Reza guides the group with mysterious foresight. Nara suspects Reza is connected to the Observers.')"/>
 
-      <!-- Nodes -->
       <circle class="rel-node sfx-click" cx="160" cy="120" r="28" onclick="openProfile('Eidon')"/>
       <text class="rel-text" x="160" y="124">EIDON</text>
 
@@ -1083,7 +1079,6 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
 </footer>
 
 <script>
-// PWA SERVICE WORKER REGISTRATION
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     const swCode = `
@@ -1095,7 +1090,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// RELATIONSHIP MODAL HANDLER
 function showRelationInfo(pair, title, desc) {
     playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
@@ -1106,7 +1100,6 @@ function showRelationInfo(pair, title, desc) {
     modal.classList.add("show");
 }
 
-// DIGITAL ID CARD GENERATOR
 function generateDigitalIdCard() {
     playGlitchSfx();
     const canvas = document.getElementById('idCardCanvas');
@@ -1149,7 +1142,6 @@ function generateDigitalIdCard() {
     triggerAchievement("EXPORTED DIGITAL SURVIVOR ID");
 }
 
-// AUDIO SPECTRUM VISUALIZER
 function drawAudioSpectrum() {
     const canvas = document.getElementById('spectrumCanvas');
     if (!canvas) return;
@@ -1172,7 +1164,6 @@ function drawAudioSpectrum() {
     animate();
 }
 
-// ACHIEVEMENT SYSTEM TOAST TRIGGER
 function triggerAchievement(title) {
     const toast = document.getElementById('achievementToast');
     document.getElementById('achieveText').innerText = title;
@@ -1182,7 +1173,6 @@ function triggerAchievement(title) {
     setTimeout(() => { toast.classList.remove('show'); }, 4000);
 }
 
-// CRT SCANLINE TOGGLE SYSTEM
 function toggleCrtEffect() {
     const crt = document.getElementById('crtOverlay');
     const btn = document.getElementById('crtToggleBtn');
@@ -1194,7 +1184,6 @@ function toggleCrtEffect() {
     }
 }
 
-// GALLERY LIGHTBOX SYSTEM
 function openGalleryLightbox(title, imgUrl, desc) {
     playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
