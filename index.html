@@ -219,8 +219,20 @@ section{padding:100px 7%;position:relative}
 .inv-slot-mid p { font: 11px/1.6 Arial, sans-serif; color: #888; }
 .inv-slot-bot { font: 8px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 8px; }
 
+/* MAP SECTION & BACKUP DISPLAY */
 .map-section { background: #030405; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.map-container-wrap { position: relative; width: 100%; max-width: 1200px; margin: 30px auto 0; border: 1px solid rgba(181, 30, 30, 0.4); border-radius: 4px; overflow: hidden; box-shadow: 0 0 50px rgba(0,0,0,0.9), 0 0 20px rgba(181, 30, 30, 0.2); }
+.map-container-wrap { 
+  position: relative; 
+  width: 100%; 
+  max-width: 1200px; 
+  min-height: 400px;
+  margin: 30px auto 0; 
+  border: 1px solid rgba(181, 30, 30, 0.4); 
+  border-radius: 4px; 
+  overflow: hidden; 
+  box-shadow: 0 0 50px rgba(0,0,0,0.9), 0 0 20px rgba(181, 30, 30, 0.2);
+  background: #080a0b url("world-map.png") center/cover no-repeat;
+}
 .map-image-display { width: 100%; height: auto; display: block; filter: brightness(0.95) contrast(1.05); }
 
 .map-hotspot { position: absolute; width: 28px; height: 28px; background: rgba(181, 30, 30, 0.4); border: 2px solid var(--red); border-radius: 50%; transform: translate(-50%, -50%); transition: all 0.3s ease; z-index: 10; }
@@ -686,7 +698,7 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
 
   <div class="map-container-wrap">
     <!-- Gambar Peta Game ROUGHTALE8 -->
-    <img src="world-map.png" alt="ROUGHTALE8 World Map" class="map-image-display" loading="lazy">
+    <img src="world-map.png" alt="ROUGHTALE8 World Map" class="map-image-display" loading="lazy" onerror="this.style.display='none'">
 
     <div class="map-hotspot" style="top: 24%; left: 20%;" onclick="openMapPOI('The City')">
         <div class="map-hotspot-label" data-i18n="poi_1">1. THE CITY</div>
