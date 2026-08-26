@@ -327,6 +327,11 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .sim-btn:hover { background: rgba(181,30,30,0.25); color: #fff; border-color: var(--red); }
 #simResult { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #aaa; line-height: 1.6; }
 
+/* EMOTIONAL SENTIMENT METER */
+.sentiment-meter-wrap { display: none; gap: 10px; margin-top: 15px; background: rgba(0,0,0,0.5); padding: 10px; border: 1px solid rgba(255,255,255,0.08); border-radius: 3px; }
+.sentiment-badge { font: 9px Arial, sans-serif; letter-spacing: 1px; color: #bbb; display: flex; align-items: center; gap: 5px; }
+.sentiment-badge b { color: var(--red); }
+
 .share-result-wrap { margin-top: 15px; display: none; gap: 10px; flex-wrap: wrap; }
 .share-btn {
     background: rgba(255,255,255,0.05); border: 1px solid #555; color: #eee;
@@ -371,8 +376,13 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .kami-symbol{font:48px Arial,sans-serif;letter-spacing:14px;color:rgba(255,255,255,.07);margin-bottom:25px}
 .kami p{max-width:650px;color:#777;font:13px/2 Arial,sans-serif}
 
+/* TERMINAL WITH VOICE RECOGNITION SUPPORT */
 .terminal-box { margin-top: 30px; width: 100%; max-width: 600px; background: #000; border: 1px solid #333; padding: 15px; border-radius: 4px; text-align: left; font-family: monospace; }
-.terminal-header { font-size: 10px; color: var(--red); margin-bottom: 10px; letter-spacing: 2px; }
+.terminal-header { font-size: 10px; color: var(--red); margin-bottom: 10px; letter-spacing: 2px; display: flex; justify-content: space-between; }
+.mic-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--red); color: #fff; padding: 2px 6px; font-size: 9px; border-radius: 2px; }
+.mic-btn.recording { background: var(--red); animation: micPulse 1s infinite; }
+@keyframes micPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
 .terminal-input-wrap { display: flex; gap: 8px; align-items: center; }
 .terminal-input { flex: 1; background: transparent; border: none; color: #22c55e; font-family: monospace; outline: none; font-size: 13px; }
 .terminal-output { margin-top: 12px; font-size: 11px; color: #aaa; line-height: 1.6; white-space: pre-wrap; }
@@ -761,6 +771,12 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <button class="sim-btn sfx-click" onclick="answerQuiz('wait')" data-i18n="sim_opt3">3. [WAIT] Freeze and observe what happens.</button>
     </div>
 
+    <div id="sentimentMeter" class="sentiment-meter-wrap">
+        <div class="sentiment-badge">FEAR: <b id="valFear">0%</b></div>
+        <div class="sentiment-badge">EMPATHY: <b id="valEmpathy">0%</b></div>
+        <div class="sentiment-badge">LOGIC: <b id="valLogic">0%</b></div>
+    </div>
+
     <div id="simResult"></div>
 
     <div id="shareWrap" class="share-result-wrap">
@@ -900,10 +916,13 @@ footer{flex-direction:column;gap:12px;text-align:center}
     </p>
 
     <div class="terminal-box">
-      <div class="terminal-header" data-i18n="term_header">WORLD VIII — SECRET TERMINAL CONSOLE [v.8.0]</div>
+      <div class="terminal-header">
+        <span data-i18n="term_header">WORLD VIII — SECRET TERMINAL CONSOLE [v.8.0]</span>
+        <button class="mic-btn sfx-click" id="micVoiceBtn" onclick="toggleVoiceInput()">🎙️ VOICE</button>
+      </div>
       <div class="terminal-input-wrap">
         <span style="color:#22c55e">$</span>
-        <input type="text" id="termInput" class="terminal-input" placeholder="Type command (e.g. EIDON, ALERT, WORLD8, HELP)..." onkeydown="handleTerminalCommand(event)">
+        <input type="text" id="termInput" class="terminal-input" placeholder="Type or click 🎙️ VOICE command (e.g. EIDON, ALERT, HELP)..." onkeydown="handleTerminalCommand(event)">
       </div>
       <div class="terminal-output" id="termOutput" data-i18n="term_default">Ready for input. Type 'HELP' to list keywords.</div>
     </div>
@@ -1412,9 +1431,10 @@ function toggleLanguage() {
     });
 }
 
-// DECISION QUIZ + LOCALSTORAGE SAVE SYSTEM
+// DECISION QUIZ + SENTIMENT ANALYSIS & LOCALSTORAGE SAVE SYSTEM
 let quizStep = 1;
 let quizScores = { help: 0, leave: 0, wait: 0 };
+let sentimentScores = { fear: 0, empathy: 0, logic: 0 };
 
 const quizQuestions = {
     EN: {
@@ -1468,6 +1488,17 @@ const quizQuestions = {
 function answerQuiz(choice) {
     playHeartbeatSfx();
     quizScores[choice]++;
+
+    // Update real-time sentiment analysis
+    if (choice === 'help') { sentimentScores.empathy += 35; sentimentScores.fear += 5; }
+    else if (choice === 'leave') { sentimentScores.logic += 40; sentimentScores.fear += 10; }
+    else { sentimentScores.fear += 35; sentimentScores.logic += 10; }
+
+    document.getElementById('sentimentMeter').style.display = 'flex';
+    document.getElementById('valFear').innerText = `${Math.min(100, sentimentScores.fear)}%`;
+    document.getElementById('valEmpathy').innerText = `${Math.min(100, sentimentScores.empathy)}%`;
+    document.getElementById('valLogic').innerText = `${Math.min(100, sentimentScores.logic)}%`;
+
     quizStep++;
 
     if (quizStep <= 3) {
@@ -1542,7 +1573,53 @@ function checkSavedQuizResult() {
     }
 }
 
-// TERMINAL CONSOLE & CIPHER EASTER EGG
+// TERMINAL CONSOLE & VOICE RECOGNITION SYSTEM
+let isRecordingVoice = false;
+
+function toggleVoiceInput() {
+    const micBtn = document.getElementById('micVoiceBtn');
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        alert("Voice recognition is not supported in this browser. Please use text input.");
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = currentLang === 'ID' ? 'id-ID' : 'en-US';
+
+    if (!isRecordingVoice) {
+        recognition.start();
+        isRecordingVoice = true;
+        micBtn.classList.add('recording');
+        micBtn.innerText = "🎙️ LISTENING...";
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript.toUpperCase();
+            document.getElementById('termInput').value = transcript;
+            micBtn.classList.remove('recording');
+            micBtn.innerText = "🎙️ VOICE";
+            isRecordingVoice = false;
+            
+            // Execute voice command directly
+            const e = new KeyboardEvent('keydown', { key: 'Enter' });
+            handleTerminalCommand(e);
+        };
+
+        recognition.onerror = () => {
+            micBtn.classList.remove('recording');
+            micBtn.innerText = "🎙️ VOICE";
+            isRecordingVoice = false;
+        };
+
+        recognition.onend = () => {
+            micBtn.classList.remove('recording');
+            micBtn.innerText = "🎙️ VOICE";
+            isRecordingVoice = false;
+        };
+    }
+}
+
 function handleTerminalCommand(e) {
     if (e.key === "Enter") {
         playGlitchSfx();
