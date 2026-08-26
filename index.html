@@ -40,7 +40,7 @@ body{
   transition: filter 0.5s ease, background 0.5s ease;
 }
 
-a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .gallery-item, input, select {
+a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .gallery-item, input, select, .inv-slot {
   cursor: var(--cursor-pointer) !important;
 }
 
@@ -206,17 +206,58 @@ transition:.4s;
 .num{font-size:32px;color:rgba(255,255,255,.18)}
 .wname{font:9px Arial,sans-serif;letter-spacing:2px;margin-top:5px}
 
+/* ========================================================= */
+/* MODUL UI INVENTARIS RELIK INTERAKTIF BARU                 */
+/* ========================================================= */
 .relics-section { background: #040506; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.relic-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 40px; }
-.relic-card {
-    background: rgba(255,255,255,0.015); border: 1px solid var(--line); padding: 22px;
-    border-radius: 3px; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between;
+
+.inventory-header-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 30px; flex-wrap: wrap; gap: 15px; background: rgba(8, 11, 14, 0.8);
+    padding: 15px 20px; border: 1px solid var(--line); border-radius: 4px;
 }
-.relic-card:hover { border-color: var(--red); background: rgba(181, 30, 30, 0.05); transform: translateY(-4px); }
-.relic-icon { font-size: 24px; margin-bottom: 12px; }
-.relic-origin { font: 9px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold; }
-.relic-card h4 { font-size: 15px; color: #fff; margin: 6px 0 10px; font-weight: normal; }
-.relic-card p { font: 11px/1.6 Arial, sans-serif; color: #888; }
+.inv-filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.inv-filter-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #aaa;
+    padding: 6px 14px; font: 9px Arial, sans-serif; letter-spacing: 2px; border-radius: 3px; transition: 0.3s;
+}
+.inv-filter-btn:hover, .inv-filter-btn.active {
+    border-color: var(--red); color: #fff; background: rgba(181, 30, 30, 0.2);
+}
+
+.inv-progress-box { font: 10px Arial, sans-serif; letter-spacing: 2px; color: #aaa; text-align: right; }
+.inv-progress-box b { color: var(--red); }
+
+.inventory-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 25px;
+}
+.inv-slot {
+    background: rgba(12, 16, 20, 0.9); border: 1px solid var(--line); border-radius: 4px;
+    padding: 20px; position: relative; transition: all 0.35s ease; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;
+}
+.inv-slot:hover {
+    border-color: var(--red); transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(181, 30, 30, 0.25); background: rgba(20, 25, 32, 0.95);
+}
+.inv-slot-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.inv-icon { font-size: 32px; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
+.inv-rarity-badge {
+    font: 8px Arial, sans-serif; letter-spacing: 1.5px; padding: 3px 6px; border-radius: 2px; text-transform: uppercase; font-weight: bold;
+}
+.rarity-common { background: rgba(255,255,255,0.08); color: #aaa; border: 1px solid #666; }
+.rarity-rare { background: rgba(234, 179, 8, 0.15); color: #eab308; border: 1px solid #eab308; }
+.rarity-corrupted { background: rgba(181, 30, 30, 0.2); color: var(--red); border: 1px solid var(--red); }
+.rarity-canon { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid #c084fc; }
+
+.inv-slot-mid { margin: 15px 0 10px; }
+.inv-slot-mid h4 { font-size: 15px; color: #fff; font-weight: normal; margin-bottom: 6px; }
+.inv-slot-mid p { font: 11px/1.6 Arial, sans-serif; color: #888; }
+
+.inv-slot-bot {
+    font: 8px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold;
+    display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 8px;
+}
 
 .map-section { background: #030405; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .map-container-wrap {
@@ -327,7 +368,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .sim-btn:hover { background: rgba(181,30,30,0.25); color: #fff; border-color: var(--red); }
 #simResult { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #aaa; line-height: 1.6; }
 
-/* EMOTIONAL SENTIMENT METER */
 .sentiment-meter-wrap { display: none; gap: 10px; margin-top: 15px; background: rgba(0,0,0,0.5); padding: 10px; border: 1px solid rgba(255,255,255,0.08); border-radius: 3px; }
 .sentiment-badge { font: 9px Arial, sans-serif; letter-spacing: 1px; color: #bbb; display: flex; align-items: center; gap: 5px; }
 .sentiment-badge b { color: var(--red); }
@@ -376,7 +416,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .kami-symbol{font:48px Arial,sans-serif;letter-spacing:14px;color:rgba(255,255,255,.07);margin-bottom:25px}
 .kami p{max-width:650px;color:#777;font:13px/2 Arial,sans-serif}
 
-/* TERMINAL WITH VOICE RECOGNITION SUPPORT */
 .terminal-box { margin-top: 30px; width: 100%; max-width: 600px; background: #000; border: 1px solid #333; padding: 15px; border-radius: 4px; text-align: left; font-family: monospace; }
 .terminal-header { font-size: 10px; color: var(--red); margin-bottom: 10px; letter-spacing: 2px; display: flex; justify-content: space-between; }
 .mic-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--red); color: #fff; padding: 2px 6px; font-size: 9px; border-radius: 2px; }
@@ -470,7 +509,7 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
 .hero-btn-group{justify-content:center}
 .world-grid{grid-template-columns:repeat(4,1fr)}
 .character-grid{grid-template-columns:repeat(3,1fr);gap:15px}
-.system-grid,.sys-req-grid,.roadmap-timeline,.relic-grid,.rel-grid{grid-template-columns:repeat(2,1fr)}
+.system-grid,.sys-req-grid,.roadmap-timeline,.inventory-grid,.rel-grid{grid-template-columns:repeat(2,1fr)}
 .gallery-grid{grid-template-columns:repeat(2,1fr)}
 .stability-meter-box { margin-left: auto; margin-right: auto; }
 }
@@ -484,7 +523,7 @@ section{padding:75px 5%}
 .btn{width:100%}
 .world-grid{grid-template-columns:repeat(2,1fr)}
 .character-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-.system-grid,.gallery-grid,.sys-req-grid,.roadmap-timeline,.relic-grid,.rel-grid{grid-template-columns:1fr}
+.system-grid,.gallery-grid,.sys-req-grid,.roadmap-timeline,.inventory-grid,.rel-grid{grid-template-columns:1fr}
 .newsletter-box { flex-direction: column; }
 .ending-header{flex-direction:column;align-items:flex-start;gap:4px}
 footer{flex-direction:column;gap:12px;text-align:center}
@@ -608,35 +647,89 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
+<!-- ========================================================= -->
+/* MODUL UI INVENTARIS RELIK INTERAKTIF BARU                 */
+<!-- ========================================================= -->
 <section id="relics" class="relics-section">
-  <div class="label" data-i18n="label_relics">02.2 — RELIC CODEX</div>
+  <div class="label" data-i18n="label_relics">02.2 — RELIC INVENTORY CODEX</div>
   <h2 class="title" data-i18n="relics_title">Relics of Fallen Worlds.</h2>
-  <p class="text" data-i18n="relics_text">Fragments of memory recovered from previous collapse timelines.</p>
+  <p class="text" data-i18n="relics_text">Inspect recovered artifacts, keycards, encrypted drives, and ancient covenants from previous collapse cycles.</p>
 
-  <div class="relic-grid">
-    <div class="relic-card sfx-hover sfx-click" onclick="openRelicModal('relic1')">
-      <div class="relic-icon">⌚</div>
-      <div class="relic-origin">WORLD 01 RELIC</div>
-      <h4 data-i18n="rel1_h">Frozen Pocket Watch</h4>
-      <p data-i18n="rel1_p">Stopped permanently at 03:14 AM. The moment World I began its reset.</p>
+  <div class="inventory-header-bar">
+    <div class="inv-filter-group">
+        <button class="inv-filter-btn active sfx-click" onclick="filterInventory('all')">[ ALL ITEMS ]</button>
+        <button class="inv-filter-btn sfx-click" onclick="filterInventory('relic')">[ RELICS ]</button>
+        <button class="inv-filter-btn sfx-click" onclick="filterInventory('document')">[ DOCUMENTS ]</button>
+        <button class="inv-filter-btn sfx-click" onclick="filterInventory('data')">[ DATA DRIVES ]</button>
     </div>
-    <div class="relic-card sfx-hover sfx-click" onclick="openRelicModal('relic2')">
-      <div class="relic-icon">🔑</div>
-      <div class="relic-origin">WORLD 04 RELIC</div>
-      <h4 data-i18n="rel2_h">Corrupted Shelter Keycard</h4>
-      <p data-i18n="rel2_p">Belonged to a commander who locked the doors from the outside.</p>
+    <div class="inv-progress-box">
+        COLLECTION: <b>4 / 8 DECRYPTED (50%)</b>
     </div>
-    <div class="relic-card sfx-hover sfx-click" onclick="openRelicModal('relic3')">
-      <div class="relic-icon">💾</div>
-      <div class="relic-origin">WORLD 06 RELIC</div>
-      <h4 data-i18n="rel3_h">Encrypted Memory Chip</h4>
-      <p data-i18n="rel3_p">Contains Dr. Nara's early logs regarding the 8th cycle anomaly.</p>
+  </div>
+
+  <div class="inventory-grid" id="inventoryContainer">
+    <!-- SLOT 1 -->
+    <div class="inv-slot sfx-hover sfx-click" data-cat="relic" onclick="openRelicModal('relic1')">
+      <div class="inv-slot-top">
+        <span class="inv-icon">⌚</span>
+        <span class="inv-rarity-badge rarity-rare">RARE</span>
+      </div>
+      <div class="inv-slot-mid">
+        <h4 data-i18n="rel1_h">Frozen Pocket Watch</h4>
+        <p data-i18n="rel1_p">Stopped permanently at 03:14 AM. The moment World I began its reset.</p>
+      </div>
+      <div class="inv-slot-bot">
+        <span>ORIGIN: WORLD 01</span>
+        <span>[ INSPECT ➔ ]</span>
+      </div>
     </div>
-    <div class="relic-card sfx-hover sfx-click" onclick="openRelicModal('relic4')">
-      <div class="relic-icon">📜</div>
-      <div class="relic-origin">WORLD 07 RELIC</div>
-      <h4 data-i18n="rel4_h">Torn Covenant Page</h4>
-      <p data-i18n="rel4_p">A pact signed by 5 survivors who vanished before World VIII started.</p>
+
+    <!-- SLOT 2 -->
+    <div class="inv-slot sfx-hover sfx-click" data-cat="document" onclick="openRelicModal('relic2')">
+      <div class="inv-slot-top">
+        <span class="inv-icon">🔑</span>
+        <span class="inv-rarity-badge rarity-corrupted">CORRUPTED</span>
+      </div>
+      <div class="inv-slot-mid">
+        <h4 data-i18n="rel2_h">Corrupted Keycard</h4>
+        <p data-i18n="rel2_p">Belonged to a commander who locked shelter doors from the outside.</p>
+      </div>
+      <div class="inv-slot-bot">
+        <span>ORIGIN: WORLD 04</span>
+        <span>[ INSPECT ➔ ]</span>
+      </div>
+    </div>
+
+    <!-- SLOT 3 -->
+    <div class="inv-slot sfx-hover sfx-click" data-cat="data" onclick="openRelicModal('relic3')">
+      <div class="inv-slot-top">
+        <span class="inv-icon">💾</span>
+        <span class="inv-rarity-badge rarity-common">COMMON</span>
+      </div>
+      <div class="inv-slot-mid">
+        <h4 data-i18n="rel3_h">Encrypted Memory Chip</h4>
+        <p data-i18n="rel3_p">Contains Dr. Nara's early logs regarding the 8th cycle anomaly.</p>
+      </div>
+      <div class="inv-slot-bot">
+        <span>ORIGIN: WORLD 06</span>
+        <span>[ INSPECT ➔ ]</span>
+      </div>
+    </div>
+
+    <!-- SLOT 4 -->
+    <div class="inv-slot sfx-hover sfx-click" data-cat="document" onclick="openRelicModal('relic4')">
+      <div class="inv-slot-top">
+        <span class="inv-icon">📜</span>
+        <span class="inv-rarity-badge rarity-canon">CANON</span>
+      </div>
+      <div class="inv-slot-mid">
+        <h4 data-i18n="rel4_h">Torn Covenant Page</h4>
+        <p data-i18n="rel4_p">A pact signed by 5 survivors who vanished before World VIII started.</p>
+      </div>
+      <div class="inv-slot-bot">
+        <span>ORIGIN: WORLD 07</span>
+        <span>[ INSPECT ➔ ]</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1041,6 +1134,23 @@ function closeMobileMenu() {
     navLinks.classList.remove('open');
 }
 
+// INVENTORY FILTER LOGIC
+function filterInventory(category) {
+    playGlitchSfx();
+    const btns = document.querySelectorAll('.inv-filter-btn');
+    btns.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const slots = document.querySelectorAll('.inv-slot');
+    slots.forEach(slot => {
+        if (category === 'all' || slot.getAttribute('data-cat') === category) {
+            slot.style.display = 'flex';
+        } else {
+            slot.style.display = 'none';
+        }
+    });
+}
+
 // RED ALERT MODE TRIGGER SYSTEM
 let logoClickCount = 0;
 function registerLogoClick() {
@@ -1307,7 +1417,7 @@ const translations = {
         synopsis_quote: "“Every choice. Every life. Every ending.”",
         label_02: "02 — WORLD", world_title: "Eight worlds.<br>One last chance.", world_text: "Click on any World card below to decrypt historical records and fragments left behind.",
         w1_name: "THE FIRST", w2_name: "THE SECOND", w3_name: "THE THIRD", w4_name: "THE FOURTH", w5_name: "THE FIFTH", w6_name: "THE SIXTH", w7_name: "THE SEVENTH", w8_name: "THE LAST",
-        label_relics: "02.2 — RELIC CODEX", relics_title: "Relics of Fallen Worlds.", relics_text: "Fragments of memory recovered from previous collapse timelines.",
+        label_relics: "02.2 — RELIC INVENTORY CODEX", relics_title: "Relics of Fallen Worlds.", relics_text: "Inspect recovered artifacts, keycards, encrypted drives, and ancient covenants from previous collapse cycles.",
         rel1_h: "Frozen Pocket Watch", rel1_p: "Stopped permanently at 03:14 AM. The moment World I began its reset.",
         rel2_h: "Corrupted Keycard", rel2_p: "Belonged to a commander who locked shelter doors from the outside.",
         rel3_h: "Encrypted Memory Chip", rel3_p: "Contains Dr. Nara's early logs regarding the 8th cycle anomaly.",
@@ -1364,7 +1474,7 @@ const translations = {
         synopsis_quote: "“Setiap pilihan. Setiap nyawa. Setiap ending.”",
         label_02: "02 — DUNIA", world_title: "Delapan dunia.<br>Satu kesempatan terakhir.", world_text: "Klik kartu Dunia di bawah untuk mendekripsi catatan sejarah dan fragmen yang tersisa.",
         w1_name: "PERTAMA", w2_name: "KEDUA", w3_name: "KETIGA", w4_name: "KEEMPAT", w5_name: "KELIMA", w6_name: "KEENAM", w7_name: "KETUJUH", w8_name: "TERAKHIR",
-        label_relics: "02.2 — ARSIP RELIK", relics_title: "Relik Dunia Yang Runtuh.", relics_text: "Fragmen ingatan yang ditemukan kembali dari garis waktu yang telah musnah.",
+        label_relics: "02.2 — KODEKS INVENTARIS RELIK", relics_title: "Relik Dunia Yang Runtuh.", relics_text: "Periksa artefak, kartu kunci, drive memori terenkripsi, dan dokumen perjanjian kuno yang ditemukan dari siklus masa lalu.",
         rel1_h: "Jam Saku Terhenti", rel1_p: "Terhenti permanen pada pukul 03:14 pagi. Momen saat Dunia I mulai direset.",
         rel2_h: "Kartu Kunci Terkorupsi", rel2_p: "Milik seorang komandan yang mengunci pintu shelter dari luar.",
         rel3_h: "Chip Memori Terenkripsi", rel3_p: "Memuat log awal Dr. Nara mengenai anomali siklus ke-8.",
