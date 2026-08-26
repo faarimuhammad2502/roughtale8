@@ -46,49 +46,60 @@ content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.035;
 background-image:repeating-radial-gradient(circle at 0 0,#fff 0,#fff 1px,transparent 1px,transparent 3px)
 }
 
-/* NAVIGATION RAPAT & TERTATA */
+/* ========================================================= */
+/* SYSTEM NAVBAR CLEAN & RAPAT LAYOUT                        */
+/* ========================================================= */
 nav {
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-    padding: 15px 4%; display: flex; justify-content: space-between; align-items: center;
-    background: linear-gradient(#020304 70%, rgba(2,3,4,0.9), transparent);
-    backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    padding: 12px 3%; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(2, 3, 4, 0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .nav-left {
-    display: flex; align-items: center; gap: 15px; flex-shrink: 0;
-}
-
-.logo { font-size: 18px; letter-spacing: 3px; font-weight: bold; white-space: nowrap; }
-.logo b { color: var(--red); }
-
-.in-dev-pill {
-    font: 8px Arial, sans-serif; letter-spacing: 1.5px; color: #eab308;
-    border: 1px solid #eab308; background: rgba(234,179,8,0.1);
-    padding: 2px 6px; border-radius: 2px; text-transform: uppercase;
-}
-
-.links { display: flex; gap: 12px; align-items: center; flex-wrap: nowrap; }
-.links a { color: #aaa; text-decoration: none; font: 10px Arial, sans-serif; letter-spacing: 1.5px; transition: .3s; white-space: nowrap; }
-.links a:hover { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
-
-.nav-controls {
     display: flex; align-items: center; gap: 10px; flex-shrink: 0;
 }
 
-.vol-control-wrap {
-    display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.03);
-    padding: 4px 8px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
+.logo { font-size: 16px; letter-spacing: 2px; font-weight: bold; white-space: nowrap; }
+.logo b { color: var(--red); }
+
+.in-dev-pill {
+    font: 7px Arial, sans-serif; letter-spacing: 1px; color: #eab308;
+    border: 1px solid #eab308; background: rgba(234,179,8,0.12);
+    padding: 2px 5px; border-radius: 2px; text-transform: uppercase; white-space: nowrap;
 }
-.vol-icon { font-size: 10px; color: var(--muted); }
+
+.links { 
+    display: flex; gap: 10px; align-items: center; flex-wrap: nowrap; margin: 0 10px;
+}
+.links a { 
+    color: #a0a5a8; text-decoration: none; font: 9px Arial, sans-serif; 
+    letter-spacing: 1.2px; transition: .3s; white-space: nowrap; padding: 4px 2px;
+}
+.links a:hover { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
+
+.nav-controls {
+    display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+}
+
+.vol-control-wrap {
+    display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.03);
+    padding: 3px 6px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
+}
+.vol-icon { font-size: 9px; color: var(--muted); }
+.vol-slider { width: 50px; accent-color: var(--red); cursor: pointer; vertical-align: middle; }
 
 .ctrl-btn {
     background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
-    padding: 6px 12px; font: 9px Arial, sans-serif; letter-spacing: 2px; cursor: pointer; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap;
+    padding: 4px 8px; font: 8px Arial, sans-serif; letter-spacing: 1.5px; cursor: pointer; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap;
 }
 .ctrl-btn:hover { border-color: var(--red); color: #fff; }
 .ctrl-btn.active { border-color: var(--red); color: var(--red); background: rgba(181,30,30,0.1); }
 
-.vol-slider { width: 60px; accent-color: var(--red); cursor: pointer; vertical-align: middle; }
+.mobile-toggle {
+    display: none; background: transparent; border: 1px solid var(--line); color: #fff;
+    padding: 4px 8px; font-size: 14px; cursor: pointer; border-radius: 3px;
+}
 
 /* FLOATING BACK TO TOP BUTTON */
 .back-to-top {
@@ -398,9 +409,22 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 
 footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
 
-@media(max-width:1250px){
-    .links a { font-size: 9px; letter-spacing: 1px; }
-    .links { gap: 8px; }
+/* MEDIA QUERIES NAVIGATION ADVANCED */
+@media(max-width:1300px){
+    .links a { font-size: 8px; letter-spacing: 0.8px; }
+    .links { gap: 6px; margin: 0 4px; }
+    .vol-slider { width: 40px; }
+}
+
+@media(max-width:1100px){
+    .links {
+        display: none; position: absolute; top: 100%; left: 0; width: 100%;
+        background: rgba(4, 6, 8, 0.98); border-bottom: 1px solid var(--red);
+        flex-direction: column; padding: 15px 0; gap: 12px; backdrop-filter: blur(15px);
+    }
+    .links.open { display: flex; }
+    .links a { font-size: 11px; letter-spacing: 2px; }
+    .mobile-toggle { display: block; }
 }
 
 @media(max-width:1050px){
@@ -417,8 +441,7 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
 }
 
 @media(max-width:768px){
-nav{padding:15px 20px}
-.links{display:none}
+nav{padding:12px 15px}
 section{padding:75px 5%}
 .hero{padding:90px 4% 40px}
 .hero h1{letter-spacing:3px}.tag{letter-spacing:3px;font-size:11px}
@@ -430,6 +453,7 @@ section{padding:75px 5%}
 .newsletter-box { flex-direction: column; }
 .ending-header{flex-direction:column;align-items:flex-start;gap:4px}
 footer{flex-direction:column;gap:12px;text-align:center}
+.vol-control-wrap { display: none; }
 }
 </style>
 </head>
@@ -447,23 +471,24 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <source src="bgm-dark.mp3" type="audio/mpeg">
 </audio>
 
-<!-- STRUKTUR NAVIGASI TERBAGI RAPI DALAM 3 ZONA -->
+<!-- STRUKTUR NAVIGASI TERTATA DAN SANGAT RESPONSIIF -->
 <nav>
   <div class="nav-left">
+    <button class="mobile-toggle sfx-click" onclick="toggleMobileMenu()">☰</button>
     <div class="logo">ROUGHTALE<b>8</b></div>
     <span class="in-dev-pill" data-i18n="pill_in_dev">IN DEVELOPMENT</span>
   </div>
 
-  <div class="links">
-    <a href="#synopsis" class="sfx-hover" data-i18n="nav_synopsis">SYNOPSIS</a>
-    <a href="#world" class="sfx-hover" data-i18n="nav_world">WORLD</a>
-    <a href="#relics" class="sfx-hover" data-i18n="nav_relics">RELICS</a>
-    <a href="#map" class="sfx-hover" data-i18n="nav_map">MAP</a>
-    <a href="#characters" class="sfx-hover" data-i18n="nav_characters">CHARACTERS</a>
-    <a href="#relationships" class="sfx-hover" data-i18n="nav_rel">BONDS</a>
-    <a href="#gameplay" class="sfx-hover" data-i18n="nav_gameplay">GAMEPLAY</a>
-    <a href="#roadmap" class="sfx-hover" data-i18n="nav_roadmap">ROADMAP</a>
-    <a href="#endings" class="sfx-hover" data-i18n="nav_endings">ENDINGS</a>
+  <div class="links" id="navLinks">
+    <a href="#synopsis" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_synopsis">SYNOPSIS</a>
+    <a href="#world" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_world">WORLD</a>
+    <a href="#relics" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_relics">RELICS</a>
+    <a href="#map" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_map">MAP</a>
+    <a href="#characters" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_characters">CHARACTERS</a>
+    <a href="#relationships" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_rel">BONDS</a>
+    <a href="#gameplay" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_gameplay">GAMEPLAY</a>
+    <a href="#roadmap" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_roadmap">ROADMAP</a>
+    <a href="#endings" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_endings">ENDINGS</a>
   </div>
 
   <div class="nav-controls">
@@ -962,6 +987,17 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </footer>
 
 <script>
+// MOBILE MENU TOGGLE HANDLER
+function toggleMobileMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('open');
+}
+
+function closeMobileMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.remove('open');
+}
+
 // WEB AUDIO SYNTHESIZER ENGINE WITH FADE SMOOTHING
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -1253,8 +1289,8 @@ const translations = {
         label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.", badge_passed: "PASSED", badge_rec: "RECOMMENDED",
         sys_min_h: "MINIMUM REQUIREMENTS", sys_rec_h: "RECOMMENDED SPECS", sys_storage: "Storage:", sys_min_storage: "2 GB Available Space", sys_rec_storage: "2 GB High Speed SSD",
         label_10: "10 — TEASER", teaser_title: "You have seen<br>nothing yet.", teaser_sub: "OFFICIAL TEASER TRAILER — ROUGHTALE8",
-        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on development updates, secret lore archives, and closed beta access.", ph_email: "ENTER YOUR EMAIL...", btn_sub: "SUBSCRIBE",
-        final_tag: "LIFE IS <span>SIMPLE</span>", dev_title: "WORLD VIII STATUS — IN ACTIVE DEVELOPMENT", dev_status: "GAME IS CURRENTLY BEING CRAFTED & DEVELOPED BY MUHAMMAD FAARI AKBAR. OFFICIAL RELEASE ANNOUNCEMENT COMING SOON.",
+        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on development updates, secret lore archives, and closed beta access.", ph_email: "ENTER YOUR EMAIL...", btn_sub: "LANGGANAN",
+        final_tag: "HIDUP ITU <span>SEDERHANA</span>", dev_title: "WORLD VIII STATUS — IN ACTIVE DEVELOPMENT", dev_status: "GAME IS CURRENTLY BEING CRAFTED & DEVELOPED BY MUHAMMAD FAARI AKBAR. OFFICIAL RELEASE ANNOUNCEMENT COMING SOON.",
         created_by: "CREATED BY", footer_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING."
     },
     ID: {
