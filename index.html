@@ -300,7 +300,6 @@ transition:.4s;
     display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 8px;
 }
 
-/* MAP SECTION STYLE FIX */
 .map-section { background: #030405; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .map-container-wrap {
     position: relative; width: 100%; max-width: 1200px; margin: 30px auto 0;
@@ -1185,8 +1184,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
+<!-- TEASER 01 SECTION -->
 <section class="trailer">
-  <div class="label" data-i18n="label_10">10 — TEASER</div>
+  <div class="label" data-i18n="label_10">10 — TEASER 01</div>
   <h2 class="title" data-i18n="teaser_title">You have seen<br>nothing yet.</h2>
   
   <div class="play-container">
@@ -1194,15 +1194,42 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="pulse-ring"></div>
   </div>
   
-  <div class="text" style="margin:auto" data-i18n="teaser_sub">OFFICIAL TEASER TRAILER — ROUGHTALE8</div>
+  <div class="text" style="margin:auto" data-i18n="teaser_sub">OFFICIAL TEASER TRAILER 01 — ROUGHTALE8</div>
 </section>
 
+<!-- TEASER 02 SECTION (BARU) -->
+<section class="trailer" style="border-top: 1px solid rgba(255,255,255,0.08); background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.95)), url('cover-background.png') center/cover;">
+  <div class="label">10.5 — TEASER 02</div>
+  <h2 class="title">The Second Signal.</h2>
+  
+  <div class="play-container">
+    <button id="playTrailer2Btn" class="play sfx-click">▶</button>
+    <div class="pulse-ring"></div>
+  </div>
+  
+  <div class="text" style="margin:auto">OFFICIAL TEASER TRAILER 02 — ROUGHTALE8</div>
+</section>
+
+<!-- MODAL TRAILER 01 -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
         <div class="video-container">
             <video id="mainTrailerVideo" controls playsinline preload="auto">
                 <source src="trailer.mp4" type="video/mp4">
+                Browser kamu tidak mendukung pemutaran video.
+            </video>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL TRAILER 02 (BARU) -->
+<div id="trailer2Modal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal2Btn" class="close-btn sfx-click">&times;</span>
+        <div class="video-container">
+            <video id="mainTrailer2Video" controls playsinline preload="auto">
+                <source src="trailer2.mp4" type="video/mp4">
                 Browser kamu tidak mendukung pemutaran video.
             </video>
         </div>
@@ -2076,7 +2103,6 @@ function openProfile(name) {
         document.getElementById("pActionBtnText").innerText = "PLAY VOICE FREQUENCY";
         modal.classList.add("show");
         
-        // Override action for character voice
         document.getElementById("pActionBtn").onclick = playVoiceLineSample;
     }
 }
@@ -2087,6 +2113,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     closeProfileBtn.addEventListener("click", function() { profileModal.classList.remove("show"); });
 
+    // Trailer 1 Logic
     const modal = document.getElementById("trailerModal");
     const playBtn = document.getElementById("playTrailerBtn");
     const closeBtn = document.getElementById("closeModalBtn");
@@ -2116,6 +2143,38 @@ document.addEventListener("DOMContentLoaded", function() {
     closeBtn.addEventListener("click", closeModal);
     window.addEventListener("click", function(e) { 
         if (e.target === modal) closeModal(); 
+    });
+
+    // Trailer 2 Logic (Baru)
+    const modal2 = document.getElementById("trailer2Modal");
+    const play2Btn = document.getElementById("playTrailer2Btn");
+    const close2Btn = document.getElementById("closeModal2Btn");
+    const video2Player = document.getElementById("mainTrailer2Video");
+
+    play2Btn.addEventListener("click", function() { 
+        playGlitchSfx();
+        modal2.classList.add("show"); 
+        
+        wasBgmPlaying = isAudioPlaying;
+        if (isAudioPlaying) {
+            bgm.pause();
+        }
+
+        video2Player.currentTime = 0;
+        video2Player.play().catch(e => console.log("Autoplay blocked:", e));
+    });
+
+    function close2Modal() { 
+        modal2.classList.remove("show"); 
+        video2Player.pause();
+        if (wasBgmPlaying) {
+            bgm.play().catch(e => console.log(e));
+        }
+    }
+
+    close2Btn.addEventListener("click", close2Modal);
+    window.addEventListener("click", function(e) { 
+        if (e.target === modal2) close2Modal(); 
     });
 });
 </script>
