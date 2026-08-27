@@ -625,6 +625,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 
   <div class="nav-controls">
+    <button class="ctrl-btn sfx-hover" id="achievementBtn" onclick="openAchievementsModal()">[ 🏆 ACHIEVEMENTS ]</button>
     <button class="ctrl-btn sfx-hover" id="crtToggleBtn" onclick="toggleCrtEffect()">[ CRT: ON ]</button>
     <div class="vol-control-wrap">
         <span class="vol-icon">🔊</span>
@@ -947,8 +948,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="profile-speaker" id="pCategory">ARCHIVE RECORD</div>
         <div class="profile-title" id="pTitle">EIDON</div>
         <div class="profile-desc" id="pDesc">Loading...</div>
-        <button id="pVoiceBtn" class="voice-sample-btn sfx-click" style="display:none;" onclick="playVoiceLineSample()">
-            🔊 <span data-i18n="btn_voice_sample">PLAY VOICE FREQUENCY</span>
+        <button id="pActionBtn" class="voice-sample-btn sfx-click" style="display:none;" onclick="handleModalAction()">
+            🔊 <span id="pActionBtnText">PLAY VOICE FREQUENCY</span>
         </button>
         <button class="close-profile-btn sfx-click" id="closeProfileBtn" data-i18n="btn_close_archive">[ CLOSE ARCHIVE ]</button>
     </div>
@@ -1243,13 +1244,52 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </footer>
 
 <script>
+// ACHIEVEMENTS SYSTEM STORAGE
+let unlockedAchievements = JSON.parse(localStorage.getItem('r8_achievements') || '[]');
+
 function triggerAchievement(title) {
+    if (!unlockedAchievements.includes(title)) {
+        unlockedAchievements.push(title);
+        localStorage.setItem('r8_achievements', JSON.stringify(unlockedAchievements));
+    }
     const toast = document.getElementById('achievementToast');
     document.getElementById('achieveText').innerText = title;
     toast.classList.add('show');
     playSynthBeep(880, 'sine', 0.2);
     setTimeout(() => playSynthBeep(1200, 'sine', 0.3), 150);
     setTimeout(() => { toast.classList.remove('show'); }, 4000);
+}
+
+function openAchievementsModal() {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    const totalAch = 5;
+    const currentCount = unlockedAchievements.length;
+    
+    let achListHtml = `<div style="margin-bottom:15px; color:#eab308; font:9px Arial,sans-serif; letter-spacing:2px;">UNLOCKED: ${currentCount} / ${totalAch} (${Math.round((currentCount/totalAch)*100)}%)</div><div style="display:flex; flex-direction:column; gap:8px;">`;
+    
+    const allAchDefs = [
+        "RED ALERT TRIGGERED: CONTAINMENT BREACH",
+        "TERMINAL SECURITY BYPASSED",
+        "INTERCEPTED TRANSMISSION LOG",
+        "SECRET CIPHER UNLOCKED",
+        "JOINED THE RESISTANCE COMMUNITY"
+    ];
+
+    allAchDefs.forEach(ach => {
+        const isUnlocked = unlockedAchievements.includes(ach);
+        achListHtml += `<div style="background:rgba(255,255,255,0.02); border:1px solid ${isUnlocked ? 'var(--red)' : '#333'}; padding:10px; border-radius:3px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:11px; color:${isUnlocked ? '#fff' : '#666'};">${ach}</span>
+            <span style="font:8px Arial,sans-serif; letter-spacing:1px; color:${isUnlocked ? '#22c55e' : '#555'};">${isUnlocked ? '[ UNLOCKED ]' : '[ LOCKED ]'}</span>
+        </div>`;
+    });
+    achListHtml += `</div>`;
+
+    document.getElementById("pCategory").innerText = "CODEX ACHIEVEMENTS";
+    document.getElementById("pTitle").innerText = "SURVIVOR TROPHIES";
+    document.getElementById("pDesc").innerHTML = achListHtml;
+    document.getElementById("pActionBtn").style.display = "none";
+    modal.classList.add("show");
 }
 
 function toggleCrtEffect() {
@@ -1269,7 +1309,7 @@ function openGalleryLightbox(title, imgUrl, desc) {
     document.getElementById("pCategory").innerText = "GALLERY ARCHIVE";
     document.getElementById("pTitle").innerText = title;
     document.getElementById("pDesc").innerText = `${desc}\n\n[FRAGMENT RECORDED FROM SECTOR 8]`;
-    document.getElementById("pVoiceBtn").style.display = "none";
+    document.getElementById("pActionBtn").style.display = "none";
     modal.classList.add("show");
 }
 
@@ -1523,29 +1563,41 @@ function openRelicModal(key) {
         document.getElementById("pCategory").innerText = langData[key].origin;
         document.getElementById("pTitle").innerText = langData[key].title;
         document.getElementById("pDesc").innerText = langData[key].desc;
-        document.getElementById("pVoiceBtn").style.display = "none";
+        document.getElementById("pActionBtn").style.display = "none";
         modal.classList.add("show");
     }
 }
 
+let activePoiKey = '';
 const poiData = {
     'The City': { title: "REGION 01 — THE CITY", desc: "STATUS: DESTROYED / DANGER ZONE\n\nSisa-sisa peradaban perkotaan yang telah hancur. Merupakan titik awal perjalanan di mana sisa teknologi lama dan struktur beton berada di bawah ancaman collapse." },
     'The Ruins': { title: "REGION 02 — THE RUINS", desc: "STATUS: HIGH DANGER / HAZARD\n\nKawasan reruntuhan alam yang mulai mengambil alih peradaban kuno. Jalur rawan dengan banyak perangkap dan bahaya tersembunyi." },
-    'The Last Refuge': { title: "REGION 03 — THE LAST REFUGE", desc: "STATUS: SETTLEMENT / SAFE ROOM AVAILABLE\n\nSatu-satunya tempat berlindung yang tersisa bagi para survivor. Menjadi pusat interaksi, tempat istirahat, dan persimpangan alur keputusan." },
+    'The Last Refuge': { title: "REGION 03 — THE LAST REFUGE", desc: "STATUS: SETTLEMENT / SAFE ROOM AVAILABLE\n\nSatu-satunya tempat perlindungan yang tersisa bagi para survivor. Menjadi pusat interaksi, tempat istirahat, dan persimpangan alur keputusan." },
     'The Hospital': { title: "REGION 04 — THE HOSPITAL", desc: "STATUS: CRITICAL MEDICAL ZONE\n\nFasilitas medis tua yang memegang kunci ingatan dan pengobatan luka para penyintas. Tempat Dr. Lira berjuang menjaga suplai medis." },
-    'The Laboratory': { title: "REGION 05 — THE LABORATORY", desc: "STATUS: RESTRICTED ACCESS / RESEARCH FACILITY\n\nPusat riset rahasia rahasia eksperimen Dunia VIII. Di sinilah rahasia mengenai penyebab jatuhnya 7 dunia sebelumnya tersimpan." },
+    'The Laboratory': { title: "REGION 05 — THE LABORATORIUM", desc: "STATUS: RESTRICTED ACCESS / RESEARCH FACILITY\n\nPusat riset rahasia rahasia eksperimen Dunia VIII. Di sinilah rahasia mengenai penyebab jatuhnya 7 dunia sebelumnya tersimpan." },
     'Unknown': { title: "REGION 06 — UNKNOWN AREA", desc: "STATUS: UNIDENTIFIED ANOMALY (?)\n\nArea pusaran abnormal yang tidak terdeteksi oleh sistem radar. Akses hanya dapat terbuka berdasarkan progres cerita dan keputusan akhir pemain." }
 };
 
 function openMapPOI(poiKey) {
     playGlitchSfx();
+    activePoiKey = poiKey;
     const modal = document.getElementById("characterProfileModal");
     if(poiData[poiKey]) {
-        document.getElementById("pCategory").innerText = "REGION DIAGNOSTICS";
+        document.getElementById("pCategory").innerText = "REGION DIAGNOSTICS [DECRYPT AVAILABLE]";
         document.getElementById("pTitle").innerText = poiData[poiKey].title;
-        document.getElementById("pDesc").innerText = poiData[poiKey].desc;
-        document.getElementById("pVoiceBtn").style.display = "none";
+        document.getElementById("pDesc").innerText = poiData[poiKey].desc + "\n\n[CLICK BUTTON BELOW TO RUN FREQUENCY DECRYPTION]";
+        document.getElementById("pActionBtn").style.display = "inline-flex";
+        document.getElementById("pActionBtnText").innerText = "⚡ DECRYPT REGION FREQUENCY";
         modal.classList.add("show");
+    }
+}
+
+function handleModalAction() {
+    if (activePoiKey && poiData[activePoiKey]) {
+        playSynthBeep(600, 'square', 0.2);
+        document.getElementById("pDesc").innerText = poiData[activePoiKey].desc + `\n\n[DECRYPTION SUCCESSFUL: Sector telemetry verified for ${activePoiKey}. Signal stable.]`;
+        document.getElementById("pActionBtn").style.display = "none";
+        triggerAchievement("REGION FREQUENCY DECRYPTED");
     }
 }
 
@@ -2006,7 +2058,7 @@ function openWorldArchive(worldKey) {
         document.getElementById("pCategory").innerText = langData[worldKey].category;
         document.getElementById("pTitle").innerText = langData[worldKey].title;
         document.getElementById("pDesc").innerText = langData[worldKey].desc;
-        document.getElementById("pVoiceBtn").style.display = "none";
+        document.getElementById("pActionBtn").style.display = "none";
         modal.classList.add("show");
     }
 }
@@ -2020,8 +2072,12 @@ function openProfile(name) {
         document.getElementById("pCategory").innerText = langData[name].category;
         document.getElementById("pTitle").innerText = langData[name].title;
         document.getElementById("pDesc").innerText = langData[name].desc;
-        document.getElementById("pVoiceBtn").style.display = "inline-flex";
+        document.getElementById("pActionBtn").style.display = "inline-flex";
+        document.getElementById("pActionBtnText").innerText = "PLAY VOICE FREQUENCY";
         modal.classList.add("show");
+        
+        // Override action for character voice
+        document.getElementById("pActionBtn").onclick = playVoiceLineSample;
     }
 }
 
