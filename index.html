@@ -506,7 +506,9 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .video-container video {
     position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important;
     object-fit: contain !important; background: #000; display: block !important;
+    transition: opacity 0.5s ease;
 }
+.video-container video.fade-out { opacity: 0; }
 
 .final{min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(to bottom,#090b0b,#030506)}
 .final h2{font-size:clamp(40px,8vw,105px);font-weight:400;letter-spacing:8px}
@@ -1184,9 +1186,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- TEASER 01 SECTION -->
+<!-- TEASER FEATURE SECTION (COMBINED PLAYLIST) -->
 <section class="trailer">
-  <div class="label" data-i18n="label_10">10 — TEASER 01</div>
+  <div class="label" data-i18n="label_10">10 — OFFICIAL TEASERS</div>
   <h2 class="title" data-i18n="teaser_title">You have seen<br>nothing yet.</h2>
   
   <div class="play-container">
@@ -1194,42 +1196,16 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="pulse-ring"></div>
   </div>
   
-  <div class="text" style="margin:auto" data-i18n="teaser_sub">OFFICIAL TEASER TRAILER 01 — ROUGHTALE8</div>
+  <div class="text" style="margin:auto" data-i18n="teaser_sub">ROUGHTALE8 — CONTINUOUS OFFICIAL TRAILER FEATURE</div>
 </section>
 
-<!-- TEASER 02 SECTION (BARU) -->
-<section class="trailer" style="border-top: 1px solid rgba(255,255,255,0.08); background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.95)), url('cover-background.png') center/cover;">
-  <div class="label">10.5 — TEASER 02</div>
-  <h2 class="title">The Second Signal.</h2>
-  
-  <div class="play-container">
-    <button id="playTrailer2Btn" class="play sfx-click">▶</button>
-    <div class="pulse-ring"></div>
-  </div>
-  
-  <div class="text" style="margin:auto">OFFICIAL TEASER TRAILER 02 — ROUGHTALE8</div>
-</section>
-
-<!-- MODAL TRAILER 01 -->
+<!-- MODAL TRAILER (SINGLE PLAYER WITH CONTINUOUS TRANSITION) -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
         <div class="video-container">
             <video id="mainTrailerVideo" controls playsinline preload="auto">
-                <source src="trailer.mp4" type="video/mp4">
-                Browser kamu tidak mendukung pemutaran video.
-            </video>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL TRAILER 02 (BARU) -->
-<div id="trailer2Modal" class="modal">
-    <div class="modal-content">
-        <span id="closeModal2Btn" class="close-btn sfx-click">&times;</span>
-        <div class="video-container">
-            <video id="mainTrailer2Video" controls playsinline preload="auto">
-                <source src="trailer2.mp4" type="video/mp4">
+                <source src="trailer.mp4" type="video/mp4" id="videoSource">
                 Browser kamu tidak mendukung pemutaran video.
             </video>
         </div>
@@ -1723,7 +1699,7 @@ const translations = {
         label_08: "08 — GALLERY", gallery_title: "Fragments of<br>World Eight.",
         label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.", badge_passed: "PASSED", badge_rec: "RECOMMENDED",
         sys_min_h: "MINIMUM REQUIREMENTS", sys_rec_h: "RECOMMENDED SPECS", sys_storage: "Storage:", sys_min_storage: "2 GB Available Space", sys_rec_storage: "2 GB High Speed SSD",
-        label_10: "10 — TEASER", teaser_title: "You have seen<br>nothing yet.", teaser_sub: "OFFICIAL TEASER TRAILER — ROUGHTALE8",
+        label_10: "10 — TEASERS", teaser_title: "You have seen<br>nothing yet.", teaser_sub: "ROUGHTALE8 — CONTINUOUS OFFICIAL TRAILER FEATURE",
         label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on development updates, secret lore archives, and closed beta access.", ph_email: "ENTER YOUR EMAIL...", btn_sub: "SUBSCRIBE",
         final_tag: "LIFE IS <span>SIMPLE</span>", dev_title: "WORLD VIII STATUS — IN ACTIVE DEVELOPMENT", dev_status: "GAME IS CURRENTLY BEING CRAFTED & DEVELOPED BY MUHAMMAD FAARI AKBAR. OFFICIAL RELEASE ANNOUNCEMENT COMING SOON.",
         created_by: "CREATED BY", footer_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING."
@@ -1781,7 +1757,7 @@ const translations = {
         label_08: "08 — GALERI", gallery_title: "Fragmen dari<br>Dunia Kedelapan.",
         label_09: "09 — SPESIFIKASI", sys_title: "Persyaratan Sistem.", badge_passed: "TERPENUHI", badge_rec: "DIREKOMENDASIKAN",
         sys_min_h: "SPESIFIKASI MINIMUM", sys_rec_h: "SPESIFIKASI REKOMENDASI", sys_storage: "Penyimpanan:", sys_min_storage: "2 GB Ruang Kosong Available", sys_rec_storage: "2 GB SSD Kecepatan Tinggi",
-        label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.", teaser_sub: "TEASER TRAILER RESMI — ROUGHTALE8",
+        label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.", teaser_sub: "ROUGHTALE8 — FITUR TRAILER RESMI BERKELANJUTAN",
         label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan perkembangan game, arsip rahasia, dan akses beta tertutup.", ph_email: "MASUKKAN EMAIL KAMU...", btn_sub: "LANGGANAN",
         final_tag: "HIDUP ITU <span>SEDERHANA</span>", dev_title: "STATUS DUNIA VIII — SEDANG DALAM PENGEMBANGAN AKTIF", dev_status: "GAME SEDANG DALAM TAHAP PEMBUATAN OLEH MUHAMMAD FAARI AKBAR. PENGUMUMAN RILIS RESMI SEGERA HADIR.",
         created_by: "DIBUAT OLEH", footer_tag: "SETIAP PILIHAN. SETIAP NYAWA. SETIAP ENDING."
@@ -2024,7 +2000,7 @@ function handleTerminalCommand(e) {
         } else if (input === 'WORLD8' || input === 'ROUGHTALE8') {
             output.innerText = "TIMELINE — WORLD VIII\nStatus: Collapsing. Current Sector: 8. No World IX available.";
         } else if (input === 'CIPHER' || input === 'SECRET') {
-            output.innerText = "ENCRYPTED FREQUENCY DECRYPTED:\n'ORXJKWDOHI LV VLPSOH' -> Caesar Cipher (Shift -3) = 'ROUGHTALE8 IS SIMPLE'.\n\nSTATUS: SECRET ARCHIVE ACCESS GRANTED.";
+            output.innerText = "ENCRYPTED FREQUENCY DECRYPTED:\n'ORXJKWDOHI LV SIMPSO' -> Caesar Cipher (Shift -3) = 'ROUGHTALE8 IS SIMPLE'.\n\nSTATUS: SECRET ARCHIVE ACCESS GRANTED.";
             triggerAchievement("SECRET CIPHER UNLOCKED");
         } else if (input === 'CLEAR') {
             output.innerText = "Ready for input. Type 'HELP' to list keywords.";
@@ -2113,11 +2089,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     closeProfileBtn.addEventListener("click", function() { profileModal.classList.remove("show"); });
 
-    // Trailer 1 Logic
+    // Combined Trailer Playlist Logic with Smooth Transition
     const modal = document.getElementById("trailerModal");
     const playBtn = document.getElementById("playTrailerBtn");
     const closeBtn = document.getElementById("closeModalBtn");
     const videoPlayer = document.getElementById("mainTrailerVideo");
+    const videoSource = document.getElementById("videoSource");
+
+    let currentTrailerIndex = 1;
+    const trailers = ["trailer.mp4", "trailer2.mp4"];
 
     playBtn.addEventListener("click", function() { 
         playGlitchSfx();
@@ -2128,13 +2108,33 @@ document.addEventListener("DOMContentLoaded", function() {
             bgm.pause();
         }
 
+        currentTrailerIndex = 1;
+        videoSource.src = trailers[0];
+        videoPlayer.load();
         videoPlayer.currentTime = 0;
         videoPlayer.play().catch(e => console.log("Autoplay blocked:", e));
+    });
+
+    // Smooth transition when teaser 1 finishes to play teaser 2
+    videoPlayer.addEventListener("ended", function() {
+        if (currentTrailerIndex === 1) {
+            videoPlayer.classList.add("fade-out"); // Efek fade smooth
+            setTimeout(() => {
+                currentTrailerIndex = 2;
+                videoSource.src = trailers[1];
+                videoPlayer.load();
+                videoPlayer.currentTime = 0;
+                videoPlayer.play().then(() => {
+                    videoPlayer.classList.remove("fade-out");
+                }).catch(e => console.log(e));
+            }, 400); // Durasi transisi fade
+        }
     });
 
     function closeModal() { 
         modal.classList.remove("show"); 
         videoPlayer.pause();
+        videoPlayer.classList.remove("fade-out");
         if (wasBgmPlaying) {
             bgm.play().catch(e => console.log(e));
         }
@@ -2143,38 +2143,6 @@ document.addEventListener("DOMContentLoaded", function() {
     closeBtn.addEventListener("click", closeModal);
     window.addEventListener("click", function(e) { 
         if (e.target === modal) closeModal(); 
-    });
-
-    // Trailer 2 Logic (Baru)
-    const modal2 = document.getElementById("trailer2Modal");
-    const play2Btn = document.getElementById("playTrailer2Btn");
-    const close2Btn = document.getElementById("closeModal2Btn");
-    const video2Player = document.getElementById("mainTrailer2Video");
-
-    play2Btn.addEventListener("click", function() { 
-        playGlitchSfx();
-        modal2.classList.add("show"); 
-        
-        wasBgmPlaying = isAudioPlaying;
-        if (isAudioPlaying) {
-            bgm.pause();
-        }
-
-        video2Player.currentTime = 0;
-        video2Player.play().catch(e => console.log("Autoplay blocked:", e));
-    });
-
-    function close2Modal() { 
-        modal2.classList.remove("show"); 
-        video2Player.pause();
-        if (wasBgmPlaying) {
-            bgm.play().catch(e => console.log(e));
-        }
-    }
-
-    close2Btn.addEventListener("click", close2Modal);
-    window.addEventListener("click", function(e) { 
-        if (e.target === modal2) close2Modal(); 
     });
 });
 </script>
