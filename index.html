@@ -44,8 +44,6 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
 }
 .crt-overlay.disabled { opacity: 0 !important; }
 
-/* --- TAMBAHAN STYLE UNTUK FITUR BARU --- */
-
 /* Achievement Toast Notification */
 #achievementToast {
   position: fixed; bottom: 30px; left: 30px; z-index: 9999;
@@ -59,7 +57,7 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
 .achieve-title { font: 9px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold; }
 .achieve-desc { font-size: 13px; color: #fff; font-family: Georgia, serif; }
 
-/* Live Ticker Bar di Paling Atas */
+/* Live Ticker Bar */
 .live-ticker-bar {
   position: fixed; top: 0; left: 0; width: 100%; background: #000; border-bottom: 1px solid var(--red);
   color: var(--red); font: 9px Monospace, sans-serif; letter-spacing: 2px; z-index: 1001;
@@ -68,7 +66,7 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
 .ticker-text { display: inline-block; animation: marqueeTicker 30s linear infinite; }
 @keyframes marqueeTicker { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
-/* Red Alert Mode (Easter Egg saat Logo diklik 3x) */
+/* Red Alert Mode */
 body.red-alert-mode {
   filter: sepia(0.6) hue-rotate(-50deg) saturate(3) contrast(1.2);
   animation: redAlertPulse 3s infinite ease-in-out;
@@ -78,23 +76,23 @@ body.red-alert-mode {
   50% { background: #1a0303; }
 }
 
-/* Audio Visualizer Mini di Navbar */
+/* Audio Visualizer Mini */
 .audio-visualizer-mini {
-  display: flex; align-items: flex-end; gap: 2px; height: 16px; width: 24px; padding: 0 2px;
+  display: flex; align-items: flex-end; gap: 2px; height: 16px; width: 20px; padding: 0 1px;
 }
-.eq-bar { width: 4px; background: var(--red); height: 20%; border-radius: 1px; transition: height 0.15s ease; }
+.eq-bar { width: 3px; background: var(--red); height: 20%; border-radius: 1px; transition: height 0.15s ease; }
 .audio-visualizer-mini.active .eq-bar { animation: eqActive 0.5s infinite alternate ease-in-out; }
 .audio-visualizer-mini.active .eq-bar:nth-child(2) { animation-delay: 0.15s; }
 .audio-visualizer-mini.active .eq-bar:nth-child(3) { animation-delay: 0.3s; }
 @keyframes eqActive { 0% { height: 15%; } 100% { height: 95%; } }
 
-/* Volume Slider Controller (BGM & SFX) */
+/* Volume Slider Controller (Diperbaiki agar tidak kepotong) */
 .vol-control-wrap {
-  display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.03);
-  padding: 3px 8px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
+  display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.03);
+  padding: 3px 6px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
 }
-.vol-icon { font-size: 8px; color: var(--muted); }
-.vol-slider { width: 32px; accent-color: var(--red); vertical-align: middle; }
+.vol-icon { font-size: 7.5px; color: var(--muted); white-space: nowrap; }
+.vol-slider { width: 28px; accent-color: var(--red); vertical-align: middle; }
 
 /* Back to Top Floating Button */
 .back-to-top {
@@ -107,7 +105,6 @@ body.red-alert-mode {
 .back-to-top.visible { opacity: 1; pointer-events: auto; }
 .back-to-top:hover { background: var(--red); transform: translateY(-3px); }
 
-/* --- LANJUTAN KODE ASLI ANDA --- */
 #preloader {
     position: fixed; inset: 0; background: #020304; z-index: 99999;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -139,7 +136,7 @@ nav {
 }
 
 .nav-left { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.logo { font-size: 15px; letter-spacing: 2px; font-weight: bold; white-space: nowrap; user-select: none; }
+.logo { font-size: 14px; letter-spacing: 2px; font-weight: bold; white-space: nowrap; user-select: none; }
 .logo b { color: var(--red); }
 
 .in-dev-pill {
@@ -148,18 +145,18 @@ nav {
     padding: 2px 5px; border-radius: 2px; text-transform: uppercase; white-space: nowrap;
 }
 
-.links { display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; margin: 0 6px; }
+.links { display: flex; gap: 6px; align-items: center; flex-wrap: nowrap; margin: 0 4px; }
 .links a { 
-    color: #a0a5a8; text-decoration: none; font: 8.5px Arial, sans-serif; 
-    letter-spacing: 1px; transition: .3s; white-space: nowrap; padding: 4px 2px;
+    color: #a0a5a8; text-decoration: none; font: 8px Arial, sans-serif; 
+    letter-spacing: 0.8px; transition: .3s; white-space: nowrap; padding: 4px 2px;
 }
 .links a:hover { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
 
-.nav-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.nav-controls { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
 
 .ctrl-btn {
     background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
-    padding: 3px 6px; font: 7.5px Arial, sans-serif; letter-spacing: 1px; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap;
+    padding: 3px 5px; font: 7px Arial, sans-serif; letter-spacing: 0.5px; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap;
 }
 .ctrl-btn:hover { border-color: var(--red); color: #fff; }
 .ctrl-btn.active { border-color: var(--red); color: var(--red); background: rgba(181,30,30,0.1); }
@@ -543,14 +540,13 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 
 footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
 
-@media(max-width:1350px){
-    .links a { font-size: 8px; letter-spacing: 0.6px; }
-    .links { gap: 5px; margin: 0 4px; }
-    .vol-slider { width: 28px; }
-    .ctrl-btn { padding: 3px 5px; font-size: 7px; }
+@media(max-width:1400px){
+    .links a { font-size: 7.5px; letter-spacing: 0.4px; }
+    .links { gap: 4px; margin: 0 2px; }
+    .ctrl-btn { padding: 3px 4px; font-size: 6.5px; }
 }
 
-@media(max-width:1200px){
+@media(max-width:1250px){
     .links {
         display: none; position: absolute; top: 100%; left: 0; width: 100%;
         background: rgba(4, 6, 8, 0.98); border-bottom: 1px solid var(--red);
@@ -644,20 +640,20 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 
   <div class="nav-controls">
-    <button class="ctrl-btn sfx-hover" id="achievementBtn" onclick="openAchievementsModal()">[ 🏆 ACHIEVEMENTS ]</button>
+    <button class="ctrl-btn sfx-hover" id="achievementBtn" onclick="openAchievementsModal()">[ 🏆 TROPHIES ]</button>
     <button class="ctrl-btn sfx-hover" id="crtToggleBtn" onclick="toggleCrtEffect()">[ CRT: ON ]</button>
     <div class="audio-visualizer-mini" id="audioEqualizer">
         <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
     </div>
     <div class="vol-control-wrap" title="BGM Volume">
-        <span class="vol-icon">🎵 BGM</span>
+        <span class="vol-icon">🎵</span>
         <input type="range" class="vol-slider" id="volControlBgm" min="0" max="1" step="0.05" value="0.5" onchange="adjustBgmVolume(this.value)">
     </div>
     <div class="vol-control-wrap" title="SFX Volume">
-        <span class="vol-icon">🔊 SFX</span>
+        <span class="vol-icon">🔊</span>
         <input type="range" class="vol-slider" id="volControlSfx" min="0" max="1" step="0.05" value="0.7" onchange="adjustSfxVolume(this.value)">
     </div>
-    <button class="ctrl-btn sfx-hover" id="langToggleBtn" onclick="toggleLanguage()">[ ID | EN ]</button>
+    <button class="ctrl-btn sfx-hover" id="langToggleBtn" onclick="toggleLanguage()">[ ID|EN ]</button>
     <button class="ctrl-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()">[ SOUND: OFF ]</button>
   </div>
 </nav>
@@ -705,14 +701,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 <section id="synopsis" class="synopsis" data-observer-section>
   <div class="label" data-i18n="label_01">01 — SYNOPSIS</div>
   <h2 class="title" data-i18n="synopsis_title">The world has<br>fallen seven times.</h2>
-  <p class="text typewriter-text" id="synopsisParagraph" data-i18n="synopsis_text" data-raw-text="ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction. There is no ninth world waiting. Five strangers meet with no known connection to one another. Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.<br><br>The player is never given a single protagonist. All five characters are playable, and the story changes through actions, hesitation, courage, mistakes, death, and even choices that were never made.">
-    ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction.
-    There is no ninth world waiting. Five strangers meet with no known connection to one another.
-    Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.
-    <br><br>
-    The player is never given a single protagonist. All five characters are playable, and the story
-    changes through actions, hesitation, courage, mistakes, death, and even choices that were never made.
-  </p>
+  <p class="text typewriter-text" id="synopsisParagraph" data-i18n="synopsis_text" data-raw-text="ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction. There is no ninth world waiting. Five strangers meet with no known connection to one another. Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.<br><br>The player is never given a single protagonist. All five characters are playable, and the story changes through actions, hesitation, courage, mistakes, death, and even choices that were never made."></p>
   <div class="quote" data-i18n="synopsis_quote">“Every choice. Every life. Every ending.”</div>
 </section>
 
@@ -1419,13 +1408,12 @@ function playSynthBeep(freq, type, duration) {
     osc.stop(audioCtx.currentTime + duration);
 }
 
-// SFX Khusus Mesin Ketik (Typewriter Click Sound)
+// SFX Mesin Ketik (Typewriter Click Sound)
 function playTypewriterClick() {
     if (sfxVolume <= 0) return;
     if (audioCtx.state === 'suspended') { audioCtx.resume(); }
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
-    // Frekuensi acak kecil agar suara ketikan mekanik terdengar natural & bervariasi
     const randomFreq = 800 + Math.random() * 400;
     osc.type = 'triangle';
     osc.frequency.setValueAtTime(randomFreq, audioCtx.currentTime);
@@ -1534,8 +1522,8 @@ function triggerObserverGlitchMode() {
     }, 3000);
 }
 
-// Observer untuk Scroll Trigger Effect Typewriter dengan Sound Effect Ketikan Mesin Tik
-let synopsisTyped = false;
+// Typewriter Observer & Cleaner Function
+let isTypingActive = false;
 
 function initSynopsisTypewriterObserver() {
     const section = document.getElementById('synopsis');
@@ -1543,8 +1531,7 @@ function initSynopsisTypewriterObserver() {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Trigger ulang setiap kali user scroll masuk ke area synopsis
+            if (entry.isIntersecting && !isTypingActive) {
                 runSynopsisTypewriter();
             }
         });
@@ -1556,22 +1543,25 @@ function initSynopsisTypewriterObserver() {
 function runSynopsisTypewriter() {
     const el = document.getElementById('synopsisParagraph');
     if (!el) return;
-    const fullHtml = el.getAttribute('data-raw-text') || el.innerHTML;
+    
+    isTypingActive = true;
+    const fullHtml = el.getAttribute('data-raw-text') || "";
     el.innerHTML = "";
     
     let i = 0;
     function typeWriterStep() {
         if (i < fullHtml.length) {
-            // Tangani tag HTML agar tidak terpotong (misal <br><br>)
             if (fullHtml.substring(i, i+4) === '<br>') {
                 el.innerHTML += '<br>';
                 i += 4;
             } else {
                 el.innerHTML += fullHtml.charAt(i);
-                playTypewriterClick(); // Bunyikan suara mesin ketik tipis per karakter
+                playTypewriterClick();
                 i++;
             }
             setTimeout(typeWriterStep, 14);
+        } else {
+            isTypingActive = false;
         }
     }
     typeWriterStep();
@@ -1581,7 +1571,7 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         const loader = document.getElementById('preloader');
         loader.classList.add('fade-out');
-        initSynopsisTypewriterObserver(); // Inisialisasi observer efek ketikan saat discroll
+        initSynopsisTypewriterObserver();
     }, 1200);
     checkSavedQuizResult();
     initAshParticles();
