@@ -88,13 +88,13 @@ body.red-alert-mode {
 .audio-visualizer-mini.active .eq-bar:nth-child(3) { animation-delay: 0.3s; }
 @keyframes eqActive { 0% { height: 15%; } 100% { height: 95%; } }
 
-/* Volume Slider Controller */
+/* Volume Slider Controller (BGM & SFX) */
 .vol-control-wrap {
-  display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.03);
-  padding: 2px 5px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
+  display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.03);
+  padding: 3px 8px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
 }
 .vol-icon { font-size: 8px; color: var(--muted); }
-.vol-slider { width: 38px; accent-color: var(--red); vertical-align: middle; }
+.vol-slider { width: 32px; accent-color: var(--red); vertical-align: middle; }
 
 /* Back to Top Floating Button */
 .back-to-top {
@@ -546,7 +546,7 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
 @media(max-width:1350px){
     .links a { font-size: 8px; letter-spacing: 0.6px; }
     .links { gap: 5px; margin: 0 4px; }
-    .vol-slider { width: 32px; }
+    .vol-slider { width: 28px; }
     .ctrl-btn { padding: 3px 5px; font-size: 7px; }
 }
 
@@ -649,9 +649,13 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="audio-visualizer-mini" id="audioEqualizer">
         <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
     </div>
-    <div class="vol-control-wrap">
-        <span class="vol-icon">🔊</span>
-        <input type="range" class="vol-slider" id="volControl" min="0" max="1" step="0.05" value="0.5" onchange="adjustVolume(this.value)">
+    <div class="vol-control-wrap" title="BGM Volume">
+        <span class="vol-icon">🎵 BGM</span>
+        <input type="range" class="vol-slider" id="volControlBgm" min="0" max="1" step="0.05" value="0.5" onchange="adjustBgmVolume(this.value)">
+    </div>
+    <div class="vol-control-wrap" title="SFX Volume">
+        <span class="vol-icon">🔊 SFX</span>
+        <input type="range" class="vol-slider" id="volControlSfx" min="0" max="1" step="0.05" value="0.7" onchange="adjustSfxVolume(this.value)">
     </div>
     <button class="ctrl-btn sfx-hover" id="langToggleBtn" onclick="toggleLanguage()">[ ID | EN ]</button>
     <button class="ctrl-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()">[ SOUND: OFF ]</button>
@@ -698,10 +702,10 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </header>
 
-<section id="synopsis" class="synopsis">
+<section id="synopsis" class="synopsis" data-observer-section>
   <div class="label" data-i18n="label_01">01 — SYNOPSIS</div>
   <h2 class="title" data-i18n="synopsis_title">The world has<br>fallen seven times.</h2>
-  <p class="text typewriter-text" id="synopsisParagraph" data-i18n="synopsis_text">
+  <p class="text typewriter-text" id="synopsisParagraph" data-i18n="synopsis_text" data-raw-text="ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction. There is no ninth world waiting. Five strangers meet with no known connection to one another. Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.<br><br>The player is never given a single protagonist. All five characters are playable, and the story changes through actions, hesitation, courage, mistakes, death, and even choices that were never made.">
     ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction.
     There is no ninth world waiting. Five strangers meet with no known connection to one another.
     Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.
@@ -1394,18 +1398,43 @@ function playSirenSfx() {
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
+let sfxVolume = 0.7;
+
+function adjustSfxVolume(val) {
+    sfxVolume = parseFloat(val);
+}
+
 function playSynthBeep(freq, type, duration) {
+    if (sfxVolume <= 0) return;
     if (audioCtx.state === 'suspended') { audioCtx.resume(); }
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.type = type;
     osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.02 * sfxVolume, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
     osc.connect(gain);
     gain.connect(audioCtx.destination);
     osc.start();
     osc.stop(audioCtx.currentTime + duration);
+}
+
+// SFX Khusus Mesin Ketik (Typewriter Click Sound)
+function playTypewriterClick() {
+    if (sfxVolume <= 0) return;
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    // Frekuensi acak kecil agar suara ketikan mekanik terdengar natural & bervariasi
+    const randomFreq = 800 + Math.random() * 400;
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(randomFreq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.015 * sfxVolume, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.04);
 }
 
 function playGlitchSfx() {
@@ -1505,27 +1534,54 @@ function triggerObserverGlitchMode() {
     }, 3000);
 }
 
-function initTypewriterEffect() {
+// Observer untuk Scroll Trigger Effect Typewriter dengan Sound Effect Ketikan Mesin Tik
+let synopsisTyped = false;
+
+function initSynopsisTypewriterObserver() {
+    const section = document.getElementById('synopsis');
+    if (!section) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Trigger ulang setiap kali user scroll masuk ke area synopsis
+                runSynopsisTypewriter();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(section);
+}
+
+function runSynopsisTypewriter() {
     const el = document.getElementById('synopsisParagraph');
-    if(!el) return;
-    const text = el.innerHTML;
+    if (!el) return;
+    const fullHtml = el.getAttribute('data-raw-text') || el.innerHTML;
     el.innerHTML = "";
+    
     let i = 0;
-    function type() {
-        if (i < text.length) {
-            el.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, 12);
+    function typeWriterStep() {
+        if (i < fullHtml.length) {
+            // Tangani tag HTML agar tidak terpotong (misal <br><br>)
+            if (fullHtml.substring(i, i+4) === '<br>') {
+                el.innerHTML += '<br>';
+                i += 4;
+            } else {
+                el.innerHTML += fullHtml.charAt(i);
+                playTypewriterClick(); // Bunyikan suara mesin ketik tipis per karakter
+                i++;
+            }
+            setTimeout(typeWriterStep, 14);
         }
     }
-    type();
+    typeWriterStep();
 }
 
 window.addEventListener('load', () => {
     setTimeout(() => {
         const loader = document.getElementById('preloader');
         loader.classList.add('fade-out');
-        initTypewriterEffect();
+        initSynopsisTypewriterObserver(); // Inisialisasi observer efek ketikan saat discroll
     }, 1200);
     checkSavedQuizResult();
     initAshParticles();
@@ -1835,6 +1891,9 @@ function toggleLanguage() {
         const key = el.getAttribute('data-i18n');
         if (translations[currentLang][key]) {
             el.innerHTML = translations[currentLang][key];
+            if (key === 'synopsis_text') {
+                el.setAttribute('data-raw-text', translations[currentLang][key]);
+            }
         }
     });
 
@@ -2082,8 +2141,8 @@ const eqBox = document.getElementById('audioEqualizer');
 
 bgm.volume = 0.5;
 
-function adjustVolume(val) {
-    bgm.volume = val;
+function adjustBgmVolume(val) {
+    bgm.volume = parseFloat(val);
 }
 
 function toggleAudio() {
