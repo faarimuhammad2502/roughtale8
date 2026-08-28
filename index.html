@@ -44,7 +44,6 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
 }
 .crt-overlay.disabled { opacity: 0 !important; }
 
-/* Achievement Toast Notification */
 #achievementToast {
   position: fixed; bottom: 30px; left: 30px; z-index: 9999;
   background: rgba(8, 12, 16, 0.95); border: 1px solid var(--red);
@@ -57,7 +56,6 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
 .achieve-title { font: 9px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold; }
 .achieve-desc { font-size: 13px; color: #fff; font-family: Georgia, serif; }
 
-/* Live Ticker Bar */
 .live-ticker-bar {
   position: fixed; top: 0; left: 0; width: 100%; background: #000; border-bottom: 1px solid var(--red);
   color: var(--red); font: 9px Monospace, sans-serif; letter-spacing: 2px; z-index: 1001;
@@ -66,7 +64,6 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
 .ticker-text { display: inline-block; animation: marqueeTicker 30s linear infinite; }
 @keyframes marqueeTicker { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
-/* Red Alert Mode */
 body.red-alert-mode {
   filter: sepia(0.6) hue-rotate(-50deg) saturate(3) contrast(1.2);
   animation: redAlertPulse 3s infinite ease-in-out;
@@ -76,7 +73,6 @@ body.red-alert-mode {
   50% { background: #1a0303; }
 }
 
-/* Audio Visualizer Mini */
 .audio-visualizer-mini {
   display: flex; align-items: flex-end; gap: 2px; height: 16px; width: 18px; padding: 0 1px;
 }
@@ -86,7 +82,6 @@ body.red-alert-mode {
 .audio-visualizer-mini.active .eq-bar:nth-child(3) { animation-delay: 0.3s; }
 @keyframes eqActive { 0% { height: 15%; } 100% { height: 95%; } }
 
-/* Volume Slider Controller (Compact & Fixed) */
 .vol-control-wrap {
   display: flex; align-items: center; gap: 3px; background: rgba(255,255,255,0.03);
   padding: 2px 5px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
@@ -94,7 +89,6 @@ body.red-alert-mode {
 .vol-icon { font-size: 7px; color: var(--muted); white-space: nowrap; }
 .vol-slider { width: 22px; accent-color: var(--red); vertical-align: middle; }
 
-/* Back to Top Floating Button */
 .back-to-top {
   position: fixed; bottom: 30px; right: 30px; z-index: 900;
   background: rgba(8, 11, 14, 0.9); border: 1px solid var(--red); color: #fff;
@@ -641,6 +635,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 
   <div class="nav-controls">
     <button class="ctrl-btn sfx-hover" id="achievementBtn" onclick="openAchievementsModal()">[ 🏆 ]</button>
+    <button class="ctrl-btn sfx-hover" id="jukeboxBtn" onclick="openJukeboxModal()">[ 📻 OST ]</button>
     <button class="ctrl-btn sfx-hover" id="crtToggleBtn" onclick="toggleCrtEffect()">[ CRT ]</button>
     <div class="audio-visualizer-mini" id="audioEqualizer">
         <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
@@ -984,7 +979,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 
 <section class="psychology">
   <div>
-    <div class="label" data-i18n="label_05">05 — PSYCHOLOGY</div>
+    <div class="label" data-i18n="label_05">05 — PSIKOLOGI</div>
     <div class="big" data-i18n="psy_big">The game watches<br><span>what you do.</span><br>Not what you say.</div>
   </div>
 
@@ -1071,9 +1066,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </p>
 
   <div class="ending-list">
-    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 0)">
       <div class="ending-header">
-        <div class="ending-name"><span data-i18n="end_name_1">THE ENDING</span> <span class="lock-tag" data-i18n="tag_locked">[ LOCKED ]</span></div>
+        <div class="ending-name"><span data-i18n="end_name_1">THE ENDING</span> <span class="lock-tag" id="lockTag0" data-i18n="tag_locked">[ LOCKED ]</span></div>
         <div class="ending-type" data-i18n="type_bad">BAD ENDING</div>
       </div>
       <div class="ending-detail" data-i18n="end_detail_1">
@@ -1081,9 +1076,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
       </div>
     </div>
 
-    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 1)">
       <div class="ending-header">
-        <div class="ending-name"><span data-i18n="end_name_2">THE END OF THE DAY</span> <span class="lock-tag" data-i18n="tag_locked">[ LOCKED ]</span></div>
+        <div class="ending-name"><span data-i18n="end_name_2">THE END OF THE DAY</span> <span class="lock-tag" id="lockTag1" data-i18n="tag_locked">[ LOCKED ]</span></div>
         <div class="ending-type" data-i18n="type_bad">BAD ENDING</div>
       </div>
       <div class="ending-detail" data-i18n="end_detail_2">
@@ -1091,9 +1086,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
       </div>
     </div>
 
-    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 2)">
       <div class="ending-header">
-        <div class="ending-name"><span data-i18n="end_name_3">THE FINAL CURSE</span> <span class="lock-tag" data-i18n="tag_locked">[ LOCKED ]</span></div>
+        <div class="ending-name"><span data-i18n="end_name_3">THE FINAL CURSE</span> <span class="lock-tag" id="lockTag2" data-i18n="tag_locked">[ LOCKED ]</span></div>
         <div class="ending-type" data-i18n="type_bad">BAD ENDING</div>
       </div>
       <div class="ending-detail" data-i18n="end_detail_3">
@@ -1101,9 +1096,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
       </div>
     </div>
 
-    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 3)">
       <div class="ending-header">
-        <div class="ending-name"><span data-i18n="end_name_4">THE TRUE END</span> <span class="lock-tag" data-i18n="tag_unlocked">[ UNLOCKED ]</span></div>
+        <div class="ending-name"><span data-i18n="end_name_4">THE TRUE END</span> <span class="lock-tag" id="lockTag3" data-i18n="tag_unlocked">[ UNLOCKED ]</span></div>
         <div class="ending-type" data-i18n="type_norm_bad">NORMAL BAD ENDING</div>
       </div>
       <div class="ending-detail" data-i18n="end_detail_4">
@@ -1111,9 +1106,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
       </div>
     </div>
 
-    <div class="ending sfx-click" onclick="toggleEndingDetail(this)">
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 4)">
       <div class="ending-header">
-        <div class="ending-name"><span data-i18n="end_name_5">THE LAST</span> <span class="lock-tag" data-i18n="tag_locked">[ LOCKED ]</span></div>
+        <div class="ending-name"><span data-i18n="end_name_5">THE LAST</span> <span class="lock-tag" id="lockTag4" data-i18n="tag_locked">[ LOCKED ]</span></div>
         <div class="ending-type" data-i18n="type_vbad">VERY BAD ENDING</div>
       </div>
       <div class="ending-detail" data-i18n="end_detail_5">
@@ -1121,9 +1116,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
       </div>
     </div>
 
-    <div class="ending secret sfx-click" onclick="toggleEndingDetail(this)">
+    <div class="ending secret sfx-click" onclick="toggleEndingDetail(this, 5)">
       <div class="ending-header">
-        <div class="ending-name"><span data-i18n="end_name_6">THE FINAL SECRET</span> <span class="lock-tag red" data-i18n="tag_canon">[ CANON ARCHIVE ]</span></div>
+        <div class="ending-name"><span data-i18n="end_name_6">THE FINAL SECRET</span> <span class="lock-tag red" id="lockTag5" data-i18n="tag_canon">[ CANON ARCHIVE ]</span></div>
         <div class="ending-type secret-type" data-i18n="type_canon">CANON</div>
       </div>
       <div class="ending-detail red-text" data-i18n="end_detail_6">
@@ -1258,8 +1253,31 @@ footer{flex-direction:column;gap:12px;text-align:center}
 </footer>
 
 <script>
-// ACHIEVEMENTS SYSTEM STORAGE
+// ACHIEVEMENTS & ENDINGS SAVE STATE (LocalStorage)
 let unlockedAchievements = JSON.parse(localStorage.getItem('r8_achievements') || '[]');
+let unlockedEndings = JSON.parse(localStorage.getItem('r8_endings') || '[3, 5]'); // Default True End & Secret unlocked
+
+function saveEndingProgress(index) {
+    if (!unlockedEndings.includes(index)) {
+        unlockedEndings.push(index);
+        localStorage.setItem('r8_endings', JSON.stringify(unlockedEndings));
+    }
+}
+
+function updateEndingTagsUI() {
+    for (let i = 0; i <= 5; i++) {
+        const tag = document.getElementById(`lockTag${i}`);
+        if (tag) {
+            if (unlockedEndings.includes(i)) {
+                tag.innerText = "[ UNLOCKED ]";
+                tag.style.color = "#22c55e";
+            } else {
+                tag.innerText = "[ LOCKED ]";
+                tag.style.color = "#555";
+            }
+        }
+    }
+}
 
 function triggerAchievement(title) {
     if (!unlockedAchievements.includes(title)) {
@@ -1300,9 +1318,27 @@ function openAchievementsModal() {
     });
     achListHtml += `</div>`;
 
-    document.getElementById("pCategory").innerText = "CODEX ACHIEVEMENTS";
-    document.getElementById("pTitle").innerText = "SURVIVOR TROPHIES";
+    document.getElementById("pCategory").innerText = "CODEX ACHIEVEMENTS & SAVE DATA";
+    document.getElementById("pTitle").innerText = "SURVIVOR TROPHIES & SLOT 1";
     document.getElementById("pDesc").innerHTML = achListHtml;
+    document.getElementById("pActionBtn").style.display = "none";
+    modal.classList.add("show");
+}
+
+// JUKEBOX / OST PLAYER MODAL
+function openJukeboxModal() {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    let jukeboxHtml = `<div style="font:9px Arial,sans-serif; color:#eab308; letter-spacing:2px; margin-bottom:12px;">WORLD VIII AMBIENT JUKEBOX PLAYER</div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+        <button class="btn sfx-click" onclick="playAudioLog('none', [220, 330, 440, 550])">🎵 Play Sector 8 Ambient Track</button>
+        <button class="btn sfx-click" onclick="playAudioLog('none', [150, 280, 190, 320])">🔊 Play Anomaly Frequency 08</button>
+        <button class="btn sfx-click" onclick="playAudioLog('none', [400, 500, 600, 800])">📻 Play Observer Broadcast</button>
+    </div>`;
+
+    document.getElementById("pCategory").innerText = "AUDIO ARCHIVE";
+    document.getElementById("pTitle").innerText = "JUKEBOX / OST SELECTOR";
+    document.getElementById("pDesc").innerHTML = jukeboxHtml;
     document.getElementById("pActionBtn").style.display = "none";
     modal.classList.add("show");
 }
@@ -1311,11 +1347,6 @@ function toggleCrtEffect() {
     const crt = document.getElementById('crtOverlay');
     const btn = document.getElementById('crtToggleBtn');
     crt.classList.toggle('disabled');
-    if (crt.classList.contains('disabled')) {
-        btn.innerText = "[ CRT ]";
-    } else {
-        btn.innerText = "[ CRT ]";
-    }
 }
 
 function openGalleryLightbox(title, imgUrl, desc) {
@@ -1386,7 +1417,6 @@ function playSirenSfx() {
 }
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
 let sfxVolume = 0.7;
 
 function adjustSfxVolume(val) {
@@ -1408,7 +1438,7 @@ function playSynthBeep(freq, type, duration) {
     osc.stop(audioCtx.currentTime + duration);
 }
 
-// SFX Mesin Ketik (Typewriter Click Sound)
+// Typewriter Mechanical Click Sound
 function playTypewriterClick() {
     if (sfxVolume <= 0) return;
     if (audioCtx.state === 'suspended') { audioCtx.resume(); }
@@ -1438,18 +1468,23 @@ function playHeartbeatSfx() {
 
 function playAudioLog(cardId, freqSeq) {
     playSynthBeep(300, 'square', 0.1);
-    document.querySelectorAll('.audio-log-card').forEach(c => c.classList.remove('playing'));
-    const card = document.getElementById(cardId);
-    card.classList.add('playing');
+    if(cardId !== 'none') {
+        document.querySelectorAll('.audio-log-card').forEach(c => c.classList.remove('playing'));
+        const card = document.getElementById(cardId);
+        if(card) card.classList.add('playing');
+    }
 
     freqSeq.forEach((f, idx) => {
         setTimeout(() => { playSynthBeep(f, 'sine', 0.25); }, idx * 250);
     });
 
-    setTimeout(() => { 
-        card.classList.remove('playing'); 
-        triggerAchievement("INTERCEPTED TRANSMISSION LOG");
-    }, freqSeq.length * 250 + 300);
+    if(cardId !== 'none') {
+        setTimeout(() => { 
+            const card = document.getElementById(cardId);
+            if(card) card.classList.remove('playing'); 
+            triggerAchievement("INTERCEPTED TRANSMISSION LOG");
+        }, freqSeq.length * 250 + 300);
+    }
 }
 
 let hackSequence = [];
@@ -1572,6 +1607,7 @@ window.addEventListener('load', () => {
         const loader = document.getElementById('preloader');
         loader.classList.add('fade-out');
         initSynopsisTypewriterObserver();
+        updateEndingTagsUI();
     }, 1200);
     checkSavedQuizResult();
     initAshParticles();
@@ -2152,8 +2188,11 @@ function toggleAudio() {
     }
 }
 
-function toggleEndingDetail(element) {
+function toggleEndingDetail(element, index) {
     playSynthBeep(350, 'triangle', 0.08);
+    saveEndingProgress(index);
+    updateEndingTagsUI();
+
     const isActive = element.classList.contains("active");
     document.querySelectorAll('.ending').forEach(el => el.classList.remove('active'));
     if (!isActive) {
