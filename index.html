@@ -100,13 +100,13 @@ background-image:repeating-radial-gradient(circle at 0 0,#fff 0,#fff 1px,transpa
 
 nav {
     position: fixed; top: 22px; left: 0; width: 100%; z-index: 1000;
-    padding: 12px 3%; display: flex; justify-content: space-between; align-items: center;
-    background: rgba(2, 3, 4, 0.92); backdrop-filter: blur(12px);
+    padding: 10px 2%; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(2, 3, 4, 0.95); backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.nav-left { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.logo { font-size: 16px; letter-spacing: 2px; font-weight: bold; white-space: nowrap; user-select: none; }
+.nav-left { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.logo { font-size: 15px; letter-spacing: 2px; font-weight: bold; white-space: nowrap; user-select: none; }
 .logo b { color: var(--red); }
 
 .in-dev-pill {
@@ -115,25 +115,25 @@ nav {
     padding: 2px 5px; border-radius: 2px; text-transform: uppercase; white-space: nowrap;
 }
 
-.links { display: flex; gap: 10px; align-items: center; flex-wrap: nowrap; margin: 0 10px; }
+.links { display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; margin: 0 6px; }
 .links a { 
-    color: #a0a5a8; text-decoration: none; font: 9px Arial, sans-serif; 
-    letter-spacing: 1.2px; transition: .3s; white-space: nowrap; padding: 4px 2px;
+    color: #a0a5a8; text-decoration: none; font: 8.5px Arial, sans-serif; 
+    letter-spacing: 1px; transition: .3s; white-space: nowrap; padding: 4px 2px;
 }
 .links a:hover { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
 
-.nav-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.nav-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
 .vol-control-wrap {
-    display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.03);
-    padding: 3px 6px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
+    display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.03);
+    padding: 2px 5px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
 }
-.vol-icon { font-size: 9px; color: var(--muted); }
-.vol-slider { width: 50px; accent-color: var(--red); vertical-align: middle; }
+.vol-icon { font-size: 8px; color: var(--muted); }
+.vol-slider { width: 38px; accent-color: var(--red); vertical-align: middle; }
 
 .ctrl-btn {
     background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
-    padding: 4px 8px; font: 8px Arial, sans-serif; letter-spacing: 1.5px; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap;
+    padding: 3px 6px; font: 7.5px Arial, sans-serif; letter-spacing: 1px; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap;
 }
 .ctrl-btn:hover { border-color: var(--red); color: #fff; }
 .ctrl-btn.active { border-color: var(--red); color: var(--red); background: rgba(181,30,30,0.1); }
@@ -527,13 +527,14 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 
 footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px solid var(--line);color:#555;font:9px Arial,sans-serif;letter-spacing:2px}
 
-@media(max-width:1300px){
-    .links a { font-size: 8px; letter-spacing: 0.8px; }
-    .links { gap: 6px; margin: 0 4px; }
-    .vol-slider { width: 40px; }
+@media(max-width:1350px){
+    .links a { font-size: 8px; letter-spacing: 0.6px; }
+    .links { gap: 5px; margin: 0 4px; }
+    .vol-slider { width: 32px; }
+    .ctrl-btn { padding: 3px 5px; font-size: 7px; }
 }
 
-@media(max-width:1100px){
+@media(max-width:1200px){
     .links {
         display: none; position: absolute; top: 100%; left: 0; width: 100%;
         background: rgba(4, 6, 8, 0.98); border-bottom: 1px solid var(--red);
@@ -542,6 +543,7 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
     .links.open { display: flex; }
     .links a { font-size: 11px; letter-spacing: 2px; }
     .mobile-toggle { display: block; }
+    .vol-control-wrap { display: flex; }
 }
 
 @media(max-width:1050px){
@@ -559,7 +561,7 @@ footer{padding:30px 7%;display:flex;justify-content:space-between;border-top:1px
 }
 
 @media(max-width:768px){
-nav{padding:12px 15px}
+nav{padding:10px 15px}
 section{padding:75px 5%}
 .hero{padding:90px 4% 40px}
 .hero h1{letter-spacing:3px}.tag{letter-spacing:3px;font-size:11px}
@@ -1617,7 +1619,7 @@ const worldDataDict = {
     },
     ID: {
         'World1': { category: "CATATAN SEJARAH 01", title: "DUNIA PERTAMA — AWAL MULA", desc: "STATUS: TERHAPUS / RUNTUH\n\nEra abu yang terlupakan. Siklus awal di mana manusia pertama kali mencoba mengubah takdir." },
-        'World2': { category: "CATATAN SEJARAH 02", title: "DUNIA KEDUA — BAYANGAN", desc: "STATUS: RUNTUH\n\nDunia yang ditelan oleh bayangan abadi dan harapan yang sirna." },
+        'World2': { category: "CATATAN SEJARAH 02", title: "DUNIA KEDELAPAN — BAYANGAN", desc: "STATUS: RUNTUH\n\nDunia yang ditelan oleh bayangan abadi dan harapan yang sirna." },
         'World3': { category: "CATATAN SEJARAH 03", title: "DUNIA KETIGA — KEBISUAN", desc: "STATUS: RUNTUH\n\nEra keheningan di mana kata-kata kehilangan maknanya." },
         'World4': { category: "CATATAN SEJARAH 04", title: "DUNIA KEEMPAT — GEMA", desc: "STATUS: RUNTUH\n\nIngatan samar yang bergema di balik reruntuhan bangunan." },
         'World5': { category: "CATATAN SEJARAH 05", title: "DUNIA KELIMA — KETANDUSAN", desc: "STATUS: RUNTUH\n\nDaratan tandus yang tersisa setelah kehancuran besar." },
