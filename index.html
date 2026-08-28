@@ -78,7 +78,7 @@ body.red-alert-mode {
 
 /* Audio Visualizer Mini */
 .audio-visualizer-mini {
-  display: flex; align-items: flex-end; gap: 2px; height: 16px; width: 20px; padding: 0 1px;
+  display: flex; align-items: flex-end; gap: 2px; height: 16px; width: 18px; padding: 0 1px;
 }
 .eq-bar { width: 3px; background: var(--red); height: 20%; border-radius: 1px; transition: height 0.15s ease; }
 .audio-visualizer-mini.active .eq-bar { animation: eqActive 0.5s infinite alternate ease-in-out; }
@@ -86,13 +86,13 @@ body.red-alert-mode {
 .audio-visualizer-mini.active .eq-bar:nth-child(3) { animation-delay: 0.3s; }
 @keyframes eqActive { 0% { height: 15%; } 100% { height: 95%; } }
 
-/* Volume Slider Controller (Diperbaiki agar tidak kepotong) */
+/* Volume Slider Controller (Compact & Fixed) */
 .vol-control-wrap {
-  display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.03);
-  padding: 3px 6px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
+  display: flex; align-items: center; gap: 3px; background: rgba(255,255,255,0.03);
+  padding: 2px 5px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
 }
-.vol-icon { font-size: 7.5px; color: var(--muted); white-space: nowrap; }
-.vol-slider { width: 28px; accent-color: var(--red); vertical-align: middle; }
+.vol-icon { font-size: 7px; color: var(--muted); white-space: nowrap; }
+.vol-slider { width: 22px; accent-color: var(--red); vertical-align: middle; }
 
 /* Back to Top Floating Button */
 .back-to-top {
@@ -152,7 +152,7 @@ nav {
 }
 .links a:hover { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
 
-.nav-controls { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.nav-controls { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
 
 .ctrl-btn {
     background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
@@ -640,8 +640,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 
   <div class="nav-controls">
-    <button class="ctrl-btn sfx-hover" id="achievementBtn" onclick="openAchievementsModal()">[ 🏆 TROPHIES ]</button>
-    <button class="ctrl-btn sfx-hover" id="crtToggleBtn" onclick="toggleCrtEffect()">[ CRT: ON ]</button>
+    <button class="ctrl-btn sfx-hover" id="achievementBtn" onclick="openAchievementsModal()">[ 🏆 ]</button>
+    <button class="ctrl-btn sfx-hover" id="crtToggleBtn" onclick="toggleCrtEffect()">[ CRT ]</button>
     <div class="audio-visualizer-mini" id="audioEqualizer">
         <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
     </div>
@@ -653,8 +653,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <span class="vol-icon">🔊</span>
         <input type="range" class="vol-slider" id="volControlSfx" min="0" max="1" step="0.05" value="0.7" onchange="adjustSfxVolume(this.value)">
     </div>
-    <button class="ctrl-btn sfx-hover" id="langToggleBtn" onclick="toggleLanguage()">[ ID|EN ]</button>
-    <button class="ctrl-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()">[ SOUND: OFF ]</button>
+    <button class="ctrl-btn sfx-hover" id="langToggleBtn" onclick="toggleLanguage()">[ ID/EN ]</button>
+    <button class="ctrl-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()">[ 🔊 ]</button>
   </div>
 </nav>
 
@@ -1312,9 +1312,9 @@ function toggleCrtEffect() {
     const btn = document.getElementById('crtToggleBtn');
     crt.classList.toggle('disabled');
     if (crt.classList.contains('disabled')) {
-        btn.innerText = "[ CRT: OFF ]";
+        btn.innerText = "[ CRT ]";
     } else {
-        btn.innerText = "[ CRT: ON ]";
+        btn.innerText = "[ CRT ]";
     }
 }
 
@@ -2138,14 +2138,14 @@ function adjustBgmVolume(val) {
 function toggleAudio() {
     if (!isAudioPlaying) {
         bgm.play().then(() => {
-            btn.innerText = "[ SOUND: ON ]";
+            btn.innerText = "[ 🔊 ]";
             btn.classList.add("active");
             eqBox.classList.add("active");
             isAudioPlaying = true;
         }).catch(e => console.log("Play blocked:", e));
     } else {
         bgm.pause();
-        btn.innerText = "[ SOUND: OFF ]";
+        btn.innerText = "[ 🔊 ]";
         btn.classList.remove("active");
         eqBox.classList.remove("active");
         isAudioPlaying = false;
