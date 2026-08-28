@@ -1294,15 +1294,16 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <div class="text" style="margin:auto" data-i18n="teaser_sub">ROUGHTALE8 — OFFICIAL TRAILER FEATURE</div>
 </section>
 
-<!-- MODAL PEMUTAR VIDEO YANG DIPERBAIKI -->
+<!-- MODAL PEMUTAR VIDEO DENGAN 3 PILIHAN TRAILER -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
         <div class="video-container">
-            <!-- Pilihan Trailer Manual agar 100% video tampil tanpa bug -->
-            <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 5px;">
+            <!-- 3 Pilihan Trailer Manual -->
+            <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 5px; flex-wrap: wrap;">
                 <button class="ctrl-btn sfx-click active" id="btnTrailer1" onclick="switchTrailer('trailer.mp4', this)">[ TRAILER 01 ]</button>
                 <button class="ctrl-btn sfx-click" id="btnTrailer2" onclick="switchTrailer('trailer2.mp4', this)">[ TRAILER 02 ]</button>
+                <button class="ctrl-btn sfx-click" id="btnTrailer3" onclick="switchTrailer('trailer3.mp4', this)">[ TRAILER 03 ]</button>
             </div>
             
             <video id="mainTrailerVideo" controls playsinline webkit-playsinline preload="auto">
@@ -2491,7 +2492,7 @@ function playVoiceLineSample() {
     });
 }
 
-// Fungsi Pilihan Trailer Manual yang Stabil & Anti Layar Hitam
+// Fungsi Pilihan Trailer Manual untuk 3 Video (`trailer.mp4`, `trailer2.mp4`, `trailer3.mp4`)
 function switchTrailer(filename, btnElement) {
     playGlitchSfx();
     document.querySelectorAll('.video-container .ctrl-btn').forEach(b => b.classList.remove('active'));
@@ -2530,6 +2531,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.getElementById("btnTrailer1").classList.add("active");
         document.getElementById("btnTrailer2").classList.remove("active");
+        document.getElementById("btnTrailer3").classList.remove("active");
 
         videoSource.src = "trailer.mp4";
         videoPlayer.load();
