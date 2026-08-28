@@ -6,14 +6,12 @@
 <title>ROUGHTALE8 — LIFE IS SIMPLE (IN DEVELOPMENT)</title>
 <meta name="description" content="ROUGHTALE8 — Created by Muhammad Faari Akbar. Every choice. Every life. Every ending. Game currently in development.">
 
-<!-- OPEN GRAPH (OG) META TAGS -->
 <meta property="og:title" content="ROUGHTALE8 — LIFE IS SIMPLE (IN DEVELOPMENT)">
 <meta property="og:description" content="Seven worlds have already fallen. This is the eighth world. Every choice. Every life. Every ending. Created by Muhammad Faari Akbar. Game currently in development.">
 <meta property="og:image" content="cover-headline.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- LOGO TAB BROWSER (SVG FAVICON - R8) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23050708'/><rect x='3' y='3' width='94' height='94' rx='15' fill='none' stroke='%23b51e1e' stroke-width='6'/><text x='50%' y='68%' font-family='Georgia,Arial,sans-serif' font-weight='bold' font-size='50' fill='%23ffffff' text-anchor='middle'>R<tspan fill='%23b51e1e'>8</tspan></text></svg>">
 
 <style>
@@ -123,6 +121,15 @@ nav {
 .links a:hover { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
 
 .nav-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+
+.audio-visualizer-mini {
+    display: flex; align-items: flex-end; gap: 2px; height: 16px; width: 24px; padding: 0 2px;
+}
+.eq-bar { width: 4px; background: var(--red); height: 20%; border-radius: 1px; transition: height 0.15s ease; }
+.audio-visualizer-mini.active .eq-bar { animation: eqActive 0.5s infinite alternate ease-in-out; }
+.audio-visualizer-mini.active .eq-bar:nth-child(2) { animation-delay: 0.15s; }
+.audio-visualizer-mini.active .eq-bar:nth-child(3) { animation-delay: 0.3s; }
+@keyframes eqActive { 0% { height: 15%; } 100% { height: 95%; } }
 
 .vol-control-wrap {
     display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.03);
@@ -630,6 +637,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <div class="nav-controls">
     <button class="ctrl-btn sfx-hover" id="achievementBtn" onclick="openAchievementsModal()">[ 🏆 ACHIEVEMENTS ]</button>
     <button class="ctrl-btn sfx-hover" id="crtToggleBtn" onclick="toggleCrtEffect()">[ CRT: ON ]</button>
+    <div class="audio-visualizer-mini" id="audioEqualizer">
+        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+    </div>
     <div class="vol-control-wrap">
         <span class="vol-icon">🔊</span>
         <input type="range" class="vol-slider" id="volControl" min="0" max="1" step="0.05" value="0.5" onchange="adjustVolume(this.value)">
@@ -682,7 +692,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 <section id="synopsis" class="synopsis">
   <div class="label" data-i18n="label_01">01 — SYNOPSIS</div>
   <h2 class="title" data-i18n="synopsis_title">The world has<br>fallen seven times.</h2>
-  <p class="text" data-i18n="synopsis_text">
+  <p class="text typewriter-text" id="synopsisParagraph" data-i18n="synopsis_text">
     ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction.
     There is no ninth world waiting. Five strangers meet with no known connection to one another.
     Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.
@@ -790,7 +800,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <button class="inv-filter-btn sfx-click" onclick="filterInventory('data')">[ DATA DRIVES ]</button>
     </div>
     <div class="inv-progress-box">
-        COLLECTION: <b>4 / 8 DECRYPTED (50%)</b>
+        COLLECTION: <b id="invCountText">4 / 8 DECRYPTED (50%)</b>
     </div>
   </div>
 
@@ -857,7 +867,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- MAP SECTION -->
 <section id="map" class="map-section">
   <div class="label" data-i18n="label_02_5">02.5 — WORLD VIII MAP ARCHIVE</div>
   <h2 class="title" data-i18n="map_title">World VIII Tactical Map<br>& Region Diagnostics.</h2>
@@ -1188,7 +1197,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
-<!-- TEASER FEATURE SECTION (COMBINED PLAYLIST) -->
 <section class="trailer">
   <div class="label" data-i18n="label_10">10 — OFFICIAL TEASERS</div>
   <h2 class="title" data-i18n="teaser_title">You have seen<br>nothing yet.</h2>
@@ -1201,7 +1209,6 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <div class="text" style="margin:auto" data-i18n="teaser_sub">ROUGHTALE8 — CONTINUOUS OFFICIAL TRAILER FEATURE</div>
 </section>
 
-<!-- MODAL TRAILER (SINGLE PLAYER WITH CONTINUOUS TRANSITION) -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
@@ -1268,7 +1275,7 @@ function triggerAchievement(title) {
 function openAchievementsModal() {
     playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
-    const totalAch = 5;
+    const totalAch = 6; // Ditambah easter egg konami
     const currentCount = unlockedAchievements.length;
     
     let achListHtml = `<div style="margin-bottom:15px; color:#eab308; font:9px Arial,sans-serif; letter-spacing:2px;">UNLOCKED: ${currentCount} / ${totalAch} (${Math.round((currentCount/totalAch)*100)}%)</div><div style="display:flex; flex-direction:column; gap:8px;">`;
@@ -1278,7 +1285,8 @@ function openAchievementsModal() {
         "TERMINAL SECURITY BYPASSED",
         "INTERCEPTED TRANSMISSION LOG",
         "SECRET CIPHER UNLOCKED",
-        "JOINED THE RESISTANCE COMMUNITY"
+        "JOINED THE RESISTANCE COMMUNITY",
+        "OBSERVER GLITCH UNLOCKED (KONAMI CODE)"
     ];
 
     allAchDefs.forEach(ach => {
@@ -1335,13 +1343,16 @@ function filterInventory(category) {
     event.target.classList.add('active');
 
     const slots = document.querySelectorAll('.inv-slot');
+    let visibleCount = 0;
     slots.forEach(slot => {
         if (category === 'all' || slot.getAttribute('data-cat') === category) {
             slot.style.display = 'flex';
+            visibleCount++;
         } else {
             slot.style.display = 'none';
         }
     });
+    document.getElementById('invCountText').innerText = `${visibleCount} / 8 ITEMS`;
 }
 
 let logoClickCount = 0;
@@ -1460,10 +1471,54 @@ document.querySelectorAll('.sfx-click').forEach(el => {
     el.addEventListener('click', () => playSynthBeep(250, 'square', 0.06));
 });
 
+// KONAMI CODE EASTER EGG LISTENER
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiIndex = 0;
+
+window.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+            triggerObserverGlitchMode();
+            konamiIndex = 0;
+        }
+    } else {
+        konamiIndex = 0;
+    }
+});
+
+function triggerObserverGlitchMode() {
+    playSirenSfx();
+    triggerAchievement("OBSERVER GLITCH UNLOCKED (KONAMI CODE)");
+    document.body.style.filter = "invert(1) hue-rotate(180deg)";
+    setTimeout(() => {
+        document.body.style.filter = "none";
+        alert("OBSERVER OVERRIDE: Hidden timeline frequency synchronization complete.");
+    }, 3000);
+}
+
+// TYPEWRITER EFFECT FOR SYNOPSIS
+function initTypewriterEffect() {
+    const el = document.getElementById('synopsisParagraph');
+    if(!el) return;
+    const text = el.innerHTML;
+    el.innerHTML = "";
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            el.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, 12);
+        }
+    }
+    type();
+}
+
 window.addEventListener('load', () => {
     setTimeout(() => {
         const loader = document.getElementById('preloader');
         loader.classList.add('fade-out');
+        initTypewriterEffect();
     }, 1200);
     checkSavedQuizResult();
     initAshParticles();
@@ -2016,6 +2071,7 @@ let isAudioPlaying = false;
 let wasBgmPlaying = false;
 const bgm = document.getElementById('bgmAudio');
 const btn = document.getElementById('audioToggleBtn');
+const eqBox = document.getElementById('audioEqualizer');
 
 bgm.volume = 0.5;
 
@@ -2028,12 +2084,14 @@ function toggleAudio() {
         bgm.play().then(() => {
             btn.innerText = "[ SOUND: ON ]";
             btn.classList.add("active");
+            eqBox.classList.add("active");
             isAudioPlaying = true;
         }).catch(e => console.log("Play blocked:", e));
     } else {
         bgm.pause();
         btn.innerText = "[ SOUND: OFF ]";
         btn.classList.remove("active");
+        eqBox.classList.remove("active");
         isAudioPlaying = false;
     }
 }
