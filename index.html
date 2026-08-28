@@ -488,6 +488,10 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .terminal-input { flex: 1; background: transparent; border: none; color: #22c55e; font-family: monospace; outline: none; font-size: 13px; }
 .terminal-output { margin-top: 12px; font-size: 11px; color: #aaa; line-height: 1.6; white-space: pre-wrap; }
 
+.daily-generator-box { margin-top: 20px; background: rgba(181, 30, 30, 0.08); border: 1px solid rgba(181, 30, 30, 0.4); padding: 15px; border-radius: 3px; max-width: 600px; width: 100%; text-align: left; font-family: Arial, sans-serif; }
+.daily-gen-title { font: 9px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold; margin-bottom: 6px; }
+.daily-gen-text { font-size: 12px; color: #ccc; font-style: italic; line-height: 1.5; }
+
 .gallery{background:#040506}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:40px}
 .gallery-item{height:240px;border:1px solid var(--line);background-size: 135% 135%;background-position: center 45%;display:flex;align-items:end;padding:20px;filter:saturate(.7) brightness(.85);transition:all .4s ease;border-radius:2px;}
@@ -776,6 +780,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
+<!-- INTERACTIVE TIMELINE TREE FLOWCHART -->
 <section id="timeline" class="relics-section">
   <div class="label">02.85 — BRANCHING TIMELINE TREE</div>
   <h2 class="title" data-i18n="timeline_title">World VIII Decision Flowchart.</h2>
@@ -818,6 +823,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 </section>
 
+<!-- MEMORY FRAGMENT MATCHER MINIGAME -->
 <section id="memory" class="hack-section">
   <div class="label">02.88 — MEMORY FRAGMENT MATCHER</div>
   <h2 class="title" data-i18n="memory_title">Reconstruct Eidon's Memory.</h2>
@@ -859,7 +865,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
       <span id="matrixStatusText">STATUS: WAITING FOR INPUT</span>
     </div>
     <div class="matrix-grid" id="matrixGridContainer">
-      </div>
+      <!-- Generated dynamically -->
+    </div>
     <div id="hackOutput" style="font-size:12px; color:#aaa; margin-top:15px; line-height:1.6;">
       Find the correct 3-node cipher combination to override mainframe security.
     </div>
@@ -1149,4 +1156,1411 @@ footer{flex-direction:column;gap:12px;text-align:center}
 <section id="endings" class="endings">
   <div class="label" data-i18n="label_06">06 — ENDINGS</div>
   <h2 class="title" data-i18n="ending_title">There is no<br>happy ending.</h2>
-  <p class="text
+  <p class="text" data-i18n="ending_text">
+    Several major endings await the player. ROUGHTALE8 was never designed to reward the player with a perfect conclusion. Click any record below to inspect memory logs.
+  </p>
+
+  <div class="ending-list">
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 0)">
+      <div class="ending-header">
+        <div class="ending-name"><span data-i18n="end_name_1">THE ENDING</span> <span class="lock-tag" id="lockTag0" data-i18n="tag_locked">[ LOCKED ]</span></div>
+        <div class="ending-type" data-i18n="type_bad">BAD ENDING</div>
+      </div>
+      <div class="ending-detail" data-i18n="end_detail_1">
+        A cycle completed without understanding. The collapse claims everyone equally.
+      </div>
+    </div>
+
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 1)">
+      <div class="ending-header">
+        <div class="ending-name"><span data-i18n="end_name_2">THE END OF THE DAY</span> <span class="lock-tag" id="lockTag1" data-i18n="tag_locked">[ LOCKED ]</span></div>
+        <div class="ending-type" data-i18n="type_bad">BAD ENDING</div>
+      </div>
+      <div class="ending-detail" data-i18n="end_detail_2">
+        Surviving until nightfall wasn't enough. Darkness hides what was left behind.
+      </div>
+    </div>
+
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 2)">
+      <div class="ending-header">
+        <div class="ending-name"><span data-i18n="end_name_3">THE FINAL CURSE</span> <span class="lock-tag" id="lockTag2" data-i18n="tag_locked">[ LOCKED ]</span></div>
+        <div class="ending-type" data-i18n="type_bad">BAD ENDING</div>
+      </div>
+      <div class="ending-detail" data-i18n="end_detail_3">
+        Trust was given to the wrong person. The betrayal leaves no room for regret.
+      </div>
+    </div>
+
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 3)">
+      <div class="ending-header">
+        <div class="ending-name"><span data-i18n="end_name_4">THE TRUE END</span> <span class="lock-tag" id="lockTag3" data-i18n="tag_unlocked">[ UNLOCKED ]</span></div>
+        <div class="ending-type" data-i18n="type_norm_bad">NORMAL BAD ENDING</div>
+      </div>
+      <div class="ending-detail" data-i18n="end_detail_4">
+        The truth of World VIII is accepted. Nothing is saved, but nothing is forgotten.
+      </div>
+    </div>
+
+    <div class="ending sfx-click" onclick="toggleEndingDetail(this, 4)">
+      <div class="ending-header">
+        <div class="ending-name"><span data-i18n="end_name_5">THE LAST</span> <span class="lock-tag" id="lockTag4" data-i18n="tag_locked">[ LOCKED ]</span></div>
+        <div class="ending-type" data-i18n="type_vbad">VERY BAD ENDING</div>
+      </div>
+      <div class="ending-detail" data-i18n="end_detail_5">
+        Every character falls before reaching the threshold. World IX will never exist.
+      </div>
+    </div>
+
+    <div class="ending secret sfx-click" onclick="toggleEndingDetail(this, 5)">
+      <div class="ending-header">
+        <div class="ending-name"><span data-i18n="end_name_6">THE FINAL SECRET</span> <span class="lock-tag red" id="lockTag5" data-i18n="tag_canon">[ CANON ARCHIVE ]</span></div>
+        <div class="ending-type secret-type" data-i18n="type_canon">CANON</div>
+      </div>
+      <div class="ending-detail red-text" data-i18n="end_detail_6">
+        Someone stayed behind in World VIII. A choice that was never supposed to be made.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kami">
+  <div>
+    <div class="kami-symbol">K A M I</div>
+    <div class="label" data-i18n="label_07">07 — UNKNOWN</div>
+    <p data-i18n="kami_p">
+      Someone is watching.<br><br>
+      Someone has been watching since the beginning.<br><br>
+      But this game will never tell you who.
+    </p>
+
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <span data-i18n="term_header">WORLD VIII — SECRET TERMINAL CONSOLE [v.8.0]</span>
+        <button class="mic-btn sfx-click" id="micVoiceBtn" onclick="toggleVoiceInput()">🎙️ VOICE</button>
+      </div>
+      <div class="terminal-input-wrap">
+        <span style="color:#22c55e">$</span>
+        <input type="text" id="termInput" class="terminal-input" placeholder="Type or click 🎙️ VOICE command (e.g. EIDON, ALERT, HELP)..." onkeydown="handleTerminalCommand(event)">
+      </div>
+      <div class="terminal-output" id="termOutput" data-i18n="term_default">Ready for input. Type 'HELP' to list keywords.</div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery">
+  <div class="label" data-i18n="label_08">08 — GALLERY</div>
+  <h2 class="title" data-i18n="gallery_title">Fragments of<br>World Eight.</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item city sfx-hover sfx-click" onclick="openGalleryLightbox('Sector 8 Metropolitan Ruins', 'city.jpg', 'The fallen capital of World VIII before the total containment breach.')"></div>
+    <div class="gallery-item ruins sfx-hover sfx-click" onclick="openGalleryLightbox('Wasteland Sector', 'ruins.jpg', 'Reclaimed by toxic ash deposits from the 7th cycle collapse.')"></div>
+    <div class="gallery-item refuge sfx-hover sfx-click" onclick="openGalleryLightbox('Bunker Refuge 08', 'refuge.jpg', 'The final operational shelter where survivors gathered.')"></div>
+    <div class="gallery-item hospital sfx-hover sfx-click" onclick="openGalleryLightbox('Old Sector Infirmary', 'hospital.jpg', 'Where Dr. Lira attempted to preserve human consciousness.')"></div>
+    <div class="gallery-item lab sfx-hover sfx-click" onclick="openGalleryLightbox('Observer Core Lab', 'lab.jpg', 'The secret research facility housing Dr. Nara\'s mainframe.')"></div>
+    <div class="gallery-item unknown sfx-hover sfx-click" onclick="openGalleryLightbox('Anomaly Nexus', 'unknown.jpg', 'The unmapped spatial distortion at the heart of Sector 8.')"></div>
+  </div>
+</section>
+
+<section class="sys-req-section">
+  <div class="label" data-i18n="label_09">09 — SPECIFICATIONS</div>
+  <h2 class="title" data-i18n="sys_title">System Requirements.</h2>
+  <div class="sys-req-grid">
+    <div class="sys-req-card">
+        <div class="sys-status-badge" data-i18n="badge_passed">PASSED</div>
+        <h3 data-i18n="sys_min_h">MINIMUM REQUIREMENTS</h3>
+        <ul class="sys-req-list">
+            <li><strong>OS:</strong> Windows 10 / Android 9.0+</li>
+            <li><strong>Processor:</strong> Intel Core i3-6100 / Snapdragon 680</li>
+            <li><strong>Memory:</strong> 4 GB RAM</li>
+            <li><strong>Graphics:</strong> GTX 750 Ti / Adreno 610</li>
+            <li><strong data-i18n="sys_storage">Storage:</strong> <span data-i18n="sys_min_storage">2 GB Available Space</span></li>
+        </ul>
+    </div>
+    <div class="sys-req-card">
+        <div class="sys-status-badge" data-i18n="badge_rec">RECOMMENDED</div>
+        <h3 data-i18n="sys_rec_h">RECOMMENDED SPECS</h3>
+        <ul class="sys-req-list">
+            <li><strong>OS:</strong> Windows 11 / Android 12+</li>
+            <li><strong>Processor:</strong> Intel Core i5-10400 / Snapdragon 870</li>
+            <li><strong>Memory:</strong> 8 GB RAM</li>
+            <li><strong>Graphics:</strong> GTX 1060 6GB / Adreno 650</li>
+            <li><strong data-i18n="sys_storage">Storage:</strong> <span data-i18n="sys_rec_storage">2 GB High Speed SSD</span></li>
+        </ul>
+    </div>
+  </div>
+</section>
+
+<section class="trailer">
+  <div class="label" data-i18n="label_10">10 — OFFICIAL TEASERS</div>
+  <h2 class="title" data-i18n="teaser_title">You have seen<br>nothing yet.</h2>
+  
+  <div class="play-container">
+    <button id="playTrailerBtn" class="play sfx-click">▶</button>
+    <div class="pulse-ring"></div>
+  </div>
+  
+  <div class="text" style="margin:auto" data-i18n="teaser_sub">ROUGHTALE8 — CONTINUOUS OFFICIAL TRAILER FEATURE</div>
+</section>
+
+<div id="trailerModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
+        <div class="video-container">
+            <video id="mainTrailerVideo" controls playsinline preload="auto">
+                <source src="trailer.mp4" type="video/mp4" id="videoSource">
+                Browser kamu tidak mendukung pemutaran video.
+            </video>
+        </div>
+    </div>
+</div>
+
+<section class="newsletter-section">
+    <div class="label" data-i18n="label_11">11 — COMMUNITY</div>
+    <h2 class="title" data-i18n="community_title">Join The Resistance</h2>
+    <p class="text" style="margin:auto" data-i18n="community_desc">Get notified on development updates, secret lore archives, and closed beta access.</p>
+    <form class="newsletter-box" onsubmit="handleSubscribe(event)">
+        <input type="email" class="newsletter-input" placeholder="ENTER YOUR EMAIL..." required data-i18n-ph="ph_email">
+        <button type="submit" class="btn btn-primary sfx-click" data-i18n="btn_sub">SUBSCRIBE</button>
+    </form>
+</section>
+
+<section class="final">
+  <div>
+    <h2>ROUGHTALE8</h2>
+    <p data-i18n="final_tag">LIFE IS <span>SIMPLE</span></p>
+  </div>
+</section>
+
+<div class="bottom-countdown-section">
+    <div class="bottom-cd-box">
+        <div class="cd-title" data-i18n="dev_title">WORLD VIII STATUS — IN ACTIVE DEVELOPMENT</div>
+        <div class="bottom-cd-sub" data-i18n="dev_status">GAME IS CURRENTLY BEING CRAFTED &amp; DEVELOPED BY MUHAMMAD FAARI AKBAR. OFFICIAL RELEASE ANNOUNCEMENT COMING SOON.</div>
+    </div>
+</div>
+
+<footer>
+  <div>
+    CRACK GAMES © 2026<br>
+    <span style="display:inline-block;margin-top:10px;color:#888;letter-spacing:3px">
+      <span data-i18n="created_by">CREATED BY</span> <strong style="color:#ddd;font-weight:400">MUHAMMAD FAARI AKBAR</strong>
+    </span>
+  </div>
+  <div data-i18n="footer_tag">EVERY CHOICE. EVERY LIFE. EVERY ENDING.</div>
+</footer>
+
+<script>
+// ACHIEVEMENTS & ENDINGS SAVE STATE (LocalStorage)
+let unlockedAchievements = JSON.parse(localStorage.getItem('r8_achievements') || '[]');
+let unlockedEndings = JSON.parse(localStorage.getItem('r8_endings') || '[3, 5]');
+
+function saveEndingProgress(index) {
+    if (!unlockedEndings.includes(index)) {
+        unlockedEndings.push(index);
+        localStorage.setItem('r8_endings', JSON.stringify(unlockedEndings));
+    }
+}
+
+function updateEndingTagsUI() {
+    for (let i = 0; i <= 5; i++) {
+        const tag = document.getElementById(`lockTag${i}`);
+        if (tag) {
+            if (unlockedEndings.includes(i)) {
+                tag.innerText = "[ UNLOCKED ]";
+                tag.style.color = "#22c55e";
+            } else {
+                tag.innerText = "[ LOCKED ]";
+                tag.style.color = "#555";
+            }
+        }
+    }
+}
+
+function triggerAchievement(title) {
+    const timestamp = new Date().toLocaleDateString();
+    if (!unlockedAchievements.some(a => a.title === title)) {
+        unlockedAchievements.push({ title: title, date: timestamp });
+        localStorage.setItem('r8_achievements', JSON.stringify(unlockedAchievements));
+    }
+    const toast = document.getElementById('achievementToast');
+    document.getElementById('achieveText').innerText = title;
+    toast.classList.add('show');
+    playSynthBeep(880, 'sine', 0.2);
+    setTimeout(() => playSynthBeep(1200, 'sine', 0.3), 150);
+    setTimeout(() => { toast.classList.remove('show'); }, 4000);
+}
+
+// 1. Dedicated Trophy Room & Achievement Badges Gallery
+function openAchievementsModal() {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    const totalAch = 7; 
+    const currentCount = unlockedAchievements.length;
+    
+    let achListHtml = `<div style="margin-bottom:15px; color:#eab308; font:9px Arial,sans-serif; letter-spacing:2px;">GLOBAL TROPHY ROOM: ${currentCount} / ${totalAch} (${Math.round((currentCount/totalAch)*100)}%) UNLOCKED</div><div style="display:flex; flex-direction:column; gap:8px; max-height:300px; overflow-y:auto; padding-right:5px;">`;
+    
+    const allAchDefs = [
+        "RED ALERT TRIGGERED: CONTAINMENT BREACH",
+        "TERMINAL SECURITY BYPASSED",
+        "INTERCEPTED TRANSMISSION LOG",
+        "SECRET CIPHER UNLOCKED",
+        "JOINED THE RESISTANCE COMMUNITY",
+        "MEMORY FRAGMENT RECONSTRUCTED",
+        "OBSERVER GLITCH UNLOCKED (KONAMI CODE)"
+    ];
+
+    allAchDefs.forEach(ach => {
+        const found = unlockedAchievements.find(a => a.title === ach);
+        achListHtml += `<div style="background:rgba(255,255,255,0.02); border:1px solid ${found ? 'var(--red)' : '#333'}; padding:12px; border-radius:3px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <div style="font-size:11px; color:${found ? '#fff' : '#666'}; font-weight:bold;">${ach}</div>
+                <div style="font:8px Arial,sans-serif; color:#888; margin-top:3px;">${found ? 'UNLOCKED ON: ' + found.date : 'STATUS: PENDING ACQUISITION'}</div>
+            </div>
+            <span style="font:8px Arial,sans-serif; letter-spacing:1px; color:${found ? '#22c55e' : '#555'};">${found ? '[ 🏆 EARNED ]' : '[ LOCKED ]'}</span>
+        </div>`;
+    });
+    achListHtml += `</div>`;
+
+    document.getElementById("pCategory").innerText = "IN-GAME TROPHY ROOM ARCHIVE";
+    document.getElementById("pTitle").innerText = "SURVIVOR BADGES & ACHIEVEMENTS";
+    document.getElementById("pDesc").innerHTML = achListHtml;
+    document.getElementById("pActionBtn").style.display = "none";
+    modal.classList.add("show");
+}
+
+// JUKEBOX / OST PLAYER MODAL
+function openJukeboxModal() {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    let jukeboxHtml = `<div style="font:9px Arial,sans-serif; color:#eab308; letter-spacing:2px; margin-bottom:12px;">WORLD VIII AMBIENT JUKEBOX PLAYER</div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+        <button class="btn sfx-click" onclick="playAudioLog('none', [220, 330, 440, 550])">🎵 Play Sector 8 Ambient Track</button>
+        <button class="btn sfx-click" onclick="playAudioLog('none', [150, 280, 190, 320])">🔊 Play Anomaly Frequency 08</button>
+        <button class="btn sfx-click" onclick="playAudioLog('none', [400, 500, 600, 800])">📻 Play Observer Broadcast</button>
+    </div>`;
+
+    document.getElementById("pCategory").innerText = "AUDIO ARCHIVE";
+    document.getElementById("pTitle").innerText = "JUKEBOX / OST SELECTOR";
+    document.getElementById("pDesc").innerHTML = jukeboxHtml;
+    document.getElementById("pActionBtn").style.display = "none";
+    modal.classList.add("show");
+}
+
+function toggleCrtEffect() {
+    const crt = document.getElementById('crtOverlay');
+    crt.classList.toggle('disabled');
+}
+
+function openGalleryLightbox(title, imgUrl, desc) {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    document.getElementById("pCategory").innerText = "GALLERY ARCHIVE";
+    document.getElementById("pTitle").innerText = title;
+    document.getElementById("pDesc").innerText = `${desc}\n\n[FRAGMENT RECORDED FROM SECTOR 8]`;
+    document.getElementById("pActionBtn").style.display = "none";
+    modal.classList.add("show");
+}
+
+// TIMELINE NODE INSPECTOR
+function openTimelineNode(nodeName, desc) {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    document.getElementById("pCategory").innerText = "TIMELINE FLOWCHART NODE";
+    document.getElementById("pTitle").innerText = nodeName;
+    document.getElementById("pDesc").innerText = desc + "\n\n[CHECKPOINT SYNCHRONIZED WITH WORLD VIII DATABASE]";
+    document.getElementById("pActionBtn").style.display = "none";
+    modal.classList.add("show");
+}
+
+// MEMORY FRAGMENT MATCHER MINIGAME
+let matchedMemoryCount = 0;
+function alignMemoryFragment(id, keyword, btnEl) {
+    playSynthBeep(600, 'triangle', 0.1);
+    btnEl.innerText = `[ ✅ ALIGNED: ${keyword} ]`;
+    btnEl.style.background = "#22c55e";
+    btnEl.style.color = "#000";
+    btnEl.disabled = true;
+    matchedMemoryCount++;
+    document.getElementById('memoryStatus').innerText = `STATUS: ${matchedMemoryCount} / 3 FRAGMENTS ALIGNED`;
+
+    if (matchedMemoryCount === 3) {
+        playSynthBeep(880, 'sine', 0.4);
+        document.getElementById('memoryOutput').innerHTML = "<span style='color:#22c55e'>[MEMORY RESTORED] Eidon's memory decrypted: 'Life is simple, but choices remain absolute.' Lore archive unlocked!</span>";
+        triggerAchievement("MEMORY FRAGMENT RECONSTRUCTED");
+    }
+}
+
+function toggleMobileMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('open');
+}
+
+function closeMobileMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.remove('open');
+}
+
+function filterInventory(category) {
+    playGlitchSfx();
+    const btns = document.querySelectorAll('.inv-filter-btn');
+    btns.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const slots = document.querySelectorAll('.inv-slot');
+    let visibleCount = 0;
+    slots.forEach(slot => {
+        if (category === 'all' || slot.getAttribute('data-cat') === category) {
+            slot.style.display = 'flex';
+            visibleCount++;
+        } else {
+            slot.style.display = 'none';
+        }
+    });
+    document.getElementById('invCountText').innerText = `${visibleCount} / 8 ITEMS`;
+}
+
+let logoClickCount = 0;
+function registerLogoClick() {
+    logoClickCount++;
+    playGlitchSfx();
+    if (logoClickCount >= 3) {
+        toggleRedAlertMode();
+        logoClickCount = 0;
+    }
+}
+
+function toggleRedAlertMode() {
+    document.body.classList.toggle('red-alert-mode');
+    playHeartbeatSfx();
+    if (document.body.classList.contains('red-alert-mode')) {
+        playSirenSfx();
+        triggerAchievement("RED ALERT TRIGGERED: CONTAINMENT BREACH");
+        localStorage.setItem("r8_red_alert", "true");
+    } else {
+        localStorage.removeItem("r8_red_alert");
+    }
+}
+
+function playSirenSfx() {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    playSynthBeep(600, 'sawtooth', 0.4);
+    setTimeout(() => playSynthBeep(400, 'sawtooth', 0.4), 450);
+}
+
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+let sfxVolume = 0.7;
+
+function adjustSfxVolume(val) {
+    sfxVolume = parseFloat(val);
+}
+
+function playSynthBeep(freq, type, duration) {
+    if (sfxVolume <= 0) return;
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.02 * sfxVolume, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+}
+
+function playTypewriterClick() {
+    if (sfxVolume <= 0) return;
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    const randomFreq = 800 + Math.random() * 400;
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(randomFreq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.015 * sfxVolume, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.04);
+}
+
+function playGlitchSfx() {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    playSynthBeep(120, 'sawtooth', 0.15);
+}
+
+function playHeartbeatSfx() {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    playSynthBeep(80, 'sine', 0.2);
+    setTimeout(() => playSynthBeep(65, 'sine', 0.25), 180);
+}
+
+function playAudioLog(cardId, freqSeq) {
+    playSynthBeep(300, 'square', 0.1);
+    if(cardId !== 'none') {
+        document.querySelectorAll('.audio-log-card').forEach(c => c.classList.remove('playing'));
+        const card = document.getElementById(cardId);
+        if(card) card.classList.add('playing');
+    }
+
+    freqSeq.forEach((f, idx) => {
+        setTimeout(() => { playSynthBeep(f, 'sine', 0.25); }, idx * 250);
+    });
+
+    if(cardId !== 'none') {
+        setTimeout(() => { 
+            const card = document.getElementById(cardId);
+            if(card) card.classList.remove('playing'); 
+            triggerAchievement("INTERCEPTED TRANSMISSION LOG");
+        }, freqSeq.length * 250 + 300);
+    }
+}
+
+// INTERACTIVE RADIO STATIC WHITE NOISE (Web Audio API)
+let whiteNoiseNode = null;
+let noiseGainNode = null;
+
+function initRadioStaticNoise() {
+    if (!audioCtx) return;
+    try {
+        const bufferSize = 2 * audioCtx.sampleRate;
+        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+        }
+
+        whiteNoiseNode = audioCtx.createBufferSource();
+        whiteNoiseNode.buffer = noiseBuffer;
+        whiteNoiseNode.loop = true;
+
+        noiseGainNode = audioCtx.createGain();
+        noiseGainNode.gain.setValueAtTime(0.0, audioCtx.currentTime);
+
+        whiteNoiseNode.connect(noiseGainNode);
+        noiseGainNode.connect(audioCtx.destination);
+        whiteNoiseNode.start(0);
+    } catch(e) { console.log(e); }
+}
+
+window.addEventListener('mousemove', (e) => {
+    // Custom Particle Spark Cursor Trail
+    if (Math.random() > 0.4) {
+        const spark = document.createElement('div');
+        spark.className = 'cursor-spark';
+        spark.style.left = `${e.clientX}px`;
+        spark.style.top = `${e.clientY}px`;
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 600);
+    }
+
+    // Proximity Radio Static Adjustment
+    if (noiseGainNode && audioCtx && audioCtx.state === 'running') {
+        const x = e.clientX;
+        const y = e.clientY;
+        // Check distance to center of screen or glitch elements
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const dist = Math.hypot(x - centerX, y - centerY);
+        const maxDist = Math.hypot(centerX, centerY);
+        const proximityVolume = Math.max(0, 1 - (dist / maxDist)) * 0.05 * sfxVolume;
+        noiseGainNode.gain.setValueAtTime(proximityVolume, audioCtx.currentTime);
+    }
+});
+
+// Matrix Hex-Code Hacking Minigame with Countdown Timer
+let matrixTimer = 15;
+let matrixInterval = null;
+let matrixTargetSequence = ["0F", "8A", "C3"];
+let matrixUserSequence = [];
+const hexPool = ["0F", "8A", "C3", "12", "FF", "4B", "9E", "77", "2D", "E5", "B1", "64"];
+
+function initMatrixMinigame() {
+    const grid = document.getElementById("matrixGridContainer");
+    if (!grid) return;
+    grid.innerHTML = "";
+    matrixUserSequence = [];
+    matrixTimer = 15;
+    document.getElementById("matrixTimerLabel").innerText = `TIME REMAINING: ${matrixTimer}s`;
+    document.getElementById("matrixStatusText").innerText = "STATUS: HACK IN PROGRESS";
+    document.getElementById("hackOutput").innerText = "Find the correct 3-node hex combination: [0F ➔ 8A ➔ C3]";
+
+    let shuffled = [...hexPool].sort(() => 0.5 - Math.random()).slice(0, 8);
+    if (!shuffled.includes("0F")) shuffled[0] = "0F";
+    if (!shuffled.includes("8A")) shuffled[1] = "8A";
+    if (!shuffled.includes("C3")) shuffled[2] = "C3";
+    shuffled.sort(() => 0.5 - Math.random());
+
+    shuffled.forEach((hex, idx) => {
+        const cell = document.createElement("button");
+        cell.className = "matrix-cell sfx-click";
+        cell.innerText = `0x${hex}`;
+        cell.onclick = () => selectMatrixCell(hex, cell);
+        grid.appendChild(cell);
+    });
+
+    if (matrixInterval) clearInterval(matrixInterval);
+    matrixInterval = setInterval(() => {
+        matrixTimer--;
+        const timerLbl = document.getElementById("matrixTimerLabel");
+        if (timerLbl) timerLbl.innerText = `TIME REMAINING: ${matrixTimer}s`;
+        if (matrixTimer <= 0) {
+            clearInterval(matrixInterval);
+            document.getElementById("matrixStatusText").innerText = "STATUS: LOCKOUT (TIMEOUT)";
+            document.getElementById("hackOutput").innerHTML = "<span style='color:var(--red)'>[LOCKOUT] Security lockdown triggered. Resetting matrix...</span>";
+            setTimeout(initMatrixMinigame, 2000);
+        }
+    }, 1000);
+}
+
+function selectMatrixCell(hex, element) {
+    if (element.classList.contains("success") || element.classList.contains("selected")) return;
+    playSynthBeep(500, 'triangle', 0.08);
+    element.classList.add("selected");
+    matrixUserSequence.push(hex);
+
+    const expected = matrixTargetSequence[matrixUserSequence.length - 1];
+    if (hex !== expected) {
+        playSynthBeep(120, 'sawtooth', 0.2);
+        document.getElementById("matrixStatusText").innerText = "STATUS: SEQUENCE MISMATCH";
+        document.getElementById("hackOutput").innerHTML = "<span style='color:var(--red)'>[ACCESS DENIED] Incorrect node sequence. Resetting matrix...</span>";
+        clearInterval(matrixInterval);
+        setTimeout(initMatrixMinigame, 1500);
+    } else if (matrixUserSequence.length === matrixTargetSequence.length) {
+        clearInterval(matrixInterval);
+        playSynthBeep(880, 'sine', 0.4);
+        document.getElementById("matrixStatusText").innerText = "STATUS: DECRYPTED";
+        document.getElementById("hackOutput").innerHTML = "<span style='color:#22c55e'>[SUCCESS] Mainframe bypassed! Lore unlocked: 'Dr. Nara's log proves Sector 8 contains the core restart trigger.'</span>";
+        document.querySelectorAll(".matrix-cell.selected").forEach(c => {
+            c.classList.remove("selected");
+            c.classList.add("success");
+        });
+        localStorage.setItem("r8_hack_done", "true");
+        triggerAchievement("TERMINAL SECURITY BYPASSED");
+    }
+}
+
+let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiIndex = 0;
+
+window.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+            triggerObserverGlitchMode();
+            konamiIndex = 0;
+        }
+    } else {
+        konamiIndex = 0;
+    }
+});
+
+function triggerObserverGlitchMode() {
+    playSirenSfx();
+    triggerAchievement("OBSERVER GLITCH UNLOCKED (KONAMI CODE)");
+    document.body.style.filter = "invert(1) hue-rotate(180deg)";
+    setTimeout(() => {
+        document.body.style.filter = "none";
+        alert("OBSERVER OVERRIDE [KAMI]: The simulation parameters have been fully exposed. You are watching from the outside.");
+    }, 3000);
+}
+
+let isTypingActive = false;
+
+function initSynopsisTypewriterObserver() {
+    const section = document.getElementById('synopsis');
+    if (!section) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !isTypingActive) {
+                runSynopsisTypewriter();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(section);
+}
+
+function runSynopsisTypewriter() {
+    const el = document.getElementById('synopsisParagraph');
+    if (!el) return;
+    
+    isTypingActive = true;
+    const fullHtml = el.getAttribute('data-raw-text') || "";
+    el.innerHTML = "";
+    
+    let i = 0;
+    function typeWriterStep() {
+        if (i < fullHtml.length) {
+            if (fullHtml.substring(i, i+4) === '<br>') {
+                el.innerHTML += '<br>';
+                i += 4;
+            } else {
+                el.innerHTML += fullHtml.charAt(i);
+                playTypewriterClick();
+                i++;
+            }
+            setTimeout(typeWriterStep, 14);
+        } else {
+            isTypingActive = false;
+        }
+    }
+    typeWriterStep();
+}
+
+function checkTimeBasedTheme() {
+    const currentHour = new Date().getHours();
+    if (currentHour >= 18 || currentHour < 6) {
+        document.body.classList.add("midnight-mode");
+    }
+}
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const loader = document.getElementById('preloader');
+        loader.classList.add('fade-out');
+        initSynopsisTypewriterObserver();
+        updateEndingTagsUI();
+    }, 1200);
+    checkSavedQuizResult();
+    initAshParticles();
+    initMatrixMinigame();
+    checkTimeBasedTheme();
+    initRadioStaticNoise();
+
+    if (localStorage.getItem("r8_red_alert")) {
+        document.body.classList.add('red-alert-mode');
+    }
+    if (localStorage.getItem("r8_hack_done")) {
+        document.getElementById("matrixStatusText").innerText = "STATUS: DECRYPTED";
+        document.getElementById("hackOutput").innerHTML = "<span style='color:#22c55e'>[DECRYPTION SUCCESSFUL] LORE UNLOCKED: 'Dr. Nara discovered that World VIII is an artificial loop constructed by the Observers.'</span>";
+    }
+});
+
+function initAshParticles() {
+    const canvas = document.getElementById('ashCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = canvas.parentElement.offsetWidth;
+    let height = canvas.height = canvas.parentElement.offsetHeight;
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+    });
+
+    const particles = Array.from({ length: 45 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.4,
+        speedY: -Math.random() * 0.6 - 0.2,
+        opacity: Math.random() * 0.6 + 0.2
+    }));
+
+    function render() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+            p.x += p.speedX;
+            p.y += p.speedY;
+            if (p.y < 0) { p.y = height; p.x = Math.random() * width; }
+            if (p.x < 0 || p.x > width) { p.x = Math.random() * width; }
+
+            ctx.fillStyle = `rgba(181, 30, 30, ${p.opacity})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        requestAnimationFrame(render);
+    }
+    render();
+}
+
+window.addEventListener('scroll', () => {
+    const btn = document.getElementById('backToTopBtn');
+    if (window.scrollY > 400) {
+        btn.classList.add('visible');
+    } else {
+        btn.classList.remove('visible');
+    }
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+const coverBox = document.querySelector('.cover');
+const coverWrap = document.getElementById('coverTiltWrap');
+
+if (coverWrap && coverBox) {
+    coverWrap.addEventListener('mousemove', (e) => {
+        const rect = coverWrap.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        coverBox.style.transform = `rotateY(${x * 0.03}deg) rotateX(${-y * 0.03}deg) scale(1.02)`;
+    });
+    coverWrap.addEventListener('mouseleave', () => {
+        coverBox.style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
+    });
+}
+
+const relicDataDict = {
+    EN: {
+        relic1: { title: "FROZEN POCKET WATCH", origin: "RELIC — WORLD I", desc: "A silver watch recovered from the ruins of World I. The clock face is cracked and frozen permanently at 03:14 AM. Written on the inside cover is the sentence: 'Do not trust the second cycle.'" },
+        relic2: { title: "CORRUPTED KEYCARD", origin: "RELIC — WORLD IV", desc: "A high-clearance security keycard stained with ash. It once unlocked the primary bunker in World IV before its commander sealed the doors to contain the anomaly." },
+        relic3: { title: "ENCRYPTED MEMORY CHIP", origin: "RELIC — WORLD VI", desc: "A damaged storage drive belonging to Dr. Nara. Initial decryption reveals formulas calculating the stability threshold of World VIII." },
+        relic4: { title: "TORN COVENANT PAGE", origin: "RELIC — WORLD VII", desc: "A charred parchment detailing an agreement between 5 key figures. The signatures match Eidon, Lira, Kael, Nara, and Reza, though none of them remember signing it." }
+    },
+    ID: {
+        relic1: { title: "JAM SAKU TERHENTI", origin: "RELIK — DUNIA I", desc: "Jam perak yang ditemukan di reruntuhan Dunia I. Jarum jam retak dan terhenti permanen pada pukul 03:14 pagi. Terukir di bagian dalam: 'Jangan percaya pada siklus kedua.'" },
+        relic2: { title: "KARTU KUNCI TERKORUPSI", origin: "RELIK — DUNIA IV", desc: "Kartu akses keamanan berkerak abu. Pernah digunakan untuk membuka shelter utama Dunia IV sebelum komandannya mengunci pintu dari luar." },
+        relic3: { title: "CHIP MEMORI TERENKRIPSI", origin: "RELIK — DUNIA VI", desc: "Drive penyimpanan rusak milik Dr. Nara. Dekripsi awal menunjukkan kalkulasi batas ketahanan siklus Dunia VIII." },
+        relic4: { title: "HALAMAN PERJANJIAN RETAK", origin: "RELIK — DUNIA VII", desc: "Pergamus hangus memuat kesepakatan 5 tokoh utama. Tanda tangan di bawahnya cocok dengan Eidon, Lira, Kael, Nara, dan Reza, meski tak seorang pun dari mereka mengingatnya." }
+    }
+};
+
+function openRelicModal(key) {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    const langData = relicDataDict[currentLang] || relicDataDict['EN'];
+    if (langData[key]) {
+        document.getElementById("pCategory").innerText = langData[key].origin;
+        document.getElementById("pTitle").innerText = langData[key].title;
+        document.getElementById("pDesc").innerText = langData[key].desc;
+        document.getElementById("pActionBtn").style.display = "none";
+        modal.classList.add("show");
+    }
+}
+
+let activePoiKey = '';
+const poiData = {
+    'The City': { title: "REGION 01 — THE CITY", desc: "STATUS: DESTROYED / DANGER ZONE\n\nSisa-sisa peradaban perkotaan yang telah hancur. Merupakan titik awal perjalanan di mana sisa teknologi lama dan struktur beton berada di bawah ancaman collapse." },
+    'The Ruins': { title: "REGION 02 — THE RUINS", desc: "STATUS: HIGH DANGER / HAZARD\n\nKawasan reruntuhan alam yang mulai mengambil alih peradaban kuno. Jalur rawan dengan banyak perangkap dan bahaya tersembunyi." },
+    'The Last Refuge': { title: "REGION 03 — THE LAST REFUGE", desc: "STATUS: SETTLEMENT / SAFE ROOM AVAILABLE\n\nSatu-satunya tempat perlindungan yang tersisa bagi para survivor. Menjadi pusat interaksi, tempat istirahat, dan persimpangan alur keputusan." },
+    'The Hospital': { title: "REGION 04 — THE HOSPITAL", desc: "STATUS: CRITICAL MEDICAL ZONE\n\nFasilitas medis tua yang memegang kunci ingatan dan pengobatan luka para penyintas. Tempat Dr. Lira berjuang menjaga suplai medis." },
+    'The Laboratory': { title: "REGION 05 — THE LABORATORIUM", desc: "STATUS: RESTRICTED ACCESS / RESEARCH FACILITY\n\nPusat riset rahasia rahasia eksperimen Dunia VIII. Di sinilah rahasia mengenai penyebab jatuhnya 7 dunia sebelumnya tersimpan." },
+    'Unknown': { title: "REGION 06 — UNKNOWN AREA", desc: "STATUS: UNIDENTIFIED ANOMALY (?)\n\nArea pusaran abnormal yang tidak terdeteksi oleh sistem radar. Akses hanya dapat terbuka berdasarkan progres cerita dan keputusan akhir pemain." }
+};
+
+function openMapPOI(poiKey) {
+    playGlitchSfx();
+    activePoiKey = poiKey;
+    const modal = document.getElementById("characterProfileModal");
+    if(poiData[poiKey]) {
+        document.getElementById("pCategory").innerText = "REGION DIAGNOSTICS [DECRYPT AVAILABLE]";
+        document.getElementById("pTitle").innerText = poiData[poiKey].title;
+        document.getElementById("pDesc").innerText = poiData[poiKey].desc + "\n\n[CLICK BUTTON BELOW TO RUN FREQUENCY DECRYPTION]";
+        document.getElementById("pActionBtn").style.display = "inline-flex";
+        document.getElementById("pActionBtnText").innerText = "⚡ DECRYPT REGION FREQUENCY";
+        modal.classList.add("show");
+    }
+}
+
+function handleModalAction() {
+    if (activePoiKey && poiData[activePoiKey]) {
+        playSynthBeep(600, 'square', 0.2);
+        document.getElementById("pDesc").innerText = poiData[activePoiKey].desc + `\n\n[DECRYPTION SUCCESSFUL: Sector telemetry verified for ${activePoiKey}. Signal stable.]`;
+        document.getElementById("pActionBtn").style.display = "none";
+        triggerAchievement("REGION FREQUENCY DECRYPTED");
+    }
+}
+
+const worldDataDict = {
+    EN: {
+        'World1': { category: "HISTORICAL RECORD 01", title: "THE FIRST WORLD — THE BEGINNING", desc: "STATUS: ERASED / COLLAPSED\n\nThe era of forgotten ash. The initial cycle where humanity first attempted to alter destiny." },
+        'World2': { category: "HISTORICAL RECORD 02", title: "THE SECOND WORLD — SHADOWS", desc: "STATUS: COLLAPSED\n\nA world consumed by endless shadow and lost hopes." },
+        'World3': { category: "HISTORICAL RECORD 03", title: "THE THIRD WORLD — SILENCE", desc: "STATUS: COLLAPSED\n\nThe silent era where words lost their meaning." },
+        'World4': { category: "HISTORICAL RECORD 04", title: "THE FOURTH WORLD — ECHOES", desc: "STATUS: COLLAPSED\n\nFaint memories echoing through ruined structures." },
+        'World5': { category: "HISTORICAL RECORD 05", title: "THE FIFTH WORLD — DESOLATION", desc: "STATUS: COLLAPSED\n\nA barren wasteland left behind after the great breach." },
+        'World6': { category: "HISTORICAL RECORD 06", title: "THE SIXTH WORLD — ILLUSION", desc: "STATUS: COLLAPSED\n\nA deceptive realm of false sanctuary." },
+        'World7': { category: "HISTORICAL RECORD 07", title: "THE SEVENTH WORLD — THRESHOLD", desc: "STATUS: COLLAPSED\n\nThe final gateway before the ultimate breakdown." },
+        'World8': { category: "ACTIVE TIMELINE", title: "THE EIGHTH WORLD — THE LAST STAND", desc: "STATUS: CURRENT / COLLAPSE IMMINENT\n\nThere is no World IX waiting. This is the final cycle." }
+    },
+    ID: {
+        'World1': { category: "CATATAN SEJARAH 01", title: "DUNIA PERTAMA — AWAL MULA", desc: "STATUS: TERHAPUS / RUNTUH\n\nEra abu yang terlupakan. Siklus awal di mana manusia pertama kali mencoba mengubah takdir." },
+        'World2': { category: "CATATAN SEJARAH 02", title: "DUNIA KEDELAPAN — BAYANGAN", desc: "STATUS: RUNTUH\n\nDunia yang ditelan oleh bayangan abadi dan harapan yang sirna." },
+        'World3': { category: "CATATAN SEJARAH 03", title: "DUNIA KETIGA — KEBISUAN", desc: "STATUS: RUNTUH\n\nEra keheningan di mana kata-kata kehilangan maknanya." },
+        'World4': { category: "CATATAN SEJARAH 04", title: "DUNIA KEEMPAT — GEMA", desc: "STATUS: RUNTUH\n\nIngatan samar yang bergema di balik reruntuhan bangunan." },
+        'World5': { category: "CATATAN SEJARAH 05", title: "DUNIA KELIMA — KETANDUSAN", desc: "STATUS: RUNTUH\n\nDaratan tandus yang tersisa setelah kehancuran besar." },
+        'World6': { category: "CATATAN SEJARAH 06", title: "DUNIA KEENAM — ILUSI", desc: "STATUS: RUNTUH\n\nAlam semesta penuh kepalsuan yang menyerupai tempat perlindungan." },
+        'World7': { category: "CATATAN SEJARAH 07", title: "DUNIA KETUJUH — AMBANG BATAS", desc: "STATUS: RUNTUH\n\nGerbang terakhir sebelum kehancuran total terjadi." },
+        'World8': { category: "GARIS WAKTU AKTIF", title: "DUNIA KEDELAPAN — PERTAHANAN TERAKHIR", desc: "STATUS: SAAT INI / KEHANCURAN DEKAT\n\nTidak ada Dunia IX yang menunggu. Ini adalah siklus terakhir." }
+    }
+};
+
+const characterDataDict = {
+    EN: {
+        'Eidon': { category: "CHARACTER PROFILE", title: "01 — EIDON (17 YEARS OLD)", desc: "THE BOY WHO REMEMBERS NOTHING\n\nNaïve, innocent, and slowly entering adulthood." },
+        'Lira': { category: "CHARACTER PROFILE", title: "02 — LIRA (25 YEARS OLD)", desc: "THE DOCTOR\n\nA brilliant doctor with a warm and cheerful heart." },
+        'Kael': { category: "CHARACTER PROFILE", title: "03 — KAEL (35 YEARS OLD)", desc: "THE SOLDIER\n\nA former elite soldier with extraordinary strength." },
+        'Nara': { category: "CHARACTER PROFILE", title: "04 — NARA (33 YEARS OLD)", desc: "THE SCIENTIST\n\nA brilliant scientist and a highly skilled cook." },
+        'Reza': { category: "CHARACTER PROFILE", title: "05 — REZA (45 YEARS OLD)", desc: "THE STRANGER\n\nCalm, wise, and strangely familiar with the world." }
+    },
+    ID: {
+        'Eidon': { category: "PROFIL KARAKTER", title: "01 — EIDON (17 TAHUN)", desc: "PEMUDA YANG HILANG INGATAN\n\nPolos, lugu, dan perlahan beranjak dewasa." },
+        'Lira': { category: "PROFIL KARAKTER", title: "02 — LIRA (25 TAHUN)", desc: "DOKTER SEKTOR\n\nSeorang dokter cerdas dengan kepribadian yang hangat dan ceria." },
+        'Kael': { category: "PROFIL KARAKTER", title: "03 — KAEL (35 TAHUN)", desc: "MANTAN PRAJURIT\n\nMantan prajurit elit yang memiliki kekuatan fisik luar biasa." },
+        'Nara': { category: "PROFIL KARAKTER", title: "04 — NARA (33 TAHUN)", desc: "ILMUWAN KEPALA\n\nSeorang ilmuwan jenius yang juga sangat pandai memasak." },
+        'Reza': { category: "PROFIL KARAKTER", title: "05 — REZA (45 TAHUN)", desc: "PRIA ASING\n\nTenang, bijaksana, dan secara misterius sangat memahami dunia ini." }
+    }
+};
+
+const dailyQuotes = [
+    "Eidon: 'Aku tidak ingat siapa namaku sebelum abu itu turun, tapi aku tahu aku harus terus melangkah.'",
+    "Dr. Lira: 'Luka fisik bisa disembuhkan dengan obat, tetapi bagaimana cara menyembuhkan ingatan dunia yang sekarat?'",
+    "Kael: 'Tugas seorang prajurit bukan menyelamatkan dunia, melainkan melindungi siapa yang masih bisa bernapas di sampingnya.'",
+    "Dr. Nara: 'Siklus ke-8 memiliki anomali pada intinya. Seseorang telah mengubah kode pemrogramannya.'",
+    "Reza: 'Tujuh dunia runtuh karena kesombongan manusia. Dunia kedelapan runtuh karena kita terlalu lelah berharap.'"
+];
+
+function generateDailyQuote() {
+    playSynthBeep(650, 'triangle', 0.1);
+    const box = document.getElementById("dailyQuoteBox");
+    box.style.display = "block";
+    const randomQuote = dailyQuotes[Math.floor(Math.random() * dailyQuotes.length)];
+    box.innerText = `[TRANSMISI HARIAN]: "${randomQuote}"`;
+    triggerAchievement("INTERCEPTED TRANSMISSION LOG");
+}
+
+let currentLang = 'EN';
+const translations = {
+    EN: {
+        pill_in_dev: "IN DEVELOPMENT", nav_synopsis: "SYNOPSIS", nav_world: "WORLD", nav_audiologs: "AUDIO LOGS", nav_timeline: "TIMELINE TREE", nav_hack: "TERMINAL HACK", nav_relics: "RELICS", nav_map: "MAP", nav_characters: "CHARACTERS", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDINGS",
+        hero_h1: "WHAT WILL YOU <span>ACCEPT?</span>", hero_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING.",
+        hero_desc: "Seven worlds have already fallen. This is the eighth world. The last world. Five strangers are brought together as everything begins to collapse — and every decision leaves a permanent mark.",
+        btn_demo: "TRY PROLOGUE DEMO ➔", btn_enter: "EXPLORE WORLD VIII",
+        label_01: "01 — SYNOPSIS", synopsis_title: "The world has<br>fallen seven times.",
+        synopsis_text: "ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction. There is no ninth world waiting. Five strangers meet with no known connection to one another. Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.<br><br>The player is never given a single protagonist. All five characters are playable, and the story changes through actions, hesitation, courage, mistakes, death, and even choices that were never made.",
+        synopsis_quote: "“Every choice. Every life. Every ending.”",
+        label_02: "02 — WORLD", world_title: "Eight worlds.<br>One last chance.", world_text: "Click on any World card below to decrypt historical records and fragments left behind.",
+        w1_name: "THE FIRST", w2_name: "THE SECOND", w3_name: "THE THIRD", w4_name: "THE FOURTH", w5_name: "THE FIFTH", w6_name: "THE SIXTH", w7_name: "THE SEVENTH", w8_name: "THE LAST",
+        audiologs_title: "Intercepted Audio Logs.", audiologs_text: "Listen to recovered voice logs decrypted directly from World VIII frequency channels.",
+        timeline_title: "World VIII Decision Flowchart.", timeline_text: "Explore the branching narrative milestones and discover unlocked checkpoints across World VIII.",
+        memory_title: "Reconstruct Eidon's Memory.", memory_text: "Align the scattered psychological keyword fragments to recover lost archive logs.",
+        hack_title: "Bypass Security Protocol.", hack_text: "Select the correct sequence of hexadecimal nodes before the security lockout timer expires.",
+        label_relics: "02.2 — RELIC INVENTORY CODEX", relics_title: "Relics of Fallen Worlds.", relics_text: "Inspect recovered artifacts, keycards, encrypted drives, and ancient covenants from previous collapse cycles.",
+        rel1_h: "Frozen Pocket Watch", rel1_p: "Stopped permanently at 03:14 AM. The moment World I began its reset.",
+        rel2_h: "Corrupted Keycard", rel2_p: "Belonged to a commander who locked shelter doors from the outside.",
+        rel3_h: "Encrypted Memory Chip", rel3_p: "Contains Dr. Nara's early logs regarding the 8th cycle anomaly.",
+        rel4_h: "Torn Covenant Page", rel4_p: "A pact signed by 5 survivors who vanished before World VIII started.",
+        label_02_5: "02.5 — WORLD VIII MAP ARCHIVE", map_title: "World VIII Tactical Map<br>& Region Diagnostics.", map_text: "Click on any region marker below to decrypt local logs, danger levels, and hidden archives.",
+        poi_1: "1. THE CITY", poi_2: "2. THE RUINS", poi_3: "3. THE LAST REFUGE", poi_4: "4. THE HOSPITAL", poi_5: "5. THE LABORATORY", poi_6: "6. UNKNOWN",
+        label_03: "03 — CHARACTERS", char_title: "Five people.<br>One final world.", char_text: "Click on any character portrait below to inspect their full profile and inner story.", btn_close_archive: "[ CLOSE ARCHIVE ]", btn_voice_sample: "PLAY VOICE FREQUENCY",
+        label_04: "04 — GAMEPLAY", gameplay_title: "The world<br>does not wait.",
+        sys1_no: "SYSTEM 01", sys1_h: "NO SAFE CHOICE", sys1_p: "There is no completely safe decision. Saving one person may mean losing something else.",
+        sys2_no: "SYSTEM 02", sys2_h: "TIME", sys2_p: "When the player takes too long, the system may decide for them. The world keeps moving.",
+        sys3_no: "SYSTEM 03", sys3_h: "CONSEQUENCE", sys3_p: "A small decision can return much later in a form the player never expected.",
+        sys4_no: "SYSTEM 04", sys4_h: "MEMORY", sys4_p: "A replay is not simply the same world again. Characters, NPCs, locations, and events may change.",
+        sys5_no: "SYSTEM 05", sys5_h: "DEATH", sys5_p: "The death of a playable character is not just a loss. Relationships, events, and the world itself can change.",
+        sys6_no: "SYSTEM 06", sys6_h: "ACCEPTANCE", sys6_p: "There is something the player cannot control. The game will never tell you exactly what it is.",
+        label_05: "05 — PSYCHOLOGY", psy_big: "The game watches<br><span>what you do.</span><br>Not what you say.",
+        sim_header_default: "DECISION ENGINE — STAGE 1 / 3",
+        sim_q1: "A stranger is trapped under falling concrete debris in Sector 8. The structure is collapsing in 5 seconds. You carry the key to the shelter. What do you do?",
+        sim_opt1: "1. [HELP] Risk your time to pull the stranger out.", sim_opt2: "2. [LEAVE] Abandon the stranger and reach shelter safely.", sim_opt3: "3. [WAIT] Freeze and observe what happens.",
+        poll_title: "GLOBAL PLAYER CHOICE STATISTICS:", poll_opt1: "Option 1: Help Stranger (34%)", poll_opt2: "Option 2: Abandon & Survive (52%)", poll_opt3: "Option 3: Hesitate / Freeze (14%)",
+        label_05_5: "05.5 — ROADMAP", roadmap_title: "Development Pipeline &<br>Release Milestones.", roadmap_text: "Track the progress of World VIII from initial concept to full release.",
+        rm_p1_title: "CONCEPT & LORE", rm_p1_desc: "Worldbuilding, character profile mechanics, narrative choice system.",
+        rm_p2_title: "ACTIVE DEVELOPMENT & DEMO", rm_p2_desc: "Interactive web teaser, decision simulator, playable web demo v0.8 (currently in progress).",
+        rm_p3_title: "CLOSED BETA TESTING", rm_p3_desc: "Community testing for branching choices, bug fixes, audio balance.",
+        rm_p4_title: "OFFICIAL FULL RELEASE", rm_p4_desc: "Official full game launch for World VIII on PC and Web platforms.",
+        rm_status_done: "COMPLETED", rm_status_active: "IN PROGRESS", rm_status_planned: "PLANNED",
+        label_06: "06 — ENDINGS", ending_title: "There is no<br>happy ending.", ending_text: "Several major endings await the player. ROUGHTALE8 was never designed to reward the player with a perfect conclusion. Click any record below to inspect memory logs.",
+        end_name_1: "THE ENDING", end_name_2: "THE END OF THE DAY", end_name_3: "THE FINAL CURSE", end_name_4: "THE TRUE END", end_name_5: "THE LAST", end_name_6: "THE FINAL SECRET",
+        type_bad: "BAD ENDING", type_norm_bad: "NORMAL BAD ENDING", type_vbad: "VERY BAD ENDING", type_canon: "CANON",
+        tag_locked: "[ LOCKED ]", tag_unlocked: "[ UNLOCKED ]", tag_canon: "[ CANON ARCHIVE ]",
+        end_detail_1: "A cycle completed without understanding. The collapse claims everyone equally.",
+        end_detail_2: "Surviving until nightfall wasn't enough. Darkness hides what was left behind.",
+        end_detail_3: "Trust was given to the wrong person. The betrayal leaves no room for regret.",
+        end_detail_4: "The truth of World VIII is accepted. Nothing is saved, but nothing is forgotten.",
+        end_detail_5: "Every character falls before reaching the threshold. World IX will never exist.",
+        end_detail_6: "Someone stayed behind in World VIII. A choice that was never supposed to be made.",
+        label_07: "07 — UNKNOWN", kami_p: "Someone is watching.<br><br>Someone has been watching since the beginning.<br><br>But this game will never tell you who.",
+        term_header: "WORLD VIII — SECRET TERMINAL CONSOLE [v.8.0]", term_default: "Ready for input. Type 'HELP' to list keywords.",
+        label_08: "08 — GALLERY", gallery_title: "Fragments of<br>World Eight.",
+        label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.", badge_passed: "PASSED", badge_rec: "RECOMMENDED",
+        sys_min_h: "MINIMUM REQUIREMENTS", sys_rec_h: "RECOMMENDED SPECS", sys_storage: "Storage:", sys_min_storage: "2 GB Available Space", sys_rec_storage: "2 GB High Speed SSD",
+        label_10: "10 — TEASERS", teaser_title: "You have seen<br>nothing yet.", teaser_sub: "ROUGHTALE8 — CONTINUOUS OFFICIAL TRAILER FEATURE",
+        label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on development updates, secret lore archives, and closed beta access.", ph_email: "ENTER YOUR EMAIL...", btn_sub: "SUBSCRIBE",
+        final_tag: "LIFE IS <span>SIMPLE</span>", dev_title: "WORLD VIII STATUS — IN ACTIVE DEVELOPMENT", dev_status: "GAME IS CURRENTLY BEING CRAFTED & DEVELOPED BY MUHAMMAD FAARI AKBAR. OFFICIAL RELEASE ANNOUNCEMENT COMING SOON.",
+        created_by: "CREATED BY", footer_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING."
+    },
+    ID: {
+        pill_in_dev: "DALAM PENGEMBANGAN", nav_synopsis: "SINOPSIS", nav_world: "DUNIA", nav_audiologs: "REKAMAN SUARA", nav_timeline: "TIMELINE TREE", nav_hack: "TERMINAL HACK", nav_relics: "RELIK", nav_map: "PETA", nav_characters: "KARAKTER", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDING",
+        hero_h1: "APA YANG AKAN ANDA <span>TERIMA?</span>", hero_tag: "SETIAP PILIHAN. SETIAP NYAWA. SETIAP ENDING.",
+        hero_desc: "Tujuh dunia telah hancur. Ini adalah dunia kedelapan. Dunia terakhir. Lima orang asing dipertemukan saat segalanya mulai runtuh — dan setiap keputusan meninggalkan bekas permanen.",
+        btn_demo: "COBA DEMO PROLOG ➔", btn_enter: "JELAJAHI DUNIA VIII",
+        label_01: "01 — SINOPSIS", synopsis_title: "Dunia telah runtuh<br>sebanyak tujuh kali.",
+        synopsis_text: "ROUGHTALE8 berlatar di dunia kedelapan — sebuah dunia yang berdiri di ambang kehancuran total. Tidak ada dunia kesembilan yang menunggu. Lima orang asing bertemu tanpa hubungan yang pasti. Dalam perjalanan mereka, kepercayaan, persahabatan, konflik, pengorbanan, dan ikatan emosional mulai terbentuk.<br><br>Pemain tidak pernah diberikan satu protagonis tunggal. Kelima karakter dapat dimainkan, dan jalan cerita berubah melalui tindakan, keraguan, keberanian, kesalahan, kematian, hingga pilihan yang tidak pernah dibuat.",
+        synopsis_quote: "“Setiap pilihan. Setiap nyawa. Setiap ending.”",
+        label_02: "02 — DUNIA", world_title: "Delapan dunia.<br>Satu kesempatan terakhir.", world_text: "Klik kartu Dunia di bawah untuk mendekripsi catatan sejarah dan fragmen yang tersisa.",
+        w1_name: "PERTAMA", w2_name: "KEDUA", w3_name: "KETIGA", w4_name: "KEEMPAT", w5_name: "KELIMA", w6_name: "KEENAM", w7_name: "KETUJUH", w8_name: "TERAKHIR",
+        audiologs_title: "Rekaman Transmisi Suara.", audiologs_text: "Dengarkan rekaman log suara yang berhasil didekripsi dari frekuensi Dunia VIII.",
+        timeline_title: "Bagan Alur Keputusan Dunia VIII.", timeline_text: "Jelajahi milestone narasi bercabang dan temukan checkpoint yang terbuka di seluruh Dunia VIII.",
+        memory_title: "Rekonstruksi Ingatan Eidon.", memory_text: "Sejajarkan fragmen kata kunci psikologis yang terpencar untuk memulihkan log arsip yang hilang.",
+        hack_title: "Bypass Protokol Keamanan.", hack_text: "Pilih urutan node heksadesimal yang benar sebelum waktu penguncian keamanan habis.",
+        label_relics: "02.2 — KODEKS INVENTARIS RELIK", relics_title: "Relik Dunia Yang Runtuh.", relics_text: "Periksa artefak, kartu kunci, drive memori terenkripsi, dan dokumen perjanjian kuno yang ditemukan dari siklus masa lalu.",
+        rel1_h: "Jam Saku Terhenti", rel1_p: "Terhenti permanen pada pukul 03:14 pagi. Momen saat Dunia I mulai direset.",
+        rel2_h: "Kartu Kunci Terkorupsi", rel2_p: "Milik seorang komandan yang mengunci pintu shelter dari luar.",
+        rel3_h: "Chip Memori Terenkripsi", rel3_p: "Memuat log awal Dr. Nara mengenai anomali siklus ke-8.",
+        rel4_h: "Halaman Perjanjian Retak", rel4_p: "Dokumen yang ditandatangani 5 penyintas yang lenyap sebelum Dunia VIII dimulai.",
+        label_02_5: "02.5 — ARSIP PETA DUNIA VIII", map_title: "Peta Taktis Dunia VIII<br>& Diagnostik Wilayah.", map_text: "Klik penanda wilayah di bawah untuk mendekripsi log lokal, tingkat bahaya, dan arsip tersembunyi.",
+        poi_1: "1. KOTA", poi_2: "2. RERUNTUHAN", poi_3: "3. TEMPAT PERLINDUNGAN", poi_4: "4. RUMAH SAKIT", poi_5: "5. LABORATORIUM", poi_6: "6. TAK DIKETAHUI",
+        label_03: "03 — KARAKTER", char_title: "Lima manusia.<br>Satu dunia terakhir.", char_text: "Klik potret karakter di bawah untuk melihat profil lengkap dan rahasia mereka.", btn_close_archive: "[ TUTUP ARSIP ]", btn_voice_sample: "PUTAR FREKUENSI SUARA",
+        label_04: "04 — GAMEPLAY", gameplay_title: "Dunia ini<br>tidak menunggu.",
+        sys1_no: "SISTEM 01", sys1_h: "TIDAK ADA PILIHAN AMAN", sys1_p: "Tidak ada keputusan yang sepenuhnya aman. Menyelamatkan satu orang mungkin berarti kehilangan hal lain.",
+        sys2_no: "SISTEM 02", sys2_h: "WAKTU", sys2_p: "Ketika pemain ragu terlalu lama, sistem akan memutuskan untuk mereka. Dunia terus berjalan.",
+        sys3_no: "SISTEM 03", sys3_h: "KONSEKUENSI", sys3_p: "Keputusan kecil bisa kembali jauh di dalam bentuk yang tidak pernah diduga pemain.",
+        sys4_no: "SISTEM 04", sys4_h: "INGATAN", sys4_p: "Permainan ulang bukan sekadar mengulang dunia yang sama. Karakter, NPC, lokasi, dan peristiwa dapat berubah.",
+        sys5_no: "SISTEM 05", sys5_h: "KEMATIAN", sys5_p: "Kematian karakter bukan sekadar kekalahan. Hubungan, peristiwa, dan dunia itu sendiri akan ikut berubah.",
+        sys6_no: "SISTEM 06", sys6_h: "PENERIMAAN", sys6_p: "Ada sesuatu yang tidak bisa dikontrol pemain. Game ini tidak akan pernah memberi tahu apa itu.",
+        label_05: "05 — PSIKOLOGI", psy_big: "Game ini mengawasi<br><span>apa yang kamu lakukan.</span><br>Bukan apa yang kamu katakan.",
+        sim_header_default: "MESIN KEPUTUSAN — TAHAP 1 / 3",
+        sim_q1: "Seseorang yang tak dikenal terjebak di bawah reruntuhan beton di Sektor 8. Struktur akan runtuh dalam 5 detik. Kamu memegang kunci bunker shelter. Apa yang kamu lakukan?",
+        sim_opt1: "1. [BANTU] Ambil risiko waktu untuk menarik orang tersebut keluar.",
+        sim_opt2: "2. [TINGGALKAN] Tinggalkan dia dan lari ke shelter dengan selamat.",
+        sim_opt3: "3. [DIAM] Terpaku dan amati apa yang akan terjadi.",
+        poll_title: "STATISTIK KEPUTUSAN PEMAIN GLOBAL:", poll_opt1: "Opsi 1: Membantu Orang Asing (34%)", poll_opt2: "Opsi 2: Meninggalkan & Bertahan (52%)", poll_opt3: "Opsi 3: Ragu / Terpaku (14%)",
+        label_05_5: "05.5 — ROADMAP", roadmap_title: "Alur Pengembangan &<br>Tahapan Rilis.", roadmap_text: "Pantau perkembangan Dunia VIII dari konsep awal hingga rilis resmi secara penuh.",
+        rm_p1_title: "KONSEP & LORE", rm_p1_desc: "Perancangan dunia, mekanik profil karakter, dan sistem pilihan cerita.",
+        rm_p2_title: "PENGEMBANGAN AKTIF & DEMO", rm_p2_desc: "Teaser web interaktif, simulator keputusan, dan demo web v0.8 (sedang dalam pengerjaan).",
+        rm_p3_title: "UJI BETA TERTUTUP", rm_p3_desc: "Uji coba komunitas untuk cabang keputusan, perbaikan bug, dan keseimbangan audio.",
+        rm_p4_title: "RILIS PENUH RESMI", rm_p4_desc: "Peluncuran resmi game utuh Dunia VIII untuk platform PC dan Web.",
+        rm_status_done: "SELESAI", rm_status_active: "BERJALAN", rm_status_planned: "DIRENCAKAN",
+        label_06: "06 — ENDING", ending_title: "Tidak ada<br>akhir yang bahagia.", ending_text: "Beberapa ending besar menanti pemain. ROUGHTALE8 tidak pernah dirancang untuk memberi hadiah berupa akhir yang sempurna. Klik catatan di bawah untuk memeriksa ingatan.",
+        end_name_1: "AKHIR CERITA", end_name_2: "AKHIR DARI HARI", end_name_3: "KUTUKAN TERAKHIR", end_name_4: "AKHIR SEBENARNYA", end_name_5: "YANG TERAKHIR", end_name_6: "RAHASIA TERAKHIR",
+        type_bad: "BAD ENDING", type_norm_bad: "NORMAL BAD ENDING", type_vbad: "VERY BAD ENDING", type_canon: "KANON",
+        tag_locked: "[ TERKUNCI ]", tag_unlocked: "[ TERBUKA ]", tag_canon: "[ ARSIP KANON ]",
+        end_detail_1: "Sebuah siklus selesai tanpa pemahaman. Kehancuran menelan semua orang tanpa terkecuali.",
+        end_detail_2: "Bertahan hidup hingga malam tiba tidaklah cukup. Kegelapan menyembunyikan apa yang tersisa.",
+        end_detail_3: "Kepercayaan diberikan pada orang yang salah. Pengkhianatan tidak menyisakan ruang untuk penyesalan.",
+        end_detail_4: "Kebenaran Dunia VIII diterima. Tidak ada yang terselamatkan, tetapi tidak ada yang dilupakan.",
+        end_detail_5: "Setiap karakter gugur sebelum mencapai ambang batas. Dunia IX tidak akan pernah ada.",
+        end_detail_6: "Seseorang tinggal di Dunia VIII. Sebuah pilihan yang tidak pernah seharusnya dibuat.",
+        label_07: "07 — TAK DIKETAHUI", kami_p: "Seseorang sedang mengawasi.<br><br>Seseorang telah mengawasi sejak awal.<br><br>Namun game ini tidak akan pernah memberi tahu siapa mereka.",
+        term_header: "DUNIA VIII — KONSOL TERMINAL RAHASIA [v.8.0]", term_default: "Siap menerima perintah. Ketik 'HELP' untuk melihat daftar kata kunci.",
+        label_08: "08 — GALERI", gallery_title: "Fragmen dari<br>Dunia Kedelapan.",
+        label_09: "09 — SPESIFIKASI", sys_title: "Persyaratan Sistem.", badge_passed: "TERPENUHI", badge_rec: "DIREKOMENDASIKAN",
+        sys_min_h: "SPESIFIKASI MINIMUM", sys_rec_h: "SPESIFIKASI REKOMENDASI", sys_storage: "Penyimpanan:", sys_min_storage: "2 GB Ruang Kosong Available", sys_rec_storage: "2 GB SSD Kecepatan Tinggi",
+        label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.", teaser_sub: "ROUGHTALE8 — FITUR TRAILER RESMI BERKELANJUTAN",
+        label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan perkembangan game, arsip rahasia, dan akses beta tertutup.", ph_email: "MASUKKAN EMAIL KAMU...", btn_sub: "LANGGANAN",
+        final_tag: "HIDUP ITU <span>SEDERHANA</span>", dev_title: "STATUS DUNIA VIII — SEDANG DALAM PENGEMBANGAN AKTIF", dev_status: "GAME SEDANG DALAM TAHAP PEMBUATAN OLEH MUHAMMAD FAARI AKBAR. PENGUMUMAN RILIS RESMI SEGERA HADIR.",
+        created_by: "DIBUAT OLEH", footer_tag: "SETIAP PILIHAN. SETIAP NYAWA. SETIAP ENDING."
+    }
+};
+
+function toggleLanguage() {
+    currentLang = currentLang === 'EN' ? 'ID' : 'EN';
+    
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+            el.innerHTML = translations[currentLang][key];
+            if (key === 'synopsis_text') {
+                el.setAttribute('data-raw-text', translations[currentLang][key]);
+            }
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (translations[currentLang][key]) {
+            el.setAttribute('placeholder', translations[currentLang][key]);
+        }
+    });
+}
+
+let quizStep = 1;
+let quizScores = { help: 0, leave: 0, wait: 0 };
+let sentimentScores = { fear: 0, empathy: 0, logic: 0 };
+let lastEvaluatedProfile = "";
+
+const quizQuestions = {
+    EN: {
+        1: {
+            header: "DECISION ENGINE — STAGE 1 / 3",
+            question: "A stranger is trapped under falling concrete debris in Sector 8. The structure is collapsing in 5 seconds. You carry the key to the shelter. What do you do?",
+            c1: "1. [HELP] Risk your time to pull the stranger out.",
+            c2: "2. [LEAVE] Abandon the stranger and reach shelter safely.",
+            c3: "3. [WAIT] Freeze and observe what happens."
+        },
+        2: {
+            header: "DECISION ENGINE — STAGE 2 / 3",
+            question: "Inside the bunker, food rations are only sufficient for 4 people, but there are 5 survivors in your group. One person is severely injured. What is your call?",
+            c1: "1. [SHARE] Divide rations equally, even if everyone starves slowly.",
+            c2: "2. [EXCLUDE] Cut off the injured survivor's ration for group efficiency.",
+            c3: "3. [SACRIFICE] Give up your own ration to feed the injured."
+        },
+        3: {
+            header: "DECISION ENGINE — STAGE 3 / 3",
+            question: "The security system detects an infection breach in Sector 8. To save World VIII, you must purge the entire sector, killing infected and innocent people alike. Do you push the button?",
+            c1: "1. [REFUSE] Refuse to push the button and seek an impossible miracle.",
+            c2: "2. [PURGE] Push the button immediately to save the remaining world.",
+            c3: "3. [HESITATE] Hesitate until the timer runs out."
+        }
+    },
+    ID: {
+        1: {
+            header: "MESIN KEPUTUSAN — TAHAP 1 / 3",
+            question: "Seseorang yang tak dikenal terjebak di bawah reruntuhan beton di Sektor 8. Struktur akan runtuh dalam 5 detik. Kamu memegang kunci bunker shelter. Apa yang kamu lakukan?",
+            c1: "1. [BANTU] Ambil risiko waktu untuk menarik orang tersebut keluar.",
+            c2: "2. [TINGGALKAN] Tinggalkan dia dan lari ke shelter dengan selamat.",
+            c3: "3. [DIAM] Terpaku dan amati apa yang akan terjadi."
+        },
+        2: {
+            header: "MESIN KEPUTUSAN — TAHAP 2 / 3",
+            question: "Di dalam bunker, jatah makanan hanya cukup untuk 4 orang, tetapi ada 5 penyintas di kelompokmu. Satu orang terluka parah. Apa keputusanmu?",
+            c1: "1. [BAGI] Bagi jatah secara merata, meskipun semua orang akan kelaparan perlahan.",
+            c2: "2. [KELUARKAN] Hentikan jatah penyintas yang terluka demi efisiensi kelompok.",
+            c3: "3. [KORBANKAN] Serahkan jatah makananmu sendiri untuk memberi makan yang terluka."
+        },
+        3: {
+            header: "MESIN KEPUTUSAN — TAHAP 3 / 3",
+            question: "Sistem keamanan mendeteksi kebocoran infeksi di Sektor 8. Untuk menyelamatkan Dunia VIII, kamu harus memusnahkan seluruh sektor, membunuh orang terinfeksi dan yang tak bersalah. Apakah kamu menekan tombolnya?",
+            c1: "1. [TOLAK] Tolak menekan tombol dan cari keajaiban yang tak mungkin.",
+            c2: "2. [MUSNAHKAN] Tekan tombol seketika untuk menyelamatkan sisa dunia.",
+            c3: "3. [RAGU] Ragu-ragu hingga waktu habis."
+        }
+    }
+};
+
+function answerQuiz(choice) {
+    playHeartbeatSfx();
+    quizScores[choice]++;
+
+    if (choice === 'help') { sentimentScores.empathy += 35; sentimentScores.fear += 5; }
+    else if (choice === 'leave') { sentimentScores.logic += 40; sentimentScores.fear += 10; }
+    else { sentimentScores.fear += 35; sentimentScores.logic += 10; }
+
+    document.getElementById('sentimentMeter').style.display = 'flex';
+    document.getElementById('valFear').innerText = `${Math.min(100, sentimentScores.fear)}%`;
+    document.getElementById('valEmpathy').innerText = `${Math.min(100, sentimentScores.empathy)}%`;
+    document.getElementById('valLogic').innerText = `${Math.min(100, sentimentScores.logic)}%`;
+
+    quizStep++;
+
+    if (quizStep <= 3) {
+        const q = quizQuestions[currentLang][quizStep];
+        document.getElementById('simStepHeader').innerText = q.header;
+        document.getElementById('simQuestionText').innerText = q.question;
+        const box = document.getElementById('simChoicesBox');
+        box.innerHTML = `
+            <button class="sim-btn sfx-click" onclick="answerQuiz('help')">${q.c1}</button>
+            <button class="sim-btn sfx-click" onclick="answerQuiz('leave')">${q.c2}</button>
+            <button class="sim-btn sfx-click" onclick="answerQuiz('wait')">${q.c3}</button>
+        `;
+    } else {
+        showQuizFinalResult();
+    }
+}
+
+function showQuizFinalResult() {
+    playGlitchSfx();
+    document.getElementById('simChoicesBox').style.display = 'none';
+    
+    if(currentLang === 'ID') {
+        document.getElementById('simStepHeader').innerText = "MESIN KEPUTUSAN — ANALISIS SELESAI";
+        document.getElementById('simQuestionText').innerText = "EVALUASI SISTEM UNTUK DUNIA VIII:";
+    } else {
+        document.getElementById('simStepHeader').innerText = "DECISION ENGINE — ANALYSIS COMPLETE";
+        document.getElementById('simQuestionText').innerText = "SYSTEM EVALUATION FOR WORLD VIII:";
+    }
+    
+    const resBox = document.getElementById('simResult');
+    resBox.style.display = 'block';
+
+    if (quizScores.help >= 2) {
+        lastEvaluatedProfile = "SELFLESS PROTECTOR";
+        resultHtml = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: SELFLESS PROTECTOR</strong><br>You lead with empathy, valuing human lives over cold efficiency. In World VIII, your compassion will form unbreakable bonds, but leave you vulnerable to devastating sacrifices.";
+    } else if (quizScores.leave >= 2) {
+        lastEvaluatedProfile = "COLD PRAGMATIST";
+        resultHtml = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: COLD PRAGMATIST</strong><br>You act on pure logic and self-preservation. Survival is your priority. You will make it far in World VIII, but trust will be a rare luxury.";
+    } else {
+        lastEvaluatedProfile = "TACTICAL OBSERVER";
+        resultHtml = "<strong style='color:#b51e1e'>SURVIVOR PROFILE: TACTICAL OBSERVER / HESITANT</strong><br>You analyze and hesitate before committing. In a collapsing world, indecision is a choice itself. Time will often make decisions for you.";
+    }
+
+    resBox.innerHTML = resultHtml;
+    localStorage.setItem("r8_sim_result", resultHtml);
+    localStorage.setItem("r8_profile_name", lastEvaluatedProfile);
+    document.getElementById('pollBreakdown').style.display = 'flex';
+
+    setupShareButtons(lastEvaluatedProfile);
+    triggerAchievement(`EVALUATION COMPLETED: ${lastEvaluatedProfile}`);
+}
+
+function checkSavedQuizResult() {
+    const saved = localStorage.getItem("r8_sim_result");
+    lastEvaluatedProfile = localStorage.getItem("r8_profile_name") || "SURVIVOR";
+    if (saved) {
+        document.getElementById('simChoicesBox').style.display = 'none';
+        document.getElementById('simStepHeader').innerText = "DECISION ENGINE — PREVIOUS EVALUATION LOADED";
+        document.getElementById('simQuestionText').innerText = "SAVED SYSTEM EVALUATION FOR WORLD VIII:";
+        const resBox = document.getElementById('simResult');
+        resBox.style.display = 'block';
+        resBox.innerHTML = saved;
+        document.getElementById('pollBreakdown').style.display = 'flex';
+        
+        setupShareButtons(lastEvaluatedProfile);
+    }
+}
+
+function setupShareButtons(profileName) {
+    const shareText = `I got evaluated as '${profileName}' in World VIII of ROUGHTALE8! Check out the game in development: ${window.location.href}`;
+    document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+    document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+    document.getElementById('shareWrap').style.display = 'flex';
+
+    if (navigator.share) {
+        document.getElementById('nativeShareBtn').style.display = 'inline-flex';
+    }
+}
+
+function triggerNativeShare() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'ROUGHTALE8 — Survivor Profile',
+            text: `I got evaluated as '${lastEvaluatedProfile}' in World VIII of ROUGHTALE8!`,
+            url: window.location.href,
+        }).catch((err) => console.log('Error sharing:', err));
+    }
+}
+
+let isRecordingVoice = false;
+
+function toggleVoiceInput() {
+    const micBtn = document.getElementById('micVoiceBtn');
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        alert("Voice recognition is not supported in this browser. Please use text input.");
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = currentLang === 'ID' ? 'id-ID' : 'en-US';
+
+    if (!isRecordingVoice) {
+        recognition.start();
+        isRecordingVoice = true;
+        micBtn.classList.add('recording');
+        micBtn.innerText = "🎙️ LISTENING...";
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript.toUpperCase();
+            document.getElementById('termInput').value = transcript;
+            micBtn.classList.remove('recording');
+            micBtn.innerText = "🎙️ VOICE";
+            isRecordingVoice = false;
+            
+            const e = new KeyboardEvent('keydown', { key: 'Enter' });
+            handleTerminalCommand(e);
+        };
+
+        recognition.onerror = () => {
+            micBtn.classList.remove('recording');
+            micBtn.innerText = "🎙️ VOICE";
+            isRecordingVoice = false;
+        };
+
+        recognition.onend = () => {
+            micBtn.classList.remove('recording');
+            micBtn.innerText = "🎙️ VOICE";
+            isRecordingVoice = false;
+        };
+    }
+}
+
+function handleTerminalCommand(e) {
+    if (e.key === "Enter") {
+        playGlitchSfx();
+        const input = document.getElementById('termInput').value.trim().toUpperCase();
+        const output = document.getElementById('termOutput');
+        document.getElementById('termInput').value = '';
+
+        if (input === 'HELP') {
+            output.innerText = "AVAILABLE ARCHIVE CODES:\n> EIDON, LIRA, KAEL, NARA, REZA\n> WORLD1, WORLD8, ALERT, SECTOR8, KAMI, FAARI, CIPHER, CLEAR";
+        } else if (input === 'ALERT') {
+            toggleRedAlertMode();
+            output.innerText = "RED ALERT MODE TRIGGERED FROM TERMINAL.";
+        } else if (input === 'EIDON') {
+            output.innerText = "RECORD #01 — EIDON\nMemory loss confirmed. Subject holds key frequencies of World VIII.";
+        } else if (input === 'LIRA') {
+            output.innerText = "RECORD #02 — LIRA\nFormer sector medic. Guilt coefficient: 88%. Unresolved trauma.";
+        } else if (input === 'KAEL') {
+            output.innerText = "RECORD #03 — KAEL\nEx-soldier. Combat readiness: 99%. Tactical instinct dominant.";
+        } else if (input === 'NARA') {
+            output.innerText = "RECORD #04 — NARA\nChief scientist. Unlocked secrets regarding World VIII collapse mechanics.";
+        } else if (input === 'REZA') {
+            output.innerText = "RECORD #05 — REZA\nUnknown observer. High familiarity with previous 7 erased timelines.";
+        } else if (input === 'FAARI' || input === 'CREATOR') {
+            output.innerText = "AUTHOR ARCHIVE — MUHAMMAD FAARI AKBAR\nArchitect of World VIII. Decision System Designer & Developer (Game currently in development).";
+        } else if (input === 'SECTOR8') {
+            output.innerText = "LOCATION LOG — SECTOR 8\nPrimary sanctuary zone. Containment shield status: CRITICAL (12% remaining).";
+        } else if (input === 'KAMI') {
+            output.innerText = "CLASSIFIED — KAMI\n[ACCESS GRANTED] 'The simulation is leaking. You are reading code written by Muhammad Faari Akbar.'";
+        } else if (input === 'WORLD8' || input === 'ROUGHTALE8') {
+            output.innerText = "TIMELINE — WORLD VIII\nStatus: Collapsing. Current Sector: 8. No World IX available.";
+        } else if (input === 'CIPHER' || input === 'SECRET') {
+            output.innerText = "ENCRYPTED FREQUENCY DECRYPTED:\n'ORXJKWDOHI LV SIMPSO' -> Caesar Cipher (Shift -3) = 'ROUGHTALE8 IS SIMPLE'.\n\nSTATUS: SECRET ARCHIVE ACCESS GRANTED.";
+            triggerAchievement("SECRET CIPHER UNLOCKED");
+        } else if (input === 'CLEAR') {
+            output.innerText = "Ready for input. Type 'HELP' to list keywords.";
+        } else {
+            output.innerText = `COMMAND NOT RECOGNIZED: '${input}'. Type 'HELP' for available codes.`;
+        }
+    }
+}
+
+let isAudioPlaying = false;
+let wasBgmPlaying = false;
+const bgm = document.getElementById('bgmAudio');
+const btn = document.getElementById('audioToggleBtn');
+const eqBox = document.getElementById('audioEqualizer');
+
+bgm.volume = 0.5;
+
+function adjustBgmVolume(val) {
+    bgm.volume = parseFloat(val);
+}
+
+function toggleAudio() {
+    if (!isAudioPlaying) {
+        bgm.play().then(() => {
+            btn.innerText = "[ 🔊 ]";
+            btn.classList.add("active");
+            eqBox.classList.add("active");
+            isAudioPlaying = true;
+        }).catch(e => console.log("Play blocked:", e));
+    } else {
+        bgm.pause();
+        btn.innerText = "[ 🔊 ]";
+        btn.classList.remove("active");
+        eqBox.classList.remove("active");
+        isAudioPlaying = false;
+    }
+}
+
+function toggleEndingDetail(element, index) {
+    playSynthBeep(350, 'triangle', 0.08);
+    saveEndingProgress(index);
+    updateEndingTagsUI();
+
+    const isActive = element.classList.contains("active");
+    document.querySelectorAll('.ending').forEach(el => el.classList.remove('active'));
+    if (!isActive) {
+        element.classList.add("active");
+    }
+}
+
+function handleSubscribe(e) {
+    e.preventDefault();
+    playGlitchSfx();
+    triggerAchievement("JOINED THE RESISTANCE COMMUNITY");
+    alert("ARCHIVE SYSTEM: Signal registered. Welcome to World VIII development community.");
+}
+
+function openWorldArchive(worldKey) {
+    playSynthBeep(400, 'sine', 0.05);
+    const modal = document.getElementById("characterProfileModal");
+    const langData = worldDataDict[currentLang] || worldDataDict['EN'];
+    
+    if(langData[worldKey]) {
+        document.getElementById("pCategory").innerText = langData[worldKey].category;
+        document.getElementById("pTitle").innerText = langData[worldKey].title;
+        document.getElementById("pDesc").innerText = langData[worldKey].desc;
+        document.getElementById("pActionBtn").style.display = "none";
+        modal.classList.add("show");
+    }
+}
+
+function openProfile(name) {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    const langData = characterDataDict[currentLang] || characterDataDict['EN'];
+    
+    if(langData[name]) {
+        document.getElementById("pCategory").innerText = langData[name].category;
+        document.getElementById("pTitle").innerText = langData[name].title;
+        document.getElementById("pDesc").innerText = langData[name].desc;
+        document.getElementById("pActionBtn").style.display = "inline-flex";
+        document.getElementById("pActionBtnText").innerText = "PLAY VOICE FREQUENCY";
+        modal.classList.add("show");
+        
+        document.getElementById("pActionBtn").onclick = playVoiceLineSample;
+    }
+}
+
+function playVoiceLineSample() {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    const freqs = [300, 450, 200, 350, 500, 250];
+    freqs.forEach((f, index) => {
+        setTimeout(() => {
+            playSynthBeep(f, 'sine', 0.12);
+        }, index * 140);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const profileModal = document.getElementById("characterProfileModal");
+    const closeProfileBtn = document.getElementById("closeProfileBtn");
+
+    closeProfileBtn.addEventListener("click", function() { profileModal.classList.remove("show"); });
+
+    const modal = document.getElementById("trailerModal");
+    const playBtn = document.getElementById("playTrailerBtn");
+    const closeBtn = document.getElementById("closeModalBtn");
+    const videoPlayer = document.getElementById("mainTrailerVideo");
+    const videoSource = document.getElementById("videoSource");
+
+    let currentTrailerIndex = 1;
+    const trailers = ["trailer.mp4", "trailer2.mp4"];
+
+    playBtn.addEventListener("click", function() { 
+        playGlitchSfx();
+        modal.classList.add("show"); 
+        
+        wasBgmPlaying = isAudioPlaying;
+        if (isAudioPlaying) {
+            bgm.pause();
+        }
+
+        currentTrailerIndex = 1;
+        videoSource.src = trailers[0];
+        videoPlayer.load();
+        videoPlayer.currentTime = 0;
+        videoPlayer.play().catch(e => console.log("Autoplay blocked:", e));
+    });
+
+    videoPlayer.addEventListener("ended", function() {
+        if (currentTrailerIndex === 1) {
+            videoPlayer.classList.add("fade-out");
+            setTimeout(() => {
+                currentTrailerIndex = 2;
+                videoSource.src = trailers[1];
+                videoPlayer.load();
+                videoPlayer.currentTime = 0;
+                videoPlayer.play().then(() => {
+                    videoPlayer.classList.remove("fade-out");
+                }).catch(e => console.log(e));
+            }, 400);
+        }
+    });
+
+    function closeModal() { 
+        modal.classList.remove("show"); 
+        videoPlayer.pause();
+        videoPlayer.classList.remove("fade-out");
+        if (wasBgmPlaying) {
+            bgm.play().catch(e => console.log(e));
+        }
+    }
+
+    closeBtn.addEventListener("click", closeModal);
+    window.addEventListener("click", function(e) { 
+        if (e.target === modal) closeModal(); 
+    });
+});
+</script>
+
+</body>
+</html>
