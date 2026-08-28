@@ -488,10 +488,6 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .terminal-input { flex: 1; background: transparent; border: none; color: #22c55e; font-family: monospace; outline: none; font-size: 13px; }
 .terminal-output { margin-top: 12px; font-size: 11px; color: #aaa; line-height: 1.6; white-space: pre-wrap; }
 
-.daily-generator-box { margin-top: 20px; background: rgba(181, 30, 30, 0.08); border: 1px solid rgba(181, 30, 30, 0.4); padding: 15px; border-radius: 3px; max-width: 600px; width: 100%; text-align: left; font-family: Arial, sans-serif; }
-.daily-gen-title { font: 9px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold; margin-bottom: 6px; }
-.daily-gen-text { font-size: 12px; color: #ccc; font-style: italic; line-height: 1.5; }
-
 .gallery{background:#040506}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:40px}
 .gallery-item{height:240px;border:1px solid var(--line);background-size: 135% 135%;background-position: center 45%;display:flex;align-items:end;padding:20px;filter:saturate(.7) brightness(.85);transition:all .4s ease;border-radius:2px;}
@@ -524,15 +520,12 @@ background:linear-gradient(rgba(2,3,4,.78),rgba(2,3,4,.94)),url("cover-backgroun
 .close-btn { position: absolute; top: -40px; right: 0; color: #ffffff; font-size: 30px; font-family: Arial, sans-serif; z-index: 10; }
 
 .video-container {
-    position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
-    background: #000; border: 1px solid var(--red); box-shadow: 0 0 30px rgba(181, 30, 30, 0.4); border-radius: 4px; overflow: hidden;
+    position: relative; width: 100%; background: #000; border: 1px solid var(--red); box-shadow: 0 0 30px rgba(181, 30, 30, 0.4); border-radius: 4px; overflow: hidden; padding: 15px; display: flex; flex-direction: column; gap: 12px;
 }
 .video-container video {
-    position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important;
+    width: 100% !important; height: auto !important; max-height: 70vh !important;
     object-fit: contain !important; background: #000; display: block !important;
-    transition: opacity 0.5s ease;
 }
-.video-container video.fade-out { opacity: 0; }
 
 .final{min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(to bottom,#090b0b,#030506)}
 .final h2{font-size:clamp(40px,8vw,105px);font-weight:400;letter-spacing:8px}
@@ -1298,14 +1291,20 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="pulse-ring"></div>
   </div>
   
-  <div class="text" style="margin:auto" data-i18n="teaser_sub">ROUGHTALE8 — CONTINUOUS OFFICIAL TRAILER FEATURE</div>
+  <div class="text" style="margin:auto" data-i18n="teaser_sub">ROUGHTALE8 — OFFICIAL TRAILER FEATURE</div>
 </section>
 
+<!-- MODAL PEMUTAR VIDEO YANG DIPERBAIKI -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
         <div class="video-container">
-            <!-- Tambahan atribut playsinline, webkit-playsinline, dan controls untuk kestabilan pemutar web -->
+            <!-- Pilihan Trailer Manual agar 100% video tampil tanpa bug -->
+            <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 5px;">
+                <button class="ctrl-btn sfx-click active" id="btnTrailer1" onclick="switchTrailer('trailer.mp4', this)">[ TRAILER 01 ]</button>
+                <button class="ctrl-btn sfx-click" id="btnTrailer2" onclick="switchTrailer('trailer2.mp4', this)">[ TRAILER 02 ]</button>
+            </div>
+            
             <video id="mainTrailerVideo" controls playsinline webkit-playsinline preload="auto">
                 <source src="trailer.mp4" type="video/mp4" id="videoSource">
                 Browser kamu tidak mendukung pemutaran video.
@@ -1389,7 +1388,6 @@ function triggerAchievement(title) {
     setTimeout(() => { toast.classList.remove('show'); }, 4000);
 }
 
-// 1. Dedicated Trophy Room & Achievement Badges Gallery
 function openAchievementsModal() {
     playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
@@ -1427,7 +1425,6 @@ function openAchievementsModal() {
     modal.classList.add("show");
 }
 
-// JUKEBOX / OST PLAYER MODAL
 function openJukeboxModal() {
     playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
@@ -1460,7 +1457,6 @@ function openGalleryLightbox(title, imgUrl, desc) {
     modal.classList.add("show");
 }
 
-// TIMELINE NODE INSPECTOR
 function openTimelineNode(nodeName, desc) {
     playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
@@ -1471,7 +1467,6 @@ function openTimelineNode(nodeName, desc) {
     modal.classList.add("show");
 }
 
-// MEMORY FRAGMENT MATCHER MINIGAME
 let matchedMemoryCount = 0;
 function alignMemoryFragment(id, keyword, btnEl) {
     playSynthBeep(600, 'triangle', 0.1);
@@ -1616,7 +1611,6 @@ function playAudioLog(cardId, freqSeq) {
     }
 }
 
-// INTERACTIVE RADIO STATIC WHITE NOISE (Web Audio API)
 let whiteNoiseNode = null;
 let noiseGainNode = null;
 
@@ -1644,7 +1638,6 @@ function initRadioStaticNoise() {
 }
 
 window.addEventListener('mousemove', (e) => {
-    // Custom Particle Spark Cursor Trail
     if (Math.random() > 0.4) {
         const spark = document.createElement('div');
         spark.className = 'cursor-spark';
@@ -1654,7 +1647,6 @@ window.addEventListener('mousemove', (e) => {
         setTimeout(() => spark.remove(), 600);
     }
 
-    // Proximity Radio Static Adjustment
     if (noiseGainNode && audioCtx && audioCtx.state === 'running') {
         const x = e.clientX;
         const y = e.clientY;
@@ -1667,7 +1659,6 @@ window.addEventListener('mousemove', (e) => {
     }
 });
 
-// Matrix Hex-Code Hacking Minigame with Countdown Timer
 let matrixTimer = 15;
 let matrixInterval = null;
 let matrixTargetSequence = ["0F", "8A", "C3"];
@@ -2079,7 +2070,7 @@ const translations = {
         label_08: "08 — GALLERY", gallery_title: "Fragments of<br>World Eight.",
         label_09: "09 — SPECIFICATIONS", sys_title: "System Requirements.", badge_passed: "PASSED", badge_rec: "RECOMMENDED",
         sys_min_h: "MINIMUM REQUIREMENTS", sys_rec_h: "RECOMMENDED SPECS", sys_storage: "Storage:", sys_min_storage: "2 GB Available Space", sys_rec_storage: "2 GB High Speed SSD",
-        label_10: "10 — TEASERS", teaser_title: "You have seen<br>nothing yet.", teaser_sub: "ROUGHTALE8 — CONTINUOUS OFFICIAL TRAILER FEATURE",
+        label_10: "10 — TEASERS", teaser_title: "You have seen<br>nothing yet.", teaser_sub: "ROUGHTALE8 — OFFICIAL TRAILER FEATURE",
         label_11: "11 — COMMUNITY", community_title: "Join The Resistance", community_desc: "Get notified on development updates, secret lore archives, and closed beta access.", ph_email: "ENTER YOUR EMAIL...", btn_sub: "SUBSCRIBE",
         final_tag: "LIFE IS <span>SIMPLE</span>", dev_title: "WORLD VIII STATUS — IN ACTIVE DEVELOPMENT", dev_status: "GAME IS CURRENTLY BEING CRAFTED & DEVELOPED BY MUHAMMAD FAARI AKBAR. OFFICIAL RELEASE ANNOUNCEMENT COMING SOON.",
         created_by: "CREATED BY", footer_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING."
@@ -2141,7 +2132,7 @@ const translations = {
         label_08: "08 — GALERI", gallery_title: "Fragmen dari<br>Dunia Kedelapan.",
         label_09: "09 — SPESIFIKASI", sys_title: "Persyaratan Sistem.", badge_passed: "TERPENUHI", badge_rec: "DIREKOMENDASIKAN",
         sys_min_h: "SPESIFIKASI MINIMUM", sys_rec_h: "SPESIFIKASI REKOMENDASI", sys_storage: "Penyimpanan:", sys_min_storage: "2 GB Ruang Kosong Available", sys_rec_storage: "2 GB SSD Kecepatan Tinggi",
-        label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.", teaser_sub: "ROUGHTALE8 — FITUR TRAILER RESMI BERKELANJUTAN",
+        label_10: "10 — TEASER", teaser_title: "Kamu belum melihat<br>apa-apa.", teaser_sub: "ROUGHTALE8 — FITUR TRAILER RESMI",
         label_11: "11 — KOMUNITAS", community_title: "Bergabung Dengan Perlawanan", community_desc: "Dapatkan pemberitahuan perkembangan game, arsip rahasia, dan akses beta tertutup.", ph_email: "MASUKKAN EMAIL KAMU...", btn_sub: "LANGGANAN",
         final_tag: "HIDUP ITU <span>SEDERHANA</span>", dev_title: "STATUS DUNIA VIII — SEDANG DALAM PENGEMBANGAN AKTIF", dev_status: "GAME SEDANG DALAM TAHAP PEMBUATAN OLEH MUHAMMAD FAARI AKBAR. PENGUMUMAN RILIS RESMI SEGERA HADIR.",
         created_by: "DIBUAT OLEH", footer_tag: "SETIAP PILIHAN. SETIAP NYAWA. SETIAP ENDING."
@@ -2500,6 +2491,22 @@ function playVoiceLineSample() {
     });
 }
 
+// Fungsi Pilihan Trailer Manual yang Stabil & Anti Layar Hitam
+function switchTrailer(filename, btnElement) {
+    playGlitchSfx();
+    document.querySelectorAll('.video-container .ctrl-btn').forEach(b => b.classList.remove('active'));
+    btnElement.classList.add('active');
+
+    const videoPlayer = document.getElementById("mainTrailerVideo");
+    const videoSource = document.getElementById("videoSource");
+
+    videoPlayer.pause();
+    videoSource.src = filename;
+    videoPlayer.load();
+    videoPlayer.currentTime = 0;
+    videoPlayer.play().catch(e => console.log("Playback error:", e));
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const profileModal = document.getElementById("characterProfileModal");
     const closeProfileBtn = document.getElementById("closeProfileBtn");
@@ -2512,9 +2519,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const videoPlayer = document.getElementById("mainTrailerVideo");
     const videoSource = document.getElementById("videoSource");
 
-    let currentTrailerIndex = 1;
-    const trailers = ["trailer.mp4", "trailer2.mp4"];
-
     playBtn.addEventListener("click", function() { 
         playGlitchSfx();
         modal.classList.add("show"); 
@@ -2524,42 +2528,19 @@ document.addEventListener("DOMContentLoaded", function() {
             bgm.pause();
         }
 
-        currentTrailerIndex = 1;
-        videoSource.src = trailers[0];
+        document.getElementById("btnTrailer1").classList.add("active");
+        document.getElementById("btnTrailer2").classList.remove("active");
+
+        videoSource.src = "trailer.mp4";
         videoPlayer.load();
         videoPlayer.currentTime = 0;
         videoPlayer.play().catch(e => console.log("Autoplay blocked:", e));
-    });
-
-    // Perbaikan transisi video otomatis ke trailer2.mp4 yang aman dari bug layar hitam
-    videoPlayer.addEventListener("ended", function() {
-        if (currentTrailerIndex === 1) {
-            videoPlayer.classList.add("fade-out");
-            setTimeout(() => {
-                currentTrailerIndex = 2;
-                videoSource.src = trailers[1];
-                videoPlayer.load(); // Paksa reload buffer
-                videoPlayer.currentTime = 0;
-                
-                // Pastikan pemutaran dimulai secara aman dengan penanganan promise
-                const playPromise = videoPlayer.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        videoPlayer.classList.remove("fade-out");
-                    }).catch(error => {
-                        console.log("Auto-play error on trailer 2:", error);
-                        videoPlayer.classList.remove("fade-out");
-                    });
-                }
-            }, 400);
-        }
     });
 
     function closeModal() { 
         modal.classList.remove("show"); 
         videoPlayer.pause();
         videoPlayer.currentTime = 0;
-        videoPlayer.classList.remove("fade-out");
         if (wasBgmPlaying) {
             bgm.play().catch(e => console.log(e));
         }
