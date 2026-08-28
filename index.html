@@ -668,7 +668,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <canvas id="ashCanvas"></canvas>
 
   <video class="hero-video-bg" autoplay loop muted playsinline>
-    <source src="trailer.mp4" type="video/mp4">
+    <source src="https://github.com/faarimuhammad2502/roughtale8/raw/refs/heads/main/trailer.mp4" type="video/mp4">
   </video>
 
   <div class="cover-wrap" id="coverTiltWrap">
@@ -1294,20 +1294,20 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <div class="text" style="margin:auto" data-i18n="teaser_sub">ROUGHTALE8 — OFFICIAL TRAILER FEATURE</div>
 </section>
 
-<!-- MODAL PEMUTAR VIDEO DENGAN 3 PILIHAN TRAILER -->
+<!-- MODAL PEMUTAR VIDEO DENGAN LINK RAW GITHUB -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
         <div class="video-container">
             <!-- 3 Pilihan Trailer Manual -->
             <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 5px; flex-wrap: wrap;">
-                <button class="ctrl-btn sfx-click active" id="btnTrailer1" onclick="switchTrailer('trailer.mp4', this)">[ TRAILER 01 ]</button>
-                <button class="ctrl-btn sfx-click" id="btnTrailer2" onclick="switchTrailer('trailer2.mp4', this)">[ TRAILER 02 ]</button>
-                <button class="ctrl-btn sfx-click" id="btnTrailer3" onclick="switchTrailer('trailer3.mp4', this)">[ TRAILER 03 ]</button>
+                <button class="ctrl-btn sfx-click active" id="btnTrailer1" onclick="switchTrailer(1, this)">[ TRAILER 01 ]</button>
+                <button class="ctrl-btn sfx-click" id="btnTrailer2" onclick="switchTrailer(2, this)">[ TRAILER 02 ]</button>
+                <button class="ctrl-btn sfx-click" id="btnTrailer3" onclick="switchTrailer(3, this)">[ TRAILER 03 ]</button>
             </div>
             
             <video id="mainTrailerVideo" controls playsinline webkit-playsinline preload="auto">
-                <source src="trailer.mp4" type="video/mp4" id="videoSource">
+                <source src="https://github.com/faarimuhammad2502/roughtale8/raw/refs/heads/main/trailer.mp4" type="video/mp4" id="videoSource">
                 Browser kamu tidak mendukung pemutaran video.
             </video>
         </div>
@@ -2492,8 +2492,8 @@ function playVoiceLineSample() {
     });
 }
 
-// Fungsi Pilihan Trailer Manual untuk 3 Video (`trailer.mp4`, `trailer2.mp4`, `trailer3.mp4`)
-function switchTrailer(filename, btnElement) {
+// Fungsi Pilihan Trailer Manual dengan Link Raw GitHub yang Valid
+function switchTrailer(trailerNum, btnElement) {
     playGlitchSfx();
     document.querySelectorAll('.video-container .ctrl-btn').forEach(b => b.classList.remove('active'));
     btnElement.classList.add('active');
@@ -2501,8 +2501,17 @@ function switchTrailer(filename, btnElement) {
     const videoPlayer = document.getElementById("mainTrailerVideo");
     const videoSource = document.getElementById("videoSource");
 
+    let videoUrl = "";
+    if (trailerNum === 1) {
+        videoUrl = "https://github.com/faarimuhammad2502/roughtale8/raw/refs/heads/main/trailer.mp4";
+    } else if (trailerNum === 2) {
+        videoUrl = "https://github.com/faarimuhammad2502/roughtale8/raw/refs/heads/main/trailer2.mp4";
+    } else if (trailerNum === 3) {
+        videoUrl = "https://github.com/faarimuhammad2502/roughtale8/raw/refs/heads/main/trailer3.mp4";
+    }
+
     videoPlayer.pause();
-    videoSource.src = filename;
+    videoSource.src = videoUrl;
     videoPlayer.load();
     videoPlayer.currentTime = 0;
     videoPlayer.play().catch(e => console.log("Playback error:", e));
@@ -2533,7 +2542,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("btnTrailer2").classList.remove("active");
         document.getElementById("btnTrailer3").classList.remove("active");
 
-        videoSource.src = "trailer.mp4";
+        videoSource.src = "https://github.com/faarimuhammad2502/roughtale8/raw/refs/heads/main/trailer.mp4";
         videoPlayer.load();
         videoPlayer.currentTime = 0;
         videoPlayer.play().catch(e => console.log("Autoplay blocked:", e));
