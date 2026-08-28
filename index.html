@@ -1305,7 +1305,8 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="modal-content">
         <span id="closeModalBtn" class="close-btn sfx-click">&times;</span>
         <div class="video-container">
-            <video id="mainTrailerVideo" controls playsinline preload="auto">
+            <!-- Tambahan atribut playsinline, webkit-playsinline, dan controls untuk kestabilan pemutar web -->
+            <video id="mainTrailerVideo" controls playsinline webkit-playsinline preload="auto">
                 <source src="trailer.mp4" type="video/mp4" id="videoSource">
                 Browser kamu tidak mendukung pemutaran video.
             </video>
@@ -1657,7 +1658,6 @@ window.addEventListener('mousemove', (e) => {
     if (noiseGainNode && audioCtx && audioCtx.state === 'running') {
         const x = e.clientX;
         const y = e.clientY;
-        // Check distance to center of screen or glitch elements
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
         const dist = Math.hypot(x - centerX, y - centerY);
@@ -2531,17 +2531,26 @@ document.addEventListener("DOMContentLoaded", function() {
         videoPlayer.play().catch(e => console.log("Autoplay blocked:", e));
     });
 
+    // Perbaikan transisi video otomatis ke trailer2.mp4 yang aman dari bug layar hitam
     videoPlayer.addEventListener("ended", function() {
         if (currentTrailerIndex === 1) {
             videoPlayer.classList.add("fade-out");
             setTimeout(() => {
                 currentTrailerIndex = 2;
                 videoSource.src = trailers[1];
-                videoPlayer.load();
+                videoPlayer.load(); // Paksa reload buffer
                 videoPlayer.currentTime = 0;
-                videoPlayer.play().then(() => {
-                    videoPlayer.classList.remove("fade-out");
-                }).catch(e => console.log(e));
+                
+                // Pastikan pemutaran dimulai secara aman dengan penanganan promise
+                const playPromise = videoPlayer.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        videoPlayer.classList.remove("fade-out");
+                    }).catch(error => {
+                        console.log("Auto-play error on trailer 2:", error);
+                        videoPlayer.classList.remove("fade-out");
+                    });
+                }
             }, 400);
         }
     });
@@ -2549,6 +2558,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function closeModal() { 
         modal.classList.remove("show"); 
         videoPlayer.pause();
+        videoPlayer.currentTime = 0;
         videoPlayer.classList.remove("fade-out");
         if (wasBgmPlaying) {
             bgm.play().catch(e => console.log(e));
