@@ -37,9 +37,16 @@ body.midnight-mode {
   filter: brightness(0.9) contrast(1.1);
 }
 
-a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .gallery-item, input, select, .inv-slot, .audio-log-card, .node-btn, .matrix-cell {
+a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .gallery-item, input, select, .inv-slot, .audio-log-card, .node-btn, .matrix-cell, .timeline-node {
   cursor: var(--cursor-pointer) !important;
 }
+
+.cursor-spark {
+  position: fixed; pointer-events: none; width: 6px; height: 6px; background: var(--red);
+  border-radius: 50%; z-index: 99999; box-shadow: 0 0 8px var(--red);
+  animation: sparkFade 0.6s linear forwards;
+}
+@keyframes sparkFade { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0.2); opacity: 0; } }
 
 .crt-overlay {
   position: fixed; inset: 0; pointer-events: none; z-index: 998; opacity: 0.15;
@@ -634,6 +641,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <a href="#synopsis" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_synopsis">SYNOPSIS</a>
     <a href="#world" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_world">WORLD</a>
     <a href="#audiologs" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_audiologs">AUDIO LOGS</a>
+    <a href="#timeline" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_timeline">TIMELINE TREE</a>
     <a href="#hack" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_hack">TERMINAL HACK</a>
     <a href="#relics" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_relics">RELICS</a>
     <a href="#map" onclick="closeMobileMenu()" class="sfx-hover" data-i18n="nav_map">MAP</a>
@@ -768,6 +776,80 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
       </div>
       <button class="btn sfx-click" onclick="playAudioLog('logCard3', [180, 240, 310, 190])">[ PLAY TRANSMISSION ]</button>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE TIMELINE TREE FLOWCHART -->
+<section id="timeline" class="relics-section">
+  <div class="label">02.85 — BRANCHING TIMELINE TREE</div>
+  <h2 class="title" data-i18n="timeline_title">World VIII Decision Flowchart.</h2>
+  <p class="text" data-i18n="timeline_text">Explore the branching narrative milestones and discover unlocked checkpoints across World VIII.</p>
+
+  <div style="margin-top:35px; background:rgba(8,12,16,0.9); border:1px solid var(--red); padding:30px; border-radius:4px; overflow-x:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; min-width:700px; gap:20px;">
+      
+      <div class="timeline-node sfx-click" onclick="openTimelineNode('Prologue', 'PROLOGUE: The Awakening of Five Strangers in Sector 8 ruins. (UNLOCKED)')" style="flex:1; background:rgba(181,30,30,0.15); border:1px solid var(--red); padding:15px; border-radius:3px; text-align:center;">
+        <div style="font:9px Arial,sans-serif; color:var(--red); letter-spacing:2px; font-weight:bold;">NODE 01</div>
+        <div style="font-size:13px; color:#fff; margin-top:5px;">PROLOGUE AWAKENING</div>
+        <div style="font:8px Arial,sans-serif; color:#22c55e; margin-top:5px;">[ 🟢 UNLOCKED ]</div>
+      </div>
+
+      <div style="color:var(--red); font-weight:bold;">➔</div>
+
+      <div class="timeline-node sfx-click" onclick="openTimelineNode('BranchA', 'BRANCH A: Choosing to help the stranger under concrete debris. Empathy +35%. (UNLOCKED)')" style="flex:1; background:rgba(255,255,255,0.02); border:1px solid #444; padding:15px; border-radius:3px; text-align:center;">
+        <div style="font:9px Arial,sans-serif; color:#aaa; letter-spacing:2px; font-weight:bold;">NODE 02A</div>
+        <div style="font-size:13px; color:#fff; margin-top:5px;">PATH OF EMPATHY</div>
+        <div style="font:8px Arial,sans-serif; color:#eab308; margin-top:5px;">[ 🟡 BRANCH ACTIVE ]</div>
+      </div>
+
+      <div style="color:var(--red); font-weight:bold;">➔</div>
+
+      <div class="timeline-node sfx-click" onclick="openTimelineNode('BranchB', 'BRANCH B: Choosing to abandon and secure shelter. Logic +40%. (LOCKED)')" style="flex:1; background:rgba(255,255,255,0.02); border:1px solid #444; padding:15px; border-radius:3px; text-align:center;">
+        <div style="font:9px Arial,sans-serif; color:#aaa; letter-spacing:2px; font-weight:bold;">NODE 02B</div>
+        <div style="font-size:13px; color:#fff; margin-top:5px;">PATH OF PRAGMATISM</div>
+        <div style="font:8px Arial,sans-serif; color:#555; margin-top:5px;">[ 🔒 LOCKED ]</div>
+      </div>
+
+      <div style="color:var(--red); font-weight:bold;">➔</div>
+
+      <div class="timeline-node sfx-click" onclick="openTimelineNode('FinalNode', 'FINAL NODE: Sector 8 Core Purge. The final decision. (LOCKED)')" style="flex:1; background:rgba(255,255,255,0.02); border:1px solid #444; padding:15px; border-radius:3px; text-align:center;">
+        <div style="font:9px Arial,sans-serif; color:var(--red); letter-spacing:2px; font-weight:bold;">NODE 03</div>
+        <div style="font-size:13px; color:#fff; margin-top:5px;">SECTOR PURGE</div>
+        <div style="font:8px Arial,sans-serif; color:#555; margin-top:5px;">[ 🔒 LOCKED ]</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY FRAGMENT MATCHER MINIGAME -->
+<section id="memory" class="hack-section">
+  <div class="label">02.88 — MEMORY FRAGMENT MATCHER</div>
+  <h2 class="title" data-i18n="memory_title">Reconstruct Eidon's Memory.</h2>
+  <p class="text" data-i18n="memory_text">Align the scattered psychological keyword fragments to recover lost archive logs.</p>
+
+  <div class="hack-container">
+    <div class="hack-header">
+      <span>MEMORY FRAGMENT RECONSTRUCTION</span>
+      <span id="memoryStatus">STATUS: 0 / 3 FRAGMENTS ALIGNED</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px; margin:20px 0;">
+      <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); border:1px solid #444; padding:12px; border-radius:3px;">
+        <span style="font-size:13px; color:#ccc;">Fragment 01: [ ___ ] is simple.</span>
+        <button class="btn sfx-click" onclick="alignMemoryFragment(1, 'LIFE', this)">ALIGN 'LIFE'</button>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); border:1px solid #444; padding:12px; border-radius:3px;">
+        <span style="font-size:13px; color:#ccc;">Fragment 02: Seven worlds have [ ___ ].</span>
+        <button class="btn sfx-click" onclick="alignMemoryFragment(2, 'FALLEN', this)">ALIGN 'FALLEN'</button>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); border:1px solid #444; padding:12px; border-radius:3px;">
+        <span style="font-size:13px; color:#ccc;">Fragment 03: There is no [ ___ ] world.</span>
+        <button class="btn sfx-click" onclick="alignMemoryFragment(3, 'NINTH', this)">ALIGN 'NINTH'</button>
+      </div>
+    </div>
+    <div id="memoryOutput" style="font-size:12px; color:#aaa; margin-top:15px; line-height:1.6;">
+      Match all 3 memory fragments correctly to unlock encrypted lore.
     </div>
   </div>
 </section>
@@ -1310,7 +1392,7 @@ function triggerAchievement(title) {
 function openAchievementsModal() {
     playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
-    const totalAch = 6; 
+    const totalAch = 7; 
     const currentCount = unlockedAchievements.length;
     
     let achListHtml = `<div style="margin-bottom:15px; color:#eab308; font:9px Arial,sans-serif; letter-spacing:2px;">GLOBAL TROPHY ROOM: ${currentCount} / ${totalAch} (${Math.round((currentCount/totalAch)*100)}%) UNLOCKED</div><div style="display:flex; flex-direction:column; gap:8px; max-height:300px; overflow-y:auto; padding-right:5px;">`;
@@ -1321,6 +1403,7 @@ function openAchievementsModal() {
         "INTERCEPTED TRANSMISSION LOG",
         "SECRET CIPHER UNLOCKED",
         "JOINED THE RESISTANCE COMMUNITY",
+        "MEMORY FRAGMENT RECONSTRUCTED",
         "OBSERVER GLITCH UNLOCKED (KONAMI CODE)"
     ];
 
@@ -1374,6 +1457,35 @@ function openGalleryLightbox(title, imgUrl, desc) {
     document.getElementById("pDesc").innerText = `${desc}\n\n[FRAGMENT RECORDED FROM SECTOR 8]`;
     document.getElementById("pActionBtn").style.display = "none";
     modal.classList.add("show");
+}
+
+// TIMELINE NODE INSPECTOR
+function openTimelineNode(nodeName, desc) {
+    playGlitchSfx();
+    const modal = document.getElementById("characterProfileModal");
+    document.getElementById("pCategory").innerText = "TIMELINE FLOWCHART NODE";
+    document.getElementById("pTitle").innerText = nodeName;
+    document.getElementById("pDesc").innerText = desc + "\n\n[CHECKPOINT SYNCHRONIZED WITH WORLD VIII DATABASE]";
+    document.getElementById("pActionBtn").style.display = "none";
+    modal.classList.add("show");
+}
+
+// MEMORY FRAGMENT MATCHER MINIGAME
+let matchedMemoryCount = 0;
+function alignMemoryFragment(id, keyword, btnEl) {
+    playSynthBeep(600, 'triangle', 0.1);
+    btnEl.innerText = `[ ✅ ALIGNED: ${keyword} ]`;
+    btnEl.style.background = "#22c55e";
+    btnEl.style.color = "#000";
+    btnEl.disabled = true;
+    matchedMemoryCount++;
+    document.getElementById('memoryStatus').innerText = `STATUS: ${matchedMemoryCount} / 3 FRAGMENTS ALIGNED`;
+
+    if (matchedMemoryCount === 3) {
+        playSynthBeep(880, 'sine', 0.4);
+        document.getElementById('memoryOutput').innerHTML = "<span style='color:#22c55e'>[MEMORY RESTORED] Eidon's memory decrypted: 'Life is simple, but choices remain absolute.' Lore archive unlocked!</span>";
+        triggerAchievement("MEMORY FRAGMENT RECONSTRUCTED");
+    }
 }
 
 function toggleMobileMenu() {
@@ -1503,7 +1615,59 @@ function playAudioLog(cardId, freqSeq) {
     }
 }
 
-// 2. Matrix Hex-Code Hacking Minigame with Countdown Timer
+// INTERACTIVE RADIO STATIC WHITE NOISE (Web Audio API)
+let whiteNoiseNode = null;
+let noiseGainNode = null;
+
+function initRadioStaticNoise() {
+    if (!audioCtx) return;
+    try {
+        const bufferSize = 2 * audioCtx.sampleRate;
+        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+        }
+
+        whiteNoiseNode = audioCtx.createBufferSource();
+        whiteNoiseNode.buffer = noiseBuffer;
+        whiteNoiseNode.loop = true;
+
+        noiseGainNode = audioCtx.createGain();
+        noiseGainNode.gain.setValueAtTime(0.0, audioCtx.currentTime);
+
+        whiteNoiseNode.connect(noiseGainNode);
+        noiseGainNode.connect(audioCtx.destination);
+        whiteNoiseNode.start(0);
+    } catch(e) { console.log(e); }
+}
+
+window.addEventListener('mousemove', (e) => {
+    // Custom Particle Spark Cursor Trail
+    if (Math.random() > 0.4) {
+        const spark = document.createElement('div');
+        spark.className = 'cursor-spark';
+        spark.style.left = `${e.clientX}px`;
+        spark.style.top = `${e.clientY}px`;
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 600);
+    }
+
+    // Proximity Radio Static Adjustment
+    if (noiseGainNode && audioCtx && audioCtx.state === 'running') {
+        const x = e.clientX;
+        const y = e.clientY;
+        // Check distance to center of screen or glitch elements
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const dist = Math.hypot(x - centerX, y - centerY);
+        const maxDist = Math.hypot(centerX, centerY);
+        const proximityVolume = Math.max(0, 1 - (dist / maxDist)) * 0.05 * sfxVolume;
+        noiseGainNode.gain.setValueAtTime(proximityVolume, audioCtx.currentTime);
+    }
+});
+
+// Matrix Hex-Code Hacking Minigame with Countdown Timer
 let matrixTimer = 15;
 let matrixInterval = null;
 let matrixTargetSequence = ["0F", "8A", "C3"];
@@ -1520,9 +1684,7 @@ function initMatrixMinigame() {
     document.getElementById("matrixStatusText").innerText = "STATUS: HACK IN PROGRESS";
     document.getElementById("hackOutput").innerText = "Find the correct 3-node hex combination: [0F ➔ 8A ➔ C3]";
 
-    // Shuffle pool for rendering
     let shuffled = [...hexPool].sort(() => 0.5 - Math.random()).slice(0, 8);
-    // Ensure target exists
     if (!shuffled.includes("0F")) shuffled[0] = "0F";
     if (!shuffled.includes("8A")) shuffled[1] = "8A";
     if (!shuffled.includes("C3")) shuffled[2] = "C3";
@@ -1598,11 +1760,10 @@ function triggerObserverGlitchMode() {
     document.body.style.filter = "invert(1) hue-rotate(180deg)";
     setTimeout(() => {
         document.body.style.filter = "none";
-        alert("OBSERVER OVERRIDE: Hidden timeline frequency synchronization complete.");
+        alert("OBSERVER OVERRIDE [KAMI]: The simulation parameters have been fully exposed. You are watching from the outside.");
     }, 3000);
 }
 
-// Typewriter Observer & Cleaner Function
 let isTypingActive = false;
 
 function initSynopsisTypewriterObserver() {
@@ -1647,10 +1808,8 @@ function runSynopsisTypewriter() {
     typeWriterStep();
 }
 
-// 3. Dynamic Time-Based Ambient Mode (Midnight Protocol)
 function checkTimeBasedTheme() {
     const currentHour = new Date().getHours();
-    // If between 18:00 (6 PM) and 06:00 (6 AM)
     if (currentHour >= 18 || currentHour < 6) {
         document.body.classList.add("midnight-mode");
     }
@@ -1667,6 +1826,7 @@ window.addEventListener('load', () => {
     initAshParticles();
     initMatrixMinigame();
     checkTimeBasedTheme();
+    initRadioStaticNoise();
 
     if (localStorage.getItem("r8_red_alert")) {
         document.body.classList.add('red-alert-mode');
@@ -1845,7 +2005,6 @@ const characterDataDict = {
     }
 };
 
-// 4. Daily Character Transmission / Lore Generator
 const dailyQuotes = [
     "Eidon: 'Aku tidak ingat siapa namaku sebelum abu itu turun, tapi aku tahu aku harus terus melangkah.'",
     "Dr. Lira: 'Luka fisik bisa disembuhkan dengan obat, tetapi bagaimana cara menyembuhkan ingatan dunia yang sekarat?'",
@@ -1866,7 +2025,7 @@ function generateDailyQuote() {
 let currentLang = 'EN';
 const translations = {
     EN: {
-        pill_in_dev: "IN DEVELOPMENT", nav_synopsis: "SYNOPSIS", nav_world: "WORLD", nav_audiologs: "AUDIO LOGS", nav_hack: "TERMINAL HACK", nav_relics: "RELICS", nav_map: "MAP", nav_characters: "CHARACTERS", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDINGS",
+        pill_in_dev: "IN DEVELOPMENT", nav_synopsis: "SYNOPSIS", nav_world: "WORLD", nav_audiologs: "AUDIO LOGS", nav_timeline: "TIMELINE TREE", nav_hack: "TERMINAL HACK", nav_relics: "RELICS", nav_map: "MAP", nav_characters: "CHARACTERS", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDINGS",
         hero_h1: "WHAT WILL YOU <span>ACCEPT?</span>", hero_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING.",
         hero_desc: "Seven worlds have already fallen. This is the eighth world. The last world. Five strangers are brought together as everything begins to collapse — and every decision leaves a permanent mark.",
         btn_demo: "TRY PROLOGUE DEMO ➔", btn_enter: "EXPLORE WORLD VIII",
@@ -1876,6 +2035,8 @@ const translations = {
         label_02: "02 — WORLD", world_title: "Eight worlds.<br>One last chance.", world_text: "Click on any World card below to decrypt historical records and fragments left behind.",
         w1_name: "THE FIRST", w2_name: "THE SECOND", w3_name: "THE THIRD", w4_name: "THE FOURTH", w5_name: "THE FIFTH", w6_name: "THE SIXTH", w7_name: "THE SEVENTH", w8_name: "THE LAST",
         audiologs_title: "Intercepted Audio Logs.", audiologs_text: "Listen to recovered voice logs decrypted directly from World VIII frequency channels.",
+        timeline_title: "World VIII Decision Flowchart.", timeline_text: "Explore the branching narrative milestones and discover unlocked checkpoints across World VIII.",
+        memory_title: "Reconstruct Eidon's Memory.", memory_text: "Align the scattered psychological keyword fragments to recover lost archive logs.",
         hack_title: "Bypass Security Protocol.", hack_text: "Select the correct sequence of hexadecimal nodes before the security lockout timer expires.",
         label_relics: "02.2 — RELIC INVENTORY CODEX", relics_title: "Relics of Fallen Worlds.", relics_text: "Inspect recovered artifacts, keycards, encrypted drives, and ancient covenants from previous collapse cycles.",
         rel1_h: "Frozen Pocket Watch", rel1_p: "Stopped permanently at 03:14 AM. The moment World I began its reset.",
@@ -1924,7 +2085,7 @@ const translations = {
         created_by: "CREATED BY", footer_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING."
     },
     ID: {
-        pill_in_dev: "DALAM PENGEMBANGAN", nav_synopsis: "SINOPSIS", nav_world: "DUNIA", nav_audiologs: "REKAMAN SUARA", nav_hack: "TERMINAL HACK", nav_relics: "RELIK", nav_map: "PETA", nav_characters: "KARAKTER", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDING",
+        pill_in_dev: "DALAM PENGEMBANGAN", nav_synopsis: "SINOPSIS", nav_world: "DUNIA", nav_audiologs: "REKAMAN SUARA", nav_timeline: "TIMELINE TREE", nav_hack: "TERMINAL HACK", nav_relics: "RELIK", nav_map: "PETA", nav_characters: "KARAKTER", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDING",
         hero_h1: "APA YANG AKAN ANDA <span>TERIMA?</span>", hero_tag: "SETIAP PILIHAN. SETIAP NYAWA. SETIAP ENDING.",
         hero_desc: "Tujuh dunia telah hancur. Ini adalah dunia kedelapan. Dunia terakhir. Lima orang asing dipertemukan saat segalanya mulai runtuh — dan setiap keputusan meninggalkan bekas permanen.",
         btn_demo: "COBA DEMO PROLOG ➔", btn_enter: "JELAJAHI DUNIA VIII",
@@ -1934,6 +2095,8 @@ const translations = {
         label_02: "02 — DUNIA", world_title: "Delapan dunia.<br>Satu kesempatan terakhir.", world_text: "Klik kartu Dunia di bawah untuk mendekripsi catatan sejarah dan fragmen yang tersisa.",
         w1_name: "PERTAMA", w2_name: "KEDUA", w3_name: "KETIGA", w4_name: "KEEMPAT", w5_name: "KELIMA", w6_name: "KEENAM", w7_name: "KETUJUH", w8_name: "TERAKHIR",
         audiologs_title: "Rekaman Transmisi Suara.", audiologs_text: "Dengarkan rekaman log suara yang berhasil didekripsi dari frekuensi Dunia VIII.",
+        timeline_title: "Bagan Alur Keputusan Dunia VIII.", timeline_text: "Jelajahi milestone narasi bercabang dan temukan checkpoint yang terbuka di seluruh Dunia VIII.",
+        memory_title: "Rekonstruksi Ingatan Eidon.", memory_text: "Sejajarkan fragmen kata kunci psikologis yang terpencar untuk memulihkan log arsip yang hilang.",
         hack_title: "Bypass Protokol Keamanan.", hack_text: "Pilih urutan node heksadesimal yang benar sebelum waktu penguncian keamanan habis.",
         label_relics: "02.2 — KODEKS INVENTARIS RELIK", relics_title: "Relik Dunia Yang Runtuh.", relics_text: "Periksa artefak, kartu kunci, drive memori terenkripsi, dan dokumen perjanjian kuno yang ditemukan dari siklus masa lalu.",
         rel1_h: "Jam Saku Terhenti", rel1_p: "Terhenti permanen pada pukul 03:14 pagi. Momen saat Dunia I mulai direset.",
@@ -2141,7 +2304,6 @@ function checkSavedQuizResult() {
     }
 }
 
-// 5. Native Web Share API Integration
 function setupShareButtons(profileName) {
     const shareText = `I got evaluated as '${profileName}' in World VIII of ROUGHTALE8! Check out the game in development: ${window.location.href}`;
     document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
@@ -2235,7 +2397,7 @@ function handleTerminalCommand(e) {
         } else if (input === 'SECTOR8') {
             output.innerText = "LOCATION LOG — SECTOR 8\nPrimary sanctuary zone. Containment shield status: CRITICAL (12% remaining).";
         } else if (input === 'KAMI') {
-            output.innerText = "CLASSIFIED — KAMI\n[ACCESS DENIED] Someone is watching your terminal inputs right now.";
+            output.innerText = "CLASSIFIED — KAMI\n[ACCESS GRANTED] 'The simulation is leaking. You are reading code written by Muhammad Faari Akbar.'";
         } else if (input === 'WORLD8' || input === 'ROUGHTALE8') {
             output.innerText = "TIMELINE — WORLD VIII\nStatus: Collapsing. Current Sector: 8. No World IX available.";
         } else if (input === 'CIPHER' || input === 'SECRET') {
