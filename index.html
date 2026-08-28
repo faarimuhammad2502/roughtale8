@@ -44,6 +44,9 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
 }
 .crt-overlay.disabled { opacity: 0 !important; }
 
+/* --- TAMBAHAN STYLE UNTUK FITUR BARU --- */
+
+/* Achievement Toast Notification */
 #achievementToast {
   position: fixed; bottom: 30px; left: 30px; z-index: 9999;
   background: rgba(8, 12, 16, 0.95); border: 1px solid var(--red);
@@ -56,6 +59,7 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
 .achieve-title { font: 9px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold; }
 .achieve-desc { font-size: 13px; color: #fff; font-family: Georgia, serif; }
 
+/* Live Ticker Bar di Paling Atas */
 .live-ticker-bar {
   position: fixed; top: 0; left: 0; width: 100%; background: #000; border-bottom: 1px solid var(--red);
   color: var(--red); font: 9px Monospace, sans-serif; letter-spacing: 2px; z-index: 1001;
@@ -64,6 +68,7 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
 .ticker-text { display: inline-block; animation: marqueeTicker 30s linear infinite; }
 @keyframes marqueeTicker { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
 
+/* Red Alert Mode (Easter Egg saat Logo diklik 3x) */
 body.red-alert-mode {
   filter: sepia(0.6) hue-rotate(-50deg) saturate(3) contrast(1.2);
   animation: redAlertPulse 3s infinite ease-in-out;
@@ -73,6 +78,36 @@ body.red-alert-mode {
   50% { background: #1a0303; }
 }
 
+/* Audio Visualizer Mini di Navbar */
+.audio-visualizer-mini {
+  display: flex; align-items: flex-end; gap: 2px; height: 16px; width: 24px; padding: 0 2px;
+}
+.eq-bar { width: 4px; background: var(--red); height: 20%; border-radius: 1px; transition: height 0.15s ease; }
+.audio-visualizer-mini.active .eq-bar { animation: eqActive 0.5s infinite alternate ease-in-out; }
+.audio-visualizer-mini.active .eq-bar:nth-child(2) { animation-delay: 0.15s; }
+.audio-visualizer-mini.active .eq-bar:nth-child(3) { animation-delay: 0.3s; }
+@keyframes eqActive { 0% { height: 15%; } 100% { height: 95%; } }
+
+/* Volume Slider Controller */
+.vol-control-wrap {
+  display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.03);
+  padding: 2px 5px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
+}
+.vol-icon { font-size: 8px; color: var(--muted); }
+.vol-slider { width: 38px; accent-color: var(--red); vertical-align: middle; }
+
+/* Back to Top Floating Button */
+.back-to-top {
+  position: fixed; bottom: 30px; right: 30px; z-index: 900;
+  background: rgba(8, 11, 14, 0.9); border: 1px solid var(--red); color: #fff;
+  padding: 10px 14px; font: 9px Arial, sans-serif; letter-spacing: 2px;
+  border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease, transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+}
+.back-to-top.visible { opacity: 1; pointer-events: auto; }
+.back-to-top:hover { background: var(--red); transform: translateY(-3px); }
+
+/* --- LANJUTAN KODE ASLI ANDA --- */
 #preloader {
     position: fixed; inset: 0; background: #020304; z-index: 99999;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -122,22 +157,6 @@ nav {
 
 .nav-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
-.audio-visualizer-mini {
-    display: flex; align-items: flex-end; gap: 2px; height: 16px; width: 24px; padding: 0 2px;
-}
-.eq-bar { width: 4px; background: var(--red); height: 20%; border-radius: 1px; transition: height 0.15s ease; }
-.audio-visualizer-mini.active .eq-bar { animation: eqActive 0.5s infinite alternate ease-in-out; }
-.audio-visualizer-mini.active .eq-bar:nth-child(2) { animation-delay: 0.15s; }
-.audio-visualizer-mini.active .eq-bar:nth-child(3) { animation-delay: 0.3s; }
-@keyframes eqActive { 0% { height: 15%; } 100% { height: 95%; } }
-
-.vol-control-wrap {
-    display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.03);
-    padding: 2px 5px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
-}
-.vol-icon { font-size: 8px; color: var(--muted); }
-.vol-slider { width: 38px; accent-color: var(--red); vertical-align: middle; }
-
 .ctrl-btn {
     background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
     padding: 3px 6px; font: 7.5px Arial, sans-serif; letter-spacing: 1px; border-radius: 3px; transition: all 0.3s ease; white-space: nowrap;
@@ -149,16 +168,6 @@ nav {
     display: none; background: transparent; border: 1px solid var(--line); color: #fff;
     padding: 4px 8px; font-size: 14px; border-radius: 3px;
 }
-
-.back-to-top {
-    position: fixed; bottom: 30px; right: 30px; z-index: 900;
-    background: rgba(8, 11, 14, 0.9); border: 1px solid var(--red); color: #fff;
-    padding: 10px 14px; font: 9px Arial, sans-serif; letter-spacing: 2px;
-    border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease, transform 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
-}
-.back-to-top.visible { opacity: 1; pointer-events: auto; }
-.back-to-top:hover { background: var(--red); transform: translateY(-3px); }
 
 .hero{
 min-height:100vh;position:relative;display:grid;grid-template-columns:52% 48%;
@@ -1275,7 +1284,7 @@ function triggerAchievement(title) {
 function openAchievementsModal() {
     playGlitchSfx();
     const modal = document.getElementById("characterProfileModal");
-    const totalAch = 6; // Ditambah easter egg konami
+    const totalAch = 6; 
     const currentCount = unlockedAchievements.length;
     
     let achListHtml = `<div style="margin-bottom:15px; color:#eab308; font:9px Arial,sans-serif; letter-spacing:2px;">UNLOCKED: ${currentCount} / ${totalAch} (${Math.round((currentCount/totalAch)*100)}%)</div><div style="display:flex; flex-direction:column; gap:8px;">`;
@@ -1471,7 +1480,6 @@ document.querySelectorAll('.sfx-click').forEach(el => {
     el.addEventListener('click', () => playSynthBeep(250, 'square', 0.06));
 });
 
-// KONAMI CODE EASTER EGG LISTENER
 const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let konamiIndex = 0;
 
@@ -1497,7 +1505,6 @@ function triggerObserverGlitchMode() {
     }, 3000);
 }
 
-// TYPEWRITER EFFECT FOR SYNOPSIS
 function initTypewriterEffect() {
     const el = document.getElementById('synopsisParagraph');
     if(!el) return;
@@ -1784,7 +1791,7 @@ const translations = {
         label_04: "04 — GAMEPLAY", gameplay_title: "Dunia ini<br>tidak menunggu.",
         sys1_no: "SISTEM 01", sys1_h: "TIDAK ADA PILIHAN AMAN", sys1_p: "Tidak ada keputusan yang sepenuhnya aman. Menyelamatkan satu orang mungkin berarti kehilangan hal lain.",
         sys2_no: "SISTEM 02", sys2_h: "WAKTU", sys2_p: "Ketika pemain ragu terlalu lama, sistem akan memutuskan untuk mereka. Dunia terus berjalan.",
-        sys3_no: "SISTEM 03", sys3_h: "KONSEKUENSI", sys3_p: "Keputusan kecil bisa kembali jauh di kemudian hari dalam bentuk yang tidak pernah diduga pemain.",
+        sys3_no: "SISTEM 03", sys3_h: "KONSEKUENSI", sys3_p: "Keputusan kecil bisa kembali jauh di dalam bentuk yang tidak pernah diduga pemain.",
         sys4_no: "SISTEM 04", sys4_h: "INGATAN", sys4_p: "Permainan ulang bukan sekadar mengulang dunia yang sama. Karakter, NPC, lokasi, dan peristiwa dapat berubah.",
         sys5_no: "SISTEM 05", sys5_h: "KEMATIAN", sys5_p: "Kematian karakter bukan sekadar kekalahan. Hubungan, peristiwa, dan dunia itu sendiri akan ikut berubah.",
         sys6_no: "SISTEM 06", sys6_h: "PENERIMAAN", sys6_p: "Ada sesuatu yang tidak bisa dikontrol pemain. Game ini tidak akan pernah memberi tahu apa itu.",
@@ -2149,7 +2156,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     closeProfileBtn.addEventListener("click", function() { profileModal.classList.remove("show"); });
 
-    // Combined Trailer Playlist Logic with Smooth Transition
     const modal = document.getElementById("trailerModal");
     const playBtn = document.getElementById("playTrailerBtn");
     const closeBtn = document.getElementById("closeModalBtn");
@@ -2175,10 +2181,9 @@ document.addEventListener("DOMContentLoaded", function() {
         videoPlayer.play().catch(e => console.log("Autoplay blocked:", e));
     });
 
-    // Smooth transition when teaser 1 finishes to play teaser 2
     videoPlayer.addEventListener("ended", function() {
         if (currentTrailerIndex === 1) {
-            videoPlayer.classList.add("fade-out"); // Efek fade smooth
+            videoPlayer.classList.add("fade-out");
             setTimeout(() => {
                 currentTrailerIndex = 2;
                 videoSource.src = trailers[1];
@@ -2187,7 +2192,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 videoPlayer.play().then(() => {
                     videoPlayer.classList.remove("fade-out");
                 }).catch(e => console.log(e));
-            }, 400); // Durasi transisi fade
+            }, 400);
         }
     });
 
