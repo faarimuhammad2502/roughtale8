@@ -137,7 +137,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
     }
     #start-overlay.hidden {
       opacity: 0;
@@ -147,74 +147,80 @@
     .start-card {
       max-width: 650px;
       width: 92%;
-      background: linear-gradient(180deg, rgba(15, 21, 33, 0.96) 0%, rgba(8, 12, 19, 0.98) 100%);
-      border: 1px solid rgba(245, 158, 11, 0.35);
-      border-radius: 22px;
-      padding: 38px;
-      box-shadow: 0 35px 90px rgba(0,0,0,0.9), 0 0 50px rgba(245, 158, 11, 0.12);
-      text-align: center;
+      background: linear-gradient(180deg, rgba(13, 18, 28, 0.96) 0%, rgba(6, 9, 15, 0.98) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.28);
+      border-radius: 8px;
+      padding: 36px 40px;
+      box-shadow: 0 35px 90px rgba(0,0,0,0.9), 0 0 40px rgba(245, 158, 11, 0.08);
+      text-align: left;
     }
     .start-tagline {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       color: #f59e0b;
       letter-spacing: 3px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       text-transform: uppercase;
     }
     .start-title {
       font-family: 'Syne', sans-serif;
-      font-size: 40px;
+      font-size: 38px;
       font-weight: 800;
       letter-spacing: 2px;
       color: #ffffff;
       margin-bottom: 12px;
     }
     .start-desc {
-      font-size: 13.5px;
-      line-height: 1.75;
+      font-size: 13px;
+      line-height: 1.7;
       color: #94a3b8;
       margin-bottom: 22px;
-      text-align: left;
     }
     .feature-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-bottom: 26px;
-      text-align: left;
     }
     .feature-item {
       display: flex;
       align-items: center;
-      gap: 9px;
-      font-size: 11.5px;
+      gap: 10px;
+      font-size: 11px;
       color: #e2e8f0;
       font-family: 'JetBrains Mono', monospace;
-      background: rgba(255,255,255,0.04);
-      padding: 9px 13px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+      padding: 10px 12px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.06);
     }
-    .feature-icon { color: #f59e0b; font-weight: bold; }
+    .feature-icon {
+      color: #f59e0b;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      background: rgba(245, 158, 11, 0.12);
+      border-radius: 2px;
+    }
     .start-btn {
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
       color: #06090f;
-      border: none;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      border: 1px solid #fbbf24;
+      font-family: 'JetBrains Mono', monospace;
       font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 1.5px;
-      padding: 16px 42px;
-      border-radius: 9999px;
+      font-size: 13px;
+      letter-spacing: 1.8px;
+      padding: 15px 36px;
+      border-radius: 4px;
       cursor: pointer;
-      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
-      transition: all 0.25s ease;
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35);
+      transition: all 0.2s ease;
       width: 100%;
+      text-align: center;
     }
     .start-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 45px rgba(245, 158, 11, 0.6);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 35px rgba(245, 158, 11, 0.55);
       background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
     }
 
@@ -323,56 +329,59 @@
       pointer-events: auto;
     }
     .shard-counter {
-      background: rgba(10, 18, 32, 0.88);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      padding: 7px 14px;
-      border-radius: 9999px;
+      background: rgba(10, 18, 32, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 7px 13px;
+      border-radius: 4px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       color: #38bdf8;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
     .hud-btn {
-      background: rgba(10, 14, 24, 0.85);
+      background: rgba(10, 14, 24, 0.88);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 7px 14px;
-      border-radius: 9999px;
+      padding: 7px 13px;
+      border-radius: 4px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       color: #cbd5e1;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       transition: all 0.2s ease;
     }
     .hud-btn:hover {
-      background: rgba(245, 158, 11, 0.2);
+      background: rgba(245, 158, 11, 0.18);
       border-color: #f59e0b;
       color: #ffffff;
+    }
+    .hud-btn.muted {
+      color: #64748b;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(10, 14, 24, 0.6);
     }
     .time-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(10, 14, 24, 0.85);
+      background: rgba(10, 14, 24, 0.88);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 7px 16px;
-      border-radius: 9999px;
+      padding: 7px 14px;
+      border-radius: 4px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       color: #f8fafc;
     }
     .time-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 1px;
       background: #f59e0b;
-      box-shadow: 0 0 10px #f59e0b;
-      animation: pulse 2s infinite ease-in-out;
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
@@ -600,6 +609,545 @@
     .close-btn:active {
       transform: translateY(1px);
     }
+  
+    
+    /* =========================================================================
+       ROUGHTALE8 // GRITTY SURVIVAL HORROR & DIEGETIC RESISTANCE TERMINAL
+       (ANTI-SLOP: Zero Generic Rounded Pills, Raw Tactical Industrial Horror)
+       ========================================================================= */
+
+    /* Top HUD Terminal Trigger */
+    .menu-trigger-btn {
+      background: rgba(8, 11, 18, 0.92);
+      border: 1px solid rgba(220, 38, 38, 0.5);
+      border-left: 3px solid #dc2626;
+      color: #f1f5f9;
+      padding: 6px 14px;
+      border-radius: 2px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 0 10px rgba(220, 38, 38, 0.2);
+      transition: all 0.15s ease;
+    }
+    .menu-trigger-btn:hover {
+      background: rgba(220, 38, 38, 0.22);
+      border-color: #ef4444;
+      box-shadow: 0 4px 22px rgba(220, 38, 38, 0.5);
+      color: #ffffff;
+    }
+    .menu-trigger-btn .bracket {
+      color: #dc2626;
+      font-weight: 900;
+    }
+
+    /* Diegetic Bottom Briefing Tag */
+    .hud-briefing-tag {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: rgba(6, 9, 15, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 3px solid #dc2626;
+      padding: 7px 14px;
+      border-radius: 2px;
+      font-family: 'JetBrains Mono', monospace;
+      pointer-events: auto;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .hud-briefing-tag:hover {
+      background: rgba(220, 38, 38, 0.12);
+    }
+    .hud-briefing-tag .briefing-cycle {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #f87171;
+    }
+    .hud-briefing-tag .briefing-hint {
+      font-size: 9px;
+      letter-spacing: 0.8px;
+      color: #94a3b8;
+    }
+
+    /* Start Screen Button Overhaul (Sharp Military Stencil) */
+    .start-btn {
+      background: #0d121c;
+      border: 1.5px solid #dc2626;
+      border-left: 6px solid #dc2626;
+      color: #f1f5f9;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 2px;
+      padding: 16px 36px;
+      border-radius: 3px;
+      cursor: pointer;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(220, 38, 38, 0.35);
+      transition: all 0.2s ease;
+      width: 100%;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .start-btn:hover {
+      background: #dc2626;
+      color: #05070a;
+      box-shadow: 0 14px 50px rgba(220, 38, 38, 0.7);
+      transform: translateY(-1px);
+    }
+    .start-btn .btn-bracket {
+      color: #f87171;
+    }
+    .start-btn:hover .btn-bracket {
+      color: #05070a;
+    }
+
+    /* Terminal Modal Backdrop */
+    #survival-menu-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(3, 5, 8, 0.92);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.18s ease, visibility 0.18s ease;
+    }
+    #survival-menu-modal.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* Terminal Chassis */
+    .terminal-container {
+      width: 960px;
+      max-width: 95vw;
+      max-height: 90vh;
+      background: #090d15;
+      border: 1px solid rgba(71, 85, 105, 0.4);
+      border-top: 3px solid #dc2626;
+      border-bottom: 2px solid #dc2626;
+      border-radius: 4px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95), 0 0 35px rgba(220, 38, 38, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Scanlines Overlay */
+    .terminal-container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.18) 0px,
+        rgba(0, 0, 0, 0.18) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    /* Terminal Header */
+    .terminal-header {
+      padding: 16px 24px;
+      background: #0d121d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+    .terminal-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .terminal-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .terminal-title .hazard-tag {
+      background: #dc2626;
+      color: #05070a;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 2px 6px;
+      border-radius: 2px;
+      letter-spacing: 1px;
+    }
+    .terminal-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #94a3b8;
+      letter-spacing: 1px;
+    }
+
+    .terminal-close-btn {
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(220, 38, 38, 0.5);
+      color: #f8fafc;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 2px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .terminal-close-btn:hover {
+      background: #dc2626;
+      color: #05070a;
+    }
+
+    /* Tab Bar */
+    .terminal-tabs {
+      display: flex;
+      background: #07090f;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0 16px;
+      gap: 2px;
+      position: relative;
+      z-index: 2;
+    }
+    .term-tab {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 12px 18px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .term-tab:hover {
+      color: #cbd5e1;
+    }
+    .term-tab.active {
+      color: #f1f5f9;
+      border-bottom-color: #dc2626;
+      background: rgba(220, 38, 38, 0.08);
+    }
+
+    /* Tab Content Area */
+    .terminal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+      position: relative;
+      z-index: 2;
+      scrollbar-width: thin;
+      scrollbar-color: #dc2626 #090d15;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Dossier Split Layout (Survival Protocol) */
+    .dossier-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+    }
+    @media (max-width: 820px) {
+      .dossier-layout { grid-template-columns: 1fr; }
+    }
+
+    .dossier-panel {
+      background: #0d121c;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .dossier-panel.panel-hazard {
+      border-left: 3px solid #dc2626;
+      background: rgba(18, 12, 16, 0.7);
+    }
+    .panel-hdr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #ef4444;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .panel-hdr.hdr-cyan {
+      color: #38bdf8;
+    }
+
+    /* Survival Protocol Axioms */
+    .axiom-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .axiom-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .axiom-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .axiom-desc {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      line-height: 1.55;
+      color: #94a3b8;
+    }
+    .axiom-desc strong {
+      color: #f8fafc;
+    }
+    .axiom-desc .crimson-warn {
+      color: #f87171;
+      font-weight: 800;
+    }
+
+    /* Mechanical Keymap Table */
+    .keymap-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+    .keymap-table tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .keymap-table tr:last-child {
+      border-bottom: none;
+    }
+    .keymap-table td {
+      padding: 10px 6px;
+      vertical-align: middle;
+    }
+    .keycap {
+      background: #18202e;
+      border: 1px solid #334155;
+      border-bottom: 2px solid #0f172a;
+      color: #f8fafc;
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      text-align: center;
+    }
+    .keycap-danger {
+      background: #2b1115;
+      border-color: #dc2626;
+      color: #fca5a5;
+    }
+    .action-name {
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+    .action-desc {
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* Calibration / Settings Panel */
+    .calibration-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .calib-box {
+      background: #0d121c;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .calib-hdr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 8px;
+    }
+    .calib-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    .calib-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .calib-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+    .calib-desc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: #64748b;
+    }
+    .calib-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Brutalist Buttons & Sliders */
+    .tactical-btn {
+      background: #131924;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .tactical-btn:hover {
+      background: #1e293b;
+      color: #f8fafc;
+    }
+    .tactical-btn.active {
+      background: #dc2626;
+      border-color: #ef4444;
+      color: #05070a;
+      font-weight: 900;
+      box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+    }
+    .tactical-btn.btn-cyan.active {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #05070a;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+
+    .gauge-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      color: #38bdf8;
+      width: 48px;
+      text-align: right;
+    }
+
+    .tactical-slider {
+      -webkit-appearance: none;
+      width: 140px;
+      height: 5px;
+      background: #1e293b;
+      border-radius: 0;
+      outline: none;
+    }
+    .tactical-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 18px;
+      background: #38bdf8;
+      border: 1px solid #0284c7;
+      cursor: pointer;
+      border-radius: 1px;
+    }
+
+    /* Terminal Footer */
+    .terminal-footer {
+      padding: 12px 24px;
+      background: #070a10;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-stamp {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #64748b;
+      letter-spacing: 1px;
+    }
+    .footer-return-btn {
+      background: #dc2626;
+      border: 1px solid #ef4444;
+      color: #05070a;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      font-size: 11.5px;
+      letter-spacing: 1.5px;
+      padding: 9px 20px;
+      border-radius: 2px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(220, 38, 38, 0.35);
+      transition: all 0.15s ease;
+    }
+    .footer-return-btn:hover {
+      background: #ef4444;
+      box-shadow: 0 0 25px rgba(220, 38, 38, 0.65);
+    }
+
   </style>
 </head>
 <body>
@@ -615,28 +1163,30 @@
   </div>
 
   <!-- Memory Shard Discovery Toast -->
-  <div id="shard-toast">✦ MEMORY SHARD RECOVERED // FRAGMENT SIKLUS VII TERBUKA</div>
+  <div id="shard-toast"><span class="toast-tag">[RECOVERED]</span> MEMORY SHARD // FRAGMENT SIKLUS VII TERBUKA</div>
 
   <!-- Ambient Soundtrack -->
-  <audio id="ambient-audio" loop preload="none">
+  <audio id="ambient-audio" loop preload="auto">
     <source src="web-prototype/assets/bgm_dark.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Start Screen Modal -->
   <div id="start-overlay">
     <div class="start-card">
-      <div class="start-tagline">World VIII // Sector 8 Edition v6.0 CINEMATIC</div>
+      <div class="start-tagline">CYCLE 08 // DISTRICT OF SILENCE // SECTOR 08</div>
       <h1 class="start-title">ROUGHTALE8</h1>
       <p class="start-desc">
-        <strong>Update v6.1:</strong> Eidon kembali sebagai <strong>manusia 17 tahun</strong> dengan tubuh <strong>sculpted 3D</strong> — bahu, dada, lengan, dan jari yang benar-benar bervolume, jaket hoodie gelap, kemeja baja-biru, dan tas kanvas. Animasi <strong>Idle / Walk / Run</strong> tetap prosedural dan halus, ditemani <strong>HDRI sunrise</strong>, material <strong>PBR</strong> (normal + roughness), serta <strong>film-grade post-processing</strong> (bloom, color grading, vignette, grain).
+        Tujuh siklus kehancuran telah memusnahkan peradaban masa lalu. Sebagai <strong>Eidon</strong>, kamu menjelajahi reruntuhan sunyi District 8 di penghujung fajar. Temukan serpihan <strong>Memory Shards</strong> yang tercecer, dengarkan rekaman memori para penyintas, dan pertahankan stabilitas kesadaran dari anomali KAMI di lorong-lorong mati.
       </p>
       <div class="feature-grid">
-        <div class="feature-item"><span class="feature-icon">✔</span> Eidon Manusia — Sculpted 3D Body</div>
-        <div class="feature-item"><span class="feature-icon">✔</span> HDRI Sunrise + PBR Materials</div>
-        <div class="feature-item"><span class="feature-icon">✔</span> Bloom + Film Color Grade</div>
-        <div class="feature-item"><span class="feature-icon">✔</span> 5 Memory Shards Collectible</div>
+        <div class="feature-item"><span class="feature-icon">[01]</span> EXPLORATION : 5 Memory Shards</div>
+        <div class="feature-item"><span class="feature-icon">[02]</span> RECON : Tactical Radar & Vision</div>
+        <div class="feature-item"><span class="feature-icon">[03]</span> SURVIVAL : Hindari Anomali KAMI</div>
+        <div class="feature-item"><span class="feature-icon">[04]</span> ARCHIVE : Rekaman Memori Siklus VII</div>
       </div>
-      <button class="start-btn" id="btn-enter-world" onclick="if(window.__enterWorld){window.__enterWorld();}else{document.getElementById('start-overlay').classList.add('hidden');}">MASUKI DUNIA RERUNTUHAN 3D</button>
+      <button class="start-btn" id="btn-enter-world" onclick="if(window.__enterWorld){window.__enterWorld();}else{document.getElementById('start-overlay').classList.add('hidden');}">
+        <span class="btn-bracket">[</span> MASUK KE DISTRICT 8 [ENTER] <span class="btn-bracket">]</span>
+      </button>
     </div>
   </div>
 
@@ -649,18 +1199,45 @@
       </div>
       <div class="zone-indicator" id="zone-display">DISTRICT 8 : CENTRAL PROMENADE</div>
       <div class="top-controls">
-        <div class="shard-counter" id="shard-counter">💠 SHARDS: 0 / 5</div>
-        <button class="hud-btn" id="btn-cam-toggle">🎥 Kamera [V]</button>
-        <button class="hud-btn" id="btn-audio-toggle">🔊 BGM ON</button>
+        <div class="shard-counter" id="shard-counter">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
+          </svg>
+          <span id="shard-counter-text">SHARDS: 0 / 5</span>
+        </div>
+        <button class="hud-btn" id="btn-audio-toggle" title="Toggle Audio (BGM)">
+          <svg id="audio-icon-on" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg id="audio-icon-off" style="display:none;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <span id="audio-toggle-text">AUDIO ON</span>
+        </button>
         <div class="time-badge">
           <div class="time-dot"></div>
           <span>08:17 AM</span>
         </div>
+        <button class="menu-trigger-btn" id="btn-open-menu" title="Buka Terminal Protokol & Pengaturan (TAB / ESC)">
+          <span class="bracket">[</span>
+          <span>// PROTOKOL & PENGATURAN : TAB</span>
+          <span class="bracket">]</span>
+        </button>
       </div>
     </div>
 
     <!-- KAMI Anomaly alert -->
-    <div id="anomaly-alert">⚠ KAMI ANOMALY // SIGNAL DETECTED</div>
+    <div id="anomaly-alert">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+        <line x1="12" y1="9" x2="12" y2="13"></line>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+      <span>KAMI ANOMALY // SIGNAL DETECTED</span>
+    </div>
     <div id="anomaly-flash"></div>
 
     <!-- Contextual Prompt (E Key) -->
@@ -678,14 +1255,9 @@
           <canvas id="radar-canvas" width="120" height="120"></canvas>
           <div class="radar-label">SECTOR RADAR</div>
         </div>
-        <div class="controls-bar">
-          <span><strong>W/A/S/D</strong> Gerak</span>
-          <span><strong>Space</strong> Lompat</span>
-          <span><strong>Shift</strong> Lari</span>
-          <span><strong>Mouse Drag</strong> Putar Kamera</span>
-          <span><strong>V</strong> Kamera</span>
-          <span><strong>F</strong> Senter</span>
-          <span><strong>E</strong> Interaksi</span>
+        <div class="hud-briefing-tag" id="hud-briefing-tag" title="Tekan TAB untuk membuka panduan survival & kontrol lengkap">
+          <span class="briefing-cycle">CYCLE 08 // PERSISTENCE PROTOCOL</span>
+          <span class="briefing-hint">TEKAN [TAB] UNTUK PANDUAN SURVIVAL & PENGATURAN</span>
         </div>
       </div>
       <div class="vital-status">
@@ -699,6 +1271,520 @@
   </div>
 
   <!-- NPC & Landmark Dialogue Modal -->
+    <!-- SURVIVAL TERMINAL, INSTRUCTION CODEX & SETTINGS MODAL -->
+  <div id="survival-menu-modal">
+    <div class="terminal-container">
+      <!-- Terminal Header -->
+      <div class="terminal-header">
+        <div class="terminal-title-group">
+          <div class="terminal-title">
+            <span class="hazard-tag">SEKTOR 08</span>
+            <span>TERMINAL PROTOKOL EVASI // SIKLUS VIII</span>
+          </div>
+          <div class="terminal-sub">DIREKTORAT PERTAHANAN PENYINTAS • FIRMWARE RESISTENSI v8.4 • PILOT: EIDON</div>
+        </div>
+        <button class="terminal-close-btn" id="btn-terminal-close-top">
+          [✕] KEMBALI KE MEDAN [ESC / TAB]
+        </button>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="terminal-tabs">
+        <button class="term-tab active" data-tab="tab-survival">
+          <span>// 01. PETUNJUK LAPANGAN SURVIVAL</span>
+        </button>
+        <button class="term-tab" data-tab="tab-settings">
+          <span>// 02. KALIBRASI SISTEM & KONTROL</span>
+        </button>
+        <button class="term-tab" data-tab="tab-lore">
+          <span>// 03. ARSIP RAHASIA SIKLUS 1-7</span>
+        </button>
+      </div>
+
+      <!-- Terminal Body -->
+      <div class="terminal-body">
+        <!-- TAB 1: PANDUAN SURVIVAL & INSTRUKSI KONTROL -->
+        <div class="tab-content active" id="tab-survival">
+          <div class="dossier-layout">
+            <!-- Left Panel: Survival Axioms & Lore Hazard -->
+            <div class="dossier-panel panel-hazard">
+              <div class="panel-hdr">
+                <span>// DOKUMEN EVASI: KETENTUAN HIDUP-MATI</span>
+                <span style="color: #f87171;">KODE: MERAH</span>
+              </div>
+
+              <!-- Axiom 1 -->
+              <div class="axiom-item">
+                <div class="axiom-title">
+                  <span style="color: #dc2626;">[01]</span>
+                  <span>PERINGATAN FATAL: SENTER TAKTIS [F]</span>
+                </div>
+                <div class="axiom-desc">
+                  Menyalakan senter <strong>[F]</strong> menembus kabut malam, namun <span class="crimson-warn">MEMPERLUAS JANGKAUAN DETEKSI KAMI DARI 11M MENJADI 18 METER</span>. Mereka terpicu oleh radiasi foton. Jika terdengar dengung disonansi di lorong barat, <strong>SEGERA MATIKAN SENTER!</strong>
+                </div>
+              </div>
+
+              <!-- Axiom 2 -->
+              <div class="axiom-item">
+                <div class="axiom-title">
+                  <span style="color: #dc2626;">[02]</span>
+                  <span>KONTUR KELANGSUNGAN & MEDAN MATI</span>
+                </div>
+                <div class="axiom-desc">
+                  Melangkah dengan <strong>[W][A][S][D]</strong> meredam getaran langkah kaki di aspal retak. Berlari <strong>[SHIFT]</strong> hanya saat terdesak. Gunakan <strong>[SPASI]</strong> untuk memanjat kap mobil atau beton pembatas guna mengamati siluet pergerakan musuh dari elevasi aman.
+                </div>
+              </div>
+
+              <!-- Axiom 3 -->
+              <div class="axiom-item">
+                <div class="axiom-title">
+                  <span style="color: #dc2626;">[03]</span>
+                  <span>DISTORSI DESYNC VISOR PADA BENTURAN</span>
+                </div>
+                <div class="axiom-desc">
+                  Kontak fisik dengan entitas akan mendesinkronkan kesadaran Siklus 8. Layar mengalami aberasi kromatik parah, visor terdistorsi, dan status vital menjadi <strong>DESYNC // CORRUPTED</strong>. Jaga jarak aman sebelum frekuensi jiwamu terhapus.
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Panel: Mechanical Tactical Keymap -->
+            <div class="dossier-panel">
+              <div class="panel-hdr hdr-cyan">
+                <span>// MATRIKS INPUT MEKANIS</span>
+                <span style="color: #38bdf8;">INPUT AKTIF</span>
+              </div>
+
+              <table class="keymap-table">
+                <tr>
+                  <td style="width: 110px;">
+                    <span class="keycap">W</span> <span class="keycap">A</span> <span class="keycap">S</span> <span class="keycap">D</span>
+                  </td>
+                  <td>
+                    <div class="action-name">LOKOMOSI EVASIF</div>
+                    <div class="action-desc">Melangkah di antara reruntuhan kota</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="keycap">SHIFT</span></td>
+                  <td>
+                    <div class="action-name">SPRINT CEPAT</div>
+                    <div class="action-desc">Manuver lari cepat meloloskan diri</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="keycap">SPASI</span></td>
+                  <td>
+                    <div class="action-name">LOMPATAN ELEVASI</div>
+                    <div class="action-desc">Menaiki kap mobil & rintangan beton</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="keycap keycap-danger">F</span></td>
+                  <td>
+                    <div class="action-name" style="color: #fca5a5;">SENTER TAKTIS</div>
+                    <div class="action-desc">Toggle cahaya (0ms instant response)</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="keycap">V</span></td>
+                  <td>
+                    <div class="action-name">PERSPEKTIF KAMERA</div>
+                    <div class="action-desc">RE4 Shoulder / 3rd Person / 1st Person</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="keycap">E</span></td>
+                  <td>
+                    <div class="action-name">EKSTRAKSI & INTERAKSI</div>
+                    <div class="action-desc">Ambil Shard Memori & bicara dengan NPC</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="keycap">TAB</span> / <span class="keycap">ESC</span></td>
+                  <td>
+                    <div class="action-name">TERMINAL MENU</div>
+                    <div class="action-desc">Buka atau tutup terminal protokol ini</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: KALIBRASI SISTEM & KONTROL -->
+        <div class="tab-content" id="tab-settings">
+          <div class="calibration-layout">
+            <!-- Audio Group -->
+            <div class="calib-box">
+              <div class="calib-hdr">// 01. KALIBRASI FREKUENSI AUDIO</div>
+
+              <div class="calib-row">
+                <div>
+                  <div class="calib-label">Volume Musik Latar Distrik (BGM)</div>
+                  <div class="calib-desc">Frekuensi audio atmosferik kehancuran Sektor 8</div>
+                </div>
+                <div class="calib-ctrl">
+                  <input type="range" min="0" max="100" value="15" class="tactical-slider" id="slider-bgm">
+                  <span class="gauge-val" id="val-bgm">15%</span>
+                  <button class="tactical-btn" id="btn-toggle-bgm">MUTE</button>
+                </div>
+              </div>
+
+              <div class="calib-row">
+                <div>
+                  <div class="calib-label">Volume Efek Sintetis & Senter (SFX)</div>
+                  <div class="calib-desc">Langkah kaki, saklar senter, loncatan, dan dentuman Anomali</div>
+                </div>
+                <div class="calib-ctrl">
+                  <input type="range" min="0" max="100" value="80" class="tactical-slider" id="slider-sfx">
+                  <span class="gauge-val" id="val-sfx">80%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Camera Perspective Group -->
+            <div class="calib-box">
+              <div class="calib-hdr">// 02. KALIBRASI PERSPEKTIF VISOR EIDON</div>
+
+              <div class="calib-row">
+                <div>
+                  <div class="calib-label">Sudut Pandang Kamera Operasional</div>
+                  <div class="calib-desc">Pilih rasio kedalaman visual untuk navigasi taktis</div>
+                </div>
+                <div class="calib-ctrl">
+                  <button class="tactical-btn btn-cyan active" id="btn-set-cam-0">01: RE4 SHOULDER</button>
+                  <button class="tactical-btn btn-cyan" id="btn-set-cam-1">02: TACTICAL 3RD</button>
+                  <button class="tactical-btn btn-cyan" id="btn-set-cam-2">03: FIRST-PERSON</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Horror Shading Group -->
+            <div class="calib-box">
+              <div class="calib-hdr">// 03. FILTER GRAFIS & SENSOR SINEMATIK</div>
+
+              <div class="calib-row">
+                <div>
+                  <div class="calib-label">Pendaran Cahaya (Unreal Bloom Glow)</div>
+                  <div class="calib-desc">Pancaran partikel kristal shard, visor, dan neon KAMI</div>
+                </div>
+                <div class="calib-ctrl">
+                  <button class="tactical-btn active" id="btn-toggle-bloom">BLOOM: ON</button>
+                </div>
+              </div>
+
+              <div class="calib-row">
+                <div>
+                  <div class="calib-label">Noise Analog Film Grain (Survival Atmosphere)</div>
+                  <div class="calib-desc">Tingkat butiran film analog untuk mempertegas suasana horor</div>
+                </div>
+                <div class="calib-ctrl">
+                  <input type="range" min="0" max="60" value="28" class="tactical-slider" id="slider-grain">
+                  <span class="gauge-val" id="val-grain">0.028</span>
+                </div>
+              </div>
+
+              <div class="calib-row">
+                <div>
+                  <div class="calib-label">Distorsi Lensa Aberasi Kromatik</div>
+                  <div class="calib-desc">Dispersi spektrum warna lensa optik saat benturan kontak</div>
+                </div>
+                <div class="calib-ctrl">
+                  <button class="tactical-btn active" id="btn-toggle-chroma">ABERASI: ON</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: DOKUMEN INSIDEN SIKLUS 1-7 (LORE) -->
+        <div class="tab-content" id="tab-lore">
+          <div class="lore-container">
+            <div class="dossier-panel panel-hazard">
+              <div class="panel-hdr">
+                <span>// LAPORAN INSIDEN RAHASIA: SIKLUS 1 SAMPAI 7</span>
+                <span style="color: #dc2626;">STATUS: DIHAPUS</span>
+              </div>
+              <div class="axiom-desc" style="font-size: 13px; line-height: 1.7; color: #cbd5e1;">
+                Peradaban telah musnah 7 kali secara berurutan. Setiap kali manusia gagal menyelamatkan dunia dari kebinasaan, waktu diputar ulang oleh fenomena misterius ke titik mula. Namun pada Siklus ke-8 ini, sisa stabilitas alam semesta telah habis. Tidak ada Siklus ke-9. Jika Sektor 8 runtuh, eksistensi manusia lenyap total tanpa jejak.
+              </div>
+            </div>
+
+            <div class="dossier-panel">
+              <div class="panel-hdr hdr-cyan">
+                <span>// HAKIKAT KAMI & KUNCI PENERIMAAN (ACCEPTANCE)</span>
+                <span style="color: #38bdf8;">DOKUMEN FILOSOFIS</span>
+              </div>
+              <div class="axiom-desc" style="font-size: 13px; line-height: 1.7; color: #cbd5e1;">
+                Entitas KAMI bukan sekadar monster buas, melainkan resonansi trauma dan keputusasaan dari miliaran jiwa yang terkubur dalam 7 siklus kepunahan sebelumnya. Senjata destruktif terbukti gagal menghentikan mereka selama ratusan tahun. Satu-satunya kunci bagi Eidon untuk memutus lingkaran siklus ini adalah keberanian untuk menghadapi kedukaan dan mencapai <strong>Penerimaan Sejati (Acceptance)</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terminal Footer -->
+      <div class="terminal-footer">
+        <div class="footer-stamp">DIREKTORAT PERTAHANAN SIKLUS VIII • TEKAN [ESC / TAB] UNTUK MENUTUP</div>
+        <button class="footer-return-btn" id="btn-terminal-close-bottom">
+          [✕] KEMBALI KE MEDAN
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NPC & Landmark Dialogue Modal -->
+    <!-- SURVIVAL TERMINAL, INSTRUCTION CODEX & SETTINGS MODAL -->
+  <div id="survival-menu-modal">
+    <div class="terminal-container">
+      <!-- Terminal Header -->
+      <div class="terminal-header">
+        <div class="terminal-title-group">
+          <div class="terminal-title">
+            <span style="color: #ef4444;">[TERMINAL]</span> ROUGHTALE8 // SURVIVAL TERMINAL
+          </div>
+          <div class="terminal-sub">CYCLE 08 ARCHIVE • RESISTANCE PROTOCOL • PILOT: EIDON</div>
+        </div>
+        <button class="terminal-close-btn" id="btn-terminal-close-top">
+          <span>✕</span> TUTUP [ESC / TAB]
+        </button>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="terminal-tabs">
+        <button class="term-tab tab-horror active" data-tab="tab-survival">
+          <span>PANDUAN SURVIVAL & KONTROL</span>
+        </button>
+        <button class="term-tab" data-tab="tab-settings">
+          <span>PENGATURAN GAME & SISTEM</span>
+        </button>
+        <button class="term-tab" data-tab="tab-lore">
+          <span>ARSIP SIKLUS VIII // LORE</span>
+        </button>
+      </div>
+
+      <!-- Terminal Body -->
+      <div class="terminal-body">
+        <!-- TAB 1: PANDUAN SURVIVAL & INSTRUKSI KONTROL -->
+        <div class="tab-content active" id="tab-survival">
+          <div class="protocol-grid">
+            <!-- Card 1 -->
+            <div class="protocol-card">
+              <div class="card-top">
+                <div class="key-badge-group">
+                  <span class="term-key">W</span>
+                  <span class="term-key">A</span>
+                  <span class="term-key">S</span>
+                  <span class="term-key">D</span>
+                  <span class="term-key">SHIFT</span>
+                </div>
+                <div class="card-category">LOKOMOSI</div>
+              </div>
+              <div class="card-title">Navigasi Reruntuhan Distrik</div>
+              <div class="card-desc">
+                Gunakan <strong>[W][A][S][D]</strong> untuk melangkah di antara puing beton dan aspal. Tahan <strong>[SHIFT]</strong> untuk berlari kencang saat menghindari jangkauan entitas. Waspadai bunyi derap langkahmu di kesunyian malam.
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="protocol-card">
+              <div class="card-top">
+                <div class="key-badge-group">
+                  <span class="term-key">SPASI</span>
+                </div>
+                <div class="card-category">AKROBATIK</div>
+              </div>
+              <div class="card-title">Lompatan Rintangan & Puing</div>
+              <div class="card-desc">
+                Tekan <strong>[SPASI]</strong> untuk melompati pagar, beton pembatas, dan menaiki kap atau atap mobil rongsok. Menguasai elevasi tinggi mempermudah memantau pergerakan musuh di lorong gang.
+              </div>
+            </div>
+
+            <!-- Card 3 (HORROR WARNING) -->
+            <div class="protocol-card card-warning">
+              <div class="card-top">
+                <div class="key-badge-group">
+                  <span class="term-key" style="border-color: #ef4444; color: #fca5a5;">F</span>
+                </div>
+                <div class="card-category" style="color: #ef4444;">[BAHAYA] KAMI CORRUPTION</div>
+              </div>
+              <div class="card-title" style="color: #fca5a5;">Senter Taktis & Anomali KAMI</div>
+              <div class="card-desc">
+                Tekan <strong>[F]</strong> untuk menyalakan senter sorot. <span class="warn-text">PERHATIAN KRITIS:</span> Pancaran cahaya senter melipatgandakan radius deteksi KAMI Anomaly dari 11 meter menjadi <strong>18 meter</strong>! Matikan senter saat melintasi gang barat.
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="protocol-card">
+              <div class="card-top">
+                <div class="key-badge-group">
+                  <span class="term-key">V</span>
+                  <span class="term-key">MOUSE DRAG</span>
+                </div>
+                <div class="card-category">PERSPEKTIF</div>
+              </div>
+              <div class="card-title">Sudut Pandang Kamera</div>
+              <div class="card-desc">
+                Tekan <strong>[V]</strong> untuk beralih antara <strong>Kamera Bahu Taktis RE4</strong>, Sudut Pandang Ketiga Luas, atau Visor Orang Pertama. Geser klik kiri mouse untuk memutar sudut pandang observasi.
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="protocol-card">
+              <div class="card-top">
+                <div class="key-badge-group">
+                  <span class="term-key">E</span>
+                </div>
+                <div class="card-category">PEMULIHAN</div>
+              </div>
+              <div class="card-title">Fragmen Memori & Para Penyintas</div>
+              <div class="card-desc">
+                Dekati kristal pendar biru untuk memulihkan 5 rekaman memori Siklus VII yang terkunci, atau tekan <strong>[E]</strong> untuk berinteraksi dengan 10 pejuang penyintas di sekitar monumen perlindungan.
+              </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="protocol-card card-warning">
+              <div class="card-top">
+                <div class="key-badge-group">
+                  <span class="term-key" style="border-color: #f59e0b; color: #fde68a;">RADAR</span>
+                  <span class="term-key" style="border-color: #f59e0b; color: #fde68a;">ECG</span>
+                </div>
+                <div class="card-category" style="color: #f59e0b;">STATUS VITAL</div>
+              </div>
+              <div class="card-title" style="color: #fde68a;">Deteksi Sinyal & Desync Visor</div>
+              <div class="card-desc">
+                Perhatikan radar di pojok kiri bawah: titik hijau adalah NPC, titik kuning adalah monumen, dan <span class="warn-text">titik merah berdenyut</span> adalah KAMI Anomaly. Jika terserang, visor mengalami distorsi aberasi kromatik dan status vital menjadi <strong>DESYNC</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: PENGATURAN GAME & SISTEM -->
+        <div class="tab-content" id="tab-settings">
+          <div class="settings-panel">
+            <!-- Audio Group -->
+            <div class="settings-group">
+              <div class="settings-group-title">AUDIO & SUASANA SINEMATIK</div>
+              
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-label">Volume Musik Latar (BGM)</div>
+                  <div class="setting-desc">Mengatur volume aransemen musik atmosferik distrik</div>
+                </div>
+                <div class="setting-control">
+                  <input type="range" min="0" max="100" value="8" class="term-slider" id="slider-bgm">
+                  <span class="slider-val" id="val-bgm">8%</span>
+                  <button class="pill-btn btn-mute" id="btn-toggle-bgm">MUTE</button>
+                </div>
+              </div>
+
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-label">Efek Suara Sintetis & Senter (SFX)</div>
+                  <div class="setting-desc">Langkah kaki, klik audio, loncatan, dan peringatan KAMI Anomaly</div>
+                </div>
+                <div class="setting-control">
+                  <input type="range" min="0" max="100" value="80" class="term-slider" id="slider-sfx">
+                  <span class="slider-val" id="val-sfx">80%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Camera View Group -->
+            <div class="settings-group">
+              <div class="settings-group-title">PERSPEKTIF & KAMERA EIDON</div>
+
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-label">Mode Sudut Pandang Kamera</div>
+                  <div class="setting-desc">Pilih perspektif sinematik yang paling nyaman untuk penjelajahan</div>
+                </div>
+                <div class="setting-control">
+                  <div class="btn-pill-group">
+                    <button class="pill-btn active" id="btn-set-cam-0">RE4 OVER-SHOULDER</button>
+                    <button class="pill-btn" id="btn-set-cam-1">TACTICAL 3RD-PERSON</button>
+                    <button class="pill-btn" id="btn-set-cam-2">FIRST-PERSON VISOR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual & Horror FX Group -->
+            <div class="settings-group">
+              <div class="settings-group-title">EFEK VISUAL & ATMOSFER HOROR</div>
+
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-label">Pendar Cahaya (Unreal Bloom Glow)</div>
+                  <div class="setting-desc">Efek cahaya berpendar pada kristal shard, visor, dan neon kota</div>
+                </div>
+                <div class="setting-control">
+                  <button class="pill-btn active" id="btn-toggle-bloom">BLOOM: AKTIF</button>
+                </div>
+              </div>
+
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-label">Tekstur Film Grain Sinematik</div>
+                  <div class="setting-desc">Noise analog mikro untuk nuansa survival horror klasik</div>
+                </div>
+                <div class="setting-control">
+                  <input type="range" min="0" max="60" value="28" class="term-slider" id="slider-grain">
+                  <span class="slider-val" id="val-grain">0.028</span>
+                </div>
+              </div>
+
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-label">Distorsi Lensa Aberasi Kromatik</div>
+                  <div class="setting-desc">Efek dispersi warna tepi lensa kamera saat terkejut atau kontak musuh</div>
+                </div>
+                <div class="setting-control">
+                  <button class="pill-btn active" id="btn-toggle-chroma">ABERASI: AKTIF</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: DOKUMEN LORE // SIKLUS VIII -->
+        <div class="tab-content" id="tab-lore">
+          <div class="lore-container">
+            <div class="lore-card">
+              <div class="lore-card-title">[ARCHIVE 01] KEHANCURAN TUJUH SIKLUS</div>
+              <div class="lore-text">
+                Dunia telah mengalami 7 kali siklus kepunahan total. Setiap kali peradaban manusia binasa, realitas diputar ulang dari titik awal. Namun di Siklus ke-8 ini, benang waktu telah rapuh tak bersisa. Jika Siklus 8 runtuh, kehidupan musnah secara permanen dari alam semesta.
+              </div>
+            </div>
+
+            <div class="lore-card">
+              <div class="lore-card-title">[ARCHIVE 02] ENTITAS MISTERIUS "KAMI"</div>
+              <div class="lore-text">
+                KAMI bukanlah mesin ataupun iblis, melainkan resonansi kesadaran kolektif dari jiwa-jiwa yang gagal diselamatkan pada siklus-siklus lampau. Mereka berpatroli di sudut-sudut mati distrik, menarik siapa pun yang belum menerima takdir ke dalam kehampaan desync.
+              </div>
+            </div>
+
+            <div class="lore-card">
+              <div class="lore-card-title">[ARCHIVE 03] EIDON & TEMA INTI: ACCEPTANCE (PENERIMAAN)</div>
+              <div class="lore-text">
+                Eidon terbangun di Sektor 8 tanpa ingatan lengkap mengenai identitas masa lalunya. Kunci untuk mengakhiri kutukan siklus berulang bukanlah kekuatan senjata penghancur, melainkan keberanian untuk menghadapi kehilangan dan merengkuh Penerimaan (Acceptance).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terminal Footer -->
+      <div class="terminal-footer">
+        <div class="footer-hint">Tip: Tekan [TAB], [M], atau [ESC] kapan saja untuk membuka/menutup terminal ini</div>
+        <button class="footer-close-btn" id="btn-terminal-close-bottom">
+          KEMBALI KE DUNIA RERUNTUHAN
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="dialog-modal">
     <div class="dialog-header">
       <div class="dialog-title" id="dialog-title">NAMA NPC</div>
@@ -724,143 +1810,196 @@
     import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
     // =========================================================================
-    // 1. PROCEDURAL WEB AUDIO SYNTHESIZER (FOOTSTEPS, JUMP, SHARD, CLICK)
+    // 1. PROCEDURAL WEB AUDIO SYNTHESIZER (ZERO-CLICK ENVELOPES + FILTERED BGM)
     // =========================================================================
 
     let audioCtx = null;
     function initAudioCtx() {
       if (!audioCtx) {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (AudioContext) audioCtx = new AudioContext();
+        if (AudioContext) {
+          audioCtx = new AudioContext();
+        }
       }
-      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Audio BGM Pipeline with Low-Pass Filter to eliminate harsh hiss/static
+    let bgmFilterConnected = false;
+    let bgmMasterGain = null;
+    function initBgmPipeline() {
+      if (!ambientAudio) return;
+      initAudioCtx();
+      try {
+        if (audioCtx && !bgmFilterConnected) {
+          const src = audioCtx.createMediaElementSource(ambientAudio);
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'lowpass';
+          // Cut off harsh high-frequency noise/tape hiss above 580Hz
+          filter.frequency.setValueAtTime(580, audioCtx.currentTime);
+          filter.Q.setValueAtTime(0.8, audioCtx.currentTime);
+
+          bgmMasterGain = audioCtx.createGain();
+          bgmMasterGain.gain.setValueAtTime(0.065, audioCtx.currentTime); // Soft, deep background drone
+
+          src.connect(filter);
+          filter.connect(bgmMasterGain);
+          bgmMasterGain.connect(audioCtx.destination);
+          bgmFilterConnected = true;
+        }
+      } catch (err) {
+        // Fallback to direct volume if already connected
+        ambientAudio.volume = 0.065;
+      }
     }
 
     function playFootstepSound(isRunning) {
       if (!audioCtx) return;
       try {
+        const now = audioCtx.currentTime;
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'triangle';
-        osc.frequency.setValueAtTime(isRunning ? 95 : 75, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(28, audioCtx.currentTime + 0.09);
-        gain.gain.setValueAtTime(isRunning ? 0.11 : 0.06, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.09);
+        const targetGain = (isRunning ? 0.07 : 0.04) * (typeof sfxVolumeScale !== 'undefined' ? sfxVolumeScale : 0.8);
+        const dur = 0.09;
+        osc.frequency.setValueAtTime(isRunning ? 90 : 70, now);
+        osc.frequency.exponentialRampToValueAtTime(26, now + dur);
+        
+        // Anti-click attack and decay envelope
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(targetGain, now + 0.006);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+        
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.09);
+        osc.start(now);
+        osc.stop(now + dur + 0.01);
       } catch (e) {}
     }
 
     function playJumpSound() {
       if (!audioCtx) return;
       try {
+        const now = audioCtx.currentTime;
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(140, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.16);
-        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.18);
+        const dur = 0.18;
+        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.exponentialRampToValueAtTime(320, now + 0.16);
+        
+        const targetGain = 0.09 * (typeof sfxVolumeScale !== 'undefined' ? sfxVolumeScale : 0.8);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(targetGain, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+        
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.18);
+        osc.start(now);
+        osc.stop(now + dur + 0.01);
       } catch (e) {}
     }
 
     function playShardSound() {
       if (!audioCtx) return;
       try {
+        const now = audioCtx.currentTime;
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
-        osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
-        osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2); // G5
-        gain.gain.setValueAtTime(0.14, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.45);
+        const dur = 0.45;
+        osc.frequency.setValueAtTime(523.25, now); // C5
+        osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+        osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+        
+        const targetGain = 0.11 * (typeof sfxVolumeScale !== 'undefined' ? sfxVolumeScale : 0.8);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(targetGain, now + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+        
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.45);
+        osc.start(now);
+        osc.stop(now + dur + 0.01);
       } catch (e) {}
     }
 
-        function playAnomalyAlertSound() {
+    function playAnomalyAlertSound() {
       if (!audioCtx) return;
       try {
+        const now = audioCtx.currentTime;
         const osc1 = audioCtx.createOscillator();
         const osc2 = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc1.type = 'sawtooth';
         osc2.type = 'sine';
-        const now = audioCtx.currentTime;
+        const dur = 0.50;
         osc1.frequency.setValueAtTime(140, now);
-        osc1.frequency.exponentialRampToValueAtTime(540, now + 0.35);
+        osc1.frequency.exponentialRampToValueAtTime(520, now + 0.35);
         osc2.frequency.setValueAtTime(280, now);
-        osc2.frequency.exponentialRampToValueAtTime(820, now + 0.35);
-        gain.gain.setValueAtTime(0.18, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+        osc2.frequency.exponentialRampToValueAtTime(800, now + 0.35);
+        
+        const targetGain = 0.12 * (typeof sfxVolumeScale !== 'undefined' ? sfxVolumeScale : 0.8);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(targetGain, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+        
         osc1.connect(gain);
         osc2.connect(gain);
         gain.connect(audioCtx.destination);
         osc1.start(now);
         osc2.start(now);
-        osc1.stop(now + 0.55);
-        osc2.stop(now + 0.55);
+        osc1.stop(now + dur + 0.01);
+        osc2.stop(now + dur + 0.01);
       } catch (e) {}
     }
 
     function playAnomalyHitSound() {
       if (!audioCtx) return;
       try {
+        const now = audioCtx.currentTime;
+        // Cinematic sub-bass distortion hit instead of raw white noise static
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-        osc.type = 'sawtooth';
-        const now = audioCtx.currentTime;
-        osc.frequency.setValueAtTime(80, now);
-        osc.frequency.linearRampToValueAtTime(45, now + 0.3);
-        gain.gain.setValueAtTime(0.28, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+        osc.type = 'sine';
+        const dur = 0.40;
+        osc.frequency.setValueAtTime(75, now);
+        osc.frequency.exponentialRampToValueAtTime(32, now + dur);
+        
+        const targetGain = 0.18 * (typeof sfxVolumeScale !== 'undefined' ? sfxVolumeScale : 0.8);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(targetGain, now + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+        
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start(now);
-        osc.stop(now + 0.6);
-
-        // White noise glitch burst
-        const bufferSize = Math.floor(audioCtx.sampleRate * 0.15);
-        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const output = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          output[i] = Math.random() * 2 - 1;
-        }
-        const whiteNoise = audioCtx.createBufferSource();
-        whiteNoise.buffer = noiseBuffer;
-        const noiseGain = audioCtx.createGain();
-        noiseGain.gain.setValueAtTime(0.16, now);
-        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-        whiteNoise.connect(noiseGain);
-        noiseGain.connect(audioCtx.destination);
-        whiteNoise.start(now);
+        osc.stop(now + dur + 0.01);
       } catch (e) {}
     }
 
     function playClickSound() {
       if (!audioCtx) return;
       try {
+        const now = audioCtx.currentTime;
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(900, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.04);
-        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+        const dur = 0.04;
+        osc.frequency.setValueAtTime(750, now);
+        osc.frequency.exponentialRampToValueAtTime(260, now + dur);
+        
+        const targetGain = 0.05 * (typeof sfxVolumeScale !== 'undefined' ? sfxVolumeScale : 0.8);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(targetGain, now + 0.004);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+        
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.04);
+        osc.start(now);
+        osc.stop(now + dur + 0.005);
       } catch (e) {}
     }
 
@@ -1149,6 +2288,7 @@
       hdr.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = hdr;
       if ('environmentIntensity' in scene) scene.environmentIntensity = 0.75;
+      try { renderer.compile(scene, camera); } catch (e) {}
     });
 
     const hemiLight = new THREE.HemisphereLight(0x9db4cf, 0x241d18, 0.28);
@@ -2777,14 +3917,15 @@
       });
     }
 
-        function collectMemoryShard(sh) {
+    function collectMemoryShard(sh) {
       if (!sh || sh.collected) return;
       sh.collected = true;
       sh.group.visible = false;
       collectedShards++;
-      shardCounter.innerText = `💠 SHARDS: ${collectedShards} / 5`;
+      const scText = document.getElementById('shard-counter-text');
+      if (scText) scText.innerText = `SHARDS: ${collectedShards} / 5`;
       playShardSound();
-      showShardToast(`✦ ${sh.title} DITEMUKAN (${collectedShards}/5)!`, 6000);
+      showShardToast(`[MEMORY RECOVERED] ${sh.title} (${collectedShards}/5)`, 6000);
       openDialog({
         title: sh.title,
         tag: `FRAGMEN MEMORI (${collectedShards}/5)`,
@@ -4298,7 +5439,7 @@
           // Update HUD condition status
           const condEl = document.getElementById('hud-condition');
           if (condEl) {
-            condEl.innerText = 'CONDITION: ⚠ DESYNC // CORRUPTED';
+            condEl.innerText = 'CONDITION: [DESYNC // CORRUPTED]';
             condEl.style.borderColor = '#ef4444';
             condEl.style.color = '#ef4444';
             condEl.style.boxShadow = '0 0 18px rgba(239, 68, 68, 0.7)';
@@ -4395,12 +5536,11 @@
       }
     }
 
-    // Dynamic Flashlight + Volumetric Beam
-    const flashlight = new THREE.SpotLight(0xe0f2fe, 5.0, 42, Math.PI / 5, 0.45, 1.2);
+    // Dynamic Flashlight + Volumetric Beam (0ms Instant Toggle via Intensity, Zero Shader Recompile Lag!)
+    const flashlight = new THREE.SpotLight(0xe0f2fe, 0, 42, Math.PI / 5, 0.45, 1.2);
     flashlight.position.set(0, 1.32, 0.25);
-    flashlight.castShadow = true;
-    flashlight.shadow.mapSize.width = 512;
-    flashlight.shadow.mapSize.height = 512;
+    flashlight.castShadow = false; // Eliminates heavy spot-shadow recompile freeze on laptop GPU
+    flashlight.visible = true; // Always in scene graph so shaders are pre-warmed once at startup!
 
     const flashTarget = new THREE.Object3D();
     flashTarget.position.set(0, 0.9, 14);
@@ -4414,7 +5554,6 @@
     const flashBeamMesh = new THREE.Mesh(flashBeamGeo, matVolumetricCone);
     flashBeamMesh.position.set(0, 1.32, 0.28);
     playerGroup.add(flashBeamMesh);
-    flashlight.visible = false;
     flashBeamMesh.visible = false;
 
     const landmarks = [
@@ -4474,7 +5613,7 @@
         if (eidonModel) eidonModel.visible = true;
       }
     }
-    btnCamToggle.addEventListener('click', cycleCameraMode);
+    if (btnCamToggle) btnCamToggle.addEventListener('click', cycleCameraMode);
 
     // =========================================================================
     // 11. INPUT HANDLING, SPACEBAR JUMP PHYSICS & WASD MOVEMENT
@@ -4520,11 +5659,20 @@
         }
       }
 
-      if (k === 'v' || e.code === 'KeyV') cycleCameraMode();
+      if (k === 'v' || e.code === 'KeyV') {
+        cycleCameraMode();
+        updateCameraButtonsUI(cameraMode);
+      }
+
+      if (e.code === 'Tab' || k === 'm' || e.code === 'KeyM') {
+        e.preventDefault();
+        toggleSurvivalMenu();
+      }
 
       if (k === 'f' || e.code === 'KeyF') {
         isFlashlightOn = !isFlashlightOn;
-        flashlight.visible = isFlashlightOn;
+        // Instant 0ms toggle via intensity: avoids WebGL shader recompilation completely!
+        flashlight.intensity = isFlashlightOn ? 5.2 : 0;
         flashBeamMesh.visible = isFlashlightOn;
         playClickSound();
       }
@@ -4532,7 +5680,9 @@
       if (k === 'e' || e.code === 'KeyE' || e.code === 'Escape') {
         e.preventDefault();
         // Check real DOM open state directly so [E] and [Escape] ALWAYS close any open dialog!
-        if (dialogModal.classList.contains('open')) {
+        if (survivalMenuModal.classList.contains('open')) {
+          closeSurvivalMenu();
+        } else if (dialogModal.classList.contains('open')) {
           closeDialog();
         } else if (activeInteractable) {
           if (typeof activeInteractable.onInteract === 'function') {
@@ -4613,9 +5763,9 @@
 
     function enterWorld() {
       initAudioCtx();
+      initBgmPipeline();
       startOverlay.classList.add('hidden');
       if (ambientAudio) {
-        ambientAudio.volume = 0.15;
         ambientAudio.play().catch(e => console.log('Audio prevented:', e));
       }
     }
@@ -4624,15 +5774,32 @@
       btnEnterWorld.addEventListener(evt, enterWorld, { passive: true });
     });
 
-    btnAudioToggle.addEventListener('click', () => {
-      if (ambientAudio.paused) {
-        ambientAudio.play();
-        btnAudioToggle.innerText = '🔊 BGM ON';
-      } else {
-        ambientAudio.pause();
-        btnAudioToggle.innerText = '🔈 BGM OFF';
-      }
-    });
+    if (btnAudioToggle) {
+      btnAudioToggle.addEventListener('click', () => {
+        initAudioCtx();
+        initBgmPipeline();
+        const isPaused = ambientAudio.paused;
+        if (isPaused) {
+          ambientAudio.play().catch(e => console.log(e));
+          const iconOn = document.getElementById('audio-icon-on');
+          const iconOff = document.getElementById('audio-icon-off');
+          const toggleText = document.getElementById('audio-toggle-text');
+          if (iconOn) iconOn.style.display = 'block';
+          if (iconOff) iconOff.style.display = 'none';
+          if (toggleText) toggleText.innerText = 'AUDIO ON';
+          btnAudioToggle.classList.remove('muted');
+        } else {
+          ambientAudio.pause();
+          const iconOn = document.getElementById('audio-icon-on');
+          const iconOff = document.getElementById('audio-icon-off');
+          const toggleText = document.getElementById('audio-toggle-text');
+          if (iconOn) iconOn.style.display = 'none';
+          if (iconOff) iconOff.style.display = 'block';
+          if (toggleText) toggleText.innerText = 'AUDIO OFF';
+          btnAudioToggle.classList.add('muted');
+        }
+      });
+    }
 
     function openDialog(target, lockMovement = true) {
       isDialogOpen = lockMovement;
@@ -5146,7 +6313,7 @@
       // Zone Detection
       const p = playerGroup.position;
       if (p.x < -16 && p.z >= 20 && p.z <= 44) {
-        zoneDisplay.innerText = "⚠ SECTOR 07 : MAINTENANCE ALLEYWAY // ANOMALY DETECTED";
+        zoneDisplay.innerText = "[ALERT] SECTOR 07 : MAINTENANCE ALLEYWAY // ANOMALY DETECTED";
         zoneDisplay.classList.add('anomaly');
       } else {
         zoneDisplay.classList.remove('anomaly');
@@ -5346,6 +6513,194 @@
     animate();
 
     // Debug handle for tuning / integration handoff.
+    
+    // =========================================================================
+    // SURVIVAL TERMINAL, SETTINGS & INSTRUCTION CODEX LOGIC
+    // =========================================================================
+    const survivalMenuModal = document.getElementById('survival-menu-modal');
+    const btnOpenMenu = document.getElementById('btn-open-menu');
+    const btnTerminalCloseTop = document.getElementById('btn-terminal-close-top');
+    const btnTerminalCloseBottom = document.getElementById('btn-terminal-close-bottom');
+    const termTabs = document.querySelectorAll('.term-tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Settings elements
+    const sliderBgm = document.getElementById('slider-bgm');
+    const valBgm = document.getElementById('val-bgm');
+    const btnToggleBgm = document.getElementById('btn-toggle-bgm');
+    const sliderSfx = document.getElementById('slider-sfx');
+    const valSfx = document.getElementById('val-sfx');
+    const btnSetCam0 = document.getElementById('btn-set-cam-0');
+    const btnSetCam1 = document.getElementById('btn-set-cam-1');
+    const btnSetCam2 = document.getElementById('btn-set-cam-2');
+    const btnToggleBloom = document.getElementById('btn-toggle-bloom');
+    const sliderGrain = document.getElementById('slider-grain');
+    const valGrain = document.getElementById('val-grain');
+    const btnToggleChroma = document.getElementById('btn-toggle-chroma');
+
+    let sfxVolumeScale = 0.8;
+    let isChromaEnabled = true;
+
+    function openSurvivalMenu() {
+      playClickSound();
+      survivalMenuModal.classList.add('open');
+    }
+
+    function closeSurvivalMenu() {
+      playClickSound();
+      survivalMenuModal.classList.remove('open');
+    }
+
+    function toggleSurvivalMenu() {
+      if (survivalMenuModal.classList.contains('open')) {
+        closeSurvivalMenu();
+      } else {
+        openSurvivalMenu();
+      }
+    }
+
+    btnOpenMenu.addEventListener('click', openSurvivalMenu);
+    btnTerminalCloseTop.addEventListener('click', closeSurvivalMenu);
+    btnTerminalCloseBottom.addEventListener('click', closeSurvivalMenu);
+
+    // Close on backdrop click
+    survivalMenuModal.addEventListener('click', (e) => {
+      if (e.target === survivalMenuModal) closeSurvivalMenu();
+    });
+
+    // Tab switching
+    termTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        playClickSound();
+        const targetId = tab.getAttribute('data-tab');
+        termTabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+
+        tab.classList.add('active');
+        const targetContent = document.getElementById(targetId);
+        if (targetContent) targetContent.classList.add('active');
+      });
+    });
+
+    // BGM Volume Slider
+    if (sliderBgm) {
+      sliderBgm.addEventListener('input', (e) => {
+        const v = parseInt(e.target.value, 10);
+        valBgm.innerText = `${v}%`;
+        if (ambientAudio) {
+          ambientAudio.volume = v / 100;
+          if (v > 0 && ambientAudio.paused) {
+            ambientAudio.play().catch(() => {});
+          }
+        }
+        if (v === 0) {
+          btnToggleBgm.innerText = 'UNMUTE';
+          btnToggleBgm.classList.add('muted');
+        } else {
+          btnToggleBgm.innerText = 'MUTE';
+          btnToggleBgm.classList.remove('muted');
+        }
+      });
+    }
+
+    // BGM Mute/Unmute
+    if (btnToggleBgm) {
+      btnToggleBgm.addEventListener('click', () => {
+        playClickSound();
+        if (ambientAudio) {
+          if (ambientAudio.volume > 0) {
+            ambientAudio.dataset.prevVolume = ambientAudio.volume;
+            ambientAudio.volume = 0;
+            sliderBgm.value = 0;
+            valBgm.innerText = '0%';
+            btnToggleBgm.innerText = 'UNMUTE';
+            btnToggleBgm.classList.add('muted');
+          } else {
+            const restored = parseFloat(ambientAudio.dataset.prevVolume) || 0.15;
+            ambientAudio.volume = restored;
+            sliderBgm.value = Math.round(restored * 100);
+            valBgm.innerText = `${Math.round(restored * 100)}%`;
+            btnToggleBgm.innerText = 'MUTE';
+            btnToggleBgm.classList.remove('muted');
+            if (ambientAudio.paused) ambientAudio.play().catch(() => {});
+          }
+        }
+      });
+    }
+
+    // SFX Volume Slider
+    if (sliderSfx) {
+      sliderSfx.addEventListener('input', (e) => {
+        const v = parseInt(e.target.value, 10);
+        valSfx.innerText = `${v}%`;
+        sfxVolumeScale = v / 100;
+      });
+    }
+
+    // Camera Mode Selectors in Settings
+    function updateCameraButtonsUI(mode) {
+      [btnSetCam0, btnSetCam1, btnSetCam2].forEach((btn, idx) => {
+        if (btn) btn.classList.toggle('active', idx === mode);
+      });
+    }
+
+    if (btnSetCam0) btnSetCam0.addEventListener('click', () => { setSpecificCameraMode(0); });
+    if (btnSetCam1) btnSetCam1.addEventListener('click', () => { setSpecificCameraMode(1); });
+    if (btnSetCam2) btnSetCam2.addEventListener('click', () => { setSpecificCameraMode(2); });
+
+    function setSpecificCameraMode(mode) {
+      cameraMode = mode;
+      camModeLabel.innerText = camModeNames[cameraMode];
+      playClickSound();
+      updateCameraButtonsUI(cameraMode);
+
+      if (cameraMode === 2) {
+        visorOverlay.classList.add('active');
+        eidonRig.root.visible = false;
+        if (eidonModel) eidonModel.visible = false;
+      } else {
+        visorOverlay.classList.remove('active');
+        eidonRig.root.visible = !eidonModel;
+        if (eidonModel) eidonModel.visible = true;
+      }
+    }
+
+    // Post-Processing Bloom Toggle
+    if (btnToggleBloom) {
+      btnToggleBloom.addEventListener('click', () => {
+        playClickSound();
+        if (bloomPass) {
+          bloomPass.enabled = !bloomPass.enabled;
+          btnToggleBloom.innerText = bloomPass.enabled ? 'BLOOM: AKTIF' : 'BLOOM: NONAKTIF';
+          btnToggleBloom.classList.toggle('active', bloomPass.enabled);
+        }
+      });
+    }
+
+    // Film Grain Slider
+    if (sliderGrain) {
+      sliderGrain.addEventListener('input', (e) => {
+        const val = parseInt(e.target.value, 10) / 1000;
+        valGrain.innerText = val.toFixed(3);
+        if (gradePass && gradePass.uniforms.grain) {
+          gradePass.uniforms.grain.value = val;
+        }
+      });
+    }
+
+    // Chromatic Aberration Toggle
+    if (btnToggleChroma) {
+      btnToggleChroma.addEventListener('click', () => {
+        playClickSound();
+        isChromaEnabled = !isChromaEnabled;
+        btnToggleChroma.innerText = isChromaEnabled ? 'ABERASI: AKTIF' : 'ABERASI: NONAKTIF';
+        btnToggleChroma.classList.toggle('active', isChromaEnabled);
+        if (gradePass && gradePass.uniforms.aberration) {
+          gradePass.uniforms.aberration.value = isChromaEnabled ? 0.0016 : 0.0;
+        }
+      });
+    }
+
     window.__ROUGHTALE8 = {
       scene, camera, renderer, composer, playerGroup, npcs, memoryShards, landmarks,
       eidonRig,

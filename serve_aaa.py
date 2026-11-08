@@ -35,7 +35,7 @@ class BlazingFastHandler(SimpleHTTPRequestHandler):
             return "text/html; charset=utf-8"
         if low.endswith(".mp3"):
             return "audio/mpeg"
-        if low.endswith(".jpg") or low.endswith(".jpeg"):
+        if low.endswith((".jpg", ".jpeg")):
             return "image/jpeg"
         if low.endswith(".png"):
             return "image/png"
@@ -43,7 +43,6 @@ class BlazingFastHandler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         path = self.path.lower().split("?")[0]
-        # Aggressive caching for assets so browser serves from memory in 0ms!
         if path.endswith((".glb", ".hdr", ".jpg", ".jpeg", ".png", ".mp3", ".js", ".woff2")):
             self.send_header("Cache-Control", "public, max-age=604800, immutable")
         else:
@@ -53,7 +52,6 @@ class BlazingFastHandler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     def copyfile(self, source, outputfile):
-        # 256KB buffer chunking for 4x faster throughput on localhost
         shutil.copyfileobj(source, outputfile, 262144)
 
     def log_message(self, format, *args):
@@ -66,7 +64,6 @@ class BlazingThreadingServer(ThreadingHTTPServer):
 
     def server_bind(self):
         super().server_bind()
-        # Enable TCP_NODELAY on listener
         try:
             self.socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         except Exception:
@@ -77,17 +74,15 @@ if __name__ == "__main__":
     os.chdir(ROOT_DIR)
 
     if is_port_in_use(HOST, PORT):
-        if "--no-browser" not in sys.argv:
-            webbrowser.open(URL)
+        webbrowser.open(URL)
         sys.exit(0)
 
     try:
         server = BlazingThreadingServer((HOST, PORT), BlazingFastHandler)
-    except Exception as e:
+    except Exception:
         sys.exit(1)
 
-    if "--no-browser" not in sys.argv:
-        webbrowser.open(URL)
+    webbrowser.open(URL)
 
     try:
         server.serve_forever()
