@@ -64,7 +64,8 @@ a, button, .world-card, .relic-card, .char-card-wrap, .ending, .map-hotspot, .ga
   transition: transform 0.4s ease, opacity 0.4s ease; pointer-events: none;
 }
 #achievementToast.show { transform: translateY(0); opacity: 1; }
-.achieve-icon { font-size: 24px; }
+.achieve-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; color: var(--red); }
+.achieve-icon svg { width: 24px; height: 24px; stroke: var(--red); }
 .achieve-title { font: 9px Arial, sans-serif; letter-spacing: 2px; color: var(--red); font-weight: bold; }
 .achieve-desc { font-size: 13px; color: #fff; font-family: Georgia, serif; }
 
@@ -98,7 +99,8 @@ body.red-alert-mode {
   display: flex; align-items: center; gap: 3px; background: rgba(255,255,255,0.03);
   padding: 2px 5px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
 }
-.vol-icon { font-size: 7px; color: var(--muted); white-space: nowrap; }
+.vol-icon { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; color: var(--muted); vertical-align: middle; }
+.vol-icon svg { width: 12px; height: 12px; stroke: currentColor; }
 .vol-slider { width: 22px; accent-color: var(--red); vertical-align: middle; }
 
 .back-to-top {
@@ -303,7 +305,8 @@ transition:.4s;
     box-shadow: 0 10px 30px rgba(181, 30, 30, 0.25); background: rgba(20, 25, 32, 0.95);
 }
 .inv-slot-top { display: flex; justify-content: space-between; align-items: flex-start; }
-.inv-icon { font-size: 32px; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
+.inv-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; color: #fff; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
+.inv-icon svg { width: 28px; height: 28px; stroke: currentColor; }
 .inv-rarity-badge {
     font: 8px Arial, sans-serif; letter-spacing: 1.5px; padding: 3px 6px; border-radius: 2px; text-transform: uppercase; font-weight: bold;
 }
@@ -598,7 +601,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 <div class="crt-overlay" id="crtOverlay"></div>
 
 <div id="achievementToast">
-  <div class="achieve-icon">🏆</div>
+  <div class="achieve-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg></div>
   <div>
     <div class="achieve-title">ACHIEVEMENT UNLOCKED</div>
     <div class="achieve-desc" id="achieveText">Found hidden terminal access.</div>
@@ -625,7 +628,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
 
 <nav>
   <div class="nav-left">
-    <button class="mobile-toggle sfx-click" onclick="toggleMobileMenu()">☰</button>
+    <button class="mobile-toggle sfx-click" onclick="toggleMobileMenu()" aria-label="Toggle Navigation"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     <div class="logo sfx-click" id="mainLogoBtn" onclick="registerLogoClick()">ROUGHTALE<b>8</b></div>
     <span class="in-dev-pill" data-i18n="pill_in_dev">IN DEVELOPMENT</span>
   </div>
@@ -645,22 +648,22 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 
   <div class="nav-controls">
-    <button class="ctrl-btn sfx-hover" id="achievementBtn" onclick="openAchievementsModal()">[ 🏆 TROPHIES ]</button>
-    <button class="ctrl-btn sfx-hover" id="jukeboxBtn" onclick="openJukeboxModal()">[ 📻 OST ]</button>
+    <button class="ctrl-btn sfx-hover" id="achievementBtn" onclick="openAchievementsModal()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:4px;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>CODEX</button>
+    <button class="ctrl-btn sfx-hover" id="jukeboxBtn" onclick="openJukeboxModal()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>OST</button>
     <button class="ctrl-btn sfx-hover" id="crtToggleBtn" onclick="toggleCrtEffect()">[ CRT ]</button>
     <div class="audio-visualizer-mini" id="audioEqualizer">
         <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
     </div>
     <div class="vol-control-wrap" title="BGM Volume">
-        <span class="vol-icon">🎵</span>
+        <span class="vol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
         <input type="range" class="vol-slider" id="volControlBgm" min="0" max="1" step="0.05" value="0.5" onchange="adjustBgmVolume(this.value)">
     </div>
     <div class="vol-control-wrap" title="SFX Volume">
-        <span class="vol-icon">🔊</span>
+        <span class="vol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span>
         <input type="range" class="vol-slider" id="volControlSfx" min="0" max="1" step="0.05" value="0.7" onchange="adjustSfxVolume(this.value)">
     </div>
     <button class="ctrl-btn sfx-hover" id="langToggleBtn" onclick="toggleLanguage()">[ ID/EN ]</button>
-    <button class="ctrl-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()">[ 🔊 ]</button>
+    <button class="ctrl-btn sfx-hover" id="audioToggleBtn" onclick="toggleAudio()"><svg id="audioToggleIcon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><span id="audioToggleLabel">BGM: OFF</span></button>
   </div>
 </nav>
 
@@ -698,7 +701,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
     </p>
     
     <div class="hero-btn-group">
-        <a class="btn btn-primary sfx-click" href="game.html" target="_blank" data-i18n="btn_demo">TRY PROLOGUE DEMO ➔</a>
+        <a class="btn btn-primary sfx-click" href="game.html" target="_blank" data-i18n="btn_demo">TRY PROLOGUE DEMO <span style="font-family:monospace; margin-left:4px;">[ENTER]</span></a>
         <a class="btn sfx-click" href="#synopsis" data-i18n="btn_enter">EXPLORE WORLD VIII</a>
     </div>
   </div>
@@ -785,31 +788,31 @@ footer{flex-direction:column;gap:12px;text-align:center}
       <div class="timeline-node sfx-click" onclick="openTimelineNode('Prologue', 'PROLOGUE: The Awakening of Five Strangers in Sector 8 ruins. (UNLOCKED)')" style="flex:1; background:rgba(181,30,30,0.15); border:1px solid var(--red); padding:15px; border-radius:3px; text-align:center;">
         <div style="font:9px Arial,sans-serif; color:var(--red); letter-spacing:2px; font-weight:bold;">NODE 01</div>
         <div style="font-size:13px; color:#fff; margin-top:5px;">PROLOGUE AWAKENING</div>
-        <div style="font:8px Arial,sans-serif; color:#22c55e; margin-top:5px;">[ 🟢 UNLOCKED ]</div>
+        <div style="font:8px Arial,sans-serif; color:#22c55e; margin-top:5px; display:inline-flex; align-items:center; gap:4px;"><span style="display:inline-block; width:5px; height:5px; border-radius:50%; background:#22c55e; box-shadow:0 0 5px #22c55e;"></span>[ UNLOCKED ]</div>
       </div>
 
-      <div style="color:var(--red); font-weight:bold;">➔</div>
+      <div style="color:var(--red); font-weight:bold; display:flex; align-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
 
       <div class="timeline-node sfx-click" onclick="openTimelineNode('BranchA', 'BRANCH A: Choosing to help the stranger under concrete debris. Empathy +35%. (UNLOCKED)')" style="flex:1; background:rgba(255,255,255,0.02); border:1px solid #444; padding:15px; border-radius:3px; text-align:center;">
         <div style="font:9px Arial,sans-serif; color:#aaa; letter-spacing:2px; font-weight:bold;">NODE 02A</div>
         <div style="font-size:13px; color:#fff; margin-top:5px;">PATH OF EMPATHY</div>
-        <div style="font:8px Arial,sans-serif; color:#eab308; margin-top:5px;">[ 🟡 BRANCH ACTIVE ]</div>
+        <div style="font:8px Arial,sans-serif; color:#eab308; margin-top:5px; display:inline-flex; align-items:center; gap:4px;"><span style="display:inline-block; width:5px; height:5px; border-radius:50%; background:#eab308; box-shadow:0 0 5px #eab308;"></span>[ ACTIVE BRANCH ]</div>
       </div>
 
-      <div style="color:var(--red); font-weight:bold;">➔</div>
+      <div style="color:var(--red); font-weight:bold; display:flex; align-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
 
       <div class="timeline-node sfx-click" onclick="openTimelineNode('BranchB', 'BRANCH B: Choosing to abandon and secure shelter. Logic +40%. (LOCKED)')" style="flex:1; background:rgba(255,255,255,0.02); border:1px solid #444; padding:15px; border-radius:3px; text-align:center;">
         <div style="font:9px Arial,sans-serif; color:#aaa; letter-spacing:2px; font-weight:bold;">NODE 02B</div>
         <div style="font-size:13px; color:#fff; margin-top:5px;">PATH OF PRAGMATISM</div>
-        <div style="font:8px Arial,sans-serif; color:#555; margin-top:5px;">[ 🔒 LOCKED ]</div>
+        <div style="font:8px Arial,sans-serif; color:#666; margin-top:5px; display:inline-flex; align-items:center; gap:4px;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>[ RESTRICTED ]</div>
       </div>
 
-      <div style="color:var(--red); font-weight:bold;">➔</div>
+      <div style="color:var(--red); font-weight:bold; display:flex; align-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
 
       <div class="timeline-node sfx-click" onclick="openTimelineNode('FinalNode', 'FINAL NODE: Sector 8 Core Purge. The final decision. (LOCKED)')" style="flex:1; background:rgba(255,255,255,0.02); border:1px solid #444; padding:15px; border-radius:3px; text-align:center;">
         <div style="font:9px Arial,sans-serif; color:var(--red); letter-spacing:2px; font-weight:bold;">NODE 03</div>
         <div style="font-size:13px; color:#fff; margin-top:5px;">SECTOR PURGE</div>
-        <div style="font:8px Arial,sans-serif; color:#555; margin-top:5px;">[ 🔒 LOCKED ]</div>
+        <div style="font:8px Arial,sans-serif; color:#666; margin-top:5px; display:inline-flex; align-items:center; gap:4px;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>[ RESTRICTED ]</div>
       </div>
 
     </div>
@@ -886,7 +889,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   <div class="inventory-grid" id="inventoryContainer">
     <div class="inv-slot sfx-hover sfx-click" data-cat="relic" onclick="openRelicModal('relic1')">
       <div class="inv-slot-top">
-        <span class="inv-icon">⌚</span>
+        <span class="inv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><line x1="12" y1="13" x2="12" y2="9"/><line x1="12" y1="13" x2="15" y2="13"/><path d="M12 5V2"/><path d="M9 2h6"/></svg></span>
         <span class="inv-rarity-badge rarity-rare">RARE</span>
       </div>
       <div class="inv-slot-mid">
@@ -895,13 +898,13 @@ footer{flex-direction:column;gap:12px;text-align:center}
       </div>
       <div class="inv-slot-bot">
         <span>ORIGIN: WORLD 01</span>
-        <span>[ INSPECT ➔ ]</span>
+        <span>[ INSPECT RELIC ]</span>
       </div>
     </div>
 
     <div class="inv-slot sfx-hover sfx-click" data-cat="document" onclick="openRelicModal('relic2')">
       <div class="inv-slot-top">
-        <span class="inv-icon">🔑</span>
+        <span class="inv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><rect x="6" y="13" width="3" height="3"/><line x1="12" y1="14.5" x2="17" y2="14.5"/></svg></span>
         <span class="inv-rarity-badge rarity-corrupted">CORRUPTED</span>
       </div>
       <div class="inv-slot-mid">
@@ -910,13 +913,13 @@ footer{flex-direction:column;gap:12px;text-align:center}
       </div>
       <div class="inv-slot-bot">
         <span>ORIGIN: WORLD 04</span>
-        <span>[ INSPECT ➔ ]</span>
+        <span>[ INSPECT RELIC ]</span>
       </div>
     </div>
 
     <div class="inv-slot sfx-hover sfx-click" data-cat="data" onclick="openRelicModal('relic3')">
       <div class="inv-slot-top">
-        <span class="inv-icon">💾</span>
+        <span class="inv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/></svg></span>
         <span class="inv-rarity-badge rarity-common">COMMON</span>
       </div>
       <div class="inv-slot-mid">
@@ -925,13 +928,13 @@ footer{flex-direction:column;gap:12px;text-align:center}
       </div>
       <div class="inv-slot-bot">
         <span>ORIGIN: WORLD 06</span>
-        <span>[ INSPECT ➔ ]</span>
+        <span>[ INSPECT RELIC ]</span>
       </div>
     </div>
 
     <div class="inv-slot sfx-hover sfx-click" data-cat="document" onclick="openRelicModal('relic4')">
       <div class="inv-slot-top">
-        <span class="inv-icon">📜</span>
+        <span class="inv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
         <span class="inv-rarity-badge rarity-canon">CANON</span>
       </div>
       <div class="inv-slot-mid">
@@ -940,7 +943,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
       </div>
       <div class="inv-slot-bot">
         <span>ORIGIN: WORLD 07</span>
-        <span>[ INSPECT ➔ ]</span>
+        <span>[ INSPECT RELIC ]</span>
       </div>
     </div>
   </div>
@@ -1010,7 +1013,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
   </div>
 
   <div style="margin-top: 30px; display: flex; justify-content: center;">
-      <button class="btn sfx-click" onclick="generateDailyQuote()">[ 🎴 DECRYPT DAILY CHARACTER TRANSMISSION ]</button>
+      <button class="btn sfx-click" onclick="generateDailyQuote()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:6px;"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1"/></svg>DECRYPT DAILY CHARACTER TRANSMISSION</button>
   </div>
   <div id="dailyQuoteBox" style="display:none; margin: 15px auto 0; max-width: 600px; background: rgba(8,12,16,0.9); border: 1px solid var(--red); padding: 15px; border-radius: 3px; font-size: 12px; color: #ddd; font-style: italic; text-align: center;"></div>
 </section>
@@ -1045,7 +1048,7 @@ footer{flex-direction:column;gap:12px;text-align:center}
         <div class="profile-title" id="pTitle">EIDON</div>
         <div class="profile-desc" id="pDesc">Loading...</div>
         <button id="pActionBtn" class="voice-sample-btn sfx-click" style="display:none;" onclick="handleModalAction()">
-            🔊 <span id="pActionBtnText">PLAY VOICE FREQUENCY</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:6px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><span id="pActionBtnText">PLAY VOICE FREQUENCY</span>
         </button>
         <button class="close-profile-btn sfx-click" id="closeProfileBtn" data-i18n="btn_close_archive">[ CLOSE ARCHIVE ]</button>
     </div>
@@ -1090,9 +1093,9 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div id="simResult"></div>
 
     <div id="shareWrap" class="share-result-wrap">
-        <a id="shareWa" class="share-btn sfx-click" href="#" target="_blank">📱 Share WhatsApp</a>
-        <a id="shareX" class="share-btn sfx-click" href="#" target="_blank">𝕏 Share Twitter/X</a>
-        <button id="nativeShareBtn" class="share-btn sfx-click" style="display:none;" onclick="triggerNativeShare()">🔗 Share Native</button>
+        <a id="shareWa" class="share-btn sfx-click" href="#" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:5px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Share WhatsApp</a>
+        <a id="shareX" class="share-btn sfx-click" href="#" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:5px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Share X</a>
+        <button id="nativeShareBtn" class="share-btn sfx-click" style="display:none;" onclick="triggerNativeShare()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:5px;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Share Direct</button>
     </div>
 
     <div id="pollBreakdown" class="poll-box">
@@ -1229,11 +1232,11 @@ footer{flex-direction:column;gap:12px;text-align:center}
     <div class="terminal-box">
       <div class="terminal-header">
         <span data-i18n="term_header">WORLD VIII — SECRET TERMINAL CONSOLE [v.8.0]</span>
-        <button class="mic-btn sfx-click" id="micVoiceBtn" onclick="toggleVoiceInput()">🎙️ VOICE</button>
+        <button class="mic-btn sfx-click" id="micVoiceBtn" onclick="toggleVoiceInput()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>VOICE INPUT</button>
       </div>
       <div class="terminal-input-wrap">
         <span style="color:#22c55e">$</span>
-        <input type="text" id="termInput" class="terminal-input" placeholder="Type or click 🎙️ VOICE command (e.g. EIDON, ALERT, HELP)..." onkeydown="handleTerminalCommand(event)">
+        <input type="text" id="termInput" class="terminal-input" placeholder="Type command code or click VOICE INPUT (e.g. EIDON, ALERT, HELP)..." onkeydown="handleTerminalCommand(event)">
       </div>
       <div class="terminal-output" id="termOutput" data-i18n="term_default">Ready for input. Type 'HELP' to list keywords.</div>
     </div>
@@ -1414,7 +1417,7 @@ function openAchievementsModal() {
                 <div style="font-size:11px; color:${found ? '#fff' : '#666'}; font-weight:bold;">${ach}</div>
                 <div style="font:8px Arial,sans-serif; color:#888; margin-top:3px;">${found ? 'UNLOCKED ON: ' + found.date : 'STATUS: PENDING ACQUISITION'}</div>
             </div>
-            <span style="font:8px Arial,sans-serif; letter-spacing:1px; color:${found ? '#22c55e' : '#555'};">${found ? '[ 🏆 EARNED ]' : '[ LOCKED ]'}</span>
+            <span style="font:8px Arial,sans-serif; letter-spacing:1px; color:${found ? '#22c55e' : '#555'};">${found ? '[ RECOVERED ]' : '[ RESTRICTED ]'}</span>
         </div>`;
     });
     achListHtml += `</div>`;
@@ -1431,9 +1434,9 @@ function openJukeboxModal() {
     const modal = document.getElementById("characterProfileModal");
     let jukeboxHtml = `<div style="font:9px Arial,sans-serif; color:#eab308; letter-spacing:2px; margin-bottom:12px;">WORLD VIII AMBIENT JUKEBOX PLAYER</div>
     <div style="display:flex; flex-direction:column; gap:10px;">
-        <button class="btn sfx-click" onclick="playAudioLog('none', [220, 330, 440, 550])">🎵 Play Sector 8 Ambient Track</button>
-        <button class="btn sfx-click" onclick="playAudioLog('none', [150, 280, 190, 320])">🔊 Play Anomaly Frequency 08</button>
-        <button class="btn sfx-click" onclick="playAudioLog('none', [400, 500, 600, 800])">📻 Play Observer Broadcast</button>
+        <button class="btn sfx-click" onclick="playAudioLog('none', [220, 330, 440, 550])">[ AUDIO: SECTOR 08 AMBIENT ]</button>
+        <button class="btn sfx-click" onclick="playAudioLog('none', [150, 280, 190, 320])">[ SIGNAL: ANOMALY FREQUENCY 08 ]</button>
+        <button class="btn sfx-click" onclick="playAudioLog('none', [400, 500, 600, 800])">[ BROADCAST: OBSERVER TRANSMISSION ]</button>
     </div>`;
 
     document.getElementById("pCategory").innerText = "AUDIO ARCHIVE";
@@ -1471,7 +1474,7 @@ function openTimelineNode(nodeName, desc) {
 let matchedMemoryCount = 0;
 function alignMemoryFragment(id, keyword, btnEl) {
     playSynthBeep(600, 'triangle', 0.1);
-    btnEl.innerText = `[ ✅ ALIGNED: ${keyword} ]`;
+    btnEl.innerText = `[ SYNCHRONIZED: ${keyword} ]`;
     btnEl.style.background = "#22c55e";
     btnEl.style.color = "#000";
     btnEl.disabled = true;
@@ -1556,7 +1559,8 @@ function playSynthBeep(freq, type, duration) {
     const gain = audioCtx.createGain();
     osc.type = type;
     osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    gain.gain.setValueAtTime(0.02 * sfxVolume, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.02 * sfxVolume, audioCtx.currentTime + 0.004);
     gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
     osc.connect(gain);
     gain.connect(audioCtx.destination);
@@ -1572,7 +1576,8 @@ function playTypewriterClick() {
     const randomFreq = 800 + Math.random() * 400;
     osc.type = 'triangle';
     osc.frequency.setValueAtTime(randomFreq, audioCtx.currentTime);
-    gain.gain.setValueAtTime(0.015 * sfxVolume, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.015 * sfxVolume, audioCtx.currentTime + 0.003);
     gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
     osc.connect(gain);
     gain.connect(audioCtx.destination);
@@ -1615,27 +1620,31 @@ function playAudioLog(cardId, freqSeq) {
 let whiteNoiseNode = null;
 let noiseGainNode = null;
 
-function initRadioStaticNoise() {
-    if (!audioCtx) return;
+let bgmSourceNode = null;
+let bgmFilterNode = null;
+function setupBgmFilter() {
+    if (bgmSourceNode) return;
     try {
-        const bufferSize = 2 * audioCtx.sampleRate;
-        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const output = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-            output[i] = Math.random() * 2 - 1;
-        }
+        if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+        bgmSourceNode = audioCtx.createMediaElementSource(bgm);
+        bgmFilterNode = audioCtx.createBiquadFilter();
+        bgmFilterNode.type = 'lowpass';
+        bgmFilterNode.frequency.setValueAtTime(580, audioCtx.currentTime);
+        bgmFilterNode.Q.setValueAtTime(0.8, audioCtx.currentTime);
 
-        whiteNoiseNode = audioCtx.createBufferSource();
-        whiteNoiseNode.buffer = noiseBuffer;
-        whiteNoiseNode.loop = true;
+        const bgmGain = audioCtx.createGain();
+        bgmGain.gain.setValueAtTime(0.65, audioCtx.currentTime);
 
-        noiseGainNode = audioCtx.createGain();
-        noiseGainNode.gain.setValueAtTime(0.0, audioCtx.currentTime);
+        bgmSourceNode.connect(bgmFilterNode);
+        bgmFilterNode.connect(bgmGain);
+        bgmGain.connect(audioCtx.destination);
+    } catch(err) {
+        console.warn("BGM filter setup fallback:", err);
+    }
+}
 
-        whiteNoiseNode.connect(noiseGainNode);
-        noiseGainNode.connect(audioCtx.destination);
-        whiteNoiseNode.start(0);
-    } catch(e) { console.log(e); }
+function initRadioStaticNoise() {
+    // Disabled: Eliminates radio static noise at cursor
 }
 
 window.addEventListener('mousemove', (e) => {
@@ -1646,17 +1655,6 @@ window.addEventListener('mousemove', (e) => {
         spark.style.top = `${e.clientY}px`;
         document.body.appendChild(spark);
         setTimeout(() => spark.remove(), 600);
-    }
-
-    if (noiseGainNode && audioCtx && audioCtx.state === 'running') {
-        const x = e.clientX;
-        const y = e.clientY;
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
-        const dist = Math.hypot(x - centerX, y - centerY);
-        const maxDist = Math.hypot(centerX, centerY);
-        const proximityVolume = Math.max(0, 1 - (dist / maxDist)) * 0.05 * sfxVolume;
-        noiseGainNode.gain.setValueAtTime(proximityVolume, audioCtx.currentTime);
     }
 });
 
@@ -1674,7 +1672,7 @@ function initMatrixMinigame() {
     matrixTimer = 15;
     document.getElementById("matrixTimerLabel").innerText = `TIME REMAINING: ${matrixTimer}s`;
     document.getElementById("matrixStatusText").innerText = "STATUS: HACK IN PROGRESS";
-    document.getElementById("hackOutput").innerText = "Find the correct 3-node hex combination: [0F ➔ 8A ➔ C3]";
+    document.getElementById("hackOutput").innerText = "Find the correct 3-node hex combination: [0F -> 8A -> C3]";
 
     let shuffled = [...hexPool].sort(() => 0.5 - Math.random()).slice(0, 8);
     if (!shuffled.includes("0F")) shuffled[0] = "0F";
@@ -1943,7 +1941,7 @@ function openMapPOI(poiKey) {
         document.getElementById("pTitle").innerText = poiData[poiKey].title;
         document.getElementById("pDesc").innerText = poiData[poiKey].desc + "\n\n[CLICK BUTTON BELOW TO RUN FREQUENCY DECRYPTION]";
         document.getElementById("pActionBtn").style.display = "inline-flex";
-        document.getElementById("pActionBtnText").innerText = "⚡ DECRYPT REGION FREQUENCY";
+        document.getElementById("pActionBtnText").innerText = "DECRYPT REGION FREQUENCY";
         modal.classList.add("show");
     }
 }
@@ -2020,7 +2018,7 @@ const translations = {
         pill_in_dev: "IN DEVELOPMENT", nav_synopsis: "SYNOPSIS", nav_world: "WORLD", nav_audiologs: "AUDIO LOGS", nav_timeline: "TIMELINE TREE", nav_hack: "TERMINAL HACK", nav_relics: "RELICS", nav_map: "MAP", nav_characters: "CHARACTERS", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDINGS",
         hero_h1: "WHAT WILL YOU <span>ACCEPT?</span>", hero_tag: "EVERY CHOICE. EVERY LIFE. EVERY ENDING.",
         hero_desc: "Seven worlds have already fallen. This is the eighth world. The last world. Five strangers are brought together as everything begins to collapse — and every decision leaves a permanent mark.",
-        btn_demo: "TRY PROLOGUE DEMO ➔", btn_enter: "EXPLORE WORLD VIII",
+        btn_demo: "TRY PROLOGUE DEMO", btn_enter: "EXPLORE WORLD VIII",
         label_01: "01 — SYNOPSIS", synopsis_title: "The world has<br>fallen seven times.",
         synopsis_text: "ROUGHTALE8 takes place in the eighth world — a world standing at the edge of destruction. There is no ninth world waiting. Five strangers meet with no known connection to one another. Through their journey, trust, friendship, conflict, sacrifice, and emotional bonds begin to form.<br><br>The player is never given a single protagonist. All five characters are playable, and the story changes through actions, hesitation, courage, mistakes, death, and even choices that were never made.",
         synopsis_quote: "“Every choice. Every life. Every ending.”",
@@ -2080,7 +2078,7 @@ const translations = {
         pill_in_dev: "DALAM PENGEMBANGAN", nav_synopsis: "SINOPSIS", nav_world: "DUNIA", nav_audiologs: "REKAMAN SUARA", nav_timeline: "TIMELINE TREE", nav_hack: "TERMINAL HACK", nav_relics: "RELIK", nav_map: "PETA", nav_characters: "KARAKTER", nav_gameplay: "GAMEPLAY", nav_roadmap: "ROADMAP", nav_endings: "ENDING",
         hero_h1: "APA YANG AKAN ANDA <span>TERIMA?</span>", hero_tag: "SETIAP PILIHAN. SETIAP NYAWA. SETIAP ENDING.",
         hero_desc: "Tujuh dunia telah hancur. Ini adalah dunia kedelapan. Dunia terakhir. Lima orang asing dipertemukan saat segalanya mulai runtuh — dan setiap keputusan meninggalkan bekas permanen.",
-        btn_demo: "COBA DEMO PROLOG ➔", btn_enter: "JELAJAHI DUNIA VIII",
+        btn_demo: "COBA DEMO PROLOG", btn_enter: "JELAJAHI DUNIA VIII",
         label_01: "01 — SINOPSIS", synopsis_title: "Dunia telah runtuh<br>sebanyak tujuh kali.",
         synopsis_text: "ROUGHTALE8 berlatar di dunia kedelapan — sebuah dunia yang berdiri di ambang kehancuran total. Tidak ada dunia kesembilan yang menunggu. Lima orang asing bertemu tanpa hubungan yang pasti. Dalam perjalanan mereka, kepercayaan, persahabatan, konflik, pengorbanan, dan ikatan emosional mulai terbentuk.<br><br>Pemain tidak pernah diberikan satu protagonis tunggal. Kelima karakter dapat dimainkan, dan jalan cerita berubah melalui tindakan, keraguan, keberanian, kesalahan, kematian, hingga pilihan yang tidak pernah dibuat.",
         synopsis_quote: "“Setiap pilihan. Setiap nyawa. Setiap ending.”",
@@ -2335,13 +2333,13 @@ function toggleVoiceInput() {
         recognition.start();
         isRecordingVoice = true;
         micBtn.classList.add('recording');
-        micBtn.innerText = "🎙️ LISTENING...";
+        micBtn.innerText = "[ LISTENING... ]";
 
         recognition.onresult = (event) => {
             const transcript = event.results[0][0].transcript.toUpperCase();
             document.getElementById('termInput').value = transcript;
             micBtn.classList.remove('recording');
-            micBtn.innerText = "🎙️ VOICE";
+            micBtn.innerText = "VOICE INPUT";
             isRecordingVoice = false;
             
             const e = new KeyboardEvent('keydown', { key: 'Enter' });
@@ -2350,13 +2348,13 @@ function toggleVoiceInput() {
 
         recognition.onerror = () => {
             micBtn.classList.remove('recording');
-            micBtn.innerText = "🎙️ VOICE";
+            micBtn.innerText = "VOICE INPUT";
             isRecordingVoice = false;
         };
 
         recognition.onend = () => {
             micBtn.classList.remove('recording');
-            micBtn.innerText = "🎙️ VOICE";
+            micBtn.innerText = "VOICE INPUT";
             isRecordingVoice = false;
         };
     }
@@ -2416,16 +2414,17 @@ function adjustBgmVolume(val) {
 }
 
 function toggleAudio() {
+    setupBgmFilter();
     if (!isAudioPlaying) {
         bgm.play().then(() => {
-            btn.innerText = "[ 🔊 ]";
+            btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><span>BGM: ON</span>`;
             btn.classList.add("active");
             eqBox.classList.add("active");
             isAudioPlaying = true;
         }).catch(e => console.log("Play blocked:", e));
     } else {
         bgm.pause();
-        btn.innerText = "[ 🔊 ]";
+        btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><span>BGM: OFF</span>`;
         btn.classList.remove("active");
         eqBox.classList.remove("active");
         isAudioPlaying = false;
